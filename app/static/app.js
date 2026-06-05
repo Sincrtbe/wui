@@ -228,6 +228,7 @@ async function openWorkflowModal(itemId) {
   dom("workflow-modal-title").innerText = `${currentItem.title} (${currentItem.stage})`;
   
   const fields = dom("workflow-fields");
+  const genBtn = dom("btn-generate-script");
   fields.innerHTML = "";
 
   if (currentItem.stage === "idea") {
@@ -235,25 +236,51 @@ async function openWorkflowModal(itemId) {
       <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
       <label>Notas de la Idea: <textarea name="idea_notes" rows="5">${currentItem.idea_notes || ""}</textarea></label>
     `;
+    genBtn.classList.remove("hidden");
   } else if (currentItem.stage === "script") {
     fields.innerHTML = `
       <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
       <label>Contenido del Guión: <textarea name="script_content" rows="10">${currentItem.script_content || ""}</textarea></label>
       <label>Contenido del Artículo: <textarea name="article_content" rows="5">${currentItem.article_content || ""}</textarea></label>
     `;
+    genBtn.classList.add("hidden");
   } else if (currentItem.stage === "developed") {
     fields.innerHTML = `
       <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
       <label>Datos de Desarrollo (JSON): <textarea name="developed_data" rows="5">${JSON.stringify(currentItem.developed_data || {}, null, 2)}</textarea></label>
     `;
+    genBtn.classList.add("hidden");
   } else if (currentItem.stage === "video") {
     fields.innerHTML = `
       <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
       <p>Etapa final del video. Aquí se gestionaría la exportación.</p>
     `;
+    genBtn.classList.add("hidden");
   }
 
   dom("workflow-modal").showModal();
+}
+
+dom("btn-generate-script").onclick = () => {
+  if (!currentItem || currentItem.stage !== "idea") return;
+  
+  const btn = dom("btn-generate-script");
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando...';
+  
+  fetchJson(`${apiBase}/api/content/${currentItem.id}/generate-script`, { method: "POST" })
+    .then(result => {
+      alert("Guión generado exitosamente con IA");
+      loadChannelContent(dom("content-channel-filter").value);
+      dom("workflow-modal").close();
+    })
+    .catch(err => {
+      alert("Error al generar guión: " + err.message);
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Generar Guión con IA';
+    });
 }
 
 dom("workflow-form").onsubmit = (e) => {

@@ -8,6 +8,7 @@ from app.models.automation import AutomationTask, AutomationRun, AutomationRunSt
 from app.models.config import GlobalConfig
 from app.models.daily_stat import DailyStat
 from app.models.content import ContentItem
+from app.models.log import TaskLog
 
 __all__ = [
     "Channel",
@@ -22,4 +23,5 @@ __all__ = [
     "GlobalConfig",
     "DailyStat",
     "ContentItem",
+    "TaskLog",
 ]

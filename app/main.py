@@ -9,7 +9,7 @@ from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from app.core.database import Base, engine, SessionLocal
-from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content_tools, scripts, config, analytics
+from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content, logs
 from app.tasks.scheduler import init_scheduler, shutdown_scheduler
 
 # Variable global para el proceso del servidor
@@ -60,6 +60,20 @@ async def lifespan(app: FastAPI):
                 FOREIGN KEY(channel_id) REFERENCES channels(id)
             )
         """))
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS task_logs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                task_id INTEGER,
+                channel_id INTEGER,
+                event_type VARCHAR NOT NULL,
+                severity VARCHAR DEFAULT 'info',
+                message TEXT NOT NULL,
+                details TEXT,
+                created_at DATETIME,
+                FOREIGN KEY(task_id) REFERENCES automation_tasks(id),
+                FOREIGN KEY(channel_id) REFERENCES channels(id)
+            )
+        """))
 
     init_scheduler()
     
@@ -97,6 +111,7 @@ app.include_router(scripts_tools.router)
 app.include_router(config.router)
 app.include_router(analytics.router)
 app.include_router(content.router)
+app.include_router(logs.router)
 
 app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")
 
