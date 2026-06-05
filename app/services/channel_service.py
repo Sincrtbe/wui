@@ -72,6 +72,14 @@ class ChannelService:
         db.add(db_channel)
         db.commit()
         db.refresh(db_channel)
+        
+        # Crear carpeta del canal
+        channel_dir = os.path.join(CHANNELS_DATA_DIR, f"channel_{db_channel.id}")
+        os.makedirs(channel_dir, exist_ok=True)
+        # Subcarpetas para el flujo
+        for sub in ["ideas", "scripts", "developed", "videos"]:
+            os.makedirs(os.path.join(channel_dir, sub), exist_ok=True)
+            
         return db_channel
 
     @staticmethod

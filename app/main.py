@@ -9,7 +9,7 @@ from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from app.core.database import Base, engine, SessionLocal
-from app.routers import channels, videos, publications, automation, dashboard, scripts_tools, scripts, config, analytics
+from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content_tools, scripts, config, analytics
 from app.tasks.scheduler import init_scheduler, shutdown_scheduler
 
 # Variable global para el proceso del servidor
@@ -42,6 +42,24 @@ async def lifespan(app: FastAPI):
         # Crear nuevas tablas si no existen
         conn.execute(text("CREATE TABLE IF NOT EXISTS global_configs (key VARCHAR PRIMARY KEY, value TEXT, description VARCHAR)"))
         conn.execute(text("CREATE TABLE IF NOT EXISTS daily_stats (id INTEGER PRIMARY KEY AUTOINCREMENT, channel_id INTEGER, view_count INTEGER, subscriber_count INTEGER, video_count INTEGER, stat_date DATE, FOREIGN KEY(channel_id) REFERENCES channels(id))"))
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS content_items (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                channel_id INTEGER,
+                stage VARCHAR DEFAULT 'idea',
+                title VARCHAR NOT NULL,
+                idea_notes TEXT,
+                script_content TEXT,
+                article_content TEXT,
+                developed_data JSON,
+                video_path VARCHAR,
+                video_metadata JSON,
+                status VARCHAR DEFAULT 'pending',
+                created_at DATETIME,
+                updated_at DATETIME,
+                FOREIGN KEY(channel_id) REFERENCES channels(id)
+            )
+        """))
 
     init_scheduler()
     
@@ -78,6 +96,7 @@ app.include_router(dashboard.router)
 app.include_router(scripts_tools.router)
 app.include_router(config.router)
 app.include_router(analytics.router)
+app.include_router(content.router)
 
 app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")
 

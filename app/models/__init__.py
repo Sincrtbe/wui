@@ -7,6 +7,7 @@ from app.models.publication_schedule import PublicationSchedule
 from app.models.automation import AutomationTask, AutomationRun, AutomationRunStep
 from app.models.config import GlobalConfig
 from app.models.daily_stat import DailyStat
+from app.models.content import ContentItem
 
 __all__ = [
     "Channel",
@@ -20,4 +21,5 @@ __all__ = [
     "AutomationRunStep",
     "GlobalConfig",
     "DailyStat",
+    "ContentItem",
 ]

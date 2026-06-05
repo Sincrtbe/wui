@@ -65,40 +65,40 @@
       
       <div id="content-display" class="hidden">
         <div class="content-tabs">
-          <button class="content-tab active" data-tab="articulos">Artículos</button>
-          <button class="content-tab" data-tab="guiones">Guiones</button>
-          <button class="content-tab" data-tab="videos">Videos</button>
-          <button class="content-tab" data-tab="recursos">Recursos/Doc</button>
+          <button class="content-tab active" data-tab="ideas">Lluvia de Ideas</button>
+          <button class="content-tab" data-tab="guiones">Guiones / Artículos</button>
+          <button class="content-tab" data-tab="desarrollo">Desarrollo</button>
+          <button class="content-tab" data-tab="videos">Videos Finales</button>
         </div>
         
-        <div class="tab-content active" id="tab-articulos">
+        <div class="tab-content active" id="tab-ideas">
           <div class="card">
-            <h3>Artículos y Borradores</h3>
-            <div id="articles-list">Próximamente...</div>
+            <div class="flex-header">
+              <h3>Ideas y Conceptos</h3>
+              <button class="btn-primary" onclick="openNewIdeaModal()"><i class="fas fa-lightbulb"></i> Nueva Idea</button>
+            </div>
+            <div id="ideas-list" class="content-list">Cargando...</div>
           </div>
         </div>
         
         <div class="tab-content" id="tab-guiones">
           <div class="card">
-            <div class="flex-header">
-              <h3>Guiones</h3>
-              <button class="btn-primary" onclick="dom('script-modal').showModal()"><i class="fas fa-plus"></i> Nuevo Guión</button>
-            </div>
-            <div id="script-list">Cargando...</div>
+            <h3>Borradores de Guiones y Artículos</h3>
+            <div id="content-scripts-list" class="content-list">Cargando...</div>
           </div>
         </div>
         
-        <div class="tab-content" id="tab-videos">
+        <div class="tab-content" id="tab-desarrollo">
           <div class="card">
-            <h3>Producción de Video</h3>
-            <div id="video-list">Cargando...</div>
+            <h3>Contenido Desarrollado</h3>
+            <div id="developed-list" class="content-list">Cargando...</div>
           </div>
         </div>
 
-        <div class="tab-content" id="tab-recursos">
+        <div class="tab-content" id="tab-videos">
           <div class="card">
-            <h3>Documentación y Recursos</h3>
-            <div id="resources-list">Próximamente...</div>
+            <h3>Producción de Video</h3>
+            <div id="content-videos-list" class="content-list">Cargando...</div>
           </div>
         </div>
       </div>
@@ -276,6 +276,37 @@
   </main>
 
   <!-- MODALES -->
+  <dialog id="idea-modal" class="modal">
+    <div class="modal-content">
+      <h3>Nueva Idea</h3>
+      <form id="idea-form">
+        <label>Título: <input type="text" name="title" required placeholder="Ej: 10 trucos para..."></label>
+        <label>Notas / Descripción: <textarea name="idea_notes" rows="4"></textarea></label>
+        <div class="modal-actions">
+          <button type="button" onclick="dom('idea-modal').close()" class="btn-outline">Cancelar</button>
+          <button type="submit" class="btn-primary">Guardar Idea</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="workflow-modal" class="modal">
+    <div class="modal-content">
+      <h3 id="workflow-modal-title">Editar Contenido</h3>
+      <form id="workflow-form">
+        <input type="hidden" id="workflow-item-id">
+        <div id="workflow-fields">
+          <!-- Dinámico según la etapa -->
+        </div>
+        <div class="modal-actions">
+          <button type="button" onclick="dom('workflow-modal').close()" class="btn-outline">Cerrar</button>
+          <button type="submit" class="btn-primary">Guardar Cambios</button>
+          <button type="button" id="btn-advance-stage" class="btn-secondary">Avanzar Etapa <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
   <dialog id="script-modal" class="modal">
     <div class="modal-content">
       <h3>Nuevo Guión</h3>

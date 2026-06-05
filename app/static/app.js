@@ -54,7 +54,6 @@ function loadDashboard() {
   const filter = dom("dashboard-channel-filter");
   const channelId = filter ? filter.value : "";
   
-  // Cargar filtros si es necesario
   if (filter && filter.options.length <= 1) {
     loadChannelSelectors();
   }
@@ -98,14 +97,13 @@ function renderCalendar(events) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   let html = "";
-  // Espacios vacíos
   for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
     html += `<div class="calendar-cell empty"></div>`;
   }
 
   for (let d = 1; d <= daysInMonth; d++) {
     const isToday = d === today;
-    const isMarked = d <= today; // Marcar hasta el día actual
+    const isMarked = d <= today;
     const dayEvents = events.filter(e => {
       const ed = new Date(e.date);
       return ed.getDate() === d && ed.getMonth() === month;
@@ -135,7 +133,7 @@ function renderChannelsOverview(channels) {
         </div>
       </div>
       <div class="mt-10">
-        <span class="badge" style="background:${c.color || '#eee'}">Canal</span>
+        <span class="badge" style="background:${c.channel_color || '#eee'}">Canal</span>
         <p class="text-small">${c.description ? c.description.substring(0, 60) + '...' : 'Sin descripción'}</p>
       </div>
     </div>
@@ -157,7 +155,6 @@ function initContenido() {
     }
   };
 
-  // Tabs de contenido
   document.querySelectorAll(".content-tab").forEach(tab => {
     tab.onclick = () => {
       document.querySelectorAll(".content-tab").forEach(t => t.classList.remove("active"));
@@ -169,36 +166,135 @@ function initContenido() {
 }
 
 function loadChannelContent(channelId) {
-  // Cargar guiones
-  fetchJson(`${apiBase}/api/scripts?channel_id=${channelId}`)
-    .then(scripts => {
-      const list = dom("script-list");
-      list.innerHTML = scripts.map(s => `
-        <div class="item-row">
-          <div>
-            <strong>${s.title}</strong>
-            <div class="text-small">${s.status} | ${new Date(s.created_at).toLocaleDateString()}</div>
-          </div>
-          <button class="btn-outline btn-sm">Ver</button>
-        </div>
-      `).join("") || "No hay guiones";
-    });
+  const stages = ["idea", "script", "developed", "video"];
+  const containers = {
+    idea: "ideas-list",
+    script: "content-scripts-list",
+    developed: "developed-list",
+    video: "content-videos-list"
+  };
 
-  // Cargar videos
-  fetchJson(`${apiBase}/api/videos?channel_id=${channelId}`)
-    .then(videos => {
-      const list = dom("video-list");
-      list.innerHTML = videos.map(v => `
-        <div class="item-row">
-          <div>
-            <strong>${v.title}</strong>
-            <div class="text-small">${v.status} | ${v.duration || 0}s</div>
+  stages.forEach(stage => {
+    fetchJson(`${apiBase}/api/content/${channelId}?stage=${stage}`)
+      .then(items => {
+        const list = dom(containers[stage]);
+        if (!list) return;
+        list.innerHTML = items.map(item => `
+          <div class="item-row">
+            <div>
+              <strong>${item.title}</strong>
+              <div class="text-small">${item.status} | ${new Date(item.created_at).toLocaleDateString()}</div>
+            </div>
+            <button onclick="openWorkflowModal(${item.id})" class="btn-outline btn-sm">Gestionar</button>
           </div>
-          <button class="btn-outline btn-sm">Ver</button>
-        </div>
-      `).join("") || "No hay videos";
-    });
+        `).join("") || `<p class="text-muted">No hay contenido en esta etapa</p>`;
+      });
+  });
 }
+
+// FLUJO DE TRABAJO MANUAL
+function openNewIdeaModal() {
+  dom("idea-form").reset();
+  dom("idea-modal").showModal();
+}
+
+dom("idea-form").onsubmit = (e) => {
+  e.preventDefault();
+  const channelId = dom("content-channel-filter").value;
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData.entries());
+  data.channel_id = parseInt(channelId);
+  data.stage = "idea";
+
+  fetchJson(`${apiBase}/api/content/`, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    dom("idea-modal").close();
+    loadChannelContent(channelId);
+  });
+};
+
+let currentItem = null;
+
+async function openWorkflowModal(itemId) {
+  const channelId = dom("content-channel-filter").value;
+  const items = await fetchJson(`${apiBase}/api/content/${channelId}`);
+  currentItem = items.find(i => i.id === itemId);
+  
+  if (!currentItem) return;
+
+  dom("workflow-item-id").value = itemId;
+  dom("workflow-modal-title").innerText = `${currentItem.title} (${currentItem.stage})`;
+  
+  const fields = dom("workflow-fields");
+  fields.innerHTML = "";
+
+  if (currentItem.stage === "idea") {
+    fields.innerHTML = `
+      <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
+      <label>Notas de la Idea: <textarea name="idea_notes" rows="5">${currentItem.idea_notes || ""}</textarea></label>
+    `;
+  } else if (currentItem.stage === "script") {
+    fields.innerHTML = `
+      <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
+      <label>Contenido del Guión: <textarea name="script_content" rows="10">${currentItem.script_content || ""}</textarea></label>
+      <label>Contenido del Artículo: <textarea name="article_content" rows="5">${currentItem.article_content || ""}</textarea></label>
+    `;
+  } else if (currentItem.stage === "developed") {
+    fields.innerHTML = `
+      <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
+      <label>Datos de Desarrollo (JSON): <textarea name="developed_data" rows="5">${JSON.stringify(currentItem.developed_data || {}, null, 2)}</textarea></label>
+    `;
+  } else if (currentItem.stage === "video") {
+    fields.innerHTML = `
+      <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
+      <p>Etapa final del video. Aquí se gestionaría la exportación.</p>
+    `;
+  }
+
+  dom("workflow-modal").showModal();
+}
+
+dom("workflow-form").onsubmit = (e) => {
+  e.preventDefault();
+  const itemId = dom("workflow-item-id").value;
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData.entries());
+  
+  if (data.developed_data) {
+    try { data.developed_data = JSON.parse(data.developed_data); } catch(e) {}
+  }
+
+  fetchJson(`${apiBase}/api/content/${itemId}`, {
+    method: "PATCH",
+    body: JSON.stringify(data)
+  }).then(() => {
+    alert("Cambios guardados");
+    loadChannelContent(dom("content-channel-filter").value);
+  });
+};
+
+dom("btn-advance-stage").onclick = () => {
+  if (!currentItem) return;
+  const stages = ["idea", "script", "developed", "video"];
+  const currentIndex = stages.indexOf(currentItem.stage);
+  
+  if (currentIndex < stages.length - 1) {
+    const nextStage = stages[currentIndex + 1];
+    if (confirm(`¿Avanzar a la etapa de ${nextStage}?`)) {
+      fetchJson(`${apiBase}/api/content/${currentItem.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ stage: nextStage })
+      }).then(() => {
+        dom("workflow-modal").close();
+        loadChannelContent(dom("content-channel-filter").value);
+      });
+    }
+  } else {
+    alert("Ya está en la etapa final");
+  }
+};
 
 // ANÁLISIS
 function initAnalisis() {
@@ -233,7 +329,6 @@ function initAnalisis() {
 }
 
 function loadChannelAnalytics(channelId) {
-  // Stats actuales
   fetchJson(`${apiBase}/api/analytics/daily-stats/${channelId}`)
     .then(stats => {
       if (stats.length > 0) {
@@ -242,7 +337,6 @@ function loadChannelAnalytics(channelId) {
         dom("stat-views").innerText = last.view_count.toLocaleString();
         dom("stat-video-count").innerText = last.video_count.toLocaleString();
         
-        // Renderizar mini gráfico simple (texto por ahora)
         dom("views-chart").innerHTML = `
           <div class="chart-mock">
             ${stats.slice(-7).map(s => `
@@ -254,7 +348,6 @@ function loadChannelAnalytics(channelId) {
       }
     });
 
-  // Historial
   fetchJson(`${apiBase}/api/analytics/publications-history/${channelId}`)
     .then(history => {
       dom("publications-history-list").innerHTML = history.map(h => `
@@ -320,7 +413,6 @@ function deleteChannel(id) {
     .then(() => loadChannels());
 }
 
-// Lógica de creación de ficheros
 dom("btn-create-files").onclick = () => {
   const name = dom("channel-name").value;
   if (!name) return alert("Introduce el nombre del canal");
@@ -381,7 +473,7 @@ function loadChannelSelectors() {
     });
 }
 
-// AUTOMATIZACIÓN (Existente)
+// AUTOMATIZACIÓN
 function loadAutomation() {
   fetchJson(`${apiBase}/api/automation/tasks`)
     .then(tasks => {
@@ -422,24 +514,6 @@ document.querySelectorAll("nav button").forEach(btn => {
   btn.onclick = () => showSection(btn.dataset.section);
 });
 
-// Modales
-dom("script-form").onsubmit = (e) => {
-  e.preventDefault();
-  const channelId = dom("content-channel-filter").value;
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData.entries());
-  data.channel_id = parseInt(channelId);
-  data.tags = data.tags ? data.tags.split(",").map(t => t.trim()) : [];
-  
-  fetchJson(`${apiBase}/api/scripts`, {
-    method: "POST",
-    body: JSON.stringify(data)
-  }).then(() => {
-    dom("script-modal").close();
-    loadChannelContent(channelId);
-  });
-};
-
 dom("automation-form").onsubmit = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -456,5 +530,4 @@ dom("automation-form").onsubmit = (e) => {
   });
 };
 
-// Cargar dashboard al inicio
 showSection("dashboard");
