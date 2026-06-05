@@ -132,14 +132,23 @@ async def lifespan(app: FastAPI):
             )
         """))
         
-        # Verificar y añadir columnas existentes si no existen
+        # Verificar y añadir columnas faltantes en publication_schedules
         pub_columns = [row["name"] for row in conn.execute(text("PRAGMA table_info(publication_schedules)")).mappings()]
         if "content_type" not in pub_columns:
             conn.execute(text("ALTER TABLE publication_schedules ADD COLUMN content_type VARCHAR"))
+        if "script_id" not in pub_columns:
+            conn.execute(text("ALTER TABLE publication_schedules ADD COLUMN script_id INTEGER"))
+        if "created_at" not in pub_columns:
+            conn.execute(text("ALTER TABLE publication_schedules ADD COLUMN created_at DATETIME"))
         
+        # Verificar y añadir columnas faltantes en channel_schedules
         chan_columns = [row["name"] for row in conn.execute(text("PRAGMA table_info(channel_schedules)")).mappings()]
         if "is_active" not in chan_columns:
             conn.execute(text("ALTER TABLE channel_schedules ADD COLUMN is_active BOOLEAN DEFAULT 0"))
+        if "created_at" not in chan_columns:
+            conn.execute(text("ALTER TABLE channel_schedules ADD COLUMN created_at DATETIME"))
+        if "updated_at" not in chan_columns:
+            conn.execute(text("ALTER TABLE channel_schedules ADD COLUMN updated_at DATETIME"))
 
     init_scheduler()
     

@@ -271,6 +271,33 @@ El servidor se inicia en `http://127.0.0.1:9080`
 - ✅ Añadido CSS para la nueva UI
 - ✅ Corregido error de campo 'video_id' inexistente
 
+### 2026-05-06 - Corrección de Base de Datos
+
+#### Error: Columna `created_at` no existe en la base de datos existente
+**Problema**: El calendario desapareció de la UI y el dashboard devolvía error 500: `sqlite3.OperationalError: no such column: publication_schedules.created_at`.
+
+**Causa**: La tabla `publication_schedules` fue creada con datos previos pero sin las columnas del modelo actual (`content_type`, `script_id`, `created_at`).
+
+**Solución**:
+- Ampliada migración en `app/main.py` para verificar y añadir todas las columnas faltantes:
+  - `publication_schedules`: `content_type`, `script_id`, `created_at`
+  - `channel_schedules`: `is_active`, `created_at`, `updated_at`
+- Verificación condicional con `PRAGMA table_info()` antes de añadir cada columna
+
+#### Error: Calendario desaparecido de la UI
+**Problema**: Las secciones de calendario y programación no se mostraban correctamente.
+
+**Causa**: Los errores de base de datos impedían que las APIs de programación devolvieran datos.
+
+**Solución**: Corregidas las migraciones de base de datos. APIs verificadas:
+- `GET /api/dashboard/summary` → 200 OK ✅
+- `GET /api/schedules/channel/1/calendar/months` → 200 OK ✅
+- `GET /api/schedules/channel/1/upcoming` → 200 OK ✅
+- `GET /api/schedules/channel/1` → 200 OK ✅
+
+**Archivos modificados**:
+- `app/main.py`: Ampliadas migraciones con verificación de columnas faltantes
+
 ---
 
 ## 🔧 Configuración
@@ -286,4 +313,4 @@ El servidor se inicia en `http://127.0.0.1:9080`
 
 ---
 
-*Última actualización: 2026-05-06*
+*Última actualización: 2026-05-06 21:50*
