@@ -5,6 +5,8 @@ from app.models.script import Script, ScriptTag
 from app.models.video import Video
 from app.models.publication_schedule import PublicationSchedule
 from app.models.automation import AutomationTask, AutomationRun, AutomationRunStep
+from app.models.config import GlobalConfig
+from app.models.daily_stat import DailyStat
 
 __all__ = [
     "Channel",
@@ -16,4 +18,6 @@ __all__ = [
     "AutomationTask",
     "AutomationRun",
     "AutomationRunStep",
+    "GlobalConfig",
+    "DailyStat",
 ]

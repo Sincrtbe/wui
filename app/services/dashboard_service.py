@@ -63,6 +63,7 @@ class DashboardService:
                 DashboardChannelSummary(
                     channel_id=channel.id,
                     channel_name=channel.title,
+                    channel_color=channel.color,
                     description=channel.description,
                     customUrl=channel.custom_url,
                     publishedAt=channel.published_at,
@@ -93,6 +94,7 @@ class DashboardService:
                     id=pub.id,
                     channel_id=pub.channel_id,
                     channel_name=channel.title if channel else "Desconocido",
+                    channel_color=channel.color if channel else "#3b82f6",
                     title=script.title if script else pub.notes or "Publicación programada",
                     date=pub.scheduled_datetime,
                     status=pub.status,

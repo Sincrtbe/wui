@@ -22,6 +22,7 @@ class ActiveAutomationRunSummary(BaseModel):
 class DashboardChannelSummary(BaseModel):
     channel_id: int
     channel_name: str
+    channel_color: str | None = None
     description: str | None
     customUrl: str | None
     publishedAt: datetime | None

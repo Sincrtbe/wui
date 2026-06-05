@@ -67,6 +67,7 @@ class ChannelService:
             topic_ids=channel_data.get("topicIds", []),
             topic_categories=channel_data.get("topicCategories", []),
             thumbnail_file=thumbnail_file,
+            color=channel.color,
         )
         db.add(db_channel)
         db.commit()

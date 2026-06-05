@@ -1,5 +1,30 @@
 """Funciones auxiliares para sincronizar el scheduler con cambios en tareas."""
-from app.tasks.scheduler import scheduler, _parse_cron, _run_automation_task
+from app.tasks.scheduler import scheduler, _parse_cron, _run_automation_task, _run_daily_analytics
+
+
+def sync_analytics_schedule(cron_expr: str):
+    """Sincroniza la programación de analíticas diarias."""
+    if not scheduler:
+        return
+    
+    job_id = "daily_analytics"
+    if not cron_expr:
+        try:
+            scheduler.remove_job(job_id)
+        except:
+            pass
+        return
+    
+    try:
+        scheduler.add_job(
+            _run_daily_analytics,
+            "cron",
+            id=job_id,
+            replace_existing=True,
+            **_parse_cron(cron_expr),
+        )
+    except Exception as e:
+        print(f"Error al sincronizar analíticas: {e}")
 
 
 def sync_task_to_scheduler(task):

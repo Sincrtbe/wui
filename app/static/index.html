@@ -1,108 +1,324 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Automatización Multimedia</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wui - Plataforma de Automatización</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <header>
-    <h1>Automatización Multimedia</h1>
-    <nav>
-      <button data-section="dashboard">Dashboard</button>
-      <button data-section="channels">Canales</button>
-      <button data-section="scripts">Guiones</button>
-      <button data-section="videos">Vídeos</button>
-      <button data-section="publications">Publicaciones</button>
-      <button data-section="automation">Automatización</button>
-    </nav>
+    <div class="header-content">
+      <h1><i class="fas fa-robot"></i> Wui Platform</h1>
+      <nav>
+        <button class="active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+        <button data-section="contenido"><i class="fas fa-folder-open"></i> Contenido</button>
+        <button data-section="analisis"><i class="fas fa-chart-line"></i> Análisis</button>
+        <button data-section="automatizacion"><i class="fas fa-magic"></i> Automatización</button>
+        <button data-section="configuracion"><i class="fas fa-cog"></i> Configuración</button>
+        <button data-section="channels"><i class="fas fa-tv"></i> Canales</button>
+      </nav>
+    </div>
   </header>
+
   <main>
+    <!-- DASHBOARD -->
     <section id="dashboard" class="page active">
-      <h2>Dashboard</h2>
-      <div id="dashboard-filters" class="card">
-        <label>Canal
+      <div class="section-header">
+        <h2>Panel de Control</h2>
+        <div id="dashboard-filters">
           <select id="dashboard-channel-filter">
             <option value="">Todos los canales</option>
           </select>
-        </label>
+        </div>
       </div>
-      <div id="dashboard-content">Cargando...</div>
+      
+      <div class="dashboard-grid">
+        <div class="dashboard-card" id="summary-card">
+          <h3><i class="fas fa-info-circle"></i> Resumen General</h3>
+          <div id="summary-content">Cargando...</div>
+        </div>
+        <div class="dashboard-card" id="calendar-card">
+          <h3><i class="fas fa-calendar-alt"></i> Calendario de Publicaciones</h3>
+          <div class="calendar-header">
+            <span id="calendar-month-year"></span>
+          </div>
+          <div id="calendar-grid" class="calendar-grid"></div>
+        </div>
+      </div>
+      
+      <div class="dashboard-card">
+        <h3><i class="fas fa-layer-group"></i> Canales Activos</h3>
+        <div id="channels-overview" class="dashboard-grid"></div>
+      </div>
     </section>
 
+    <!-- CONTENIDO -->
+    <section id="contenido" class="page">
+      <div class="section-header">
+        <h2>Gestión de Contenido</h2>
+        <select id="content-channel-filter" class="channel-selector">
+          <option value="">Selecciona un canal</option>
+        </select>
+      </div>
+      
+      <div id="content-display" class="hidden">
+        <div class="content-tabs">
+          <button class="content-tab active" data-tab="articulos">Artículos</button>
+          <button class="content-tab" data-tab="guiones">Guiones</button>
+          <button class="content-tab" data-tab="videos">Videos</button>
+          <button class="content-tab" data-tab="recursos">Recursos/Doc</button>
+        </div>
+        
+        <div class="tab-content active" id="tab-articulos">
+          <div class="card">
+            <h3>Artículos y Borradores</h3>
+            <div id="articles-list">Próximamente...</div>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="tab-guiones">
+          <div class="card">
+            <div class="flex-header">
+              <h3>Guiones</h3>
+              <button class="btn-primary" onclick="dom('script-modal').showModal()"><i class="fas fa-plus"></i> Nuevo Guión</button>
+            </div>
+            <div id="script-list">Cargando...</div>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="tab-videos">
+          <div class="card">
+            <h3>Producción de Video</h3>
+            <div id="video-list">Cargando...</div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-recursos">
+          <div class="card">
+            <h3>Documentación y Recursos</h3>
+            <div id="resources-list">Próximamente...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="content-placeholder" class="placeholder-card">
+        <i class="fas fa-arrow-up"></i>
+        <p>Selecciona un canal para ver su contenido</p>
+      </div>
+    </section>
+
+    <!-- ANALISIS -->
+    <section id="analisis" class="page">
+      <div class="section-header">
+        <h2>Análisis de Rendimiento</h2>
+        <div class="flex-actions">
+          <select id="analytics-channel-filter" class="channel-selector">
+            <option value="">Selecciona un canal</option>
+          </select>
+          <button id="refresh-analytics" class="btn-secondary hidden"><i class="fas fa-sync"></i> Actualizar Datos</button>
+        </div>
+      </div>
+      
+      <div id="analytics-display" class="hidden">
+        <div class="analytics-grid">
+          <div class="card stat-card">
+            <div class="stat-icon subscribers"><i class="fas fa-users"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Suscriptores</span>
+              <h4 id="stat-subscribers">0</h4>
+            </div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon views"><i class="fas fa-eye"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Vistas Totales</span>
+              <h4 id="stat-views">0</h4>
+            </div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon videos"><i class="fas fa-video"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Videos</span>
+              <h4 id="stat-video-count">0</h4>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>Evolución de Vistas</h3>
+          <div id="views-chart" class="chart-container">
+            <p class="chart-placeholder">Cargando gráfico...</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>Historial de Publicaciones</h3>
+          <div id="publications-history-list">Cargando...</div>
+        </div>
+      </div>
+      
+      <div id="analytics-placeholder" class="placeholder-card">
+        <i class="fas fa-chart-bar"></i>
+        <p>Selecciona un canal para ver las estadísticas</p>
+      </div>
+    </section>
+
+    <!-- AUTOMATIZACION -->
+    <section id="automatizacion" class="page">
+      <div class="section-header">
+        <h2>Flujos de Automatización</h2>
+        <button class="btn-primary" onclick="dom('automation-modal').showModal()"><i class="fas fa-plus"></i> Nueva Tarea</button>
+      </div>
+      
+      <div class="automation-layout">
+        <div class="automation-main">
+          <div class="card">
+            <h3>Tareas Programadas</h3>
+            <div id="automation-list">Cargando...</div>
+          </div>
+          <div class="card">
+            <h3>Últimas Ejecuciones</h3>
+            <div id="automation-runs-list">Cargando...</div>
+          </div>
+        </div>
+        
+        <div class="automation-sidebar">
+          <div class="card">
+            <h3><i class="fas fa-terminal"></i> Biblioteca de Prompts</h3>
+            <div id="prompts-list">
+              <div class="prompt-item">
+                <strong>Generador de Guiones</strong>
+                <p>Prompt base para GPT-4...</p>
+              </div>
+              <div class="prompt-item">
+                <strong>Optimización SEO</strong>
+                <p>Tags y descripción...</p>
+              </div>
+            </div>
+            <button class="btn-full btn-outline mt-10">Gestionar Prompts</button>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-film"></i> Configuración de Video</h3>
+            <div class="config-item">
+              <label>Transiciones por defecto</label>
+              <select><option>Fundido</option><option>Corte limpio</option></select>
+            </div>
+            <div class="config-item">
+              <label>Estilo de Subtítulos</label>
+              <select><option>Moderno</option><option>Clásico</option></select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIGURACION -->
+    <section id="configuracion" class="page">
+      <h2>Configuración del Sistema</h2>
+      <div class="card">
+        <h3><i class="fas fa-server"></i> Servicios Externos</h3>
+        <form id="config-form">
+          <div class="form-group">
+            <label for="llm_url">Ruta API LLM (OpenAI/Local)</label>
+            <input type="text" id="llm_url" name="llm_url" placeholder="https://api.openai.com/v1">
+          </div>
+          <div class="form-group">
+            <label for="llm_key">API Key LLM</label>
+            <input type="password" id="llm_key" name="llm_key" placeholder="sk-...">
+          </div>
+          <div class="form-group">
+            <label for="analytics_schedule">Programación Analíticas (Cron)</label>
+            <input type="text" id="analytics_schedule" name="analytics_schedule" placeholder="0 0 * * *">
+            <small>Ejemplo: "0 0 * * *" para ejecutar cada día a medianoche.</small>
+          </div>
+          <button type="submit" class="btn-primary">Guardar Configuración</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- CANALES (Original mejorado) -->
     <section id="channels" class="page">
-      <h2>Canales</h2>
-      <form id="channel-form" class="card">
-        <h3>Crear canal</h3>
-        <label>Nombre<input type="text" name="name" required /></label>
-        <label>Color (hex)<input type="text" name="color" placeholder="#ff0000" required /></label>
-        <label>Email<input type="email" name="email" /></label>
-        <label>Redes sociales (red=url, separadas por coma)<input type="text" name="social_links" placeholder="youtube=https://...,instagram=https://..." /></label>
-        <label>Checkpoints (clave=valor, separadas por coma)<input type="text" name="checkpoints" placeholder="engagement=alto,views=2000" /></label>
-        <button type="submit">Crear canal</button>
-      </form>
-      <div id="channel-list" class="card">Cargando...</div>
-    </section>
+      <div class="section-header">
+        <h2>Gestión de Canales</h2>
+      </div>
+      
+      <div class="card">
+        <h3>Crear Nuevo Canal</h3>
+        <form id="channel-form">
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="channel-name">Nombre del Canal en YouTube</label>
+              <div class="input-with-button">
+                <input type="text" id="channel-name" name="name" required placeholder="Ej: Mi Canal de Tecnología">
+                <button type="button" id="btn-create-files" class="btn-secondary">
+                  <i class="fas fa-magic"></i> Crear Ficheros
+                </button>
+              </div>
+            </div>
+            <div class="form-group flex-1">
+              <label for="channel-color">Color</label>
+              <input type="color" id="channel-color" name="color" value="#3b82f6">
+            </div>
+          </div>
+          <div id="creation-status" class="status-message hidden"></div>
+          <button type="submit" id="btn-save-channel" class="btn-primary mt-10" disabled>Guardar Canal en BD</button>
+        </form>
+      </div>
 
-    <section id="scripts" class="page">
-      <h2>Guiones</h2>
-      <form id="script-form" class="card">
-        <h3>Crear guion</h3>
-        <label>Canal ID<input type="number" name="channel_id" required /></label>
-        <label>Título<input type="text" name="title" required /></label>
-        <label>Descripción<textarea name="description"></textarea></label>
-        <label>Texto de voz<textarea name="voice_script"></textarea></label>
-        <label>Texto gráfico<textarea name="graphic_script"></textarea></label>
-        <label>Tags (coma separada)<input type="text" name="tags" /></label>
-        <button type="submit">Crear guion</button>
-      </form>
-      <div id="script-list" class="card">Cargando...</div>
-    </section>
-
-    <section id="videos" class="page">
-      <h2>Vídeos</h2>
-      <form id="video-form" class="card">
-        <h3>Crear vídeo</h3>
-        <label>Canal ID<input type="number" name="channel_id" required /></label>
-        <label>Guion ID<input type="number" name="script_id" /></label>
-        <label>Título<input type="text" name="title" required /></label>
-        <label>Duración (segundos)<input type="number" name="duration" /></label>
-        <button type="submit">Crear vídeo</button>
-      </form>
-      <div id="video-list" class="card">Cargando...</div>
-    </section>
-
-    <section id="publications" class="page">
-      <h2>Publicaciones</h2>
-      <form id="publication-form" class="card">
-        <h3>Programar publicación</h3>
-        <label>Canal ID<input type="number" name="channel_id" required /></label>
-        <label>Guion ID<input type="number" name="script_id" /></label>
-        <label>Fecha y hora<input type="datetime-local" name="scheduled_datetime" required /></label>
-        <label>Notas<textarea name="notes"></textarea></label>
-        <button type="submit">Programar</button>
-      </form>
-      <div id="publication-list" class="card">Cargando...</div>
-    </section>
-
-    <section id="automation" class="page">
-      <h2>Automatización</h2>
-      <form id="automation-form" class="card">
-        <h3>Crear tarea</h3>
-        <label>Canal ID<input type="number" name="channel_id" required /></label>
-        <label>Nombre<input type="text" name="name" required /></label>
-        <label>Descripción<textarea name="description"></textarea></label>
-        <label>Expresión cron<input type="text" name="schedule_expression" placeholder="0 0 * * *" /></label>
-        <label>Workflow JSON<textarea name="workflow_definition" required>{"steps":[{"action":"Paso 1","params":{}}]}</textarea></label>
-        <button type="submit">Crear tarea</button>
-      </form>
-      <div id="automation-tasks" class="card">Cargando...</div>
-      <div id="automation-runs" class="card">Cargando...</div>
+      <div class="card">
+        <h3>Canales Registrados</h3>
+        <div id="channel-list">Cargando...</div>
+      </div>
     </section>
   </main>
 
-  <footer>Usa esta UI para gestionar los recursos y probar la API de manera visual.</footer>
+  <!-- MODALES -->
+  <dialog id="script-modal" class="modal">
+    <div class="modal-content">
+      <h3>Nuevo Guión</h3>
+      <form id="script-form">
+        <input type="hidden" name="channel_id" id="modal-script-channel-id">
+        <label>Título: <input type="text" name="title" required></label>
+        <label>Descripción: <textarea name="description"></textarea></label>
+        <label>Guión de Voz: <textarea name="voice_script" rows="5"></textarea></label>
+        <label>Guión Gráfico: <textarea name="graphic_script" rows="5"></textarea></label>
+        <label>Tags (separados por coma): <input type="text" name="tags"></label>
+        <div class="modal-actions">
+          <button type="button" onclick="dom('script-modal').close()" class="btn-outline">Cancelar</button>
+          <button type="submit" class="btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="automation-modal" class="modal">
+    <div class="modal-content">
+      <h3>Nueva Tarea de Automatización</h3>
+      <form id="automation-form">
+        <label>Canal: 
+          <select name="channel_id" id="modal-automation-channel-id" required></select>
+        </label>
+        <label>Nombre: <input type="text" name="name" required></label>
+        <label>Descripción: <input type="text" name="description"></label>
+        <label>Cron: <input type="text" name="schedule_expression" placeholder="0 12 * * *"></label>
+        <label>Workflow (JSON): 
+          <textarea name="workflow_definition" rows="5">{"steps": [{"action": "scrape_channel_info", "params": {}}]}</textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="button" onclick="dom('automation-modal').close()" class="btn-outline">Cancelar</button>
+          <button type="submit" class="btn-primary">Crear Tarea</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <footer>
+    <p>&copy; 2026 Wui Platform - Sistema Local de Automatización</p>
+  </footer>
+
   <script src="app.js"></script>
 </body>
 </html>

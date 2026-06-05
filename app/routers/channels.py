@@ -49,6 +49,21 @@ def delete_channel(channel_id: int, db: Session = Depends(get_db)):
     return {"detail": "Canal eliminado"}
 
 
+@router.post("/tools/create-files")
+def create_channel_files(name: str):
+    """Ejecuta el script de tools para crear los archivos del canal."""
+    from tools.script_runner import run_script
+    import json
+    
+    # El script espera el nombre del canal como primer argumento
+    result = run_script("creacionDcanal.py", args=[name])
+    
+    if result.success:
+        return {"detail": "Archivos creados correctamente", "stdout": result.stdout}
+    else:
+        raise HTTPException(status_code=500, detail=f"Error al ejecutar script: {result.error or result.stderr}")
+
+
 @router.get("/{channel_id}/thumbnail", response_class=FileResponse)
 def get_channel_thumbnail(channel_id: int, db: Session = Depends(get_db)):
     """Obtiene la imagen de miniatura de un canal."""

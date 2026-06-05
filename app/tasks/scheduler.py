@@ -2,8 +2,9 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from app.core.database import SessionLocal, engine
-from app.models import AutomationTask
+from app.models import AutomationTask, Channel, GlobalConfig
 from app.services.automation_service import AutomationService
+from app.services.analytics_service import run_daily_stats_import
 
 scheduler = None
 
@@ -35,6 +36,21 @@ def init_scheduler():
                     )
                 except ValueError as e:
                     print(f"Advertencia: No se pudo programar tarea {task.id}: {e}")
+        
+        # Programar tarea de analíticas diarias si existe configuración
+        analytics_cron = db.query(GlobalConfig).filter(GlobalConfig.key == "analytics_schedule").first()
+        if analytics_cron and analytics_cron.value:
+            try:
+                scheduler.add_job(
+                    _run_daily_analytics,
+                    "cron",
+                    id="daily_analytics",
+                    replace_existing=True,
+                    **_parse_cron(analytics_cron.value),
+                )
+            except ValueError as e:
+                print(f"Advertencia: No se pudo programar analíticas: {e}")
+                
     finally:
         db.close()
 
@@ -72,6 +88,17 @@ def _run_automation_task(task_id: int):
     db = SessionLocal()
     try:
         AutomationService.run_task(task_id, db)
+    finally:
+        db.close()
+
+
+def _run_daily_analytics():
+    """Ejecuta la importación de estadísticas para todos los canales."""
+    db = SessionLocal()
+    try:
+        channels = db.query(Channel).all()
+        for channel in channels:
+            run_daily_stats_import(db, channel.id)
     finally:
         db.close()
 

@@ -19,4 +19,5 @@ class Channel(Base):
     topic_categories = Column(JSON, default=list)
     # Archivo de miniatura (nombre del archivo .jpg en channels_data/)
     thumbnail_file = Column(String, nullable=True)
+    color = Column(String, nullable=True, default="#3b82f6")
     created_at = Column(DateTime, default=datetime.utcnow)

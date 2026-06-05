@@ -9,7 +9,7 @@ from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from app.core.database import Base, engine, SessionLocal
-from app.routers import channels, videos, publications, automation, dashboard, scripts_tools, scripts
+from app.routers import channels, videos, publications, automation, dashboard, scripts_tools, scripts, config, analytics
 from app.tasks.scheduler import init_scheduler, shutdown_scheduler
 
 # Variable global para el proceso del servidor
@@ -36,6 +36,12 @@ async def lifespan(app: FastAPI):
             conn.execute(text("ALTER TABLE channels ADD COLUMN last_scrape_status VARCHAR"))
         if "scrape_data" not in existing_columns:
             conn.execute(text("ALTER TABLE channels ADD COLUMN scrape_data JSON"))
+        if "color" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN color VARCHAR DEFAULT '#3b82f6'"))
+        
+        # Crear nuevas tablas si no existen
+        conn.execute(text("CREATE TABLE IF NOT EXISTS global_configs (key VARCHAR PRIMARY KEY, value TEXT, description VARCHAR)"))
+        conn.execute(text("CREATE TABLE IF NOT EXISTS daily_stats (id INTEGER PRIMARY KEY AUTOINCREMENT, channel_id INTEGER, view_count INTEGER, subscriber_count INTEGER, video_count INTEGER, stat_date DATE, FOREIGN KEY(channel_id) REFERENCES channels(id))"))
 
     init_scheduler()
     
@@ -70,6 +76,8 @@ app.include_router(publications.router)
 app.include_router(automation.router)
 app.include_router(dashboard.router)
 app.include_router(scripts_tools.router)
+app.include_router(config.router)
+app.include_router(analytics.router)
 
 app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")
 
