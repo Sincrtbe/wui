@@ -37,8 +37,8 @@ def run_daily_stats_import(db: Session, channel_id: int):
     if not result.success:
         return {"error": f"Error al ejecutar script: {result.error or result.stderr}"}
     
-    # Leer el JSON generado
-    json_path = os.path.join("tools", output_dir, f"{yt_id}_stats.json")
+    # Leer el JSON generado (se guarda en metricas/ relativo al proyecto)
+    json_path = os.path.join(output_dir, f"{yt_id}_stats.json")
     if not os.path.exists(json_path):
         return {"error": "Archivo de resultados no encontrado"}
         
@@ -70,4 +70,12 @@ def run_daily_stats_import(db: Session, channel_id: int):
         db.add(new_stat)
     
     db.commit()
+    
+    # Borrar el fichero JSON después de guardar en BBDD
+    if os.path.exists(json_path):
+        try:
+            os.remove(json_path)
+        except Exception as e:
+            print(f"Advertencia: No se pudo borrar fichero {json_path}: {e}")
+    
     return {"success": True, "data": data}

@@ -10,6 +10,74 @@ from app.schemas.channel import ChannelCreate, ChannelUpdate
 CHANNELS_DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "channels_data")
 os.makedirs(CHANNELS_DATA_DIR, exist_ok=True)
 
+# Directorio para métricas (donde DatosDiarios.py guarda los JSON)
+METRICAS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "metricas")
+os.makedirs(METRICAS_DIR, exist_ok=True)
+
+# Expresión cron por defecto para scraping diario: 2:00 AM todos los días (minuta hora * * *)
+DAILY_SCRAPING_CRON = "0 2 * * *"
+
+
+def _schedule_daily_scraping(channel_id: int):
+    """Programa la tarea diaria de scraping para un canal usando APScheduler."""
+    from apscheduler.schedulers.background import BackgroundScheduler
+    from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
+    from app.core.database import engine
+    
+    # Obtener o crear el scheduler global
+    scheduler = _get_global_scheduler()
+    
+    if scheduler is None:
+        print(f"Advertencia: Scheduler no inicializado para canal {channel_id}")
+        return
+    
+    try:
+        scheduler.add_job(
+            _run_channel_scraping,
+            "cron",
+            hour=2,  # 2:00 AM
+            minute=0,
+            args=[channel_id],
+            id=f"scraping_channel_{channel_id}",
+            name=f"Scraping diario canal {channel_id}",
+            replace_existing=True,
+        )
+        print(f"Tarea diaria programada para canal {channel_id}")
+    except Exception as e:
+        print(f"Error programando tarea para canal {channel_id}: {e}")
+
+
+def _get_global_scheduler():
+    """Obtiene el scheduler global, inicializándolo si es necesario."""
+    global _scheduler
+    if _scheduler is None:
+        from apscheduler.schedulers.background import BackgroundScheduler
+        from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
+        _scheduler = BackgroundScheduler(jobstores={"default": SQLAlchemyJobStore(engine=engine)})
+        _scheduler.start()
+    return _scheduler
+
+
+def _run_channel_scraping(channel_id: int):
+    """Ejecuta el scraping diario para un canal específico."""
+    from app.services.analytics_service import run_daily_stats_import
+    from app.core.database import SessionLocal
+    db = SessionLocal()
+    try:
+        result = run_daily_stats_import(db, channel_id)
+        if "error" in result:
+            print(f"Error en scraping diario canal {channel_id}: {result['error']}")
+        else:
+            print(f"Scraping diario completado para canal {channel_id}")
+    except Exception as e:
+        print(f"Excepción en scraping canal {channel_id}: {e}")
+    finally:
+        db.close()
+
+
+# Scheduler global (se inicializa en la primera llamada)
+_scheduler = None
+
 
 def _find_channel_file_by_name(channel_name: str) -> tuple[str | None, str | None]:
     """Busca archivos del canal por nombre en channels_data (insensible a mayúsculas).
@@ -79,7 +147,18 @@ class ChannelService:
         # Subcarpetas para el flujo
         for sub in ["ideas", "scripts", "developed", "videos"]:
             os.makedirs(os.path.join(channel_dir, sub), exist_ok=True)
-            
+        
+        # Ejecutar scraping de métricas automáticamente al crear el canal
+        from app.services.analytics_service import run_daily_stats_import
+        scraping_result = run_daily_stats_import(db, db_channel.id)
+        if "error" in scraping_result:
+            print(f"Advertencia al crear canal {db_channel.id}: {scraping_result['error']}")
+        else:
+            print(f"Scraping inicial completado para canal {db_channel.id}")
+        
+        # Programar tarea diaria de scraping para este canal
+        _schedule_daily_scraping(db_channel.id)
+        
         return db_channel
 
     @staticmethod

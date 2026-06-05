@@ -31,7 +31,8 @@ def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
     # Buscar publicaciones y videos asociados
     history = db.query(
         PublicationSchedule.scheduled_datetime,
-        PublicationSchedule.platform,
+        PublicationSchedule.status,
+        PublicationSchedule.notes,
         Video.title,
         Video.status
     ).join(Video, PublicationSchedule.video_id == Video.id).filter(Video.channel_id == channel_id).all()
@@ -39,7 +40,7 @@ def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
     return [
         {
             "date": h.scheduled_datetime,
-            "platform": h.platform,
+            "platform": "YouTube",
             "title": h.title,
             "status": h.status
         } for h in history
