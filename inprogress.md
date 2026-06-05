@@ -45,7 +45,7 @@ Wui/
 ```
 
 ## Qué hay hecho
-- Backend FastAPI con modelos SQLAlchemy y routers para: `channels`, `scripts`, `videos`, `publications`, `automation`, `dashboard`.
+- Backend FastAPI con modelos SQLAlchemy y routers para: `channels`, `scripts`, `videos`, `publications`, `automation`, `dashboard`, `analytics`, `config`, `content`, `logs`, `prompts`, `scripts_tools`.
 - UI estática simple en `app/static/index.html`, `app/static/app.js`, `app/static/styles.css`.
 - Dashboard actualizado con:
   - filtros por canal.
@@ -61,12 +61,48 @@ Wui/
 - Tarea diaria de scrapping añadido como workflow básico `scrape_channel_info`.
 - Fix de `/api/scripts` para serializar correctamente tags como strings.
 - Migración ligera en `app/main.py` para agregar columnas nuevas a la tabla de canales cuando existe la base de datos.
+- Sistema de Prompts con CRUD completo.
+- Sistema de Logs con seguimiento de eventos.
+- Sistema de Analytics con estadísticas diarias y historial de publicaciones.
+- Herramientas de ejecución de scripts desde `tools/`.
 
 ## Estado actual
 - El servidor arranca y los archivos Python compilan sin errores de sintaxis.
 - `GET /api/dashboard/summary` soporta filtro opcional por `channel_id`.
 - UI carga en `/ui` y el dashboard consume el API.
 - Los canales ahora incluyen datos ampliados y la interfaz de creación acepta esos campos.
+- Endpoint `/api/analytics/publications-history/1` funciona correctamente.
+
+## DatosDiarios.py - Cómo funciona
+
+### Entrada
+Recibe el `channel_id` de YouTube como argumento de línea de comandos, y opcionalmente una ruta de salida:
+```bash
+python DatosDiarios.py UC_xxxx
+python DatosDiarios.py UC_xxxx 'ruta/personalizada'
+```
+
+### Salida
+1. **Por consola (stdout)**: Imprime un JSON con los datos:
+```json
+{
+    "viewCount": 12345,
+    "subscriberCount": 1000,
+    "videoCount": 50,
+    "fecha_ejecucion": "2026-05-06"
+}
+```
+
+2. **En un fichero**: Guarda el mismo JSON en `{OUTPUT_DIR}/{channel_id}_stats.json`
+   - Por defecto: `vistas_diarias/{channel_id}_stats.json`
+   - La ruta se puede personalizar con el segundo argumento
+
+### Integración con la API
+El servicio `analytics_service.py` llama a este script vía `script_runner.run_script()`:
+1. Ejecuta `python DatosDiarios.py {youtube_id} vistas_diarias`
+2. Lee el JSON generado desde el fichero `tools/vistas_diarias/{youtube_id}_stats.json`
+3. Importa los datos a la tabla `daily_stats` de la base de datos
+4. Evita duplicados para la misma fecha
 
 ## Bugs y estado de la reparación
 
@@ -84,6 +120,10 @@ Wui/
 - Se añadió un calendario de publicaciones con el día actual marcado y color por canal.
 - Se arregló la semilla inicial para crear canales con los nuevos campos usando `ChannelCreate`.
 - Se agregó una migración ligera en `app/main.py` para extender la tabla `channels` cuando ya existe la base de datos.
+- **Error 'metadata' reservado en SQLAlchemy**: El campo `metadata` del modelo `Prompt` se cambió a `meta_data` porque `metadata` es un atributo reservado de SQLAlchemy.
+- **Import circular automation_service ↔ scheduler**: Se rompió el ciclo moviendo los imports de `AutomationService` y `run_daily_stats_import` dentro de las funciones `_run_automation_task` y `_run_daily_analytics` en `scheduler.py`.
+- **scripts_tools no importado en main.py**: Se añadió la importación de `scripts_tools` al router y se registró en `main.py`.
+- **PublicationSchedule.scheduled_at no existe**: Se corrigió a `scheduled_datetime` en `analytics.py`.
 
 ## Correcciones pendientes
 - [ ] Implementar scraping real en lugar de la versión simulada
@@ -102,6 +142,10 @@ Wui/
 | 2026-05-06 | Migración ligera para columnas nuevas en canales | Reparado |
 | 2026-05-06 | Sincronización desde GitHub - nuevos routers (analytics, config, scripts), modelos (config, daily_stat), servicios (analytics, automation_sync), actualizaciones masivas de UI | Hecho |
 | 2026-05-06 | Sincronización desde GitHub - nuevos modelos (content, log, prompt), routers (content, logs, prompts), servicios (file, llm, log, prompt), actualizaciones de UI | Hecho |
+| 2026-05-06 | Corrección de campo 'metadata' → 'meta_data' en Prompt model | Reparado |
+| 2026-05-06 | Corrección de import circular automation_service ↔ scheduler | Reparado |
+| 2026-05-06 | Corrección de scripts_tools no importado en main.py | Reparado |
+| 2026-05-06 | Corrección de PublicationSchedule.scheduled_at → scheduled_datetime | Reparado |
 
 ## Tecnologías usadas
 - **Backend**: Python, FastAPI, SQLAlchemy

@@ -37,7 +37,7 @@ class Prompt(Base):
     is_active = Column(String, default="active")
     
     # Metadatos adicionales
-    metadata = Column(JSON, nullable=True)
+    meta_data = Column(JSON, nullable=True)
     
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

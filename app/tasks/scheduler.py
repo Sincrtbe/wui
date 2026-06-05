@@ -3,8 +3,6 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from app.core.database import SessionLocal, engine
 from app.models import AutomationTask, Channel, GlobalConfig
-from app.services.automation_service import AutomationService
-from app.services.analytics_service import run_daily_stats_import
 
 scheduler = None
 
@@ -85,6 +83,7 @@ def _parse_cron(cron_expr: str) -> dict:
 
 def _run_automation_task(task_id: int):
     """Ejecuta una tarea de automatización programada."""
+    from app.services.automation_service import AutomationService
     db = SessionLocal()
     try:
         AutomationService.run_task(task_id, db)
@@ -94,6 +93,7 @@ def _run_automation_task(task_id: int):
 
 def _run_daily_analytics():
     """Ejecuta la importación de estadísticas para todos los canales."""
+    from app.services.analytics_service import run_daily_stats_import
     db = SessionLocal()
     try:
         channels = db.query(Channel).all()

@@ -9,7 +9,7 @@ from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from app.core.database import Base, engine, SessionLocal
-from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content, logs, prompts
+from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content, logs, prompts, scripts_tools
 from app.tasks.scheduler import init_scheduler, shutdown_scheduler
 
 # Variable global para el proceso del servidor
@@ -72,7 +72,7 @@ async def lifespan(app: FastAPI):
                 usage_count INTEGER DEFAULT 0,
                 version INTEGER DEFAULT 1,
                 is_active VARCHAR DEFAULT 'active',
-                metadata JSON,
+                meta_data JSON,
                 created_at DATETIME,
                 updated_at DATETIME
             )

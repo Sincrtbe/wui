@@ -14,7 +14,7 @@ class PromptCreate(BaseModel):
     content: str
     prompt_type: str  # lluvia_ideas, guion, audio, video, seo
     description: Optional[str] = None
-    metadata: Optional[Any] = None
+    meta_data: Optional[Any] = None
 
 class PromptUpdate(BaseModel):
     title: Optional[str] = None
@@ -47,7 +47,7 @@ def create_prompt(prompt: PromptCreate, db: Session = Depends(get_db)):
         content=prompt.content,
         prompt_type=prompt.prompt_type,
         description=prompt.description,
-        metadata=prompt.metadata
+        meta_data=prompt.meta_data
     )
     return db_prompt
 

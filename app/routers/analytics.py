@@ -30,7 +30,7 @@ def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
     """Obtiene el historial de publicaciones de un canal."""
     # Buscar publicaciones y videos asociados
     history = db.query(
-        PublicationSchedule.scheduled_at,
+        PublicationSchedule.scheduled_datetime,
         PublicationSchedule.platform,
         Video.title,
         Video.status
@@ -38,7 +38,7 @@ def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
     
     return [
         {
-            "date": h.scheduled_at,
+            "date": h.scheduled_datetime,
             "platform": h.platform,
             "title": h.title,
             "status": h.status

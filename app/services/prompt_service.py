@@ -46,7 +46,7 @@ class PromptService:
         content: str,
         prompt_type: str,
         description: str = None,
-        metadata: dict = None
+        meta_data: dict = None
     ) -> Prompt:
         """Crea un nuevo prompt."""
         variables = PromptService.extract_variables(content)
@@ -57,7 +57,7 @@ class PromptService:
             prompt_type=prompt_type,
             description=description,
             variables=variables,
-            metadata=metadata or {}
+            meta_data=meta_data or {}
         )
         
         db.add(prompt)
