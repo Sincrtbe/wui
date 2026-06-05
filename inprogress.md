@@ -271,6 +271,61 @@ El servidor se inicia en `http://127.0.0.1:9080`
 - ✅ Añadido CSS para la nueva UI
 - ✅ Corregido error de campo 'video_id' inexistente
 
+### 2026-05-06 - Vista Detallada de Canal con Información Completa
+
+#### Nueva Funcionalidad: Vista Detallada de Canal
+**Descripción**: Al hacer clic en un canal de la lista, se muestra una vista detallada con toda la información del canal, estadísticas, configuración de periodicidad y calendario de publicaciones.
+
+**Cambios realizados**:
+
+1. **HTML (`app/static/index.html`)**:
+   - Añadida sección `channel-detail-section` con:
+     - Botón "Volver a la lista"
+     - Panel de información general (nombre, URL, descripción, color, estado de scraping)
+     - Panel de estadísticas recientes (suscriptores, vistas, videos)
+     - Panel de configuración de periodicidad (videos largos, shorts, artículos)
+     - Calendario de publicaciones del canal
+     - Lista de próximas publicaciones
+
+2. **JavaScript (`app/static/app.js`)**:
+   - Nueva función `showChannelDetail(channelId)`: Muestra la vista detallada
+   - Nueva función `closeChannelDetail()`: Cierra la vista detallada y vuelve a la lista
+   - Nueva función `loadChannelDetailInfo(channelId)`: Carga información general del canal
+   - Nueva función `loadChannelStats(channelId)`: Carga estadísticas diarias del canal
+   - Modificada función `selectChannel()` para usar `showChannelDetail()`
+   - Modificada lista de canales para usar `channel-card-item` con onclick
+
+3. **CSS (`app/static/styles.css`)**:
+   - Nuevas clases para la vista detallada:
+     - `.channel-detail-header`: Cabecera con botón de volver
+     - `.channel-detail-grid`: Grid de 2 columnas para info y stats
+     - `.channel-info-panel`, `.channel-stats-panel`: Paneles de información
+     - `.info-grid`, `.info-item`, `.info-label`, `.info-value`: Sistema de información
+     - `.stats-grid`, `.stat-mini`: Grid de estadísticas compactas
+     - `.channel-schedule-panel`, `.channel-calendar-panel`, `.channel-publications-panel`: Paneles
+     - `.channel-card-item`: Estilo de tarjeta en la lista
+     - `.color-badge`: Badge de color del canal
+     - `.schedule-type-card`: Tarjetas de configuración por tipo
+   - Responsive: grid se adapta a 1 columna en pantallas pequeñas
+
+**Endpoints utilizados**:
+- `GET /api/channels`: Lista de canales
+- `GET /api/analytics/daily-stats/{channel_id}`: Estadísticas diarias
+- `GET /api/schedules/channel/{channel_id}`: Programación
+- `GET /api/schedules/channel/{channel_id}/calendar/months`: Calendario
+- `GET /api/schedules/channel/{channel_id}/upcoming`: Próximas publicaciones
+- `PUT /api/schedules/channel/{channel_id}`: Guardar programación
+
+**Flujo de usuario**:
+1. Usuario va a pestaña "Canales"
+2. Ve la lista de canales registrados
+3. Hace clic en un canal → se muestra la vista detallada
+4. Puede ver información, estadísticas, configurar periodicidad
+5. Puede guardar cambios de programación
+6. Botón "Volver a la lista" regresa a la vista anterior
+
+---
+
 ### 2026-05-06 - Corrección de Base de Datos
 
 #### Error: Columna `created_at` no existe en la base de datos existente

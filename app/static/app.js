@@ -541,7 +541,7 @@ function loadChannels() {
   fetchJson(`${apiBase}/api/channels`)
     .then(channels => {
       dom("channel-list").innerHTML = channels.map(c => `
-        <div class="item-row" style="cursor:pointer" onclick="selectChannel(${c.id})">
+        <div class="channel-card-item" onclick="showChannelDetail(${c.id})" style="cursor:pointer">
           <div class="flex-header">
             <img src="${apiBase}/api/channels/${c.id}/thumbnail" class="channel-img" onerror="this.src='https://via.placeholder.com/50'">
             <div>
@@ -555,11 +555,112 @@ function loadChannels() {
     });
 }
 
-function selectChannel(channelId) {
+function showChannelDetail(channelId) {
   currentChannelId = channelId;
+  
+  // Ocultar lista y mostrar detalle
+  dom("channel-list").classList.add("hidden");
+  dom("channel-detail-section").classList.remove("hidden");
+  
+  // Cargar toda la información del canal
+  loadChannelDetailInfo(channelId);
+  loadChannelStats(channelId);
   loadChannelSchedule(channelId);
   loadChannelCalendar(channelId);
   loadUpcomingPublications(channelId);
+}
+
+function closeChannelDetail() {
+  dom("channel-detail-section").classList.add("hidden");
+  dom("channel-list").classList.remove("hidden");
+  currentChannelId = null;
+}
+
+function loadChannelDetailInfo(channelId) {
+  fetchJson(`${apiBase}/api/channels`)
+    .then(channels => {
+      const channel = channels.find(c => c.id === channelId);
+      if (!channel) return;
+      
+      dom("channel-detail-title").innerText = channel.title;
+      
+      dom("channel-info-content").innerHTML = `
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Nombre:</span>
+            <span class="info-value">${channel.title}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">URL Personalizada:</span>
+            <span class="info-value">${channel.customUrl || 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Publicación:</span>
+            <span class="info-value">${channel.publishedAt ? new Date(channel.publishedAt).toLocaleDateString() : 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Color:</span>
+            <span class="info-value"><span class="color-badge" style="background:${channel.color || '#3b82f6'}">${channel.color || '#3b82f6'}</span></span>
+          </div>
+          <div class="info-item info-full">
+            <span class="info-label">Descripción:</span>
+            <span class="info-value description">${channel.description || 'Sin descripción'}</span>
+          </div>
+          ${channel.scrape_data ? `
+          <div class="info-item">
+            <span class="info-label">Último Scraping:</span>
+            <span class="info-value">${channel.last_scraped_at ? new Date(channel.last_scraped_at).toLocaleString() : 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Estado:</span>
+            <span class="info-value"><span class="badge ${channel.last_scrape_status === 'success' ? 'badge-success' : ''}">${channel.last_scrape_status || 'N/A'}</span></span>
+          </div>
+          ` : ''}
+        </div>
+      `;
+    })
+    .catch(err => {
+      dom("channel-info-content").innerHTML = `<p class="text-error">Error al cargar información: ${err.message}</p>`;
+    });
+}
+
+function loadChannelStats(channelId) {
+  // Cargar estadísticas diarias
+  fetchJson(`${apiBase}/api/analytics/daily-stats/${channelId}`)
+    .then(stats => {
+      if (stats.length > 0) {
+        const last = stats[stats.length - 1];
+        dom("channel-stats-content").innerHTML = `
+          <div class="stats-grid">
+            <div class="stat-mini">
+              <span class="stat-mini-value">${last.subscriber_count.toLocaleString()}</span>
+              <span class="stat-mini-label">Suscriptores</span>
+            </div>
+            <div class="stat-mini">
+              <span class="stat-mini-value">${last.view_count.toLocaleString()}</span>
+              <span class="stat-mini-label">Vistas</span>
+            </div>
+            <div class="stat-mini">
+              <span class="stat-mini-value">${last.video_count.toLocaleString()}</span>
+              <span class="stat-mini-label">Videos</span>
+            </div>
+            <div class="stat-mini">
+              <span class="stat-mini-value">${last.stat_date || 'N/A'}</span>
+              <span class="stat-mini-label">Fecha</span>
+            </div>
+          </div>
+        `;
+      } else {
+        dom("channel-stats-content").innerHTML = `<p class="text-muted">No hay estadísticas disponibles</p>`;
+      }
+    })
+    .catch(err => {
+      dom("channel-stats-content").innerHTML = `<p class="text-error">Error al cargar estadísticas: ${err.message}</p>`;
+    });
+}
+
+function selectChannel(channelId) {
+  showChannelDetail(channelId);
 }
 
 function loadChannelSchedule(channelId) {
