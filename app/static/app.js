@@ -779,7 +779,10 @@ function renderCalendarView(channelId, data) {
     if (i < firstDay || currentDay > daysInMonth) {
       html += '<div class="calendar-cell empty"></div>';
     } else {
-      const dayEvents = eventsCurrent.filter(e => new Date(e.date).getDate() === currentDay);
+      const dayEvents = eventsCurrent.filter(e => {
+        const parts = e.date.split('-');
+        return parseInt(parts[2]) === currentDay;
+      });
       const isToday = currentDay === new Date().getDate() && currentMonth.month === new Date().getMonth() + 1;
       
       html += `<div class="calendar-cell ${isToday ? 'today' : ''}">`;
@@ -811,7 +814,10 @@ function renderCalendarView(channelId, data) {
     if (i < firstDayNext || nextDay > daysInNextMonth) {
       html += '<div class="calendar-cell empty"></div>';
     } else {
-      const dayEvents = eventsNext.filter(e => new Date(e.date).getDate() === nextDay);
+      const dayEvents = eventsNext.filter(e => {
+        const parts = e.date.split('-');
+        return parseInt(parts[2]) === nextDay;
+      });
       
       html += `<div class="calendar-cell">`;
       html += `<span class="calendar-day">${nextDay}</span>`;

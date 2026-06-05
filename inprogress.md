@@ -214,6 +214,27 @@ Wui/
 
 ## Correcciones Realizadas
 
+### 4. Calendario no muestra eventos (Bug en renderCalendarView)
+**Fecha:** 2026-06-06  
+**Problema:** Las programaciones generadas no aparecían en el calendario del detalle de canal. La API devolvía los datos correctamente (`/api/schedules/channel/1/calendar/months` retornaba eventos con fechas como `"2026-06-04"`), pero el frontend no los filtraba correctamente por día.
+
+**Causa:** La función `renderCalendarView` en `app/static/app.js` usaba `new Date(e.date).getDate()` para filtrar eventos por día. Las fechas ISO `"YYYY-MM-DD"` pueden interpretarse incorrectamente dependiendo de la zona horaria (se interpretan como UTC y al aplicar `getDate()` puede dar un día diferente en zonas UTC+2).
+
+**Solución:** Cambiar el filtrado de fechas para usar parsing directo de la cadena ISO en lugar de `new Date()`:
+```javascript
+// ANTES (incorrecto por zona horaria):
+const dayEvents = eventsCurrent.filter(e => new Date(e.date).getDate() === currentDay);
+
+// DESPUÉS (correcto, parsing directo):
+const dayEvents = eventsCurrent.filter(e => {
+  const parts = e.date.split('-');
+  return parseInt(parts[2]) === currentDay;
+});
+```
+
+**Archivos modificados:**
+- `app/static/app.js` - Función `renderCalendarView` (líneas de filtrado de `dayEvents` en mes actual y siguiente)
+
 ### 1. Conflicto de nombres en routers/schedule.py
 **Problema:** La función del router `update_channel_schedule` tenía el mismo nombre que la función del servicio importada, causando un `TypeError` al intentar guardar la configuración de periodicidad.
 
