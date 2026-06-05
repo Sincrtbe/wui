@@ -101,6 +101,7 @@ Wui/
 | 2026-05-06 | Dashboard con filtros por canal y calendario | Reparado |
 | 2026-05-06 | Migración ligera para columnas nuevas en canales | Reparado |
 | 2026-05-06 | Sincronización desde GitHub - nuevos routers (analytics, config, scripts), modelos (config, daily_stat), servicios (analytics, automation_sync), actualizaciones masivas de UI | Hecho |
+| 2026-05-06 | Sincronización desde GitHub - nuevos modelos (content, log, prompt), routers (content, logs, prompts), servicios (file, llm, log, prompt), actualizaciones de UI | Hecho |
 
 ## Tecnologías usadas
 - **Backend**: Python, FastAPI, SQLAlchemy
