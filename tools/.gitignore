@@ -1,0 +1,30 @@
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+
+# Scripts compilados
+*.pyc
+*.pyo
+
+# Archivos de logs
+*.log
+
+# Archivos de datos generados
+*.json.bak
+*.csv.bak
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

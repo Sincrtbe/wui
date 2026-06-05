@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatización Multimedia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Automatización Multimedia</h1>
+    <nav>
+      <button data-section="dashboard">Dashboard</button>
+      <button data-section="channels">Canales</button>
+      <button data-section="scripts">Guiones</button>
+      <button data-section="videos">Vídeos</button>
+      <button data-section="publications">Publicaciones</button>
+      <button data-section="automation">Automatización</button>
+    </nav>
+  </header>
+  <main>
+    <section id="dashboard" class="page active">
+      <h2>Dashboard</h2>
+      <div id="dashboard-filters" class="card">
+        <label>Canal
+          <select id="dashboard-channel-filter">
+            <option value="">Todos los canales</option>
+          </select>
+        </label>
+      </div>
+      <div id="dashboard-content">Cargando...</div>
+    </section>
+
+    <section id="channels" class="page">
+      <h2>Canales</h2>
+      <form id="channel-form" class="card">
+        <h3>Crear canal</h3>
+        <label>Nombre<input type="text" name="name" required /></label>
+        <label>Color (hex)<input type="text" name="color" placeholder="#ff0000" required /></label>
+        <label>Email<input type="email" name="email" /></label>
+        <label>Redes sociales (red=url, separadas por coma)<input type="text" name="social_links" placeholder="youtube=https://...,instagram=https://..." /></label>
+        <label>Checkpoints (clave=valor, separadas por coma)<input type="text" name="checkpoints" placeholder="engagement=alto,views=2000" /></label>
+        <button type="submit">Crear canal</button>
+      </form>
+      <div id="channel-list" class="card">Cargando...</div>
+    </section>
+
+    <section id="scripts" class="page">
+      <h2>Guiones</h2>
+      <form id="script-form" class="card">
+        <h3>Crear guion</h3>
+        <label>Canal ID<input type="number" name="channel_id" required /></label>
+        <label>Título<input type="text" name="title" required /></label>
+        <label>Descripción<textarea name="description"></textarea></label>
+        <label>Texto de voz<textarea name="voice_script"></textarea></label>
+        <label>Texto gráfico<textarea name="graphic_script"></textarea></label>
+        <label>Tags (coma separada)<input type="text" name="tags" /></label>
+        <button type="submit">Crear guion</button>
+      </form>
+      <div id="script-list" class="card">Cargando...</div>
+    </section>
+
+    <section id="videos" class="page">
+      <h2>Vídeos</h2>
+      <form id="video-form" class="card">
+        <h3>Crear vídeo</h3>
+        <label>Canal ID<input type="number" name="channel_id" required /></label>
+        <label>Guion ID<input type="number" name="script_id" /></label>
+        <label>Título<input type="text" name="title" required /></label>
+        <label>Duración (segundos)<input type="number" name="duration" /></label>
+        <button type="submit">Crear vídeo</button>
+      </form>
+      <div id="video-list" class="card">Cargando...</div>
+    </section>
+
+    <section id="publications" class="page">
+      <h2>Publicaciones</h2>
+      <form id="publication-form" class="card">
+        <h3>Programar publicación</h3>
+        <label>Canal ID<input type="number" name="channel_id" required /></label>
+        <label>Guion ID<input type="number" name="script_id" /></label>
+        <label>Fecha y hora<input type="datetime-local" name="scheduled_datetime" required /></label>
+        <label>Notas<textarea name="notes"></textarea></label>
+        <button type="submit">Programar</button>
+      </form>
+      <div id="publication-list" class="card">Cargando...</div>
+    </section>
+
+    <section id="automation" class="page">
+      <h2>Automatización</h2>
+      <form id="automation-form" class="card">
+        <h3>Crear tarea</h3>
+        <label>Canal ID<input type="number" name="channel_id" required /></label>
+        <label>Nombre<input type="text" name="name" required /></label>
+        <label>Descripción<textarea name="description"></textarea></label>
+        <label>Expresión cron<input type="text" name="schedule_expression" placeholder="0 0 * * *" /></label>
+        <label>Workflow JSON<textarea name="workflow_definition" required>{"steps":[{"action":"Paso 1","params":{}}]}</textarea></label>
+        <button type="submit">Crear tarea</button>
+      </form>
+      <div id="automation-tasks" class="card">Cargando...</div>
+      <div id="automation-runs" class="card">Cargando...</div>
+    </section>
+  </main>
+
+  <footer>Usa esta UI para gestionar los recursos y probar la API de manera visual.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
