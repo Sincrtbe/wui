@@ -218,24 +218,50 @@
     <!-- CONFIGURACION -->
     <section id="configuracion" class="page">
       <h2>Configuración del Sistema</h2>
-      <div class="card">
-        <h3><i class="fas fa-server"></i> Servicios Externos</h3>
-        <form id="config-form">
-          <div class="form-group">
-            <label for="llm_url">Ruta API LLM (OpenAI/Local)</label>
-            <input type="text" id="llm_url" name="llm_url" placeholder="https://api.openai.com/v1">
+      <div class="config-tabs">
+        <button class="config-tab active" data-config-tab="servicios">Servicios</button>
+        <button class="config-tab" data-config-tab="prompts">Biblioteca de Prompts</button>
+      </div>
+      <div id="config-servicios" class="config-tab-content active">
+        <div class="card">
+          <h3><i class="fas fa-server"></i> Servicios Externos</h3>
+          <form id="config-form">
+            <div class="form-group">
+              <label for="llm_url">Ruta API LLM (OpenAI/Local)</label>
+              <input type="text" id="llm_url" name="llm_url" placeholder="https://api.openai.com/v1">
+            </div>
+            <div class="form-group">
+              <label for="llm_key">API Key LLM</label>
+              <input type="password" id="llm_key" name="llm_key" placeholder="sk-...">
+            </div>
+            <div class="form-group">
+              <label for="analytics_schedule">Programación Analíticas (Cron)</label>
+              <input type="text" id="analytics_schedule" name="analytics_schedule" placeholder="0 0 * * *">
+              <small>Ejemplo: "0 0 * * *" para ejecutar cada día a medianoche.</small>
+            </div>
+            <button type="submit" class="btn-primary">Guardar Configuración</button>
+          </form>
+        </div>
+      </div>
+      <div id="config-prompts" class="config-tab-content hidden">
+        <div class="card">
+          <div class="flex-header">
+            <h3><i class="fas fa-terminal"></i> Biblioteca de Prompts</h3>
+            <button class="btn-primary" onclick="dom('prompt-create-modal').showModal()"><i class="fas fa-plus"></i> Nuevo Prompt</button>
           </div>
-          <div class="form-group">
-            <label for="llm_key">API Key LLM</label>
-            <input type="password" id="llm_key" name="llm_key" placeholder="sk-...">
+          <div class="prompt-filters">
+            <input type="text" id="prompt-search" placeholder="Buscar prompts..." style="margin-bottom: 1rem;">
+            <select id="prompt-type-filter" style="margin-bottom: 1rem;">
+              <option value="">Todos los tipos</option>
+              <option value="lluvia_ideas">Lluvia de Ideas</option>
+              <option value="guion">Guion</option>
+              <option value="audio">Audio</option>
+              <option value="video">Video</option>
+              <option value="seo">SEO</option>
+            </select>
           </div>
-          <div class="form-group">
-            <label for="analytics_schedule">Programación Analíticas (Cron)</label>
-            <input type="text" id="analytics_schedule" name="analytics_schedule" placeholder="0 0 * * *">
-            <small>Ejemplo: "0 0 * * *" para ejecutar cada día a medianoche.</small>
-          </div>
-          <button type="submit" class="btn-primary">Guardar Configuración</button>
-        </form>
+          <div id="prompts-list" class="prompts-grid">Cargando prompts...</div>
+        </div>
       </div>
     </section>
 
@@ -323,6 +349,45 @@
           <button type="submit" class="btn-primary">Guardar</button>
         </div>
       </form>
+    </div>
+  </dialog>
+
+  <dialog id="prompt-create-modal" class="modal">
+    <div class="modal-content">
+      <h3>Crear Nuevo Prompt</h3>
+      <form id="prompt-form">
+        <label>Título: <input type="text" name="title" required></label>
+        <label>Tipo:
+          <select name="prompt_type" required>
+            <option value="lluvia_ideas">Lluvia de Ideas</option>
+            <option value="guion">Guión</option>
+            <option value="audio">Audio</option>
+            <option value="video">Video</option>
+            <option value="seo">SEO</option>
+          </select>
+        </label>
+        <label>Descripción: <textarea name="description" rows="2"></textarea></label>
+        <label>Contenido del Prompt (usa {{variable}} para variables):
+          <textarea name="content" rows="8" required placeholder="Ej: Crea un guión para {{tema}} con duración de {{duracion}} minutos"></textarea>
+        </label>
+        <div id="detected-variables" class="info-box"></div>
+        <div class="modal-actions">
+          <button type="button" onclick="dom('prompt-create-modal').close()" class="btn-outline">Cancelar</button>
+          <button type="submit" class="btn-primary">Crear Prompt</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="prompt-detail-modal" class="modal">
+    <div class="modal-content">
+      <h3 id="prompt-detail-title">Detalles del Prompt</h3>
+      <div id="prompt-detail-content"></div>
+      <div class="modal-actions">
+        <button type="button" onclick="dom('prompt-detail-modal').close()" class="btn-outline">Cerrar</button>
+        <button type="button" id="btn-edit-prompt" class="btn-secondary"><i class="fas fa-edit"></i> Editar</button>
+        <button type="button" id="btn-delete-prompt" class="btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+      </div>
     </div>
   </dialog>
 

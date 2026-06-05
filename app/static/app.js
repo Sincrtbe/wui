@@ -413,7 +413,126 @@ function loadConfig() {
       .then(() => alert("Configuración guardada"))
       .catch(err => alert("Error al guardar: " + err.message));
   };
+
+  // Tabs de configuración
+  document.querySelectorAll(".config-tab").forEach(tab => {
+    tab.onclick = () => {
+      document.querySelectorAll(".config-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".config-tab-content").forEach(c => c.classList.add("hidden"));
+      tab.classList.add("active");
+      const tabName = tab.dataset.configTab;
+      dom(`config-${tabName}`).classList.remove("hidden");
+      if (tabName === "prompts") loadPrompts();
+    };
+  });
 }
+
+// BIBLIOTECA DE PROMPTS
+function loadPrompts() {
+  const typeFilter = dom("prompt-type-filter");
+  const searchInput = dom("prompt-search");
+  
+  function fetchAndRender() {
+    const type = typeFilter.value;
+    const url = type ? `${apiBase}/api/prompts?prompt_type=${type}` : `${apiBase}/api/prompts`;
+    
+    fetchJson(url)
+      .then(prompts => {
+        const list = dom("prompts-list");
+        if (searchInput.value) {
+          prompts = prompts.filter(p => p.title.toLowerCase().includes(searchInput.value.toLowerCase()));
+        }
+        
+        list.innerHTML = prompts.map(p => `
+          <div class="prompt-card card" onclick="openPromptDetail(${p.id})">
+            <div class="prompt-header">
+              <h4>${p.title}</h4>
+              <span class="badge">${p.prompt_type}</span>
+            </div>
+            <p class="text-small">${p.description || "Sin descripción"}</p>
+            <div class="prompt-meta">
+              <span><i class="fas fa-star"></i> ${p.rating.toFixed(1)}/5</span>
+              <span><i class="fas fa-check-circle"></i> ${p.usage_count} usos</span>
+              <span><i class="fas fa-code"></i> v${p.version}</span>
+            </div>
+            <div class="prompt-variables">
+              ${p.variables.length > 0 ? `<strong>Variables:</strong> ${p.variables.join(", ")}` : "Sin variables"}
+            </div>
+          </div>
+        `).join("") || "<p>No hay prompts</p>";
+      });
+  }
+  
+  typeFilter.onchange = fetchAndRender;
+  searchInput.onkeyup = fetchAndRender;
+  
+  fetchAndRender();
+}
+
+function openPromptDetail(promptId) {
+  fetchJson(`${apiBase}/api/prompts/${promptId}`)
+    .then(prompt => {
+      dom("prompt-detail-title").innerText = prompt.title;
+      dom("prompt-detail-content").innerHTML = `
+        <div class="prompt-detail">
+          <p><strong>Tipo:</strong> ${prompt.prompt_type}</p>
+          <p><strong>Descripción:</strong> ${prompt.description || "N/A"}</p>
+          <p><strong>Versión:</strong> ${prompt.version}</p>
+          <p><strong>Puntuación:</strong> ${prompt.rating.toFixed(1)}/5</p>
+          <p><strong>Usos:</strong> ${prompt.usage_count}</p>
+          <p><strong>Variables:</strong> ${prompt.variables.join(", ") || "Ninguna"}</p>
+          <div class="prompt-content-box">
+            <strong>Contenido:</strong>
+            <pre>${prompt.content}</pre>
+          </div>
+          <div class="rating-input">
+            <label>Calificar (0-5):
+              <input type="number" min="0" max="5" step="0.5" id="rating-input" value="${prompt.rating}">
+              <button type="button" onclick="ratePrompt(${promptId})">Guardar Calificación</button>
+            </label>
+          </div>
+        </div>
+      `;
+      dom("prompt-detail-modal").showModal();
+    });
+}
+
+function ratePrompt(promptId) {
+  const rating = parseFloat(dom("rating-input").value);
+  if (rating < 0 || rating > 5) return alert("Calificación inválida");
+  
+  fetchJson(`${apiBase}/api/prompts/${promptId}/rate?rating=${rating}`, { method: "POST" })
+    .then(() => {
+      alert("Calificación guardada");
+      loadPrompts();
+    });
+}
+
+dom("prompt-form").onsubmit = (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData.entries());
+  
+  fetchJson(`${apiBase}/api/prompts`, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => {
+    alert("Prompt creado exitosamente");
+    dom("prompt-create-modal").close();
+    loadPrompts();
+  });
+};
+
+dom("prompt-form").addEventListener("input", (e) => {
+  if (e.target.name === "content") {
+    const content = e.target.value;
+    const variables = content.match(/\{\{(\w+)\}\}/g) || [];
+    const unique = [...new Set(variables.map(v => v.slice(2, -2)))];
+    dom("detected-variables").innerHTML = unique.length > 0 
+      ? `<strong>Variables detectadas:</strong> ${unique.join(", ")}`
+      : "";
+  }
+});
 
 // CANALES Y HERRAMIENTAS
 function loadChannels() {

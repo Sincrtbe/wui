@@ -9,6 +9,7 @@ from app.models.config import GlobalConfig
 from app.models.daily_stat import DailyStat
 from app.models.content import ContentItem
 from app.models.log import TaskLog
+from app.models.prompt import Prompt
 
 __all__ = [
     "Channel",
@@ -24,4 +25,5 @@ __all__ = [
     "DailyStat",
     "ContentItem",
     "TaskLog",
+    "Prompt",
 ]
