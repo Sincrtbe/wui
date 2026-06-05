@@ -184,6 +184,27 @@ Endpoints API:
 
 ---
 
+## 🐛 Corrección: Migración de base de datos para columnas faltantes
+
+### Error: Columna `content_type` no existe en la base de datos existente
+**Problema**: Al iniciar el servidor, la tabla `publication_schedules` no tenía la columna `content_type`, causando error `sqlite3.OperationalError: no such column: publication_schedules.content_type`.
+
+**Causa**: El modelo `PublicationSchedule` fue actualizado con el campo `content_type` pero la base de datos existente no fue migrada automáticamente. SQLAlchemy `create_all` no añade columnas a tablas existentes.
+
+**Solución**:
+1. Añadida función `init_db()` en `app/core/database.py` con migraciones manuales usando `PRAGMA table_info()` para verificar columnas existentes
+2. Actualizado `app/main.py` para incluir migraciones de:
+   - Tabla `channel_schedules` (nueva tabla)
+   - Tabla `publication_schedules` (nueva tabla con columna `content_type`)
+   - Verificación y adición de columnas `content_type` y `is_active` si no existen
+
+**Archivos modificados**:
+- `app/core/database.py`: Añadida función `init_db()` con migraciones
+- `app/main.py`: Añadidas migraciones de tablas y columnas en `lifespan()`
+
+
+---
+
 ## 🚀 Cómo Ejecutar
 
 ### Requisitos

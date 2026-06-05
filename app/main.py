@@ -95,6 +95,51 @@ async def lifespan(app: FastAPI):
                 FOREIGN KEY(channel_id) REFERENCES channels(id)
             )
         """))
+        
+        # Crear tabla channel_schedules si no existe
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS channel_schedules (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                channel_id INTEGER UNIQUE,
+                long_video_enabled BOOLEAN DEFAULT 0,
+                long_video_frequency INTEGER,
+                short_video_enabled BOOLEAN DEFAULT 0,
+                short_video_frequency INTEGER,
+                article_enabled BOOLEAN DEFAULT 0,
+                article_frequency INTEGER,
+                start_date DATE,
+                timezone VARCHAR DEFAULT 'Europe/Madrid',
+                is_active BOOLEAN DEFAULT 0,
+                created_at DATETIME,
+                updated_at DATETIME,
+                FOREIGN KEY(channel_id) REFERENCES channels(id)
+            )
+        """))
+        
+        # Crear tabla publication_schedules si no existe
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS publication_schedules (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                channel_id INTEGER,
+                script_id INTEGER,
+                content_type VARCHAR,
+                scheduled_datetime DATETIME,
+                status VARCHAR DEFAULT 'planned',
+                notes TEXT,
+                created_at DATETIME,
+                FOREIGN KEY(channel_id) REFERENCES channels(id),
+                FOREIGN KEY(script_id) REFERENCES scripts(id)
+            )
+        """))
+        
+        # Verificar y añadir columnas existentes si no existen
+        pub_columns = [row["name"] for row in conn.execute(text("PRAGMA table_info(publication_schedules)")).mappings()]
+        if "content_type" not in pub_columns:
+            conn.execute(text("ALTER TABLE publication_schedules ADD COLUMN content_type VARCHAR"))
+        
+        chan_columns = [row["name"] for row in conn.execute(text("PRAGMA table_info(channel_schedules)")).mappings()]
+        if "is_active" not in chan_columns:
+            conn.execute(text("ALTER TABLE channel_schedules ADD COLUMN is_active BOOLEAN DEFAULT 0"))
 
     init_scheduler()
     
