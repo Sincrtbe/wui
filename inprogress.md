@@ -72,6 +72,8 @@ Wui/
 - UI carga en `/ui` y el dashboard consume el API.
 - Los canales ahora incluyen datos ampliados y la interfaz de creación acepta esos campos.
 - Endpoint `/api/analytics/publications-history/1` funciona correctamente.
+- DatosDiarios.py ejecutado correctamente para canal Cosasqpensar (UC2QFapkF39LMe_0yXJ_TsZw).
+- Carpeta `metricas/` creada con ficheros de estadísticas diarias.
 
 ## DatosDiarios.py - Cómo funciona
 
@@ -146,6 +148,10 @@ El servicio `analytics_service.py` llama a este script vía `script_runner.run_s
 | 2026-05-06 | Corrección de import circular automation_service ↔ scheduler | Reparado |
 | 2026-05-06 | Corrección de scripts_tools no importado en main.py | Reparado |
 | 2026-05-06 | Corrección de PublicationSchedule.scheduled_at → scheduled_datetime | Reparado |
+| 2026-05-06 | Ejecución de DatosDiarios.py para canal Cosasqpensar, creación de carpeta metricas/ | Hecho |
+
+## Nuevas carpetas
+- `metricas/` - Estadísticas diarias de canales (ficheros JSON con viewCount, subscriberCount, videoCount, fecha_ejecucion)
 
 ## Tecnologías usadas
 - **Backend**: Python, FastAPI, SQLAlchemy
