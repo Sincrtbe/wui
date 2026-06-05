@@ -5,7 +5,7 @@ import datetime
 from googleapiclient.discovery import build
 
 # --- CONFIGURACIÓN ---
-API_KEY = "AIzaSyCW1IffqO1H22x5-i9nFz4RROZ5lM3RNgI"
+API_KEY = "-I"
 DEFAULT_OUTPUT_DIR = "vistas_diarias"  # <--- RUTA DECLARADA POR DEFECTO
 
 # Validación: Al menos necesitamos el ID del canal

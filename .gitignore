@@ -30,12 +30,15 @@ ENV/
 # Environment variables
 .env
 
-# Channels data (large files)
-channels_data/*.json
-channels_data/*.jpg
-channels_data/*.png
+# Channels data - exclude only large media files
+# channels_data/*.json (keep JSON files)
+# channels_data/*.jpg (keep image files)
 channels_data/*.mp4
 channels_data/*.avi
+channels_data/*.mkv
+channels_data/*.mov
+channels_data/*.zip
+channels_data/*.rar
 
 # Logs
 *.log
