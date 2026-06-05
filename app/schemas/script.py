@@ -34,3 +34,10 @@ class ScriptResponse(BaseModel):
     updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+    @field_serializer('tags', when_used='json')
+    def serialize_tags(self, tags, _info):
+        """Serializa tags como lista de strings."""
+        if isinstance(tags, list):
+            return [tag.name if hasattr(tag, 'name') else str(tag) for tag in tags]
+        return tags

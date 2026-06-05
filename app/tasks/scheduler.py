@@ -24,32 +24,46 @@ def init_scheduler():
         active_tasks = db.query(AutomationTask).filter(AutomationTask.is_active == True).all()
         for task in active_tasks:
             if task.schedule_expression:
-                scheduler.add_job(
-                    _run_automation_task,
-                    "cron",
-                    args=[task.id],
-                    id=f"task_{task.id}",
-                    replace_existing=True,
-                    **_parse_cron(task.schedule_expression),
-                )
+                try:
+                    scheduler.add_job(
+                        _run_automation_task,
+                        "cron",
+                        args=[task.id],
+                        id=f"task_{task.id}",
+                        replace_existing=True,
+                        **_parse_cron(task.schedule_expression),
+                    )
+                except ValueError as e:
+                    print(f"Advertencia: No se pudo programar tarea {task.id}: {e}")
     finally:
         db.close()
 
 
 def _parse_cron(cron_expr: str) -> dict:
-    """Convierte una expresión cron a argumentos de APScheduler."""
-    parts = cron_expr.split()
-    result = {}
-    if len(parts) >= 1:
-        result["minute"] = parts[0]
-    if len(parts) >= 2:
-        result["hour"] = parts[1]
-    if len(parts) >= 3:
-        result["day"] = parts[2]
-    if len(parts) >= 4:
-        result["month"] = parts[3]
-    if len(parts) >= 5:
-        result["day_of_week"] = parts[4]
+    """Convierte una expresión cron a argumentos de APScheduler.
+    
+    Valida que la expresión cron tenga entre 5 campos.
+    Lanza ValueError si la expresión es inválida.
+    """
+    if not cron_expr or not isinstance(cron_expr, str):
+        raise ValueError("Expresión cron inválida: debe ser una cadena no vacía")
+    
+    parts = cron_expr.strip().split()
+    
+    if len(parts) < 5:
+        raise ValueError(f"Expresión cron inválida: se esperan 5 campos, se obtuvieron {len(parts)}")
+    
+    if len(parts) > 5:
+        raise ValueError(f"Expresión cron inválida: se esperan 5 campos, se obtuvieron {len(parts)}")
+    
+    result = {
+        "minute": parts[0],
+        "hour": parts[1],
+        "day": parts[2],
+        "month": parts[3],
+        "day_of_week": parts[4],
+    }
+    
     return result
 
 

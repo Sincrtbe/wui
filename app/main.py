@@ -9,7 +9,7 @@ from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from app.core.database import Base, engine, SessionLocal
-from app.routers import channels, videos, publications, automation, dashboard, scripts_tools
+from app.routers import channels, videos, publications, automation, dashboard, scripts_tools, scripts
 from app.tasks.scheduler import init_scheduler, shutdown_scheduler
 
 # Variable global para el proceso del servidor
@@ -63,6 +63,7 @@ app.add_middleware(
 )
 
 app.include_router(channels.router)
+app.include_router(scripts.router)
 
 app.include_router(videos.router)
 app.include_router(publications.router)

@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from app.models import AutomationTask, AutomationRun, AutomationRunStep, Channel
 from app.schemas.automation import AutomationTaskCreate, AutomationTaskUpdate
 from app.core.database import SessionLocal
+from app.services.automation_service_sync import sync_task_to_scheduler, remove_task_from_scheduler
 
 
 class AutomationService:
@@ -25,6 +26,8 @@ class AutomationService:
         db.add(db_task)
         db.commit()
         db.refresh(db_task)
+        # Sincronizar con el scheduler
+        sync_task_to_scheduler(db_task)
         return db_task
 
     @staticmethod
@@ -50,6 +53,8 @@ class AutomationService:
 
         db.commit()
         db.refresh(db_task)
+        # Sincronizar con el scheduler después de actualizar
+        sync_task_to_scheduler(db_task)
         return db_task
 
     @staticmethod
@@ -59,6 +64,7 @@ class AutomationService:
         if not db_task:
             return False
 
+        remove_task_from_scheduler(task_id)
         db.delete(db_task)
         db.commit()
         return True
