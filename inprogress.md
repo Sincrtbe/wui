@@ -283,7 +283,7 @@ python DatosDiarios.py UC_xxxx 'ruta/personalizada'
 ```
 
 2. **En un fichero**: Guarda el mismo JSON en `{OUTPUT_DIR}/{channel_id}_stats.json`
-   - Por defecto: `vistas_diarias/{channel_id}_stats.json`
+   - Por defecto: `metricas/{channel_id}_stats.json`
    - La ruta se puede personalizar con el segundo argumento
 
 ### Integración con la API
@@ -292,6 +292,12 @@ El servicio `analytics_service.py` llama a este script vía `script_runner.run_s
 2. Lee el JSON generado desde el fichero `metricas/{youtube_id}_stats.json`
 3. Importa los datos a la tabla `daily_stats` de la base de datos
 4. Evita duplicados para la misma fecha
+5. **Borra el fichero JSON** después de guardar en BBDD
+
+### Ejecución automática
+- **Al crear un canal**: Se ejecuta scraping inicial automáticamente
+- **Tarea diaria programada**: Cada canal tiene una tarea APScheduler programada para las 2:00 AM
+- **Scheduler global**: Se inicializa automáticamente al crear el primer canal
 
 ## Bugs y estado de la reparación
 
@@ -343,6 +349,12 @@ El servicio `analytics_service.py` llama a este script vía `script_runner.run_s
 | 2026-05-06 | analytics_service.py guarda métricas en BBDD | Hecho |
 | 2026-05-06 | Endpoint POST /api/analytics/import/{channel_id} | Hecho |
 | 2026-05-06 | DatosDiarios.py ejecutado y datos guardados en BBDD | Hecho |
+| 2026-05-06 | Corrección: PublicationSchedule no tiene campo 'platform' | Reparado |
+| 2026-05-06 | analytics_service.py borra fichero JSON después de guardar en BBDD | Hecho |
+| 2026-05-06 | Ficheros de métricas se guardan en metricas/ (no tools/metricas/) | Hecho |
+| 2026-05-06 | Scraping automático al crear canal (ejecución + programación diaria) | Hecho |
+| 2026-05-06 | Tarea diaria programada por canal con APScheduler (2:00 AM) | Hecho |
+| 2026-05-06 | Repositorio creado y subido a GitHub | Hecho |
 
 ## Nuevas carpetas
 - `metricas/` - Estadísticas diarias de canales (ficheros JSON con viewCount, subscriberCount, videoCount, fecha_ejecucion)
