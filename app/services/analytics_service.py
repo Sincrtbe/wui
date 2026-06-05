@@ -13,17 +13,25 @@ def run_daily_stats_import(db: Session, channel_id: int):
     if not channel:
         return {"error": "Canal no encontrado"}
     
-    # Obtener el ID de YouTube desde los social_links o el custom_url
-    # En creacionDcanal.py se guarda en social_links["youtube"]
-    youtube_url = channel.social_links.get("youtube", "") if channel.social_links else ""
-    yt_id = youtube_url.split("/")[-1] if youtube_url else ""
+    # Obtener el ID de YouTube:优先从 social_links["youtube"] 或 custom_url
+    yt_id = None
+    
+    # 1. Intentar desde social_links["youtube"]
+    if channel.social_links and isinstance(channel.social_links, dict):
+        youtube_url = channel.social_links.get("youtube", "")
+        if youtube_url:
+            yt_id = youtube_url.split("/")[-1].split("?")[0]
+    
+    # 2. Si no hay YouTube URL, intentar desde custom_url (es un ID directo)
+    if not yt_id and channel.custom_url:
+        yt_id = channel.custom_url
     
     if not yt_id:
         return {"error": "No se pudo determinar el ID de YouTube del canal"}
     
     # Ejecutar el script
-    # El script DatosDiarios.py guarda en la carpeta 'vistas_diarias' por defecto
-    output_dir = "vistas_diarias"
+    # El script DatosDiarios.py guarda en la carpeta 'metricas'
+    output_dir = "metricas"
     result = run_script("DatosDiarios.py", args=[yt_id, output_dir])
     
     if not result.success:
@@ -40,10 +48,12 @@ def run_daily_stats_import(db: Session, channel_id: int):
     # Guardar en la base de datos
     new_stat = DailyStat(
         channel_id=channel_id,
+        channel_name=channel.title if channel else None,
         view_count=data.get("viewCount", 0),
         subscriber_count=data.get("subscriberCount", 0),
         video_count=data.get("videoCount", 0),
-        stat_date=date.today()
+        stat_date=date.today(),
+        fecha_ejecucion=data.get("fecha_ejecucion", date.today().isoformat())
     )
     
     # Evitar duplicados para el mismo día

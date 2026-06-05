@@ -1,6 +1,6 @@
 """Modelo de canal."""
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime, JSON
+from sqlalchemy import Column, Integer, String, DateTime, JSON, Date
 from app.core.database import Base
 
 
@@ -21,3 +21,10 @@ class Channel(Base):
     thumbnail_file = Column(String, nullable=True)
     color = Column(String, nullable=True, default="#3b82f6")
     created_at = Column(DateTime, default=datetime.utcnow)
+    # Campos extendidos
+    email = Column(String, nullable=True)
+    social_links = Column(JSON, default=dict)
+    checkpoints = Column(JSON, default=dict)
+    last_scraped_at = Column(DateTime, nullable=True)
+    last_scrape_status = Column(String, nullable=True)
+    scrape_data = Column(JSON, default=dict)

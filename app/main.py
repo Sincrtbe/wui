@@ -41,7 +41,11 @@ async def lifespan(app: FastAPI):
         
         # Crear nuevas tablas si no existen
         conn.execute(text("CREATE TABLE IF NOT EXISTS global_configs (key VARCHAR PRIMARY KEY, value TEXT, description VARCHAR)"))
-        conn.execute(text("CREATE TABLE IF NOT EXISTS daily_stats (id INTEGER PRIMARY KEY AUTOINCREMENT, channel_id INTEGER, view_count INTEGER, subscriber_count INTEGER, video_count INTEGER, stat_date DATE, FOREIGN KEY(channel_id) REFERENCES channels(id))"))
+        if "channel_name" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN channel_name VARCHAR"))
+        if "fecha_ejecucion" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN fecha_ejecucion VARCHAR"))
+        conn.execute(text("CREATE TABLE IF NOT EXISTS daily_stats (id INTEGER PRIMARY KEY AUTOINCREMENT, channel_id INTEGER, channel_name VARCHAR, view_count INTEGER, subscriber_count INTEGER, video_count INTEGER, stat_date DATE, fecha_ejecucion VARCHAR, FOREIGN KEY(channel_id) REFERENCES channels(id))"))
         conn.execute(text("""
             CREATE TABLE IF NOT EXISTS content_items (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,

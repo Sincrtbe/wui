@@ -149,6 +149,11 @@ El servicio `analytics_service.py` llama a este script vía `script_runner.run_s
 | 2026-05-06 | Corrección de scripts_tools no importado en main.py | Reparado |
 | 2026-05-06 | Corrección de PublicationSchedule.scheduled_at → scheduled_datetime | Reparado |
 | 2026-05-06 | Ejecución de DatosDiarios.py para canal Cosasqpensar, creación de carpeta metricas/ | Hecho |
+| 2026-05-06 | Modelo DailyStat extendido con channel_name y fecha_ejecucion | Hecho |
+| 2026-05-06 | Modelo Channel extendido con email, social_links, checkpoints, last_scraped_at, last_scrape_status, scrape_data | Hecho |
+| 2026-05-06 | analytics_service.py actualizado para guardar métricas en BBDD con channel_name y fecha_ejecucion | Hecho |
+| 2026-05-06 | analytics_service.py actualizado para usar 'metricas' como output_dir | Hecho |
+| 2026-05-06 | Migración en main.py para nuevas columnas de daily_stats | Hecho |
 
 ## Nuevas carpetas
 - `metricas/` - Estadísticas diarias de canales (ficheros JSON con viewCount, subscriberCount, videoCount, fecha_ejecucion)

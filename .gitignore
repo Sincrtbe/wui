@@ -40,6 +40,9 @@ channels_data/*.mov
 channels_data/*.zip
 channels_data/*.rar
 
+# Metrics folder
+metricas/
+
 # Logs
 *.log
 
