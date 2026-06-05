@@ -298,6 +298,83 @@
         <h3>Canales Registrados</h3>
         <div id="channel-list">Cargando...</div>
       </div>
+
+      <!-- Programación de Publicaciones -->
+      <div id="channel-schedule-section" class="card hidden">
+        <h3><i class="fas fa-calendar-check"></i> Programación de Publicaciones</h3>
+        <div id="schedule-status-container">
+          <span id="schedule-status" class="badge">Selecciona un canal</span>
+        </div>
+        
+        <div class="schedule-config-grid">
+          <!-- Videos Largos -->
+          <div class="schedule-type-card">
+            <h4><i class="fas fa-video"></i> Videos Largos</h4>
+            <label class="toggle-switch">
+              <input type="checkbox" id="long-video-enabled">
+              <span class="toggle-slider"></span>
+              Activar
+            </label>
+            <div class="schedule-input">
+              <label>Frecuencia (días): <input type="number" id="long-video-frequency" min="1" value="3"></label>
+              <div id="long-video-info" class="schedule-info">Desactivado</div>
+            </div>
+          </div>
+          
+          <!-- Shorts -->
+          <div class="schedule-type-card">
+            <h4><i class="fas fa-film"></i> Shorts</h4>
+            <label class="toggle-switch">
+              <input type="checkbox" id="short-video-enabled">
+              <span class="toggle-slider"></span>
+              Activar
+            </label>
+            <div class="schedule-input">
+              <label>Frecuencia (días): <input type="number" id="short-video-frequency" min="1" value="1"></label>
+              <div id="short-video-info" class="schedule-info">Desactivado</div>
+            </div>
+          </div>
+          
+          <!-- Artículos -->
+          <div class="schedule-type-card">
+            <h4><i class="fas fa-file-alt"></i> Artículos</h4>
+            <label class="toggle-switch">
+              <input type="checkbox" id="article-enabled">
+              <span class="toggle-slider"></span>
+              Activar
+            </label>
+            <div class="schedule-input">
+              <label>Frecuencia (días): <input type="number" id="article-frequency" min="1" value="2"></label>
+              <div id="article-info" class="schedule-info">Desactivado</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="schedule-input">
+          <label>Fecha de inicio: <input type="date" id="start-date"></label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="schedule-active">
+            <span class="toggle-slider"></span>
+            Programación Activa
+          </label>
+        </div>
+        
+        <div class="schedule-actions">
+          <button onclick="saveChannelSchedule(currentChannelId)" class="btn-primary"><i class="fas fa-save"></i> Guardar Programación</button>
+        </div>
+      </div>
+
+      <!-- Calendario de Publicaciones -->
+      <div id="channel-calendar-section" class="card hidden">
+        <h3><i class="fas fa-calendar-alt"></i> Calendario de Publicaciones</h3>
+        <div id="channel-calendar-container">Selecciona un canal para ver el calendario</div>
+      </div>
+
+      <!-- Próximas Publicaciones -->
+      <div id="channel-publications-section" class="card hidden">
+        <h3><i class="fas fa-clock"></i> Próximas Publicaciones</h3>
+        <div id="upcoming-publications">Selecciona un canal</div>
+      </div>
     </section>
   </main>
 

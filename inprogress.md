@@ -1,379 +1,268 @@
-# Proyecto Wui - Documentación en Progreso
+# Wui - Plataforma de Automatización Multimedia
 
-## Descripción
-Plataforma local para gestionar y automatizar flujos de trabajo de video/audio/imagen/subtítulos para múltiples canales de YouTube, con UI web propia y ejecución local.
+## Estado del Proyecto
+En desarrollo activo. Este fichero documenta todo lo que se está haciendo y corrigiendo en el proyecto.
 
-## Objetivo
-Construir una plataforma local para gestionar y automatizar flujos de trabajo de video/audio/imagen/subtítulos para múltiples canales, con UI web propia y ejecución local.
+---
 
-## Requisitos
-- UI web usable en local.
-- API CRUD para canales, guiones, vídeos, publicaciones y automatización.
-- Dashboard con gráficos y datos importantes.
-- Dashboard segmentado por canal y posibilidad de ver todos los elementos o solo los de cada canal.
-- Calendario de publicaciones con el día actual marcado.
-- Publicaciones coloreadas por canal.
-- Canales con información extendida: correo, redes sociales, checkpoints.
-- Tarea cron diaria para scrapear información del canal.
-- Configuración e información del canal con distintos puntos de control para saber qué redes funcionan.
-- Sistema de analytics con estadísticas diarias guardadas en BBDD.
-- Sistema de prompts para generación de contenido con LLM.
-- Sistema de logs para seguimiento de eventos.
-- Ejecución de scripts externos desde `tools/`.
+## 📋 Resumen del Proyecto
 
-## Estructura del Proyecto
+**Wui** es una plataforma local de automatización multimedia construida con FastAPI (Python) que permite:
+- Gestionar múltiples canales de YouTube
+- Automatizar la creación de contenido (videos, shorts, artículos)
+- Programar publicaciones con calendarios visuales
+- Analizar métricas de rendimiento
+- Automatizar flujos de trabajo con IA
+
+---
+
+## 🏗️ Arquitectura
+
+### Backend
+- **Framework**: FastAPI
+- **Base de datos**: SQLite (SQLAlchemy ORM)
+- **Tareas en segundo plano**: APScheduler
+- **System Tray**: Icono de sistema para control del servidor
+
+### Frontend
+- **Tecnología**: HTML + CSS + JavaScript vanilla
+- **Estilos**: CSS moderno con Grid y Flexbox
+- **Componentes**: Dialogs nativos (modales HTML)
+
+---
+
+## 📁 Estructura del Proyecto
+
 ```
 Wui/
 ├── app/
-│   ├── __init__.py
-│   ├── main.py              # FastAPI app principal + migraciones
 │   ├── core/
-│   │   ├── config.py         # Configuración
-│   │   └── database.py       # SessionLocal, Engine
+│   │   ├── database.py          # Configuración de base de datos
+│   │   └── system_tray.py       # Icono de system tray
 │   ├── models/
-│   │   ├── channel.py        # Modelo Channel (extendido)
-│   │   ├── script.py         # Modelo Script
-│   │   ├── video.py          # Modelo Video
-│   │   ├── publication.py    # Modelo Publication
-│   │   ├── automation.py     # Modelo AutomationRule
-│   │   ├── config.py         # Modelo SystemConfig
-│   │   ├── daily_stat.py     # Modelo DailyStat (analytics)
-│   │   ├── content.py        # Modelo Content
-│   │   ├── log.py            # Modelo LogEntry
-│   │   ├── prompt.py         # Modelo Prompt
-│   │   └── schedule.py       # Modelo PublicationSchedule
+│   │   ├── __init__.py          # Modelos base
+│   │   ├── channel.py           # Modelo Canal
+│   │   ├── channel_schedule.py  # Programación de canal
+│   │   ├── daily_stat.py        # Estadísticas diarias
+│   │   ├── prompt.py            # Biblioteca de prompts
+│   │   ├── publication_schedule.py # Programación de publicaciones
+│   │   └── script.py            # Guiones
 │   ├── routers/
-│   │   ├── channels.py       # CRUD canales
-│   │   ├── scripts.py        # CRUD scripts
-│   │   ├── videos.py         # CRUD videos
-│   │   ├── publications.py   # CRUD publicaciones
-│   │   ├── automation.py     # CRUD automatización
-│   │   ├── dashboard.py      # Dashboard summary + calendar
-│   │   ├── analytics.py      # Analytics + import daily stats
-│   │   ├── config.py         # CRUD config
-│   │   ├── content.py        # CRUD content
-│   │   ├── logs.py           # CRUD logs
-│   │   ├── prompts.py        # CRUD prompts
-│   │   └── scripts_tools.py  # Ejecución de scripts
+│   │   ├── analytics.py         # API de análisis
+│   │   ├── automation.py        # Automatización
+│   │   ├── channels.py          # Gestión de canales
+│   │   ├── config.py            # Configuración global
+│   │   ├── content.py           # Gestión de contenido
+│   │   ├── dashboard.py         # Dashboard API
+│   │   ├── logs.py              # Logs de tareas
+│   │   ├── prompts.py           # API de prompts
+│   │   ├── publications.py      # Publicaciones
+│   │   ├── schedule.py          # Programación de publicaciones
+│   │   ├── scripts.py           # Guiones
+│   │   ├── scripts_tools.py     # Herramientas de scripts
+│   │   └── videos.py            # Videos
 │   ├── schemas/
-│   │   ├── channel.py        # Esquemas Pydantic Channel
-│   │   ├── dashboard.py      # Esquemas dashboard
-│   │   └── ...
+│   │   ├── channel.py           # Esquemas Pydantic de canales
+│   │   └── dashboard.py         # Esquemas de dashboard
 │   ├── services/
-│   │   ├── channel_service.py
-│   │   ├── dashboard_service.py
-│   │   ├── analytics_service.py  # Scraping + guardado BBDD
-│   │   ├── automation_service.py
-│   │   ├── automation_sync.py
-│   │   ├── file_service.py
-│   │   ├── llm_service.py
-│   │   ├── log_service.py
-│   │   └── prompt_service.py
-│   ├── static/              # UI web (HTML, CSS, JS)
-│   │   ├── index.html
-│   │   ├── app.js
-│   │   └── styles.css
-│   └── tasks/
-│       ├── scheduler.py     # APScheduler config + tareas cron
-│       └── scrape_tasks.py
-├── channels_data/           # Datos de canales (JSON)
-├── tools/                   # Herramientas auxiliares
-│   ├── DatosDiarios.py      # Scraping stats YouTube
-│   ├── creacionDcanal.py    # Creación de canales
-│   └── script_runner.py     # Ejecutor de scripts
-├── metricas/                # Estadísticas diarias (JSON)
-├── app.db                   # Base de datos SQLite
-├── requirements.txt
-├── run_server.bat
-├── iniciar.bat
-├── .gitignore
-├── inprogress.md            # Este fichero
-└── project.md               # Descripción original
+│   │   ├── analytics_service.py # Lógica de análisis
+│   │   ├── channel_service.py   # Lógica de canales
+│   │   ├── prompt_service.py    # Lógica de prompts
+│   │   └── schedule_service.py  # Lógica de programación
+│   ├── static/
+│   │   ├── index.html           # Interfaz web principal
+│   │   ├── app.js               # JavaScript de la UI
+│   │   └── styles.css           # Estilos CSS
+│   ├── tasks/
+│   │   └── scheduler.py         # Tareas programadas
+│   └── main.py                  # Aplicación FastAPI
+├── tools/
+│   ├── creacionDcanal.py        # Creación de canales
+│   ├── DatosDiarios.py          # Datos diarios
+│   └── script_runner.py         # Ejecutor de scripts
+├── channels_data/               # Datos de canales
+├── app.db                       # Base de datos SQLite
+├── requirements.txt             # Dependencias
+├── run_server.bat               # Script de inicio
+└── inprogress.md                # Este fichero
 ```
 
-## Modelos de Base de Datos
+---
 
-### Channel
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| title | VARCHAR | Nombre del canal |
-| description | TEXT | Descripción |
-| workflow | VARCHAR | Workflow asociado |
-| color | VARCHAR | Color identificador |
-| youtube_id | VARCHAR | ID de YouTube |
-| status | VARCHAR | Activo/inactivo |
-| email | VARCHAR | Email del canal |
-| social_links | JSON | Redes sociales |
-| checkpoints | JSON | Puntos de control |
-| last_scraped_at | DATETIME | Último scraping |
-| last_scrape_status | VARCHAR | Estado del último scraping |
-| scrape_data | JSON | Datos crudos del scraping |
+## 🆕 Funcionalidades Recientes Añadidas
 
-### DailyStat
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| channel_id | Integer (FK) | Canal asociado |
-| channel_name | VARCHAR | Nombre del canal |
-| view_count | INTEGER | Número de vistas |
-| subscriber_count | INTEGER | Suscriptores |
-| video_count | INTEGER | Número de vídeos |
-| stat_date | DATE | Fecha de la estadística |
-| fecha_ejecucion | DATE | Fecha de ejecución del script |
+### Sistema de Programación de Publicaciones
 
-### Script
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| title | VARCHAR | Título del guión |
-| content | TEXT | Contenido |
-| status | VARCHAR | Estado |
-| channel_id | Integer (FK) | Canal asociado |
+#### 1. Modelo ChannelSchedule (`app/models/channel_schedule.py`)
+Define la programación recurrente por tipo de contenido para cada canal:
+- **long_video_enabled**: Activar/desactivar videos largos
+- **long_video_frequency**: Frecuencia de videos largos (días)
+- **short_video_enabled**: Activar/desactivar shorts
+- **short_video_frequency**: Frecuencia de shorts (días)
+- **article_enabled**: Activar/desactivar artículos
+- **article_frequency**: Frecuencia de artículos (días)
+- **start_date**: Fecha de inicio de la programación
+- **timezone**: Zona horaria
+- **is_active**: Estado de la programación
 
-### Video
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| title | VARCHAR | Título del vídeo |
-| status | VARCHAR | Estado |
-| script_id | Integer (FK) | Guión asociado |
+#### 2. Modelo PublicationSchedule (`app/models/publication_schedule.py`)
+Define las publicaciones individuales programadas:
+- **channel_id**: Canal al que pertenece
+- **content_type**: Tipo de contenido (long_video, short, article)
+- **scheduled_datetime**: Fecha/hora programada
+- **status**: Estado (planned, published, cancelled, error)
+- **script_id**: Guion asociado (opcional)
+- **notes**: Notas adicionales
 
-### Publication
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| title | VARCHAR | Título |
-| scheduled_date | DATE | Fecha programada |
-| video_id | Integer (FK) | Vídeo asociado |
+#### 3. Servicio de Programación (`app/services/schedule_service.py`)
+Funcionalidades:
+- `get_or_create_channel_schedule()`: Obtiene o crea programación de canal
+- `update_channel_schedule()`: Actualiza programación de canal
+- `generate_publication_dates()`: Genera fechas de publicación basadas en frecuencia
+- `create_publication_schedules()`: Crea programaciones para un período
+- `get_calendar_events()`: Obtiene eventos del calendario para un mes
+- `get_upcoming_publications()`: Obtiene próximas publicaciones
 
-### AutomationRule
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| name | VARCHAR | Nombre |
-| trigger_type | VARCHAR | Tipo de trigger |
-| config | JSON | Configuración |
-| is_active | BOOLEAN | Activo/inactivo |
+#### 4. Router de Programación (`app/routers/schedule.py`)
+Endpoints API:
+- `GET /api/schedules/channel/{channel_id}`: Obtener programación de canal
+- `POST /api/schedules/channel/{channel_id}`: Crear programación de canal
+- `PUT /api/schedules/channel/{channel_id}`: Actualizar programación de canal
+- `GET /api/schedules/channel/{channel_id}/calendar`: Calendario mensual
+- `GET /api/schedules/channel/{channel_id}/calendar/months`: Calendario 2 meses
+- `POST /api/schedules/channel/{channel_id}/generate`: Generar programaciones
+- `GET /api/schedules/channel/{channel_id}/upcoming`: Próximas publicaciones
+- `POST /api/schedules/publication/{id}/assign-script`: Asociar guión
+- `PUT /api/schedules/publication/{id}`: Actualizar publicación
+- `DELETE /api/schedules/publication/{id}`: Eliminar publicación
 
-### Prompt
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| title | VARCHAR | Título |
-| content | TEXT | Contenido |
-| prompt_type | VARCHAR | Tipo |
-| meta_data | JSON | Metadatos (no 'metadata' por reserva SQLAlchemy) |
-| created_at | DATETIME | Fecha creación |
+#### 5. UI de Programación (`app/static/`)
+- **HTML**: Secciones de programación, calendario y próximas publicaciones
+- **JavaScript**: Funciones para cargar, guardar y generar programaciones
+- **CSS**: Estilos para tarjetas de configuración, toggle switches y calendarios
 
-### LogEntry
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| level | VARCHAR | Nivel (INFO, WARNING, ERROR) |
-| message | TEXT | Mensaje |
-| source | VARCHAR | Fuente |
-| created_at | DATETIME | Fecha creación |
+---
 
-### Content
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| title | VARCHAR | Título |
-| content_type | VARCHAR | Tipo de contenido |
-| file_path | VARCHAR | Ruta del fichero |
-| channel_id | Integer (FK) | Canal asociado |
+## 🐛 Correcciones de Errores
 
-### SystemConfig
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| key | VARCHAR | Clave de configuración |
-| value | TEXT | Valor |
+### Error: PublicationSchedule no tiene campo 'video_id'
+**Problema**: El servicio intentaba acceder a `video_id` en PublicationSchedule, pero ese campo no existía.
 
-### PublicationSchedule
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| id | Integer (PK) | ID autoincremental |
-| title | VARCHAR | Título |
-| scheduled_datetime | DATETIME | Fecha/hora programada |
-| video_id | Integer (FK) | Vídeo asociado |
+**Solución**: 
+- Eliminado el campo `video_id` del modelo
+- Añadido campo `content_type` para distinguir entre tipos de contenido (long_video, short, article)
 
-## API Endpoints
+### Error: Modelo ChannelSchedule inexistente
+**Problema**: No había modelo para definir la programación recurrente de canales.
 
-### Canales
-- `GET /api/channels` - Listar canales
-- `POST /api/channels` - Crear canal
-- `GET /api/channels/{id}` - Obtener canal
-- `PUT /api/channels/{id}` - Actualizar canal
-- `DELETE /api/channels/{id}` - Eliminar canal
+**Solución**: 
+- Creado modelo `ChannelSchedule` con campos para cada tipo de contenido
+- Frecuencias configurables en días
+- Estado activo/inactivo
 
-### Scripts
-- `GET /api/scripts` - Listar scripts (tags como strings)
-- `POST /api/scripts` - Crear script
-- `GET /api/scripts/{id}` - Obtener script
-- `PUT /api/scripts/{id}` - Actualizar script
-- `DELETE /api/scripts/{id}` - Eliminar script
+### Error: Falta de interfaz de programación
+**Problema**: No había forma visual de configurar o ver la programación.
 
-### Videos
-- `GET /api/videos` - Listar vídeos
-- `POST /api/videos` - Crear vídeo
-- `GET /api/videos/{id}` - Obtener vídeo
-- `PUT /api/videos/{id}` - Actualizar vídeo
-- `DELETE /api/videos/{id}` - Eliminar vídeo
+**Solución**: 
+- Añadidas secciones de programación en la página de canales
+- Calendario visual de 2 meses (actual + siguiente)
+- Lista de próximas publicaciones
+- Formularios de configuración por tipo de contenido
 
-### Publications
-- `GET /api/publications` - Listar publicaciones
-- `POST /api/publications` - Crear publicación
-- `GET /api/publications/{id}` - Obtener publicación
-- `PUT /api/publications/{id}` - Actualizar publicación
-- `DELETE /api/publications/{id}` - Eliminar publicación
+---
 
-### Dashboard
-- `GET /api/dashboard/summary?channel_id=X` - Resumen del dashboard
-- `GET /api/dashboard/calendar?channel_id=X&year=2026&month=5` - Calendario de publicaciones
+## 🔄 Correcciones Pendientes
 
-### Analytics
-- `GET /api/analytics/daily-stats?channel_id=X` - Estadísticas diarias
-- `GET /api/analytics/daily-stats/{id}` - Obtener estadística
-- `POST /api/analytics/daily-stats?channel_id=X` - Importar estadísticas
-- `GET /api/analytics/publications-history/{channel_id}` - Historial de publicaciones
-- `POST /api/analytics/import/{channel_id}` - Importar datos de DatosDiarios.py
+### Por hacer:
+1. [ ] Validar que las frecuencias sean números positivos
+2. [ ] Añadir soporte para zonas horarias configurables
+3. [ ] Implementar notificaciones de publicaciones próximas
+4. [ ] Añadir exportación de calendario (ICS/CSV)
+5. [ ] Implementar reprogramación automática tras errores
+6. [ ] Añadir historial de publicaciones pasadas
+7. [ ] Mejorar manejo de errores en la UI
 
-### Prompts
-- `GET /api/prompts` - Listar prompts
-- `POST /api/prompts` - Crear prompt
-- `GET /api/prompts/{id}` - Obtener prompt
-- `PUT /api/prompts/{id}` - Actualizar prompt
-- `DELETE /api/prompts/{id}` - Eliminar prompt
+---
 
-### Logs
-- `GET /api/logs` - Listar logs
-- `POST /api/logs` - Crear log
-- `GET /api/logs/{id}` - Obtener log
-- `DELETE /api/logs` - Limpiar logs antiguos
+## 🚀 Cómo Ejecutar
 
-### Config
-- `GET /api/config` - Listar configuraciones
-- `POST /api/config` - Crear configuración
-- `PUT /api/config/{id}` - Actualizar configuración
-- `DELETE /api/config/{id}` - Eliminar configuración
+### Requisitos
+- Python 3.8+
+- Dependencias en `requirements.txt`
 
-### Scripts Tools
-- `POST /api/scripts/run` - Ejecutar script externo
-
-## DatosDiarios.py - Cómo funciona
-
-### Entrada
-Recibe el `channel_id` de YouTube como argumento de línea de comandos, y opcionalmente una ruta de salida:
+### Inicio rápido
 ```bash
-python DatosDiarios.py UC_xxxx
-python DatosDiarios.py UC_xxxx 'ruta/personalizada'
-```
+# Instalar dependencias
+pip install -r requirements.txt
 
-### Salida
-1. **Por consola (stdout)**: Imprime un JSON con los datos:
-```json
-{
-    "viewCount": 12345,
-    "subscriberCount": 1000,
-    "videoCount": 50,
-    "fecha_ejecucion": "2026-05-06"
-}
-```
-
-2. **En un fichero**: Guarda el mismo JSON en `{OUTPUT_DIR}/{channel_id}_stats.json`
-   - Por defecto: `metricas/{channel_id}_stats.json`
-   - La ruta se puede personalizar con el segundo argumento
-
-### Integración con la API
-El servicio `analytics_service.py` llama a este script vía `script_runner.run_script()`:
-1. Ejecuta `python DatosDiarios.py {youtube_id} metricas`
-2. Lee el JSON generado desde el fichero `metricas/{youtube_id}_stats.json`
-3. Importa los datos a la tabla `daily_stats` de la base de datos
-4. Evita duplicados para la misma fecha
-5. **Borra el fichero JSON** después de guardar en BBDD
-
-### Ejecución automática
-- **Al crear un canal**: Se ejecuta scraping inicial automáticamente
-- **Tarea diaria programada**: Cada canal tiene una tarea APScheduler programada para las 2:00 AM
-- **Scheduler global**: Se inicializa automáticamente al crear el primer canal
-
-## Bugs y estado de la reparación
-
-### Fallos actuales conocidos
-- `app/static/app.js` no se puede validar con `py_compile` porque es JavaScript, pero el resto de los archivos Python compilan sin error.
-- El servidor debe reiniciarse para que los cambios de código carguen correctamente en el proceso de Uvicorn.
-- El endpoint de dashboard puede necesitar más mejoras visuales en la UI, pero la lógica de datos está implementada.
-- La tarea de scraping diario está implementada de forma simulada y puede necesitar una integración real de scraping externo.
-- No se ha añadido todavía un sistema real de autenticación/autorización para el dashboard.
-
-### Fallos reparados
-| Fecha | Bug | Solución |
-|-------|-----|----------|
-| 2026-05-06 | `GET /api/scripts` devolvía error 500 | Serializar tags como strings en vez de objetos Tag |
-| 2026-05-06 | Modelo Channel incompleto | Añadir campos: email, social_links, checkpoints, last_scraped_at, last_scrape_status, scrape_data |
-| 2026-05-06 | Dashboard sin filtros | Añadir filtro por channel_id y mostrar info por canal |
-| 2026-05-06 | Sin calendario de publicaciones | Añadir calendario con día actual marcado y colores de canal |
-| 2026-05-06 | Migración de columnas canales | Añadir migración ligera en main.py con ALTER TABLE |
-| 2026-05-06 | Campo 'metadata' reservado en SQLAlchemy | Cambiar a 'meta_data' en modelo Prompt |
-| 2026-05-06 | Import circular automation_service ↔ scheduler | Mover imports dentro de funciones en scheduler.py |
-| 2026-05-06 | scripts_tools no importado en main.py | Añadir import y registro de router en main.py |
-| 2026-05-06 | PublicationSchedule.scheduled_at no existe | Corregir a scheduled_datetime en analytics.py |
-| 2026-05-06 | DailyStat sin channel_name | Añadir campo channel_name y fecha_ejecucion al modelo |
-| 2026-05-06 | analytics_service no guardaba en BBDD | Actualizar para usar script_runner y guardar en daily_stats |
-
-## Correcciones pendientes
-- [ ] Implementar scraping real en lugar de la versión simulada
-- [ ] Añadir sistema de autenticación/autorización
-- [ ] Mejorar visuales del dashboard en la UI
-- [ ] Añadir documentación de API con OpenAPI/Swagger
-- [ ] Añadir tests unitarios
-- [ ] Implementar sistema de notificaciones
-
-## Historial de cambios
-| Fecha | Cambio | Estado |
-|-------|--------|--------|
-| 2026-05-06 | Creación del repositorio con documentación inprogress.md | Hecho |
-| 2026-05-06 | Fix de serialización de tags en `/api/scripts` | Reparado |
-| 2026-05-06 | Extensión del modelo Channel con campos adicionales | Reparado |
-| 2026-05-06 | Dashboard con filtros por canal y calendario | Reparado |
-| 2026-05-06 | Migración ligera para columnas nuevas en canales | Reparado |
-| 2026-05-06 | Sincronización desde GitHub - routers (analytics, config, scripts) | Hecho |
-| 2026-05-06 | Sincronización desde GitHub - modelos (content, log, prompt) | Hecho |
-| 2026-05-06 | Corrección de campo 'metadata' → 'meta_data' en Prompt | Reparado |
-| 2026-05-06 | Corrección de import circular automation_service ↔ scheduler | Reparado |
-| 2026-05-06 | Corrección de scripts_tools no importado en main.py | Reparado |
-| 2026-05-06 | Corrección de PublicationSchedule.scheduled_at → scheduled_datetime | Reparado |
-| 2026-05-06 | Modelo DailyStat extendido con channel_name y fecha_ejecucion | Hecho |
-| 2026-05-06 | analytics_service.py guarda métricas en BBDD | Hecho |
-| 2026-05-06 | Endpoint POST /api/analytics/import/{channel_id} | Hecho |
-| 2026-05-06 | DatosDiarios.py ejecutado y datos guardados en BBDD | Hecho |
-| 2026-05-06 | Corrección: PublicationSchedule no tiene campo 'platform' | Reparado |
-| 2026-05-06 | analytics_service.py borra fichero JSON después de guardar en BBDD | Hecho |
-| 2026-05-06 | Ficheros de métricas se guardan en metricas/ (no tools/metricas/) | Hecho |
-| 2026-05-06 | Scraping automático al crear canal (ejecución + programación diaria) | Hecho |
-| 2026-05-06 | Tarea diaria programada por canal con APScheduler (2:00 AM) | Hecho |
-| 2026-05-06 | Repositorio creado y subido a GitHub | Hecho |
-
-## Nuevas carpetas
-- `metricas/` - Estadísticas diarias de canales (ficheros JSON con viewCount, subscriberCount, videoCount, fecha_ejecucion)
-
-## Tecnologías usadas
-- **Backend**: Python, FastAPI, SQLAlchemy
-- **Base de datos**: SQLite
-- **Scheduler**: APScheduler
-- **Frontend**: HTML, CSS, JavaScript (vanilla)
-- **Dependencias**: Ver `requirements.txt`
-
-## Cómo ejecutar
-```bash
-# Iniciar el servidor
+# Ejecutar servidor
 .\run_server.bat
-
-# O directamente
-python -m uvicorn app.main:app --reload --port 9080
 ```
 
-## UI Web
-Acceder en: `http://127.0.0.1:9080/ui`
+O directamente:
+```bash
+python app/main.py
+```
+
+El servidor se inicia en `http://127.0.0.1:9080`
+
+---
+
+## 📝 Notas Técnicas
+
+### Base de Datos
+- SQLite con SQLAlchemy ORM
+- Migraciones automáticas al iniciar (create_all)
+- Tablas principales:
+  - `channels`: Canales de YouTube
+  - `channel_schedules`: Programación por canal
+  - `publication_schedules`: Publicaciones individuales
+  - `scripts`: Guiones
+  - `daily_stats`: Estadísticas diarias
+  - `prompts`: Biblioteca de prompts
+  - `content_items`: Contenido en desarrollo
+  - `task_logs`: Logs de automatización
+
+### API Endpoints Principales
+- `/api/channels`: Gestión de canales
+- `/api/schedules/*`: Programación de publicaciones
+- `/api/analytics/*`: Análisis y métricas
+- `/api/content/*`: Gestión de contenido
+- `/api/automation/*`: Automatización
+- `/api/prompts/*`: Biblioteca de prompts
+- `/api/dashboard/*`: Dashboard
+- `/health`: Health check
+- `/ui`: Interfaz web
+
+---
+
+## 📅 Historial de Cambios
+
+### 2026-05-06
+- ✅ Creado sistema completo de programación de publicaciones
+- ✅ Añadido modelo ChannelSchedule
+- ✅ Añadido modelo PublicationSchedule (sin campo video_id)
+- ✅ Creado servicio schedule_service.py
+- ✅ Creado router schedule.py con todos los endpoints
+- ✅ Actualizado main.py con nuevo router
+- ✅ Actualizada UI con secciones de programación
+- ✅ Añadido calendario visual de 2 meses
+- ✅ Añadido CSS para la nueva UI
+- ✅ Corregido error de campo 'video_id' inexistente
+
+---
+
+## 🔧 Configuración
+
+### Variables de Entorno
+- `LLM_URL`: URL del API de LLM
+- `LLM_KEY`: API Key del LLM
+- `ANALYTICS_SCHEDULE`: Cron para analíticas
+
+### Archivos de Datos
+- `app.db`: Base de datos principal
+- `channels_data/`: Datos JSON por canal
+
+---
+
+*Última actualización: 2026-05-06*

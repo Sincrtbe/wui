@@ -10,6 +10,7 @@ from app.models.daily_stat import DailyStat
 from app.models.content import ContentItem
 from app.models.log import TaskLog
 from app.models.prompt import Prompt
+from app.models.channel_schedule import ChannelSchedule
 
 __all__ = [
     "Channel",
@@ -26,4 +27,5 @@ __all__ = [
     "ContentItem",
     "TaskLog",
     "Prompt",
+    "ChannelSchedule",
 ]

@@ -5,6 +5,7 @@ from app.core.database import get_db
 from app.models.daily_stat import DailyStat
 from app.models.publication_schedule import PublicationSchedule
 from app.models.video import Video
+from app.models.script import Script
 from sqlalchemy import func
 from datetime import date, timedelta
 from app.services.analytics_service import run_daily_stats_import
@@ -28,21 +29,23 @@ def get_daily_stats(channel_id: int, db: Session = Depends(get_db)):
 @router.get("/publications-history/{channel_id}")
 def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
     """Obtiene el historial de publicaciones de un canal."""
-    # Buscar publicaciones y videos asociados
+    # Buscar publicaciones y scripts asociados
     history = db.query(
         PublicationSchedule.scheduled_datetime,
         PublicationSchedule.status,
         PublicationSchedule.notes,
-        Video.title,
-        Video.status
-    ).join(Video, PublicationSchedule.video_id == Video.id).filter(Video.channel_id == channel_id).all()
+        PublicationSchedule.content_type,
+        Script.title
+    ).outerjoin(Script, PublicationSchedule.script_id == Script.id).filter(
+        PublicationSchedule.channel_id == channel_id
+    ).order_by(PublicationSchedule.scheduled_datetime.desc()).all()
     
     return [
         {
-            "date": h.scheduled_datetime,
-            "platform": "YouTube",
-            "title": h.title,
-            "status": h.status
+            "date": h.scheduled_datetime.isoformat() if h.scheduled_datetime else None,
+            "content_type": h.content_type or "unknown",
+            "title": h.title or "Sin guion asociado",
+            "status": h.status or "planned"
         } for h in history
     ]
 
@@ -53,7 +56,7 @@ def get_channel_summary(channel_id: int, db: Session = Depends(get_db)):
     video_stats = db.query(Video.status, func.count(Video.id)).filter(Video.channel_id == channel_id).group_by(Video.status).all()
     
     # Contar publicaciones
-    pub_count = db.query(func.count(PublicationSchedule.id)).join(Video).filter(Video.channel_id == channel_id).scalar()
+    pub_count = db.query(func.count(PublicationSchedule.id)).filter(PublicationSchedule.channel_id == channel_id).scalar()
     
     return {
         "video_stats": dict(video_stats),

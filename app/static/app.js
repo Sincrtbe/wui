@@ -535,11 +535,13 @@ dom("prompt-form").addEventListener("input", (e) => {
 });
 
 // CANALES Y HERRAMIENTAS
+let currentChannelId = null;
+
 function loadChannels() {
   fetchJson(`${apiBase}/api/channels`)
     .then(channels => {
       dom("channel-list").innerHTML = channels.map(c => `
-        <div class="item-row">
+        <div class="item-row" style="cursor:pointer" onclick="selectChannel(${c.id})">
           <div class="flex-header">
             <img src="${apiBase}/api/channels/${c.id}/thumbnail" class="channel-img" onerror="this.src='https://via.placeholder.com/50'">
             <div>
@@ -547,10 +549,227 @@ function loadChannels() {
               <div class="text-small">${c.customUrl || 'Sin URL'}</div>
             </div>
           </div>
-          <button onclick="deleteChannel(${c.id})" class="btn-outline text-danger"><i class="fas fa-trash"></i></button>
+          <button onclick="event.stopPropagation(); deleteChannel(${c.id})" class="btn-outline text-danger"><i class="fas fa-trash"></i></button>
         </div>
       `).join("") || "No hay canales registrados";
     });
+}
+
+function selectChannel(channelId) {
+  currentChannelId = channelId;
+  loadChannelSchedule(channelId);
+  loadChannelCalendar(channelId);
+  loadUpcomingPublications(channelId);
+}
+
+function loadChannelSchedule(channelId) {
+  fetchJson(`${apiBase}/api/schedules/channel/${channelId}`)
+    .then(schedule => {
+      dom("schedule-status").innerText = schedule.is_active ? "Programación activa" : "Programación inactiva";
+      dom("schedule-status").className = schedule.is_active ? "badge-success" : "badge";
+      
+      // Videos largos
+      dom("long-video-enabled").checked = schedule.long_video_enabled;
+      dom("long-video-frequency").value = schedule.long_video_frequency;
+      dom("long-video-info").innerText = schedule.long_video_enabled 
+        ? `Videos largos cada ${schedule.long_video_frequency} días` 
+        : "Desactivado";
+      
+      // Shorts
+      dom("short-video-enabled").checked = schedule.short_video_enabled;
+      dom("short-video-frequency").value = schedule.short_video_frequency;
+      dom("short-video-info").innerText = schedule.short_video_enabled 
+        ? `Shorts cada ${schedule.short_video_frequency} días` 
+        : "Desactivado";
+      
+      // Artículos
+      dom("article-enabled").checked = schedule.article_enabled;
+      dom("article-frequency").value = schedule.article_frequency;
+      dom("article-info").innerText = schedule.article_enabled 
+        ? `Artículos cada ${schedule.article_frequency} días` 
+        : "Desactivado";
+      
+      dom("start-date").value = schedule.start_date ? schedule.start_date.split("T")[0] : "";
+    })
+    .catch(err => console.error("Error cargando programación:", err));
+}
+
+function saveChannelSchedule(channelId) {
+  const data = {
+    long_video_enabled: dom("long-video-enabled").checked,
+    long_video_frequency: parseInt(dom("long-video-frequency").value),
+    short_video_enabled: dom("short-video-enabled").checked,
+    short_video_frequency: parseInt(dom("short-video-frequency").value),
+    article_enabled: dom("article-enabled").checked,
+    article_frequency: parseInt(dom("article-frequency").value),
+    start_date: dom("start-date").value + "T00:00:00",
+    is_active: dom("schedule-active").checked
+  };
+  
+  fetchJson(`${apiBase}/api/schedules/channel/${channelId}`, {
+    method: "PUT",
+    body: JSON.stringify(data)
+  })
+    .then(() => {
+      alert("Programación guardada");
+      loadChannelSchedule(channelId);
+    })
+    .catch(err => alert("Error al guardar: " + err.message));
+}
+
+function generateSchedule(channelId, year, month) {
+  fetchJson(`${apiBase}/api/schedules/channel/${channelId}/generate?year=${year}&month=${month}`, {
+    method: "POST"
+  })
+    .then(res => {
+      alert(`Se crearon ${res.created} programaciones`);
+      loadChannelCalendar(channelId);
+    })
+    .catch(err => alert("Error al generar: " + err.message));
+}
+
+function loadChannelCalendar(channelId) {
+  fetchJson(`${apiBase}/api/schedules/channel/${channelId}/calendar/months`)
+    .then(data => {
+      renderCalendarView(channelId, data);
+    })
+    .catch(err => console.error("Error cargando calendario:", err));
+}
+
+function renderCalendarView(channelId, data) {
+  const container = dom("channel-calendar-container");
+  if (!container) return;
+  
+  const scheduleInfo = data.schedule_info;
+  let html = '<div class="schedule-info-box">';
+  
+  if (scheduleInfo) {
+    html += `
+      <div class="flex-header" style="margin-bottom: 10px;">
+        <strong>Programación actual:</strong>
+        <span class="${scheduleInfo.is_active ? 'badge-success' : 'badge'}">${scheduleInfo.is_active ? 'Activa' : 'Inactiva'}</span>
+      </div>
+      <div class="text-small">
+        ${scheduleInfo.long_video_enabled ? `🎬 Videos largos: cada ${scheduleInfo.long_video_frequency} días | ` : ''}
+        ${scheduleInfo.short_video_enabled ? `📱 Shorts: cada ${scheduleInfo.short_video_frequency} días | ` : ''}
+        ${scheduleInfo.article_enabled ? `📄 Artículos: cada ${scheduleInfo.article_frequency} días` : ''}
+      </div>
+    `;
+  }
+  html += '</div>';
+  
+  // Mes actual
+  html += '<h4>📅 Mes Actual</h4>';
+  html += '<div class="calendar-grid">';
+  const currentMonth = data.current_month;
+  const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  html += `<div class="calendar-header">${monthNames[currentMonth.month - 1]} ${currentMonth.year}</div>`;
+  
+  // Días de la semana
+  html += '<div class="calendar-weekdays"><div>Lu</div><div>Ma</div><div>Mi</div><div>Ju</div><div>Vu</div><div>Sá</div><div>Do</div></div>';
+  
+  // Eventos del mes actual
+  const eventsCurrent = currentMonth.events || [];
+  const daysInMonth = new Date(currentMonth.year, currentMonth.month, 0).getDate();
+  const firstDay = (new Date(currentMonth.year, currentMonth.month - 1, 1).getDay() + 6) % 7;
+  
+  let currentDay = 1;
+  for (let i = 0; i < 42; i++) {
+    if (i < firstDay || currentDay > daysInMonth) {
+      html += '<div class="calendar-cell empty"></div>';
+    } else {
+      const dayEvents = eventsCurrent.filter(e => new Date(e.date).getDate() === currentDay);
+      const isToday = currentDay === new Date().getDate() && currentMonth.month === new Date().getMonth() + 1;
+      
+      html += `<div class="calendar-cell ${isToday ? 'today' : ''}">`;
+      html += `<span class="calendar-day">${currentDay}</span>`;
+      dayEvents.forEach(e => {
+        const icon = e.content_type === 'long_video' ? '🎬' : e.content_type === 'short' ? '📱' : '📄';
+        const statusColor = e.status === 'published' ? '#10b981' : e.status === 'cancelled' ? '#ef4444' : '#3b82f6';
+        html += `<div class="calendar-event" style="background:${statusColor}; font-size: 10px;" title="${e.content_type} - ${e.notes || ''}">${icon}</div>`;
+      });
+      html += '</div>';
+      currentDay++;
+    }
+  }
+  html += '</div>';
+  
+  // Mes siguiente
+  html += '<h4>📅 Mes Siguiente</h4>';
+  html += '<div class="calendar-grid">';
+  const nextMonth = data.next_month;
+  html += `<div class="calendar-header">${monthNames[nextMonth.month - 1]} ${nextMonth.year}</div>`;
+  html += '<div class="calendar-weekdays"><div>Lu</div><div>Ma</div><div>Mi</div><div>Ju</div><div>Vu</div><div>Sá</div><div>Do</div></div>';
+  
+  const eventsNext = nextMonth.events || [];
+  const daysInNextMonth = new Date(nextMonth.year, nextMonth.month, 0).getDate();
+  const firstDayNext = (new Date(nextMonth.year, nextMonth.month - 1, 1).getDay() + 6) % 7;
+  
+  let nextDay = 1;
+  for (let i = 0; i < 42; i++) {
+    if (i < firstDayNext || nextDay > daysInNextMonth) {
+      html += '<div class="calendar-cell empty"></div>';
+    } else {
+      const dayEvents = eventsNext.filter(e => new Date(e.date).getDate() === nextDay);
+      
+      html += `<div class="calendar-cell">`;
+      html += `<span class="calendar-day">${nextDay}</span>`;
+      dayEvents.forEach(e => {
+        const icon = e.content_type === 'long_video' ? '🎬' : e.content_type === 'short' ? '📱' : '📄';
+        const statusColor = e.status === 'published' ? '#10b981' : e.status === 'cancelled' ? '#ef4444' : '#3b82f6';
+        html += `<div class="calendar-event" style="background:${statusColor}; font-size: 10px;" title="${e.content_type}">${icon}</div>`;
+      });
+      html += '</div>';
+      nextDay++;
+    }
+  }
+  html += '</div>';
+  
+  // Botón para generar programaciones
+  html += `
+    <div style="margin-top: 15px;">
+      <button onclick="generateSchedule(${channelId}, ${currentMonth.year}, ${currentMonth.month})" class="btn-outline">
+        📅 Generar Mes Actual
+      </button>
+      <button onclick="generateSchedule(${channelId}, ${nextMonth.year}, ${nextMonth.month})" class="btn-outline">
+        📅 Generar Mes Siguiente
+      </button>
+    </div>
+  `;
+  
+  container.innerHTML = html;
+}
+
+function loadUpcomingPublications(channelId) {
+  fetchJson(`${apiBase}/api/schedules/channel/${channelId}/upcoming?limit=10`)
+    .then(publications => {
+      const container = dom("upcoming-publications");
+      if (!container) return;
+      
+      container.innerHTML = publications.map(p => {
+        const icon = p.content_type === 'long_video' ? '🎬' : p.content_type === 'short' ? '📱' : '📄';
+        return `
+          <div class="item-row">
+            <span>${icon} ${new Date(p.date).toLocaleDateString()}</span>
+            <span class="badge">${p.content_type}</span>
+            <span class="badge ${p.status === 'published' ? 'badge-success' : ''}">${p.status}</span>
+            ${p.has_script ? '<span class="badge" style="background:#10b981">✓ Guión</span>' : '<span class="badge" style="background:#f59e0b">Sin guión</span>'}
+          </div>
+        `;
+      }).join("") || "<p class='text-muted'>No hay publicaciones próximas</p>";
+    })
+    .catch(err => console.error("Error cargando publicaciones:", err));
+}
+
+function assignScriptToPublication(publicationId, scriptId) {
+  fetchJson(`${apiBase}/api/schedules/publication/${publicationId}/assign-script?script_id=${scriptId}`, {
+    method: "POST"
+  })
+    .then(() => {
+      alert("Guión asociado correctamente");
+      if (currentChannelId) loadUpcomingPublications(currentChannelId);
+    })
+    .catch(err => alert("Error al asociar: " + err.message));
 }
 
 function deleteChannel(id) {
