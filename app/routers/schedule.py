@@ -7,7 +7,7 @@ from typing import List, Optional
 from app.core.database import get_db
 from app.services.schedule_service import (
     get_or_create_channel_schedule,
-    update_channel_schedule,
+    update_channel_schedule as service_update_channel_schedule,
     generate_publication_dates,
     create_publication_schedules,
     get_calendar_events,
@@ -76,13 +76,13 @@ def create_channel_schedule(
 
 
 @router.put("/channel/{channel_id}")
-def update_channel_schedule(
+def put_channel_schedule(
     channel_id: int,
     data: dict,
     db: Session = Depends(get_db)
 ):
     """Actualiza la programación de un canal."""
-    schedule = update_channel_schedule(
+    schedule = service_update_channel_schedule(
         db=db,
         channel_id=channel_id,
         long_video_enabled=data.get("long_video_enabled", False),

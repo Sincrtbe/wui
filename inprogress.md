@@ -1,371 +1,324 @@
-# Wui - Plataforma de Automatización Multimedia
+# Wui - Plataforma de Automatización de Canales YouTube
 
 ## Estado del Proyecto
-En desarrollo activo. Este fichero documenta todo lo que se está haciendo y corrigiendo en el proyecto.
+**Fecha última actualización:** 2026-05-06  
+**Estado:** En desarrollo activo
 
 ---
 
-## 📋 Resumen del Proyecto
+## Descripción del Proyecto
 
-**Wui** es una plataforma local de automatización multimedia construida con FastAPI (Python) que permite:
+Wui es una plataforma local de automatización para la gestión de múltiples canales de YouTube. Permite:
 - Gestionar múltiples canales de YouTube
-- Automatizar la creación de contenido (videos, shorts, artículos)
-- Programar publicaciones con calendarios visuales
+- Crear y organizar contenido (ideas, guiones, artículos, videos)
+- Programar publicaciones (videos largos, shorts, artículos)
 - Analizar métricas de rendimiento
-- Automatizar flujos de trabajo con IA
+- Automatizar flujos de trabajo
+- Gestionar una biblioteca de prompts con IA
 
 ---
 
-## 🏗️ Arquitectura
-
-### Backend
-- **Framework**: FastAPI
-- **Base de datos**: SQLite (SQLAlchemy ORM)
-- **Tareas en segundo plano**: APScheduler
-- **System Tray**: Icono de sistema para control del servidor
-
-### Frontend
-- **Tecnología**: HTML + CSS + JavaScript vanilla
-- **Estilos**: CSS moderno con Grid y Flexbox
-- **Componentes**: Dialogs nativos (modales HTML)
-
----
-
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 Wui/
 ├── app/
+│   ├── __init__.py
+│   ├── main.py                    # FastAPI application principal
 │   ├── core/
-│   │   ├── database.py          # Configuración de base de datos
-│   │   └── system_tray.py       # Icono de system tray
+│   │   ├── database.py            # Configuración de base de datos SQLite
+│   │   └── config.py              # Configuración de la aplicación
 │   ├── models/
-│   │   ├── __init__.py          # Modelos base
-│   │   ├── channel.py           # Modelo Canal
-│   │   ├── channel_schedule.py  # Programación de canal
-│   │   ├── daily_stat.py        # Estadísticas diarias
-│   │   ├── prompt.py            # Biblioteca de prompts
-│   │   ├── publication_schedule.py # Programación de publicaciones
-│   │   └── script.py            # Guiones
+│   │   ├── __init__.py            # Imports de modelos
+│   │   ├── channel.py             # Modelo Channel (canales de YouTube)
+│   │   ├── channel_schedule.py    # Modelo ChannelSchedule (programación por canal)
+│   │   ├── publication_schedule.py # Modelo PublicationSchedule (publicaciones programadas)
+│   │   ├── script.py              # Modelo Script (guiones)
+│   │   ├── prompt.py              # Modelo Prompt (biblioteca de prompts)
+│   │   └── daily_stat.py          # Modelo DailyStat (estadísticas diarias)
 │   ├── routers/
-│   │   ├── analytics.py         # API de análisis
-│   │   ├── automation.py        # Automatización
-│   │   ├── channels.py          # Gestión de canales
-│   │   ├── config.py            # Configuración global
-│   │   ├── content.py           # Gestión de contenido
-│   │   ├── dashboard.py         # Dashboard API
-│   │   ├── logs.py              # Logs de tareas
-│   │   ├── prompts.py           # API de prompts
-│   │   ├── publications.py      # Publicaciones
-│   │   ├── schedule.py          # Programación de publicaciones
-│   │   ├── scripts.py           # Guiones
-│   │   ├── scripts_tools.py     # Herramientas de scripts
-│   │   └── videos.py            # Videos
+│   │   ├── channels.py            # CRUD de canales
+│   │   ├── schedule.py            # Programación de publicaciones
+│   │   ├── prompts.py             # Biblioteca de prompts
+│   │   ├── analytics.py           # Análisis de métricas
+│   │   └── dashboard.py           # Dashboard general
 │   ├── schemas/
-│   │   ├── channel.py           # Esquemas Pydantic de canales
-│   │   └── dashboard.py         # Esquemas de dashboard
+│   │   ├── channel.py             # Esquemas Pydantic para canales
+│   │   └── dashboard.py           # Esquemas para dashboard
 │   ├── services/
-│   │   ├── analytics_service.py # Lógica de análisis
-│   │   ├── channel_service.py   # Lógica de canales
-│   │   ├── prompt_service.py    # Lógica de prompts
-│   │   └── schedule_service.py  # Lógica de programación
-│   ├── static/
-│   │   ├── index.html           # Interfaz web principal
-│   │   ├── app.js               # JavaScript de la UI
-│   │   └── styles.css           # Estilos CSS
+│   │   ├── channel_service.py     # Lógica de negocio de canales
+│   │   ├── schedule_service.py    # Lógica de programación
+│   │   ├── analytics_service.py   # Lógica de análisis
+│   │   └── prompt_service.py      # Lógica de prompts
 │   ├── tasks/
-│   │   └── scheduler.py         # Tareas programadas
-│   └── main.py                  # Aplicación FastAPI
+│   │   └── scheduler.py           # Tareas programadas (APScheduler)
+│   └── static/
+│       ├── index.html             # Interfaz principal
+│       ├── app.js                 # JavaScript frontend
+│       └── styles.css             # Estilos CSS
 ├── tools/
-│   ├── creacionDcanal.py        # Creación de canales
-│   ├── DatosDiarios.py          # Datos diarios
-│   └── script_runner.py         # Ejecutor de scripts
-├── channels_data/               # Datos de canales
-├── app.db                       # Base de datos SQLite
-├── requirements.txt             # Dependencias
-├── run_server.bat               # Script de inicio
-└── inprogress.md                # Este fichero
+│   ├── creacionDcanal.py          # Script de creación de canales
+│   ├── DatosDiarios.py            # Script de datos diarios
+│   └── script_runner.py           # Ejecutor de scripts
+├── channels_data/                 # Datos de canales (JSON, imágenes)
+├── app.db                         # Base de datos SQLite
+├── requirements.txt               # Dependencias Python
+├── run_server.bat                 # Script de inicio del servidor
+└── iniciar.bat                    # Script de inicio rápido
 ```
 
 ---
 
-## 🆕 Funcionalidades Recientes Añadidas
+## Funcionalidades Implementadas
 
-### Sistema de Programación de Publicaciones
+### 1. Gestión de Canales
+- CRUD completo de canales de YouTube
+- Almacenamiento de thumbnail/imagen del canal
+- Color personalizado por canal
+- URL personalizada
+- Estado de scraping (éxito/error)
+- Fecha de última actualización
 
-#### 1. Modelo ChannelSchedule (`app/models/channel_schedule.py`)
-Define la programación recurrente por tipo de contenido para cada canal:
-- **long_video_enabled**: Activar/desactivar videos largos
-- **long_video_frequency**: Frecuencia de videos largos (días)
-- **short_video_enabled**: Activar/desactivar shorts
-- **short_video_frequency**: Frecuencia de shorts (días)
-- **article_enabled**: Activar/desactivar artículos
-- **article_frequency**: Frecuencia de artículos (días)
-- **start_date**: Fecha de inicio de la programación
-- **timezone**: Zona horaria
-- **is_active**: Estado de la programación
+### 2. Programación de Publicaciones
+- Configuración de periodicidad por canal:
+  - Videos largos (frecuencia configurable en días)
+  - Shorts (frecuencia configurable en días)
+  - Artículos (frecuencia configurable en días)
+- Fecha de inicio configurable
+- Estado activo/inactivo por canal
+- Calendario bimensual (mes actual + siguiente)
+- Generación automática de publicaciones basadas en la programación
+- Próximas publicaciones con indicador de guión
 
-#### 2. Modelo PublicationSchedule (`app/models/publication_schedule.py`)
-Define las publicaciones individuales programadas:
-- **channel_id**: Canal al que pertenece
-- **content_type**: Tipo de contenido (long_video, short, article)
-- **scheduled_datetime**: Fecha/hora programada
-- **status**: Estado (planned, published, cancelled, error)
-- **script_id**: Guion asociado (opcional)
-- **notes**: Notas adicionales
+### 3. Gestión de Contenido
+- Flujo de trabajo: Idea → Guión → Desarrollo → Video
+- Lluvia de ideas con notas
+- Generación de guiones con IA
+- Gestión de artículos
+- Avance de etapas
 
-#### 3. Servicio de Programación (`app/services/schedule_service.py`)
-Funcionalidades:
-- `get_or_create_channel_schedule()`: Obtiene o crea programación de canal
-- `update_channel_schedule()`: Actualiza programación de canal
-- `generate_publication_dates()`: Genera fechas de publicación basadas en frecuencia
-- `create_publication_schedules()`: Crea programaciones para un período
-- `get_calendar_events()`: Obtiene eventos del calendario para un mes
-- `get_upcoming_publications()`: Obtiene próximas publicaciones
+### 4. Análisis y Métricas
+- Suscriptores, vistas, videos
+- Evolución de vistas en gráfico
+- Historial de publicaciones
+- Importación de datos diarios
 
-#### 4. Router de Programación (`app/routers/schedule.py`)
-Endpoints API:
-- `GET /api/schedules/channel/{channel_id}`: Obtener programación de canal
-- `POST /api/schedules/channel/{channel_id}`: Crear programación de canal
-- `PUT /api/schedules/channel/{channel_id}`: Actualizar programación de canal
-- `GET /api/schedules/channel/{channel_id}/calendar`: Calendario mensual
-- `GET /api/schedules/channel/{channel_id}/calendar/months`: Calendario 2 meses
-- `POST /api/schedules/channel/{channel_id}/generate`: Generar programaciones
-- `GET /api/schedules/channel/{channel_id}/upcoming`: Próximas publicaciones
-- `POST /api/schedules/publication/{id}/assign-script`: Asociar guión
-- `PUT /api/schedules/publication/{id}`: Actualizar publicación
-- `DELETE /api/schedules/publication/{id}`: Eliminar publicación
+### 5. Biblioteca de Prompts
+- Creación y gestión de prompts
+- Tipos: lluvia_ideas, guion, audio, video, seo
+- Variables detectadas automáticamente (`{{variable}}`)
+- Sistema de rating (0-5)
+- Conteo de usos
+- Búsqueda y filtrado por tipo
 
-#### 5. UI de Programación (`app/static/`)
-- **HTML**: Secciones de programación, calendario y próximas publicaciones
-- **JavaScript**: Funciones para cargar, guardar y generar programaciones
-- **CSS**: Estilos para tarjetas de configuración, toggle switches y calendarios
+### 6. Automatización
+- Tareas programadas con cron
+- Ejecución de workflows
+- Historial de ejecuciones
 
----
-
-## 🐛 Correcciones de Errores
-
-### Error: PublicationSchedule no tiene campo 'video_id'
-**Problema**: El servicio intentaba acceder a `video_id` en PublicationSchedule, pero ese campo no existía.
-
-**Solución**: 
-- Eliminado el campo `video_id` del modelo
-- Añadido campo `content_type` para distinguir entre tipos de contenido (long_video, short, article)
-
-### Error: Modelo ChannelSchedule inexistente
-**Problema**: No había modelo para definir la programación recurrente de canales.
-
-**Solución**: 
-- Creado modelo `ChannelSchedule` con campos para cada tipo de contenido
-- Frecuencias configurables en días
-- Estado activo/inactivo
-
-### Error: Falta de interfaz de programación
-**Problema**: No había forma visual de configurar o ver la programación.
-
-**Solución**: 
-- Añadidas secciones de programación en la página de canales
-- Calendario visual de 2 meses (actual + siguiente)
-- Lista de próximas publicaciones
-- Formularios de configuración por tipo de contenido
+### 7. Configuración
+- Servicios externos (API keys, URLs)
+- Programación de analíticas (cron)
+- Configuración de video (transiciones, subtítulos)
 
 ---
 
-## 🔄 Correcciones Pendientes
+## Base de Datos (SQLite)
 
-### Por hacer:
-1. [ ] Validar que las frecuencias sean números positivos
-2. [ ] Añadir soporte para zonas horarias configurables
-3. [ ] Implementar notificaciones de publicaciones próximas
-4. [ ] Añadir exportación de calendario (ICS/CSV)
-5. [ ] Implementar reprogramación automática tras errores
-6. [ ] Añadir historial de publicaciones pasadas
-7. [ ] Mejorar manejo de errores en la UI
+### Tablas principales:
+
+1. **channels** - Canales de YouTube
+   - id, title, customUrl, publishedAt, description
+   - thumbnail, channel_color, last_scraped_at
+   - last_scrape_status, created_at, updated_at
+
+2. **channel_schedules** - Programación por canal
+   - id, channel_id (FK)
+   - long_video_enabled, long_video_frequency
+   - short_video_enabled, short_video_frequency
+   - article_enabled, article_frequency
+   - start_date, timezone, is_active
+   - created_at, updated_at
+
+3. **publication_schedules** - Publicaciones programadas
+   - id, channel_id (FK), script_id (FK)
+   - content_type (long_video, short, article)
+   - scheduled_datetime, status (planned, published, cancelled)
+   - notes, created_at, updated_at
+
+4. **scripts** - Guiones
+   - id, channel_id (FK)
+   - title, description, script_content
+   - article_content, voice_script, graphic_script
+   - tags, status, created_at, updated_at
+
+5. **prompts** - Biblioteca de prompts
+   - id, title, description, content
+   - prompt_type, variables (JSON)
+   - rating, usage_count, version
+   - created_at, updated_at
+
+6. **daily_stats** - Estadísticas diarias
+   - id, channel_id (FK)
+   - stat_date, subscriber_count, view_count
+   - video_count, created_at, updated_at
+
+7. **config** - Configuración del sistema
+   - id, key, value, updated_at
 
 ---
 
-## 🐛 Corrección: Migración de base de datos para columnas faltantes
+## API Endpoints
 
-### Error: Columna `content_type` no existe en la base de datos existente
-**Problema**: Al iniciar el servidor, la tabla `publication_schedules` no tenía la columna `content_type`, causando error `sqlite3.OperationalError: no such column: publication_schedules.content_type`.
+### Canales
+- `GET /api/channels` - Listar todos los canales
+- `POST /api/channels` - Crear canal
+- `GET /api/channels/{id}` - Obtener canal
+- `PATCH /api/channels/{id}` - Actualizar canal
+- `DELETE /api/channels/{id}` - Eliminar canal
+- `GET /api/channels/{id}/thumbnail` - Obtener thumbnail
+- `POST /api/channels/tools/create-files` - Crear ficheros del canal
 
-**Causa**: El modelo `PublicationSchedule` fue actualizado con el campo `content_type` pero la base de datos existente no fue migrada automáticamente. SQLAlchemy `create_all` no añade columnas a tablas existentes.
+### Programación
+- `GET /api/schedules/channel/{channel_id}` - Obtener programación
+- `POST /api/schedules/channel/{channel_id}` - Crear programación
+- `PUT /api/schedules/channel/{channel_id}` - Actualizar programación
+- `GET /api/schedules/channel/{channel_id}/calendar/months` - Calendario bimensual
+- `POST /api/schedules/channel/{channel_id}/generate` - Generar publicaciones
+- `GET /api/schedules/channel/{channel_id}/upcoming` - Próximas publicaciones
+- `POST /api/schedules/publication/{id}/assign-script` - Asignar guión
+- `PUT /api/schedules/publication/{id}` - Actualizar publicación
+- `DELETE /api/schedules/publication/{id}` - Eliminar publicación
 
-**Solución**:
-1. Añadida función `init_db()` en `app/core/database.py` con migraciones manuales usando `PRAGMA table_info()` para verificar columnas existentes
-2. Actualizado `app/main.py` para incluir migraciones de:
-   - Tabla `channel_schedules` (nueva tabla)
-   - Tabla `publication_schedules` (nueva tabla con columna `content_type`)
-   - Verificación y adición de columnas `content_type` y `is_active` si no existen
+### Prompts
+- `GET /api/prompts` - Listar prompts
+- `POST /api/prompts` - Crear prompt
+- `GET /api/prompts/{id}` - Obtener prompt
+- `PATCH /api/prompts/{id}` - Actualizar prompt
+- `DELETE /api/prompts/{id}` - Eliminar prompt
+- `POST /api/prompts/{id}/rate?rating=X` - Calificar prompt
 
-**Archivos modificados**:
-- `app/core/database.py`: Añadida función `init_db()` con migraciones
-- `app/main.py`: Añadidas migraciones de tablas y columnas en `lifespan()`
+### Análisis
+- `GET /api/analytics/daily-stats/{channel_id}` - Estadísticas diarias
+- `GET /api/analytics/publications-history/{channel_id}` - Historial
+- `POST /api/analytics/import/{channel_id}` - Importar datos
 
+### Dashboard
+- `GET /api/dashboard/summary?channel_id=X` - Resumen general
+
+### Configuración
+- `GET /api/config` - Listar configuración
+- `POST /api/config` - Guardar configuración
 
 ---
 
-## 🚀 Cómo Ejecutar
+## Correcciones Realizadas
 
-### Requisitos
-- Python 3.8+
-- Dependencias en `requirements.txt`
+### 1. Conflicto de nombres en routers/schedule.py
+**Problema:** La función del router `update_channel_schedule` tenía el mismo nombre que la función del servicio importada, causando un `TypeError` al intentar guardar la configuración de periodicidad.
 
-### Inicio rápido
+**Error:**
+```
+TypeError: 'function' object has no attribute 'channel_id'
+```
+
+**Solución:** Renombrar la importación del servicio como `service_update_channel_schedule` y la función del router como `put_channel_schedule`.
+
+### 2. Calendario bimensual
+**Problema:** El calendario solo mostraba un mes y no estaba correctamente alineado.
+
+**Solución:** 
+- Implementar `renderCalendarView` que muestra mes actual y siguiente
+- Usar grid de 7 columnas (Lunes a Domingo)
+- Calcular correctamente el primer día del mes
+- Usar 42 celdas (6 semanas) para cubrir todos los casos
+
+### 3. Estructura de la página de canales
+**Mejora:** Reorganizar la vista de detalle de canal en secciones:
+- Información general
+- Estadísticas recientes
+- Configuración de periodicidad (con tarjetas para cada tipo de contenido)
+- Calendario de publicaciones (bimensual)
+- Próximas publicaciones
+
+---
+
+## Tecnologías Utilizadas
+
+- **Backend:** Python 3.x, FastAPI, SQLAlchemy, APScheduler
+- **Base de datos:** SQLite
+- **Frontend:** HTML5, CSS3, JavaScript vanilla
+- **Dependencias:**
+  - fastapi
+  - uvicorn
+  - sqlalchemy
+  - aiosqlite
+  - apscheduler
+  - httpx
+  - python-multipart
+  - requests
+
+---
+
+## Instrucciones de Uso
+
+### Iniciar el servidor
 ```bash
-# Instalar dependencias
-pip install -r requirements.txt
-
-# Ejecutar servidor
 .\run_server.bat
 ```
-
-O directamente:
+O manualmente:
 ```bash
-python app/main.py
+uvicorn app.main:app --reload --port 9080
 ```
 
-El servidor se inicia en `http://127.0.0.1:9080`
+### Acceder a la interfaz
+Abrir navegador en: `http://127.0.0.1:9080`
+
+### Flujo de trabajo recomendado
+1. **Crear canal:** Ir a "Canales" → Introducir nombre → "Crear Ficheros" → "Guardar Canal en BD"
+2. **Configurar programación:** Seleccionar canal → Activar tipos de contenido → Configurar frecuencia → Guardar
+3. **Generar calendario:** "Generar Mes Actual" y "Generar Mes Siguiente"
+4. **Gestionar contenido:** Seleccionar canal → Gestionar contenido → Crear ideas → Generar guiones
+5. **Asociar guiones:** En "Próximas Publicaciones" → Asociar guión a publicación
 
 ---
 
-## 📝 Notas Técnicas
+## Próximas Mejoras
 
-### Base de Datos
-- SQLite con SQLAlchemy ORM
-- Migraciones automáticas al iniciar (create_all)
-- Tablas principales:
-  - `channels`: Canales de YouTube
-  - `channel_schedules`: Programación por canal
-  - `publication_schedules`: Publicaciones individuales
-  - `scripts`: Guiones
-  - `daily_stats`: Estadísticas diarias
-  - `prompts`: Biblioteca de prompts
-  - `content_items`: Contenido en desarrollo
-  - `task_logs`: Logs de automatización
-
-### API Endpoints Principales
-- `/api/channels`: Gestión de canales
-- `/api/schedules/*`: Programación de publicaciones
-- `/api/analytics/*`: Análisis y métricas
-- `/api/content/*`: Gestión de contenido
-- `/api/automation/*`: Automatización
-- `/api/prompts/*`: Biblioteca de prompts
-- `/api/dashboard/*`: Dashboard
-- `/health`: Health check
-- `/ui`: Interfaz web
+- [ ] Integración con IA para generación de contenido
+- [ ] Soporte para más plataformas (TikTok, Twitter, etc.)
+- [ ] Exportación de contenido a video
+- [ ] Notificaciones de publicaciones programadas
+- [ ] Sistema de tray icon (systemtray.py existente)
+- [ ] Mejorar responsive del calendario
+- [ ] Exportar/Importar base de datos
+- [ ] Sistema de backups automático
 
 ---
 
-## 📅 Historial de Cambios
+## Notas Técnicas
 
-### 2026-05-06
-- ✅ Creado sistema completo de programación de publicaciones
-- ✅ Añadido modelo ChannelSchedule
-- ✅ Añadido modelo PublicationSchedule (sin campo video_id)
-- ✅ Creado servicio schedule_service.py
-- ✅ Creado router schedule.py con todos los endpoints
-- ✅ Actualizado main.py con nuevo router
-- ✅ Actualizada UI con secciones de programación
-- ✅ Añadido calendario visual de 2 meses
-- ✅ Añadido CSS para la nueva UI
-- ✅ Corregido error de campo 'video_id' inexistente
+### Modelo de Programación
+La programación se basa en frecuencias relativas a la `start_date`:
+- Si `start_date` es 2026-05-01 y frecuencia es 3 días
+- Las publicaciones se generan en días: 0, 3, 6, 9, 12...
+- Cada tipo de contenido tiene su propia frecuencia
 
-### 2026-05-06 - Vista Detallada de Canal con Información Completa
+### Estados de Publicación
+- `planned` - Programada pero no publicada
+- `published` - Publicada
+- `cancelled` - Cancelada
 
-#### Nueva Funcionalidad: Vista Detallada de Canal
-**Descripción**: Al hacer clic en un canal de la lista, se muestra una vista detallada con toda la información del canal, estadísticas, configuración de periodicidad y calendario de publicaciones.
-
-**Cambios realizados**:
-
-1. **HTML (`app/static/index.html`)**:
-   - Añadida sección `channel-detail-section` con:
-     - Botón "Volver a la lista"
-     - Panel de información general (nombre, URL, descripción, color, estado de scraping)
-     - Panel de estadísticas recientes (suscriptores, vistas, videos)
-     - Panel de configuración de periodicidad (videos largos, shorts, artículos)
-     - Calendario de publicaciones del canal
-     - Lista de próximas publicaciones
-
-2. **JavaScript (`app/static/app.js`)**:
-   - Nueva función `showChannelDetail(channelId)`: Muestra la vista detallada
-   - Nueva función `closeChannelDetail()`: Cierra la vista detallada y vuelve a la lista
-   - Nueva función `loadChannelDetailInfo(channelId)`: Carga información general del canal
-   - Nueva función `loadChannelStats(channelId)`: Carga estadísticas diarias del canal
-   - Modificada función `selectChannel()` para usar `showChannelDetail()`
-   - Modificada lista de canales para usar `channel-card-item` con onclick
-
-3. **CSS (`app/static/styles.css`)**:
-   - Nuevas clases para la vista detallada:
-     - `.channel-detail-header`: Cabecera con botón de volver
-     - `.channel-detail-grid`: Grid de 2 columnas para info y stats
-     - `.channel-info-panel`, `.channel-stats-panel`: Paneles de información
-     - `.info-grid`, `.info-item`, `.info-label`, `.info-value`: Sistema de información
-     - `.stats-grid`, `.stat-mini`: Grid de estadísticas compactas
-     - `.channel-schedule-panel`, `.channel-calendar-panel`, `.channel-publications-panel`: Paneles
-     - `.channel-card-item`: Estilo de tarjeta en la lista
-     - `.color-badge`: Badge de color del canal
-     - `.schedule-type-card`: Tarjetas de configuración por tipo
-   - Responsive: grid se adapta a 1 columna en pantallas pequeñas
-
-**Endpoints utilizados**:
-- `GET /api/channels`: Lista de canales
-- `GET /api/analytics/daily-stats/{channel_id}`: Estadísticas diarias
-- `GET /api/schedules/channel/{channel_id}`: Programación
-- `GET /api/schedules/channel/{channel_id}/calendar/months`: Calendario
-- `GET /api/schedules/channel/{channel_id}/upcoming`: Próximas publicaciones
-- `PUT /api/schedules/channel/{channel_id}`: Guardar programación
-
-**Flujo de usuario**:
-1. Usuario va a pestaña "Canales"
-2. Ve la lista de canales registrados
-3. Hace clic en un canal → se muestra la vista detallada
-4. Puede ver información, estadísticas, configurar periodicidad
-5. Puede guardar cambios de programación
-6. Botón "Volver a la lista" regresa a la vista anterior
+### Estados de Script
+- `idea` - Solo idea
+- `script` - Guión generado
+- `developed` - Contenido desarrollado
+- `video` - Video final
 
 ---
 
-### 2026-05-06 - Corrección de Base de Datos
+## Equipo
+Desarrollo activo - Ver historial de git para contribuciones.
 
-#### Error: Columna `created_at` no existe en la base de datos existente
-**Problema**: El calendario desapareció de la UI y el dashboard devolvía error 500: `sqlite3.OperationalError: no such column: publication_schedules.created_at`.
-
-**Causa**: La tabla `publication_schedules` fue creada con datos previos pero sin las columnas del modelo actual (`content_type`, `script_id`, `created_at`).
-
-**Solución**:
-- Ampliada migración en `app/main.py` para verificar y añadir todas las columnas faltantes:
-  - `publication_schedules`: `content_type`, `script_id`, `created_at`
-  - `channel_schedules`: `is_active`, `created_at`, `updated_at`
-- Verificación condicional con `PRAGMA table_info()` antes de añadir cada columna
-
-#### Error: Calendario desaparecido de la UI
-**Problema**: Las secciones de calendario y programación no se mostraban correctamente.
-
-**Causa**: Los errores de base de datos impedían que las APIs de programación devolvieran datos.
-
-**Solución**: Corregidas las migraciones de base de datos. APIs verificadas:
-- `GET /api/dashboard/summary` → 200 OK ✅
-- `GET /api/schedules/channel/1/calendar/months` → 200 OK ✅
-- `GET /api/schedules/channel/1/upcoming` → 200 OK ✅
-- `GET /api/schedules/channel/1` → 200 OK ✅
-
-**Archivos modificados**:
-- `app/main.py`: Ampliadas migraciones con verificación de columnas faltantes
-
----
-
-## 🔧 Configuración
-
-### Variables de Entorno
-- `LLM_URL`: URL del API de LLM
-- `LLM_KEY`: API Key del LLM
-- `ANALYTICS_SCHEDULE`: Cron para analíticas
-
-### Archivos de Datos
-- `app.db`: Base de datos principal
-- `channels_data/`: Datos JSON por canal
-
----
-
-*Última actualización: 2026-05-06 21:50*
+## Licencia
+Proyecto interno de automatización.
