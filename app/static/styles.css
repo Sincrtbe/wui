@@ -1102,23 +1102,31 @@ footer {
   background: var(--bg);
 }
 
+#channel-calendar-container .calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+
 #channel-calendar-container .calendar-cell {
-  aspect-ratio: 1;
   border: 1px solid var(--border);
   border-radius: 0.25rem;
-  padding: 2px;
-  font-size: 0.75rem;
+  padding: 4px;
+  font-size: 0.7rem;
   position: relative;
   background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 55px;
+  min-height: 50px;
 }
 
 #channel-calendar-container .calendar-cell.empty {
   border: none;
   background: transparent;
+  min-height: 0;
+  padding: 0;
 }
 
 #channel-calendar-container .calendar-cell.today {
@@ -1129,13 +1137,13 @@ footer {
 
 #channel-calendar-container .calendar-cell .calendar-day {
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   margin-bottom: 2px;
 }
 
 #channel-calendar-container .calendar-event {
   width: 100%;
-  padding: 2px 3px;
+  padding: 1px 2px;
   border-radius: 2px;
   color: white;
   text-align: center;
@@ -1143,5 +1151,33 @@ footer {
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-bottom: 1px;
+  font-size: 0.65rem;
+}
+
+#channel-calendar-container .calendar-header {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+#channel-calendar-container .calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+#channel-calendar-container .calendar-weekdays div {
+  text-align: center;
   font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.3rem;
+  color: var(--text-light);
+  background: var(--bg);
+  border-radius: 0.25rem;
 }

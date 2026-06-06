@@ -761,13 +761,11 @@ function renderCalendarView(channelId, data) {
   
   // Mes actual
   html += '<h4>📅 Mes Actual</h4>';
-  html += '<div class="calendar-grid">';
   const currentMonth = data.current_month;
   const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
   html += `<div class="calendar-header">${monthNames[currentMonth.month - 1]} ${currentMonth.year}</div>`;
-  
-  // Días de la semana
   html += '<div class="calendar-weekdays"><div>Lu</div><div>Ma</div><div>Mi</div><div>Ju</div><div>Vu</div><div>Sá</div><div>Do</div></div>';
+  html += '<div class="calendar-grid">';
   
   // Eventos del mes actual
   const eventsCurrent = currentMonth.events || [];
@@ -799,11 +797,11 @@ function renderCalendarView(channelId, data) {
   html += '</div>';
   
   // Mes siguiente
-  html += '<h4>📅 Mes Siguiente</h4>';
-  html += '<div class="calendar-grid">';
+  html += '<h4 style="margin-top: 1.5rem;">📅 Mes Siguiente</h4>';
   const nextMonth = data.next_month;
   html += `<div class="calendar-header">${monthNames[nextMonth.month - 1]} ${nextMonth.year}</div>`;
   html += '<div class="calendar-weekdays"><div>Lu</div><div>Ma</div><div>Mi</div><div>Ju</div><div>Vu</div><div>Sá</div><div>Do</div></div>';
+  html += '<div class="calendar-grid">';
   
   const eventsNext = nextMonth.events || [];
   const daysInNextMonth = new Date(nextMonth.year, nextMonth.month, 0).getDate();

@@ -214,6 +214,55 @@ Wui/
 
 ## Correcciones Realizadas
 
+### 5. Calendario descuadrado en detalle de canal (Bug en renderCalendarView y CSS)
+**Fecha:** 2026-06-06  
+**Problema:** El calendario de publicaciones en el detalle de canal se mostraba descuadrado. Los headers de los meses y los días de la semana se insertaban DENTRO del `.calendar-grid`, rompiendo la estructura del grid CSS de 7 columnas. Además, el CSS usaba `aspect-ratio: 1` que causaba celdas de tamaño inconsistente.
+
+**Causa:** 
+1. En `app/static/app.js`, la función `renderCalendarView` insertaba `<div class="calendar-header">` y `<div class="calendar-weekdays">` DENTRO del `<div class="calendar-grid">`, lo que hacía que el CSS grid intentara renderizarlos como celdas del grid.
+2. El CSS usaba `aspect-ratio: 1` en `.calendar-cell`, lo que causaba que las celdas tuvieran un tamaño dependiente del contenedor, causando desajustes.
+
+**Solución:** 
+1. En `app/static/app.js`, reordenar la estructura HTML para que `calendar-header` y `calendar-weekdays` estén FUERA del `calendar-grid`:
+```javascript
+// ANTES (incorrecto - header dentro del grid):
+html += '<div class="calendar-grid">';
+html += '<div class="calendar-header">...</div>';
+html += '<div class="calendar-weekdays">...</div>';
+// ... celdas ...
+html += '</div>';
+
+// DESPUÉS (correcto - header fuera del grid):
+html += '<div class="calendar-header">...</div>';
+html += '<div class="calendar-weekdays">...</div>';
+html += '<div class="calendar-grid">';
+// ... celdas ...
+html += '</div>';
+```
+
+2. En `app/static/styles.css`, eliminar `aspect-ratio: 1` y usar `min-height` fijo:
+```css
+/* ANTES */
+.calendar-cell {
+  aspect-ratio: 1;
+  min-height: 50px;
+}
+
+/* DESPUÉS */
+.calendar-cell {
+  min-height: 50px;
+  /* sin aspect-ratio */
+}
+```
+
+**Archivos modificados:**
+- `app/static/app.js` - Función `renderCalendarView` (estructura HTML de mes actual y siguiente)
+- `app/static/styles.css` - CSS de `.calendar-cell` (eliminado aspect-ratio, añadido min-height fijo)
+- `app/static/styles.css` - CSS de `.calendar-grid` (gap reducido a 2px para mejor alineación)
+- `app/static/styles.css` - CSS de `.calendar-header` y `.calendar-weekdays` (estilos independientes)
+
+---
+
 ### 4. Calendario no muestra eventos (Bug en renderCalendarView)
 **Fecha:** 2026-06-06  
 **Problema:** Las programaciones generadas no aparecían en el calendario del detalle de canal. La API devolvía los datos correctamente (`/api/schedules/channel/1/calendar/months` retornaba eventos con fechas como `"2026-06-04"`), pero el frontend no los filtraba correctamente por día.
