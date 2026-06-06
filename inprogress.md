@@ -520,5 +520,20 @@ La programación se basa en frecuencias relativas a la `start_date`:
 ## Equipo
 Desarrollo activo - Ver historial de git para contribuciones.
 
+## Repositorio Git
+- **Remote:** https://github.com/Sincrtbe/wui.git
+- **Branch:** master
+- **Commit inicial:** `2437973` - "Initial commit - Wui Platform v1.0"
+- **Fecha de subida:** 2026-06-06
+- **Estado:** ✅ Subido correctamente
+
+**Contenido del commit inicial:**
+- Sistema seguro de YouTube API Key con almacenamiento en .env
+- Calendario bimensual corregido (layout y filtrado de eventos)
+- Endpoint de comprobación de datos de hoy
+- Gestión de prompts con IA
+- Tareas programadas con APScheduler
+- CRUD completo de canales y programación
+
 ## Licencia
 Proyecto interno de automatización.
