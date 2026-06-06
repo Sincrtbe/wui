@@ -333,19 +333,55 @@ dom("btn-advance-stage").onclick = () => {
 function initAnalisis() {
   loadChannelSelectors();
   const filter = dom("analytics-channel-filter");
+  const checkBtn = dom("check-today-btn");
   const refreshBtn = dom("refresh-analytics");
   
   filter.onchange = () => {
     if (filter.value) {
       dom("analytics-display").classList.remove("hidden");
       dom("analytics-placeholder").classList.add("hidden");
+      checkBtn.classList.remove("hidden");
       refreshBtn.classList.remove("hidden");
       loadChannelAnalytics(filter.value);
     } else {
       dom("analytics-display").classList.add("hidden");
       dom("analytics-placeholder").classList.remove("hidden");
+      checkBtn.classList.add("hidden");
       refreshBtn.classList.add("hidden");
     }
+  };
+
+  checkBtn.onclick = () => {
+    const id = filter.value;
+    if (!id) return;
+    
+    checkBtn.disabled = true;
+    checkBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Comprobando...';
+    const statusEl = dom("today-data-status");
+    statusEl.classList.remove("hidden");
+    statusEl.className = "status-message info";
+    statusEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Comprobando datos de hoy...';
+    
+    fetchJson(`${apiBase}/api/analytics/check-today/${id}`, { method: "POST" })
+      .then(res => {
+        if (res.has_today_data) {
+          const fetched = res.fetched ? ' (recién descargados)' : ' (ya existían)';
+          statusEl.className = "status-message success";
+          statusEl.innerHTML = `<i class="fas fa-check-circle"></i> Datos de hoy encontrados${fetched} — Vistas: ${res.data?.view_count || 0}, Suscriptores: ${res.data?.subscriber_count || 0}, Videos: ${res.data?.video_count || 0}`;
+          loadChannelAnalytics(id);
+        } else {
+          statusEl.className = "status-message error";
+          statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> No se pudieron obtener los datos: ${res.error || 'Error desconocido'}`;
+        }
+      })
+      .catch(err => {
+        statusEl.className = "status-message error";
+        statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> Error: ${err.message}`;
+      })
+      .finally(() => {
+        checkBtn.disabled = false;
+        checkBtn.innerHTML = '<i class="fas fa-check-circle"></i> Comprobar Datos de Hoy';
+      });
   };
 
   refreshBtn.onclick = () => {

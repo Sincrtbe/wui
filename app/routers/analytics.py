@@ -6,7 +6,7 @@ from app.models.daily_stat import DailyStat
 from app.models.publication_schedule import PublicationSchedule
 from app.models.video import Video
 from app.models.script import Script
-from sqlalchemy import func
+from sqlalchemy import func, Date
 from datetime import date, timedelta
 from app.services.analytics_service import run_daily_stats_import
 
@@ -48,6 +48,43 @@ def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
             "status": h.status or "planned"
         } for h in history
     ]
+
+@router.get("/check-today/{channel_id}")
+def check_and_fetch_today_stats(channel_id: int, db: Session = Depends(get_db)):
+    """Verifica si hay datos de hoy para el canal. Si no los hay, ejecuta DatosDiarios.py y los guarda."""
+    from datetime import date
+    today = date.today().isoformat()
+    
+    # Buscar datos de hoy
+    existing = db.query(DailyStat).filter(
+        DailyStat.channel_id == channel_id,
+        func.cast(DailyStat.stat_date, Date) == today or DailyStat.fecha_ejecucion == today
+    ).first()
+    
+    if existing:
+        return {
+            "has_today_data": True,
+            "data": {
+                "view_count": existing.view_count,
+                "subscriber_count": existing.subscriber_count,
+                "video_count": existing.video_count,
+                "fecha_ejecucion": existing.fecha_ejecucion
+            }
+        }
+    
+    # No hay datos de hoy, ejecutar DatosDiarios.py
+    from app.services.analytics_service import run_daily_stats_import
+    result = run_daily_stats_import(db, channel_id)
+    
+    if "error" in result:
+        return {"has_today_data": False, "error": result["error"]}
+    
+    return {
+        "has_today_data": True,
+        "data": result.get("data", {}),
+        "fetched": True
+    }
+
 
 @router.get("/summary/{channel_id}")
 def get_channel_summary(channel_id: int, db: Session = Depends(get_db)):

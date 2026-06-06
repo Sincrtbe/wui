@@ -388,6 +388,7 @@ input:focus, textarea:focus, select:focus {
 
 .status-success { background: #d1fae5; color: #065f46; }
 .status-error { background: #fee2e2; color: #991b1b; }
+.status-info { background: #dbeafe; color: #1e40af; }
 
 /* Modals */
 .modal {

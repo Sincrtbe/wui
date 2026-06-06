@@ -113,15 +113,17 @@
     <section id="analisis" class="page">
       <div class="section-header">
         <h2>Análisis de Rendimiento</h2>
-        <div class="flex-actions">
-          <select id="analytics-channel-filter" class="channel-selector">
-            <option value="">Selecciona un canal</option>
-          </select>
-          <button id="refresh-analytics" class="btn-secondary hidden"><i class="fas fa-sync"></i> Actualizar Datos</button>
-        </div>
+          <div class="flex-actions">
+            <select id="analytics-channel-filter" class="channel-selector">
+              <option value="">Selecciona un canal</option>
+            </select>
+            <button id="check-today-btn" class="btn-primary hidden"><i class="fas fa-check-circle"></i> Comprobar Datos de Hoy</button>
+            <button id="refresh-analytics" class="btn-secondary hidden"><i class="fas fa-sync"></i> Actualizar Datos</button>
+          </div>
       </div>
       
       <div id="analytics-display" class="hidden">
+        <div id="today-data-status" class="status-message info hidden"></div>
         <div class="analytics-grid">
           <div class="card stat-card">
             <div class="stat-icon subscribers"><i class="fas fa-users"></i></div>

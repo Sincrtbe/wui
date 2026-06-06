@@ -214,7 +214,7 @@ Wui/
 
 ## Correcciones Realizadas
 
-### 7. Sistema seguro de YouTube API Key con almacenamiento en .env
+### 1. Sistema seguro de YouTube API Key con almacenamiento en .env
 **Fecha:** 2026-06-06  
 **Problema:** La API Key de YouTube estaba codificada en duro en los scripts `tools/creacionDcanal.py` y `tools/DatosDiarios.py` (valores como `"A-gI"`, `"I"`). Esto era inseguro porque:
 1. La key aparecía en el código fuente del proyecto
@@ -279,7 +279,7 @@ Wui/
 
 ---
 
-### 5. Calendario descuadrado en detalle de canal (Bug en renderCalendarView y CSS)
+### 2. Calendario descuadrado en detalle de canal (Bug en renderCalendarView y CSS)
 **Fecha:** 2026-06-06  
 **Problema:** El calendario de publicaciones en el detalle de canal se mostraba descuadrado. Los headers de los meses y los días de la semana se insertaban DENTRO del `.calendar-grid`, rompiendo la estructura del grid CSS de 7 columnas. Además, el CSS usaba `aspect-ratio: 1` que causaba celdas de tamaño inconsistente.
 
@@ -328,7 +328,7 @@ html += '</div>';
 
 ---
 
-### 4. Calendario no muestra eventos (Bug en renderCalendarView)
+### 3. Calendario no muestra eventos (Bug en renderCalendarView)
 **Fecha:** 2026-06-06  
 **Problema:** Las programaciones generadas no aparecían en el calendario del detalle de canal. La API devolvía los datos correctamente (`/api/schedules/channel/1/calendar/months` retornaba eventos con fechas como `"2026-06-04"`), pero el frontend no los filtraba correctamente por día.
 
@@ -349,7 +349,7 @@ const dayEvents = eventsCurrent.filter(e => {
 **Archivos modificados:**
 - `app/static/app.js` - Función `renderCalendarView` (líneas de filtrado de `dayEvents` en mes actual y siguiente)
 
-### 1. Conflicto de nombres en routers/schedule.py
+### 4. Conflicto de nombres en routers/schedule.py
 **Problema:** La función del router `update_channel_schedule` tenía el mismo nombre que la función del servicio importada, causando un `TypeError` al intentar guardar la configuración de periodicidad.
 
 **Error:**
@@ -359,7 +359,7 @@ TypeError: 'function' object has no attribute 'channel_id'
 
 **Solución:** Renombrar la importación del servicio como `service_update_channel_schedule` y la función del router como `put_channel_schedule`.
 
-### 2. Calendario bimensual
+### 5. Calendario bimensual
 **Problema:** El calendario solo mostraba un mes y no estaba correctamente alineado.
 
 **Solución:** 
@@ -368,7 +368,7 @@ TypeError: 'function' object has no attribute 'channel_id'
 - Calcular correctamente el primer día del mes
 - Usar 42 celdas (6 semanas) para cubrir todos los casos
 
-### 3. Estructura de la página de canales
+### 6. Estructura de la página de canales
 **Mejora:** Reorganizar la vista de detalle de canal en secciones:
 - Información general
 - Estadísticas recientes
@@ -376,7 +376,43 @@ TypeError: 'function' object has no attribute 'channel_id'
 - Calendario de publicaciones (bimensual)
 - Próximas publicaciones
 
-### 6. Calendario del dashboard no muestra programaciones (Bug en renderCalendar)
+### 7. Botón "Comprobar Datos de Hoy" en Análisis
+**Fecha:** 2026-06-06  
+**Funcionalidad:** Añadir un botón en la sección de Análisis para comprobar y descargar los datos diarios del canal seleccionado.
+
+**Solución implementada:**
+
+1. **HTML (`app/static/index.html`):**
+   - Añadido botón "Comprobar Datos de Hoy" en la sección de análisis
+   - Añadido contenedor de estado para mensajes (`today-data-status`)
+   - Botón visible cuando se selecciona un canal
+
+2. **JavaScript (`app/static/app.js`):**
+   - Modificación de `initAnalisis()` para manejar el botón
+   - Al pulsar, llama al endpoint `/api/analytics/check-today/{channel_id}`
+   - Muestra mensajes de estado (éxito/error)
+   - Actualiza automáticamente las estadísticas si se obtienen datos
+
+3. **CSS (`app/static/styles.css`):**
+   - Añadida clase `.status-info` para mensajes informativos (azul)
+   - Ya existían `.status-success` (verde) y `.status-error` (rojo)
+
+**Flujo de uso:**
+1. El usuario selecciona un canal en la sección Análisis
+2. Aparece el botón "Comprobar Datos de Hoy"
+3. Al pulsarlo, se llama al endpoint `/api/analytics/check-today/{id}`
+4. Si hay datos de hoy en la BD, se muestran directamente
+5. Si no hay datos, se intenta descargar desde YouTube API
+6. Se muestran mensajes de estado con información sobre las vistas, suscriptores y videos
+
+**Archivos modificados:**
+- `app/static/index.html` - Botón y contenedor de estado
+- `app/static/app.js` - Lógica del botón "Comprobar Datos de Hoy"
+- `app/static/styles.css` - Clase `.status-info`
+
+---
+
+### 8. Calendario del dashboard no muestra programaciones (Bug en renderCalendar)
 **Fecha:** 2026-06-06  
 **Problema:** Las programaciones generadas no aparecían en el calendario del dashboard principal. La API `/api/dashboard/summary` devolvía correctamente los eventos con fechas como `"2026-06-07T10:00:00"`, pero la función `renderCalendar` en `app/static/app.js` no los filtraba correctamente por día.
 
