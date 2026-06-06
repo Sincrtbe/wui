@@ -394,13 +394,75 @@ function loadChannelAnalytics(channelId) {
 }
 
 // CONFIGURACIÓN
+let youtubeKeyVisible = false;
+
+function toggleYoutubeKeyVisibility() {
+  const input = dom("youtube_api_key");
+  const icon = document.querySelector("#btn-toggle-youtube-key i");
+  youtubeKeyVisible = !youtubeKeyVisible;
+  
+  if (youtubeKeyVisible) {
+    input.type = "text";
+    icon.className = "fas fa-eye-slash";
+  } else {
+    input.type = "password";
+    icon.className = "fas fa-eye";
+  }
+}
+
+function loadYoutubeKeyStatus() {
+  fetchJson(`${apiBase}/api/config/youtube-key`)
+    .then(data => {
+      const status = dom("youtube-key-status");
+      const input = dom("youtube_api_key");
+      
+      if (data.configured) {
+        status.innerHTML = `<span class="badge badge-success" style="font-size: 10px;">✓ Configurada</span>`;
+        // Mostrar enmascarado: primeros 2 y últimos 2 caracteres
+        const realKey = data.masked_key;
+        input.value = realKey;
+      } else {
+        status.innerHTML = `<span class="badge badge-secondary" style="font-size: 10px;">No configurada</span>`;
+        input.value = "";
+      }
+    })
+    .catch(err => console.error("Error cargando YouTube API Key:", err));
+}
+
+function saveYoutubeKey() {
+  const input = dom("youtube_api_key");
+  const key = input.value.trim();
+  const status = dom("youtube-key-status");
+  
+  if (!key) {
+    status.innerHTML = `<span class="badge badge-secondary" style="font-size: 10px;">No configurada</span>`;
+    return;
+  }
+  
+  fetchJson(`${apiBase}/api/config/youtube-key`, {
+    method: "POST",
+    body: JSON.stringify({ api_key: key })
+  })
+    .then(data => {
+      status.innerHTML = `<span class="badge badge-success" style="font-size: 10px;">✓ Configurada</span>`;
+      alert("YouTube API Key guardada correctamente");
+    })
+    .catch(err => alert("Error al guardar: " + err.message));
+}
+
 function loadConfig() {
+  // Cargar config general
   fetchJson(`${apiBase}/api/config`)
     .then(configs => {
       configs.forEach(c => {
         const input = dom(c.key);
-        if (input) input.value = c.value;
+        if (input && c.key !== "youtube_api_key") input.value = c.value;
       });
+    })
+    .catch(err => console.error("Error cargando config:", err))
+    .finally(() => {
+      // Cargar estado de YouTube API Key
+      loadYoutubeKeyStatus();
     });
 
   dom("config-form").onsubmit = (e) => {
@@ -409,10 +471,12 @@ function loadConfig() {
     const promises = [];
     
     for (let [key, value] of formData.entries()) {
-      promises.push(fetchJson(`${apiBase}/api/config`, {
-        method: "POST",
-        body: JSON.stringify({ key, value })
-      }));
+      if (key !== "youtube_api_key") {
+        promises.push(fetchJson(`${apiBase}/api/config`, {
+          method: "POST",
+          body: JSON.stringify({ key, value })
+        }));
+      }
     }
 
     Promise.all(promises)

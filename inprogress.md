@@ -214,6 +214,71 @@ Wui/
 
 ## Correcciones Realizadas
 
+### 7. Sistema seguro de YouTube API Key con almacenamiento en .env
+**Fecha:** 2026-06-06  
+**Problema:** La API Key de YouTube estaba codificada en duro en los scripts `tools/creacionDcanal.py` y `tools/DatosDiarios.py` (valores como `"A-gI"`, `"I"`). Esto era inseguro porque:
+1. La key aparecía en el código fuente del proyecto
+2. Si el código se subía a git, la key quedaría expuesta públicamente
+3. No había forma de configurarla dinámicamente desde la interfaz web
+4. Cada script tenía su propia key hardcodeada
+
+**Causa:** 
+1. No existía un sistema centralizado para gestionar credenciales
+2. Los scripts de herramientas leían la API key directamente del código
+3. El fichero `.gitignore` ya tenía `.env` excluido, pero nadie lo usaba
+
+**Solución:** Implementar un sistema completo de gestión de API Key:
+
+1. **Fichero `.env`** - Almacenamiento seguro de la API key (excluido de git):
+   ```env
+   YOUTUBE_API_KEY=
+   ```
+
+2. **`app/core/config.py`** - Nuevas funciones para gestión segura:
+   - `get_youtube_api_key()` - Obtiene la key desde variables de entorno
+   - `is_youtube_api_key_configured()` - Verifica si la key está configurada
+   - `mask_api_key(key)` - Enmascara la key (muestra solo primeros y últimos 2 caracteres)
+
+3. **`app/routers/config.py`** - Nuevos endpoints de API:
+   - `GET /api/config/youtube-key` - Estado de la API key (siempre devuelve key enmascarada)
+   - `POST /api/config/youtube-key` - Guarda la API key en el fichero `.env`
+
+4. **`app/static/index.html`** - Campo en la UI de Configuración:
+   - Input de tipo password para la YouTube API Key
+   - Botón mostrar/ocultar (ojo)
+   - Badge de estado (✓ Configurada / No configurada)
+   - Botón "Guardar API Key" independiente
+
+5. **`app/static/app.js`** - Funcionalidad frontend:
+   - `toggleYoutubeKeyVisibility()` - Toggle visibilidad de la key
+   - `loadYoutubeKeyStatus()` - Carga el estado desde la API (con key enmascarada)
+   - `saveYoutubeKey()` - Guarda la key en el servidor
+   - Modificación de `loadConfig()` - Excluye youtube_api_key del formulario general
+
+**Flujo de uso:**
+1. El usuario va a Configuración → Servicios
+2. Introduce su API Key de YouTube (formato `AIza...`)
+3. Pulsa "Guardar API Key"
+4. La key se almacena en `.env` (que está en `.gitignore`)
+5. La UI muestra la key enmascarada: `AI****************************b3x`
+6. Los scripts pueden leer la key desde las variables de entorno
+
+**Archivos modificados:**
+- `.env` - Creado para almacenar YOUTUBE_API_KEY
+- `app/core/config.py` - Funciones get_youtube_api_key(), is_youtube_api_key_configured(), mask_api_key()
+- `app/routers/config.py` - Endpoints GET/POST /api/config/youtube-key
+- `app/static/index.html` - Campo YouTube API Key con UI
+- `app/static/app.js` - Funciones de gestión de YouTube API Key
+
+**Seguridad:**
+- ✅ La API key NUNCA se almacena en la base de datos
+- ✅ La API key NUNCA se muestra en claro en la UI (siempre enmascarada)
+- ✅ La API key NUNCA se sube a git (`.env` en `.gitignore`)
+- ✅ El endpoint GET siempre devuelve la key enmascarada
+- ✅ Las herramientas pueden leer la key desde `os.getenv("YOUTUBE_API_KEY")`
+
+---
+
 ### 5. Calendario descuadrado en detalle de canal (Bug en renderCalendarView y CSS)
 **Fecha:** 2026-06-06  
 **Problema:** El calendario de publicaciones en el detalle de canal se mostraba descuadrado. Los headers de los meses y los días de la semana se insertaban DENTRO del `.calendar-grid`, rompiendo la estructura del grid CSS de 7 columnas. Además, el CSS usaba `aspect-ratio: 1` que causaba celdas de tamaño inconsistente.

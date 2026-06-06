@@ -235,6 +235,20 @@
               <input type="password" id="llm_key" name="llm_key" placeholder="sk-...">
             </div>
             <div class="form-group">
+              <label for="youtube_api_key">YouTube API Key</label>
+              <div class="input-with-status">
+                <input type="password" id="youtube_api_key" name="youtube_api_key" placeholder="AIza...">
+                <button type="button" class="btn-icon" id="btn-toggle-youtube-key" title="Mostrar/Ocultar" onclick="toggleYoutubeKeyVisibility()">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <span id="youtube-key-status" class="key-status"></span>
+              </div>
+              <small>Se usará en herramientas como creacionDcanal.py y DatosDiarios.py</small>
+              <button type="button" class="btn-secondary btn-full mt-10" onclick="saveYoutubeKey()">
+                <i class="fas fa-save"></i> Guardar API Key
+              </button>
+            </div>
+            <div class="form-group">
               <label for="analytics_schedule">Programación Analíticas (Cron)</label>
               <input type="text" id="analytics_schedule" name="analytics_schedule" placeholder="0 0 * * *">
               <small>Ejemplo: "0 0 * * *" para ejecutar cada día a medianoche.</small>
