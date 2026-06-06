@@ -1,7 +1,7 @@
 # Wui - Plataforma de Automatización de Canales YouTube
 
 ## Estado del Proyecto
-**Fecha última actualización:** 2026-05-06  
+**Fecha última actualización:** 2026-06-06  
 **Estado:** En desarrollo activo
 
 ---
@@ -310,6 +310,35 @@ TypeError: 'function' object has no attribute 'channel_id'
 - Configuración de periodicidad (con tarjetas para cada tipo de contenido)
 - Calendario de publicaciones (bimensual)
 - Próximas publicaciones
+
+### 6. Calendario del dashboard no muestra programaciones (Bug en renderCalendar)
+**Fecha:** 2026-06-06  
+**Problema:** Las programaciones generadas no aparecían en el calendario del dashboard principal. La API `/api/dashboard/summary` devolvía correctamente los eventos con fechas como `"2026-06-07T10:00:00"`, pero la función `renderCalendar` en `app/static/app.js` no los filtraba correctamente por día.
+
+**Causa:** La función `renderCalendar` usaba `new Date(e.date).getDate()` para filtrar eventos por día. Las fechas ISO con hora (`"YYYY-MM-DDTHH:MM:SS"`) se interpretan como UTC y al aplicar `getDate()` en zonas UTC+2 puede dar un día diferente. Además, el mes se comparaba con `ed.getMonth()` que también podía variar por zona horaria.
+
+**Solución:** Cambiar el filtrado de fechas para usar parsing directo de la cadena ISO en lugar de `new Date()`:
+```javascript
+// ANTES (incorrecto por zona horaria):
+const dayEvents = events.filter(e => {
+  const ed = new Date(e.date);
+  return ed.getDate() === d && ed.getMonth() === month;
+});
+
+// DESPUÉS (correcto, parsing directo de la cadena ISO):
+const dayEvents = events.filter(e => {
+  const dateStr = typeof e.date === 'string' ? e.date : e.date?.toISOString?.().split('T')[0] || '';
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return false;
+  const eventYear = parseInt(parts[0]);
+  const eventMonth = parseInt(parts[1]) - 1; // Mes en formato 0-11
+  const eventDay = parseInt(parts[2]);
+  return eventDay === d && eventMonth === month && eventYear === year;
+});
+```
+
+**Archivos modificados:**
+- `app/static/app.js` - Función `renderCalendar` (filtrado de `dayEvents` para eventos del dashboard)
 
 ---
 

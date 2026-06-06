@@ -87,7 +87,7 @@ function renderCalendar(events) {
 
   const now = new Date();
   const year = now.getFullYear();
-  const month = now.getMonth();
+  const month = now.getMonth(); // 0-11
   const today = now.getDate();
   
   const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
@@ -104,9 +104,15 @@ function renderCalendar(events) {
   for (let d = 1; d <= daysInMonth; d++) {
     const isToday = d === today;
     const isMarked = d <= today;
+    // Usar parsing directo de la cadena ISO para evitar problemas de zona horaria
     const dayEvents = events.filter(e => {
-      const ed = new Date(e.date);
-      return ed.getDate() === d && ed.getMonth() === month;
+      const dateStr = typeof e.date === 'string' ? e.date : e.date?.toISOString?.().split('T')[0] || '';
+      const parts = dateStr.split('-');
+      if (parts.length !== 3) return false;
+      const eventYear = parseInt(parts[0]);
+      const eventMonth = parseInt(parts[1]) - 1; // Mes en formato 0-11
+      const eventDay = parseInt(parts[2]);
+      return eventDay === d && eventMonth === month && eventYear === year;
     });
 
     html += `
