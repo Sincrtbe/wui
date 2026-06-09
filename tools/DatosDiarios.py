@@ -2,11 +2,19 @@ import sys
 import os
 import json
 import datetime
+from pathlib import Path
 from googleapiclient.discovery import build
 
 # --- CONFIGURACIÓN ---
-API_KEY = "I"
-DEFAULT_OUTPUT_DIR = "G:\canalesYOUTUBE\herramientas\Wui\metricas"  # <--- RUTA DECLARADA POR DEFECTO
+API_KEY = os.environ.get("YOUTUBE_API_KEY", "")
+if not API_KEY:
+    print(json.dumps({"error": "Falta la variable de entorno YOUTUBE_API_KEY"}, indent=4))
+    sys.exit(1)
+
+# Ruta absoluta a la carpeta metricas desde el script
+SCRIPT_DIR = Path(__file__).parent.resolve()
+PROJECT_ROOT = SCRIPT_DIR.parent.resolve()
+DEFAULT_OUTPUT_DIR = str(PROJECT_ROOT / "metricas")
 
 # Validación: Al menos necesitamos el ID del canal
 if len(sys.argv) < 2:

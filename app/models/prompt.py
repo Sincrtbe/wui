@@ -15,8 +15,11 @@ class Prompt(Base):
     title = Column(String, nullable=False)
     description = Column(Text, nullable=True)
     
-    # Tipo de prompt: lluvia_ideas, guion, audio, video, seo, otro
-    prompt_type = Column(String, nullable=False)
+    # Categoría del prompt (subcarpeta): seo, guion, lluvia_ideas, audio, video, otro
+    category = Column(String, nullable=False, default="otro")
+    
+    # Tipo de prompt (deprecated, usar category)
+    prompt_type = Column(String, nullable=True)
     
     # Contenido del prompt con variables entre {{}}
     content = Column(Text, nullable=False)

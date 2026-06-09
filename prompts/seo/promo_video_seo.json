@@ -1,0 +1,19 @@
+{
+    "id": 1751812800.0,
+    "title": "Promoción de Video SEO",
+    "description": "Prompt para crear una descripción optimizada con SEO para videos de YouTube",
+    "category": "seo",
+    "prompt_type": "seo",
+    "content": "Escribe una descripción optimizada para SEO de un video de YouTube sobre {{tema_principal}}. La descripción debe:\n\n1. Incluir una introducción atractante con palabras clave principales en las primeras 2 líneas\n2. Incluir palabras clave secundarias de forma natural: {{palabras_clave_secundarias}}\n3. Incluir timestamps o capítulos relevantes\n4. Añadir enlaces a redes sociales y suscripción\n5. Usar hashtags relevantes (máximo 15)\n\nFormato de salida:\n- Título optimizado (60 caracteres máx)\n- Descripción completa\n- Hashtags recomendados\n- Tags sugeridos",
+    "variables": [
+        "tema_principal",
+        "palabras_clave_secundarias"
+    ],
+    "rating": 0.0,
+    "usage_count": 0,
+    "version": 1,
+    "is_active": "active",
+    "meta_data": {},
+    "created_at": "2026-07-06T18:00:00",
+    "updated_at": "2026-07-06T18:00:00"
+}

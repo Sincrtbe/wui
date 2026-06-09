@@ -406,27 +406,106 @@ function loadChannelAnalytics(channelId) {
         dom("stat-views").innerText = last.view_count.toLocaleString();
         dom("stat-video-count").innerText = last.video_count.toLocaleString();
         
-        dom("views-chart").innerHTML = `
-          <div class="chart-mock">
-            ${stats.slice(-7).map(s => `
-              <div class="chart-bar" style="height: ${(s.view_count % 100)}px" title="${s.stat_date}: ${s.view_count}"></div>
-            `).join("")}
-          </div>
-          <p class="text-center text-small">Vistas en los últimos 7 registros</p>
-        `;
+        // Render charts with real data
+        renderViewsChart(stats);
+        renderSubscribersChart(stats);
       }
     });
 
   fetchJson(`${apiBase}/api/analytics/publications-history/${channelId}`)
     .then(history => {
+      // Build a date → platform lookup from the backend history
       dom("publications-history-list").innerHTML = history.map(h => `
         <div class="item-row">
-          <span>${new Date(h.date).toLocaleDateString()}</span>
-          <strong>${h.title}</strong>
-          <span class="badge">${h.platform}</span>
+          <span>${h.date ? new Date(h.date).toLocaleDateString() : 'N/A'}</span>
+          <strong>${h.title || 'Sin título'}</strong>
+          <span class="badge">${h.content_type || h.platform || 'unknown'}</span>
         </div>
       `).join("") || "Sin historial de publicaciones";
     });
+}
+
+function renderViewsChart(stats) {
+  const sorted = stats.slice().sort((a, b) => new Date(a.stat_date) - new Date(b.stat_date));
+  if (sorted.length === 0) return;
+
+  // Compute differences per point. First point shows the absolute value.
+  let html = '<div class="evolution-chart">';
+  html += '<div class="evolution-points">';
+  sorted.forEach((s, i) => {
+    const dateShort = s.stat_date ? s.stat_date.slice(5) : 'N/A'; // MM-DD
+    const dateFull = s.stat_date || 'N/A';
+    let valueLabel;
+    if (i === 0) {
+      valueLabel = s.view_count.toLocaleString();
+    } else {
+      const diff = s.view_count - sorted[i - 1].view_count;
+      valueLabel = (diff >= 0 ? '+' : '') + diff.toLocaleString();
+    }
+    const cssClass = i === 0 ? 'point-first' : (diff >= 0 ? 'point-up' : 'point-down');
+    const displayDiff = i === 0 ? s.view_count : (s.view_count - sorted[i - 1].view_count);
+    const maxView = Math.max(...sorted.map(x => x.view_count), 1);
+    const heightPct = Math.max(5, (displayDiff >= 0 ? displayDiff : 0) / maxView * 80 + 10);
+    html += `<div class="evolution-point ${cssClass}" title="${dateFull}: ${s.view_count} vistas (total)">
+      <span class="point-value">${valueLabel}</span>
+      <span class="point-date">${dateShort}</span>
+    </div>`;
+  });
+  html += '</div>';
+
+  // Bars row
+  html += '<div class="evolution-bars">';
+  sorted.forEach((s, i) => {
+    const dateShort = s.stat_date ? s.stat_date.slice(5) : 'N/A';
+    const maxView = Math.max(...sorted.map(x => x.view_count), 1);
+    const barH = Math.max(4, s.view_count / maxView * 100);
+    html += `<div class="bar-item" title="${s.stat_date}: ${s.view_count} vistas">
+      <div class="bar-fill" style="height:${barH}%"></div>
+      <span class="bar-label">${dateShort}</span>
+    </div>`;
+  });
+  html += '</div></div>';
+
+  dom("views-chart").innerHTML = html;
+}
+
+function renderSubscribersChart(stats) {
+  const sorted = stats.slice().sort((a, b) => new Date(a.stat_date) - new Date(b.stat_date));
+  if (sorted.length === 0) return;
+
+  let html = '<div class="evolution-chart">';
+  html += '<div class="evolution-points">';
+  sorted.forEach((s, i) => {
+    const dateShort = s.stat_date ? s.stat_date.slice(5) : 'N/A';
+    const dateFull = s.stat_date || 'N/A';
+    let valueLabel;
+    if (i === 0) {
+      valueLabel = s.subscriber_count.toLocaleString();
+    } else {
+      const diff = s.subscriber_count - sorted[i - 1].subscriber_count;
+      valueLabel = (diff >= 0 ? '+' : '') + diff.toLocaleString();
+    }
+    const cssClass = i === 0 ? 'point-first' : (diff >= 0 ? 'point-up' : 'point-down');
+    html += `<div class="evolution-point ${cssClass}" title="${dateFull}: ${s.subscriber_count} suscriptores (total)">
+      <span class="point-value">${valueLabel}</span>
+      <span class="point-date">${dateShort}</span>
+    </div>`;
+  });
+  html += '</div>';
+
+  html += '<div class="evolution-bars">';
+  sorted.forEach((s, i) => {
+    const dateShort = s.stat_date ? s.stat_date.slice(5) : 'N/A';
+    const maxSub = Math.max(...sorted.map(x => x.subscriber_count), 1);
+    const barH = Math.max(4, s.subscriber_count / maxSub * 100);
+    html += `<div class="bar-item" title="${s.stat_date}: ${s.subscriber_count} suscriptores">
+      <div class="bar-fill" style="height:${barH}%"></div>
+      <span class="bar-label">${dateShort}</span>
+    </div>`;
+  });
+  html += '</div></div>';
+
+  dom("subscribers-chart").innerHTML = html;
 }
 
 // CONFIGURACIÓN
@@ -528,117 +607,893 @@ function loadConfig() {
       tab.classList.add("active");
       const tabName = tab.dataset.configTab;
       dom(`config-${tabName}`).classList.remove("hidden");
-      if (tabName === "prompts") loadPrompts();
+      if (tabName === "prompts") {
+        loadCategoryFilter();
+        loadPromptsList();
+      }
     };
   });
 }
 
-// BIBLIOTECA DE PROMPTS
-function loadPrompts() {
-  const typeFilter = dom("prompt-type-filter");
+// ===================== BIBLIOTECA DE PROMPTS =====================
+
+// Cargar lista de prompts en la tabla de configuración
+function loadPromptsList() {
+  const categoryFilter = dom("prompt-category-filter");
   const searchInput = dom("prompt-search");
+  const listContainer = dom("prompts-list");
   
   function fetchAndRender() {
-    const type = typeFilter.value;
-    const url = type ? `${apiBase}/api/prompts?prompt_type=${type}` : `${apiBase}/api/prompts`;
+    const category = categoryFilter.value;
+    let url = `${apiBase}/api/prompts`;
+    if (category) {
+      url += `?category=${encodeURIComponent(category)}`;
+    }
     
     fetchJson(url)
       .then(prompts => {
-        const list = dom("prompts-list");
-        if (searchInput.value) {
-          prompts = prompts.filter(p => p.title.toLowerCase().includes(searchInput.value.toLowerCase()));
+        let filtered = prompts;
+        if (searchInput && searchInput.value) {
+          const search = searchInput.value.toLowerCase();
+          filtered = prompts.filter(p => 
+            p.title.toLowerCase().includes(search) ||
+            (p.description && p.description.toLowerCase().includes(search)) ||
+            p.content.toLowerCase().includes(search) ||
+            p.category.toLowerCase().includes(search)
+          );
         }
         
-        list.innerHTML = prompts.map(p => `
-          <div class="prompt-card card" onclick="openPromptDetail(${p.id})">
+        if (!listContainer) return;
+        
+        if (filtered.length === 0) {
+          listContainer.innerHTML = `<p style="text-align:center; padding: 2rem; color: #888;">No hay prompts${category ? " en esta categoría" : ""}</p>`;
+          return;
+        }
+        
+        listContainer.innerHTML = filtered.map(p => {
+          const cat = p.category || "otro";
+          const safeId = p.id;
+          const safeCategory = p.category || "otro";
+          const safeTitle = (p.title || "").replace(/'/g, "\\'").replace(/"/g, '\\"');
+          return `
+          <div class="prompt-card card" data-category="${cat}" style="margin-bottom:1rem;">
             <div class="prompt-header">
               <h4>${p.title}</h4>
-              <span class="badge">${p.prompt_type}</span>
+              <span class="badge" style="background:#6366f1;">${cat}</span>
             </div>
-            <p class="text-small">${p.description || "Sin descripción"}</p>
-            <div class="prompt-meta">
-              <span><i class="fas fa-star"></i> ${p.rating.toFixed(1)}/5</span>
-              <span><i class="fas fa-check-circle"></i> ${p.usage_count} usos</span>
-              <span><i class="fas fa-code"></i> v${p.version}</span>
+            <p class="text-small" style="margin: 0.5rem 0;">${p.description || "Sin descripción"}</p>
+            <div class="prompt-meta" style="display:flex; gap:1rem; font-size:12px; margin: 0.5rem 0;">
+              <span><i class="fas fa-star" style="color:#f59e0b;"></i> ${parseFloat(p.rating || 0).toFixed(1)}/5</span>
+              <span><i class="fas fa-check-circle" style="color:#10b981;"></i> ${p.usage_count || 0} usos</span>
+              <span><i class="fas fa-code" style="color:#8b5cf6;"></i> v${p.version || 1}</span>
             </div>
-            <div class="prompt-variables">
-              ${p.variables.length > 0 ? `<strong>Variables:</strong> ${p.variables.join(", ")}` : "Sin variables"}
+            <div class="prompt-variables" style="font-size:12px;">
+              ${p.variables && p.variables.length > 0 
+                ? `<strong>Variables:</strong> ${p.variables.join(", ")}` 
+                : "Sin variables"}
+            </div>
+            <div class="prompt-actions" style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <button class="btn-sm btn-view-prompt" onclick="openPromptDetail(${safeId})"><i class="fas fa-eye"></i> Ver Prompt</button>
+              <button class="btn-outline btn-sm" onclick="editPrompt(${safeId}, '${safeCategory}', '${safeTitle}')"><i class="fas fa-edit"></i> Editar</button>
+              <button class="btn-outline btn-sm" style="color:#ef4444;" onclick="deletePromptConfirm(${safeId}, '${safeCategory}', '${safeTitle}')"><i class="fas fa-trash"></i> Eliminar</button>
             </div>
           </div>
-        `).join("") || "<p>No hay prompts</p>";
+        `}).join("");
+      })
+      .catch(err => {
+        if (listContainer) {
+          listContainer.innerHTML = `<p class="text-error">Error al cargar prompts: ${err.message}</p>`;
+        }
       });
   }
   
-  typeFilter.onchange = fetchAndRender;
-  searchInput.onkeyup = fetchAndRender;
+  if (categoryFilter) categoryFilter.onchange = fetchAndRender;
+  if (searchInput) searchInput.onkeyup = fetchAndRender;
   
   fetchAndRender();
 }
 
+// Cargar categorías en el filtro
+function loadCategoryFilter() {
+  const select = dom("prompt-category-filter");
+  if (!select) return;
+  
+  fetchJson(`${apiBase}/api/prompts/categories`)
+    .then(data => {
+      const categories = data.categories || [];
+      select.innerHTML = `<option value="">Todas las categorías</option>` + 
+        categories.map(c => `<option value="${c.name}">${c.name.replace(/_/g, " ")}</option>`).join("");
+    })
+    .catch(err => console.error("Error cargando categorías:", err));
+}
+
+// Abrir modal para crear prompt
+function openPromptCreateModal() {
+  const modal = dom("prompt-create-modal");
+  if (!modal) return;
+  
+  // Cargar categorías en el select
+  loadCategorySelect();
+  
+  // Resetear formulario
+  const form = dom("prompt-form");
+  if (form) {
+    form.reset();
+    dom("prompt-title-count").innerText = "0/100";
+    dom("prompt-description-count").innerText = "0/500";
+    dom("prompt-content-count").innerText = "0/5000";
+    dom("detected-variables").innerHTML = "";
+  }
+  
+  modal.showModal();
+}
+
+// Cargar categorías en el select del formulario
+function loadCategorySelect() {
+  fetchJson(`${apiBase}/api/prompts/categories`)
+    .then(data => {
+      const categories = data.categories || [];
+      const select = dom("prompt-category");
+      if (!select) return;
+      
+      select.innerHTML = `<option value="">Selecciona una categoría</option>` + 
+        categories.map(c => `<option value="${c.name}">${c.name.replace(/_/g, " ")}</option>`).join("");
+      
+      // Añadir opción para crear nueva categoría
+      select.innerHTML += `<option value="__new__">+ Crear nueva categoría...</option>`;
+    })
+    .catch(err => {
+      const select = dom("prompt-category");
+      if (select) {
+        select.innerHTML = `<option value="otro">otro</option><option value="__new__">+ Crear nueva categoría...</option>`;
+      }
+    });
+}
+
+// Manejar creación/edición de prompt
+function handlePromptCreate(event) {
+  event.preventDefault();
+  
+  const form = dom("prompt-form");
+  const editId = form.dataset.editId;
+  
+  const title = dom("prompt-title").value.trim();
+  const category = dom("prompt-category").value;
+  const description = dom("prompt-description").value.trim();
+  const content = dom("prompt-content").value.trim();
+  
+  if (!title) return alert("El título es obligatorio");
+  if (!content) return alert("El contenido del prompt es obligatorio");
+  
+  // Si estamos editando
+  if (editId) {
+    // Si el usuario quiere cambiar a una nueva categoría
+    if (category === "__new__") {
+      const newCat = prompt("Introduce el nombre para la nueva categoría:");
+      if (!newCat || !newCat.trim()) return;
+      
+      updateCategoryAsync(newCat.trim(), editId, title, content, description);
+      return;
+    }
+    
+    if (!category) return alert("Debes seleccionar una categoría");
+    
+    const data = {
+      title: title,
+      content: content,
+      category: category,
+      description: description || null
+    };
+    
+    fetchJson(`${apiBase}/api/prompts/by-id/${editId}`, {
+      method: "PATCH",
+      body: JSON.stringify(data)
+    })
+      .then(() => {
+        alert("Prompt actualizado exitosamente");
+        dom("prompt-create-modal").close();
+        loadPromptsList();
+        loadCategoryFilter();
+      })
+      .catch(err => alert("Error al actualizar prompt: " + err.message));
+    return;
+  }
+  
+  // Si el usuario quiere crear una nueva categoría
+  if (category === "__new__") {
+    const newCat = prompt("Introduce el nombre para la nueva categoría:");
+    if (!newCat || !newCat.trim()) return;
+    
+    createCategoryAsync(newCat.trim(), title, content, description);
+    return;
+  }
+  
+  if (!category) return alert("Debes seleccionar una categoría");
+  
+  const data = {
+    title: title,
+    content: content,
+    category: category,
+    description: description || null,
+    prompt_type: category
+  };
+  
+  fetchJson(`${apiBase}/api/prompts/`, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+    .then(() => {
+      alert("Prompt creado exitosamente");
+      dom("prompt-create-modal").close();
+      loadPromptsList();
+      loadCategoryFilter();
+    })
+    .catch(err => alert("Error al crear prompt: " + err.message));
+}
+
+// Actualizar categoría asíncronamente
+function updateCategoryAsync(catName, promptId, title, content, description) {
+  // Primero crear la categoría
+  fetchJson(`${apiBase}/api/prompts/categories`, {
+    method: "POST",
+    body: JSON.stringify({ name: catName })
+  })
+    .then(() => {
+      // Ahora actualizar el prompt con la nueva categoría
+      const data = {
+        title: title,
+        content: content,
+        category: catName,
+        description: description || null
+      };
+      
+      return fetchJson(`${apiBase}/api/prompts/by-id/${promptId}`, {
+        method: "PATCH",
+        body: JSON.stringify(data)
+      });
+    })
+    .then(() => {
+      alert("Prompt actualizado exitosamente");
+      dom("prompt-create-modal").close();
+      loadPromptsList();
+      loadCategoryFilter();
+    })
+    .catch(err => alert("Error: " + err.message));
+}
+
+// Crear categoría asíncronamente
+function createCategoryAsync(catName, title, content, description) {
+  fetchJson(`${apiBase}/api/prompts/categories`, {
+    method: "POST",
+    body: JSON.stringify({ name: catName })
+  })
+    .then(() => {
+      // Ahora crear el prompt con la nueva categoría
+      const data = {
+        title: title,
+        content: content,
+        category: catName,
+        description: description || null,
+        prompt_type: catName
+      };
+      
+      return fetchJson(`${apiBase}/api/prompts/`, {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+    })
+    .then(() => {
+      alert("Prompt creado exitosamente");
+      dom("prompt-create-modal").close();
+      loadPromptsList();
+      loadCategoryFilter();
+    })
+    .catch(err => alert("Error: " + err.message));
+}
+
+// Actualizar contador de caracteres
+function updateCharCounter(inputId, counterId, maxLength) {
+  const input = dom(inputId);
+  const counter = dom(counterId);
+  if (!input || !counter) return;
+  
+  const currentLength = input.value.length;
+  counter.innerText = `${currentLength}/${maxLength}`;
+  
+  // Cambiar color si se acerca al límite
+  if (currentLength > maxLength * 0.9) {
+    counter.style.color = "#ef4444";
+  } else if (currentLength > maxLength * 0.7) {
+    counter.style.color = "#f59e0b";
+  } else {
+    counter.style.color = "";
+  }
+}
+
+// Actualizar variables detectadas
+function updateDetectedVariables() {
+  const content = dom("prompt-content").value;
+  const variables = content.match(/\{\{(\w+)\}\}/g) || [];
+  const unique = [...new Set(variables.map(v => v.slice(2, -2)))];
+  
+  const container = dom("detected-variables");
+  if (!container) return;
+  
+  if (unique.length > 0) {
+    container.innerHTML = `<i class="fas fa-code"></i> <strong>Variables detectadas:</strong> ${unique.map(v => `<code>${v}</code>`).join(", ")}`;
+  } else {
+    container.innerHTML = "No se detectaron variables. Usa el formato <code>{{variable}}</code> en el contenido.";
+  }
+}
+
+// Mostrar modal de gestión de categorías
+function showManageCategories() {
+  const modal = dom("category-manage-modal");
+  if (!modal) return;
+  
+  loadCategoriesList();
+  modal.showModal();
+}
+
+// Cargar lista de categorías
+function loadCategoriesList() {
+  fetchJson(`${apiBase}/api/prompts/categories`)
+    .then(data => {
+      const categories = data.categories || [];
+      const container = dom("categories-list");
+      if (!container) return;
+      
+      if (categories.length === 0) {
+        container.innerHTML = "<p>No hay categorías creadas</p>";
+        return;
+      }
+      
+      container.innerHTML = categories.map(c => `
+        <div class="flex-header" style="padding:0.5rem 0; border-bottom:1px solid #eee;">
+          <div>
+            <strong>${c.name.replace(/_/g, " ")}</strong>
+            <span class="text-small" style="color:#888;"> (${c.prompt_count || 0} prompts)</span>
+          </div>
+          <button class="btn-danger btn-sm" onclick="deleteCategoryConfirm('${c.name}', '${c.name.replace(/_/g, " ")}')" style="padding:0.25rem 0.5rem;">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      `).join("");
+    })
+    .catch(err => {
+      const container = dom("categories-list");
+      if (container) container.innerHTML = `<p class="text-error">Error: ${err.message}</p>`;
+    });
+}
+
+// Crear nueva categoría
+function createNewCategory() {
+  const input = dom("new-category-name");
+  if (!input) return;
+  
+  const name = input.value.trim();
+  if (!name) return alert("Introduce un nombre para la categoría");
+  
+  fetchJson(`${apiBase}/api/prompts/categories`, {
+    method: "POST",
+    body: JSON.stringify({ name: name })
+  })
+    .then(() => {
+      alert("Categoría creada exitosamente");
+      input.value = "";
+      loadCategoriesList();
+      loadCategoryFilter();
+    })
+    .catch(err => alert("Error al crear categoría: " + err.message));
+}
+
+// ============================================
+// OVERLAY BIBLIOTECA DE PROMPTS
+// ============================================
+
+// Abrir overlay de prompts
+function openPromptsOverlay() {
+  const overlay = dom("prompts-overlay");
+  if (!overlay) return;
+  
+  overlay.classList.remove("hidden");
+  
+  // Cargar datos iniciales
+  loadOverlayPromptsList();
+  loadOverlayCategoryFilter();
+  loadOverlayCategoriesList();
+}
+
+// Cerrar overlay de prompts
+function closePromptsOverlay() {
+  const overlay = dom("prompts-overlay");
+  if (!overlay) return;
+  
+  overlay.classList.add("hidden");
+  
+  // Volver a la vista de lista
+  showOverlayListView();
+}
+
+// Cargar lista de prompts en el overlay
+function loadOverlayPromptsList() {
+  const search = dom("overlay-prompt-search")?.value || "";
+  const category = dom("overlay-prompt-category-filter")?.value || "";
+  
+  let url = `${apiBase}/api/prompts?page_size=100`;
+  if (search) url += `&search=${encodeURIComponent(search)}`;
+  if (category) url += `&category=${encodeURIComponent(category)}`;
+  
+  fetchJson(url)
+    .then(data => {
+      const prompts = data.prompts || data || [];
+      const container = dom("overlay-prompts-list");
+      if (!container) return;
+      
+      if (prompts.length === 0) {
+        container.innerHTML = "<p class='text-muted'>No se encontraron prompts</p>";
+        return;
+      }
+      
+      container.innerHTML = prompts.map((p, idx) => `
+        <div class="prompt-list-item" onclick="showOverlayPromptDetail('${p.id || idx}')">
+          <div class="prompt-item-title">${p.title || "Sin título"}</div>
+          <div class="prompt-item-category badge">${p.category || "Sin categoría"}</div>
+          ${p.description ? `<div class="prompt-item-desc">${p.description}</div>` : ''}
+        </div>
+      `).join("");
+    })
+    .catch(err => {
+      const container = dom("overlay-prompts-list");
+      if (container) container.innerHTML = `<p class="text-error">Error: ${err.message}</p>`;
+    });
+}
+
+// Cargar filtro de categorías en el overlay
+function loadOverlayCategoryFilter() {
+  fetchJson(`${apiBase}/api/prompts/categories`)
+    .then(data => {
+      const categories = data.categories || [];
+      const select = dom("overlay-prompt-category-filter");
+      const categorySelect = dom("overlay-prompt-category");
+      
+      if (select) {
+        select.innerHTML = '<option value="">Todas las categorías</option>' +
+          categories.map(c => `<option value="${c.name}">${c.name.replace(/_/g, " ")}</option>`).join("");
+      }
+      
+      if (categorySelect) {
+        categorySelect.innerHTML = '<option value="">Selecciona una categoría</option>' +
+          categories.map(c => `<option value="${c.name}">${c.name.replace(/_/g, " ")}</option>`).join("");
+      }
+    })
+    .catch(err => console.error("Error cargando categorías:", err));
+}
+
+// Cambiar vistas del overlay
+function showOverlayListView() {
+  hideAllOverlayViews();
+  dom("overlay-view-list")?.classList.add("active");
+}
+
+function showOverlayPromptCreate() {
+  hideAllOverlayViews();
+  dom("overlay-view-edit")?.classList.add("active");
+  dom("overlay-edit-title").innerText = "Nuevo Prompt";
+  dom("overlay-edit-id").value = "";
+  dom("overlay-prompt-form").reset();
+  dom("overlay-prompt-title-count").innerText = "0/100";
+  dom("overlay-prompt-description-count").innerText = "0/500";
+  dom("overlay-prompt-content-count").innerText = "0/5000";
+  dom("overlay-detected-variables").innerHTML = "";
+}
+
+function showOverlayEditFromDetail() {
+  const promptId = dom("overlay-detail-content")?.dataset?.promptId;
+  if (!promptId) return;
+  
+  fetchJson(`${apiBase}/api/prompts/${promptId}`)
+    .then(prompt => {
+      hideAllOverlayViews();
+      dom("overlay-view-edit")?.classList.add("active");
+      dom("overlay-edit-title").innerText = "Editar Prompt";
+      dom("overlay-edit-id").value = prompt.id;
+      dom("overlay-prompt-title").value = prompt.title || "";
+      dom("overlay-prompt-category").value = prompt.category || "";
+      dom("overlay-prompt-description").value = prompt.description || "";
+      dom("overlay-prompt-content").value = prompt.content || "";
+      
+      updateCharCounter('overlay-prompt-title', 'overlay-prompt-title-count', 100);
+      updateCharCounter('overlay-prompt-description', 'overlay-prompt-description-count', 500);
+      updateCharCounter('overlay-prompt-content', 'overlay-prompt-content-count', 5000);
+      updateDetectedVariables();
+    })
+    .catch(err => alert("Error al cargar prompt: " + err.message));
+}
+
+function showOverlayPromptDetail(promptId) {
+  fetchJson(`${apiBase}/api/prompts/${promptId}`)
+    .then(prompt => {
+      hideAllOverlayViews();
+      dom("overlay-view-detail")?.classList.add("active");
+      dom("overlay-detail-title").innerText = prompt.title || "Sin título";
+      
+      const variablesHtml = prompt.variables && prompt.variables.length > 0
+        ? prompt.variables.map(v => `<code style="background:#f3f4f6; padding:2px 6px; border-radius:4px;">${v}</code>`).join(", ")
+        : "Ninguna";
+      
+      const detailContent = dom("overlay-detail-content");
+      detailContent.innerHTML = `
+        <div class="detail-section">
+          <div class="detail-label">Categoría</div>
+          <div class="detail-value"><span class="badge">${prompt.category}</span></div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Descripción</div>
+          <div class="detail-value">${prompt.description || "N/A"}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Versión</div>
+          <div class="detail-value">${prompt.version || 1}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Puntuación</div>
+          <div class="detail-value">${parseFloat(prompt.rating || 0).toFixed(1)}/5</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Usos</div>
+          <div class="detail-value">${prompt.usage_count || 0}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Variables</div>
+          <div class="detail-value">${variablesHtml}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Contenido</div>
+          <div class="prompt-content-box">
+            <pre>${prompt.content}</pre>
+          </div>
+        </div>
+      `;
+      detailContent.dataset.promptId = prompt.id;
+    })
+    .catch(err => alert("Error al cargar prompt: " + err.message));
+}
+
+function showOverlayCategories() {
+  hideAllOverlayViews();
+  dom("overlay-view-categories")?.classList.add("active");
+  loadOverlayCategoriesList();
+}
+
+function hideAllOverlayViews() {
+  document.querySelectorAll(".overlay-view").forEach(v => v.classList.remove("active"));
+}
+
+// Crear prompt desde el overlay
+function handleOverlayPromptCreate(event) {
+  event.preventDefault();
+  
+  const editId = dom("overlay-edit-id").value;
+  const title = dom("overlay-prompt-title").value.trim();
+  const category = dom("overlay-prompt-category").value;
+  const description = dom("overlay-prompt-description").value.trim();
+  const content = dom("overlay-prompt-content").value.trim();
+  
+  if (!title) return alert("El título es obligatorio");
+  if (!content) return alert("El contenido del prompt es obligatorio");
+  if (!category) return alert("Debes seleccionar una categoría");
+  
+  const data = {
+    title: title,
+    content: content,
+    category: category,
+    description: description || null
+  };
+  
+  if (editId) {
+    // Actualizar prompt existente
+    fetchJson(`${apiBase}/api/prompts/by-id/${editId}`, {
+      method: "PATCH",
+      body: JSON.stringify(data)
+    })
+      .then(() => {
+        alert("Prompt actualizado exitosamente");
+        closePromptsOverlay();
+        loadPromptsList();
+        loadCategoryFilter();
+      })
+      .catch(err => alert("Error al actualizar prompt: " + err.message));
+  } else {
+    // Crear nuevo prompt
+    fetchJson(`${apiBase}/api/prompts`, {
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+      .then(() => {
+        alert("Prompt creado exitosamente");
+        closePromptsOverlay();
+        loadPromptsList();
+        loadCategoryFilter();
+      })
+      .catch(err => alert("Error al crear prompt: " + err.message));
+  }
+}
+
+// Eliminar prompt desde el overlay
+function deleteOverlayPrompt() {
+  const detailContent = dom("overlay-detail-content");
+  const promptId = detailContent?.dataset?.promptId;
+  
+  if (!promptId) return alert("No hay prompt seleccionado");
+  
+  if (confirm("¿Estás seguro de eliminar este prompt?")) {
+    fetchJson(`${apiBase}/api/prompts/by-id/${promptId}`, {
+      method: "DELETE"
+    })
+      .then(() => {
+        alert("Prompt eliminado");
+        showOverlayListView();
+        loadOverlayPromptsList();
+        loadCategoryFilter();
+      })
+      .catch(err => alert("Error: " + err.message));
+  }
+}
+
+// Copiar prompt desde el overlay
+function copyOverlayPrompt() {
+  const detailContent = dom("overlay-detail-content");
+  const content = detailContent?.querySelector("pre")?.innerText;
+  const title = dom("overlay-detail-title")?.innerText;
+  
+  if (!content) return alert("No hay contenido para copiar");
+  
+  navigator.clipboard.writeText(content)
+    .then(() => alert("Contenido copiado al portapapeles"))
+    .catch(() => alert("Error al copiar"));
+}
+
+// Gestionar categorías desde el overlay
+function createOverlayCategory() {
+  const input = dom("overlay-new-category-name");
+  if (!input) return;
+  
+  const name = input.value.trim();
+  if (!name) return alert("Introduce un nombre para la categoría");
+  
+  fetchJson(`${apiBase}/api/prompts/categories`, {
+    method: "POST",
+    body: JSON.stringify({ name: name })
+  })
+    .then(() => {
+      alert("Categoría creada exitosamente");
+      input.value = "";
+      loadOverlayCategoriesList();
+      loadOverlayCategoryFilter();
+    })
+    .catch(err => alert("Error al crear categoría: " + err.message));
+}
+
+function loadOverlayCategoriesList() {
+  fetchJson(`${apiBase}/api/prompts/categories`)
+    .then(data => {
+      const categories = data.categories || [];
+      const container = dom("overlay-categories-list");
+      if (!container) return;
+      
+      if (categories.length === 0) {
+        container.innerHTML = "<p class='text-muted'>No hay categorías creadas</p>";
+        return;
+      }
+      
+      container.innerHTML = categories.map(c => `
+        <div class="category-item">
+          <div class="category-name">
+            <i class="fas fa-folder"></i>
+            ${c.name.replace(/_/g, " ")}
+            <span class="category-count">(${c.prompt_count || 0} prompts)</span>
+          </div>
+          <div class="category-actions">
+            <button class="btn-danger btn-sm" onclick="deleteOverlayCategory('${c.name}')">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      `).join("");
+    })
+    .catch(err => {
+      const container = dom("overlay-categories-list");
+      if (container) container.innerHTML = `<p class="text-error">Error: ${err.message}</p>`;
+    });
+}
+
+function deleteOverlayCategory(name) {
+  if (confirm(`¿Estás seguro de eliminar la categoría "${name}" y todos sus prompts?`)) {
+    fetchJson(`${apiBase}/api/prompts/categories`, {
+      method: "DELETE",
+      body: JSON.stringify({ name: name })
+    })
+      .then(() => {
+        alert("Categoría eliminada");
+        loadOverlayCategoriesList();
+        loadOverlayCategoryFilter();
+        loadOverlayPromptsList();
+      })
+      .catch(err => alert("Error: " + err.message));
+  }
+}
+
+// ============================================
+// FIN OVERLAY BIBLIOTECA DE PROMPTS
+// ============================================
+
+// Confirmar eliminación de categoría
+function deleteCategoryConfirm(id, name) {
+  if (confirm(`¿Estás seguro de eliminar la categoría "${name}" y todos sus prompts?`)) {
+    fetchJson(`${apiBase}/api/prompts/categories`, {
+      method: "DELETE",
+      body: JSON.stringify({ name: id })
+    })
+      .then(() => {
+        alert("Categoría eliminada");
+        loadCategoriesList();
+        loadCategoryFilter();
+        loadPromptsList();
+      })
+      .catch(err => alert("Error: " + err.message));
+  }
+}
+
+// Abrir detalle de prompt
 function openPromptDetail(promptId) {
   fetchJson(`${apiBase}/api/prompts/${promptId}`)
     .then(prompt => {
       dom("prompt-detail-title").innerText = prompt.title;
+      
+      const variablesHtml = prompt.variables && prompt.variables.length > 0 
+        ? prompt.variables.map(v => `<code style="background:#f3f4f6; padding:2px 6px; border-radius:4px;">${v}</code>`).join(", ")
+        : "Ninguna";
+      
       dom("prompt-detail-content").innerHTML = `
-        <div class="prompt-detail">
-          <p><strong>Tipo:</strong> ${prompt.prompt_type}</p>
+        <div class="prompt-detail" style="padding:1rem;">
+          <p><strong>Categoría:</strong> <span class="badge">${prompt.category}</span></p>
           <p><strong>Descripción:</strong> ${prompt.description || "N/A"}</p>
-          <p><strong>Versión:</strong> ${prompt.version}</p>
-          <p><strong>Puntuación:</strong> ${prompt.rating.toFixed(1)}/5</p>
-          <p><strong>Usos:</strong> ${prompt.usage_count}</p>
-          <p><strong>Variables:</strong> ${prompt.variables.join(", ") || "Ninguna"}</p>
-          <div class="prompt-content-box">
+          <p><strong>Versión:</strong> v${prompt.version || 1}</p>
+          <p><strong>Puntuación:</strong> ${parseFloat(prompt.rating || 0).toFixed(1)}/5</p>
+          <p><strong>Usos:</strong> ${prompt.usage_count || 0}</p>
+          <p><strong>Variables:</strong> ${variablesHtml}</p>
+          <div class="prompt-content-box" style="background:#f9fafb; padding:1rem; border-radius:8px; margin:1rem 0;">
             <strong>Contenido:</strong>
-            <pre>${prompt.content}</pre>
-          </div>
-          <div class="rating-input">
-            <label>Calificar (0-5):
-              <input type="number" min="0" max="5" step="0.5" id="rating-input" value="${prompt.rating}">
-              <button type="button" onclick="ratePrompt(${promptId})">Guardar Calificación</button>
-            </label>
+            <pre style="white-space:pre-wrap; font-family:monospace; background:#fff; padding:0.5rem; border-radius:4px;">${prompt.content}</pre>
           </div>
         </div>
       `;
+      
+      // Configurar botones de acción
+      const editBtn = dom("btn-edit-prompt");
+      const deleteBtn = dom("btn-delete-prompt");
+      
+      if (editBtn) {
+        editBtn.onclick = () => {
+          dom("prompt-detail-modal").close();
+          editPrompt(prompt.id, prompt.category, prompt.title);
+        };
+      }
+      
+      if (deleteBtn) {
+        deleteBtn.onclick = () => {
+          deletePromptConfirm(prompt.id, prompt.category, prompt.title);
+        };
+      }
+      
       dom("prompt-detail-modal").showModal();
-    });
+    })
+    .catch(err => alert("Error al cargar prompt: " + err.message));
 }
 
-function ratePrompt(promptId) {
-  const rating = parseFloat(dom("rating-input").value);
-  if (rating < 0 || rating > 5) return alert("Calificación inválida");
-  
-  fetchJson(`${apiBase}/api/prompts/${promptId}/rate?rating=${rating}`, { method: "POST" })
-    .then(() => {
-      alert("Calificación guardada");
-      loadPrompts();
-    });
+// Editar prompt
+function editPrompt(promptId, category, title) {
+  fetchJson(`${apiBase}/api/prompts/${promptId}`)
+    .then(prompt => {
+      // Abrir modal de creación y rellenar datos
+      openPromptCreateModal();
+      
+      // Rellenar formulario
+      dom("prompt-title").value = prompt.title || "";
+      dom("prompt-category").value = prompt.category || "";
+      dom("prompt-description").value = prompt.description || "";
+      dom("prompt-content").value = prompt.content || "";
+      
+      // Actualizar contadores
+      updateCharCounter("prompt-title", "prompt-title-count", 100);
+      updateCharCounter("prompt-description", "prompt-description-count", 500);
+      updateCharCounter("prompt-content", "prompt-content-count", 5000);
+      updateDetectedVariables();
+      
+      // Guardar ID para actualización
+      dom("prompt-form").dataset.editId = promptId;
+      dom("prompt-form").dataset.editCategory = category;
+      
+      // Cambiar texto del botón
+      const submitBtn = dom("prompt-form").querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.innerText = "Guardar Cambios";
+    })
+    .catch(err => alert("Error al cargar prompt: " + err.message));
 }
 
-dom("prompt-form").onsubmit = (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData.entries());
+// Guardar cambios de prompt (actualización)
+function handlePromptUpdate() {
+  const form = dom("prompt-form");
+  if (!form || !form.dataset.editId) return;
   
-  fetchJson(`${apiBase}/api/prompts`, {
-    method: "POST",
+  const promptId = form.dataset.editId;
+  const title = dom("prompt-title").value.trim();
+  const category = dom("prompt-category").value;
+  const description = dom("prompt-description").value.trim();
+  const content = dom("prompt-content").value.trim();
+  
+  if (!title) return alert("El título es obligatorio");
+  if (!content) return alert("El contenido del prompt es obligatorio");
+  if (!category) return alert("Debes seleccionar una categoría");
+  
+  const data = {
+    title: title,
+    content: content,
+    category: category,
+    description: description || null
+  };
+  
+  fetchJson(`${apiBase}/api/prompts/by-id/${promptId}`, {
+    method: "PATCH",
     body: JSON.stringify(data)
-  }).then(() => {
-    alert("Prompt creado exitosamente");
-    dom("prompt-create-modal").close();
-    loadPrompts();
-  });
-};
+  })
+    .then(() => {
+      alert("Prompt actualizado exitosamente");
+      dom("prompt-create-modal").close();
+      loadPromptsList();
+      loadCategoryFilter();
+    })
+    .catch(err => alert("Error al actualizar prompt: " + err.message));
+}
 
-dom("prompt-form").addEventListener("input", (e) => {
-  if (e.target.name === "content") {
-    const content = e.target.value;
-    const variables = content.match(/\{\{(\w+)\}\}/g) || [];
-    const unique = [...new Set(variables.map(v => v.slice(2, -2)))];
-    dom("detected-variables").innerHTML = unique.length > 0 
-      ? `<strong>Variables detectadas:</strong> ${unique.join(", ")}`
-      : "";
+// Confirmar eliminación de prompt (usando endpoint por ID)
+function deletePromptConfirm(promptId, category, title) {
+  if (confirm(`¿Estás seguro de eliminar el prompt "${title}"?`)) {
+    fetchJson(`${apiBase}/api/prompts/by-id/${promptId}`, {
+      method: "DELETE"
+    })
+      .then(() => {
+        alert("Prompt eliminado");
+        dom("prompt-detail-modal").close();
+        loadPromptsList();
+        loadCategoryFilter();
+      })
+      .catch(err => alert("Error: " + err.message));
   }
-});
+}
+
+// Cerrar modal de creación
+function closePromptCreateModal() {
+  const modal = dom("prompt-create-modal");
+  if (modal) modal.close();
+  
+  // Resetear formulario
+  const form = dom("prompt-form");
+  if (form) {
+    form.reset();
+    delete form.dataset.editId;
+    delete form.dataset.editCategory;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.innerText = "Crear Prompt";
+    dom("prompt-title-count").innerText = "0/100";
+    dom("prompt-description-count").innerText = "0/500";
+    dom("prompt-content-count").innerText = "0/5000";
+    dom("detected-variables").innerHTML = "";
+  }
+}
+
+// ===================== FIN BIBLIOTECA DE PROMPTS =====================
 
 // CANALES Y HERRAMIENTAS
 let currentChannelId = null;

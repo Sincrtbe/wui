@@ -150,7 +150,14 @@
         
         <div class="card">
           <h3>Evolución de Vistas</h3>
-          <div id="views-chart" class="chart-container">
+          <div id="views-chart" class="chart-container full-width">
+            <p class="chart-placeholder">Cargando gráfico...</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>Evolución de Suscriptores</h3>
+          <div id="subscribers-chart" class="chart-container full-width">
             <p class="chart-placeholder">Cargando gráfico...</p>
           </div>
         </div>
@@ -189,17 +196,7 @@
         <div class="automation-sidebar">
           <div class="card">
             <h3><i class="fas fa-terminal"></i> Biblioteca de Prompts</h3>
-            <div id="prompts-list">
-              <div class="prompt-item">
-                <strong>Generador de Guiones</strong>
-                <p>Prompt base para GPT-4...</p>
-              </div>
-              <div class="prompt-item">
-                <strong>Optimización SEO</strong>
-                <p>Tags y descripción...</p>
-              </div>
-            </div>
-            <button class="btn-full btn-outline mt-10">Gestionar Prompts</button>
+            <button class="btn-full btn-primary mt-10" onclick="openPromptsOverlay()"><i class="fas fa-edit"></i> Gestionar Prompts</button>
           </div>
           
           <div class="card">
@@ -222,7 +219,6 @@
       <h2>Configuración del Sistema</h2>
       <div class="config-tabs">
         <button class="config-tab active" data-config-tab="servicios">Servicios</button>
-        <button class="config-tab" data-config-tab="prompts">Biblioteca de Prompts</button>
       </div>
       <div id="config-servicios" class="config-tab-content active">
         <div class="card">
@@ -257,26 +253,6 @@
             </div>
             <button type="submit" class="btn-primary">Guardar Configuración</button>
           </form>
-        </div>
-      </div>
-      <div id="config-prompts" class="config-tab-content hidden">
-        <div class="card">
-          <div class="flex-header">
-            <h3><i class="fas fa-terminal"></i> Biblioteca de Prompts</h3>
-            <button class="btn-primary" onclick="dom('prompt-create-modal').showModal()"><i class="fas fa-plus"></i> Nuevo Prompt</button>
-          </div>
-          <div class="prompt-filters">
-            <input type="text" id="prompt-search" placeholder="Buscar prompts..." style="margin-bottom: 1rem;">
-            <select id="prompt-type-filter" style="margin-bottom: 1rem;">
-              <option value="">Todos los tipos</option>
-              <option value="lluvia_ideas">Lluvia de Ideas</option>
-              <option value="guion">Guion</option>
-              <option value="audio">Audio</option>
-              <option value="video">Video</option>
-              <option value="seo">SEO</option>
-            </select>
-          </div>
-          <div id="prompts-list" class="prompts-grid">Cargando prompts...</div>
         </div>
       </div>
     </section>
@@ -469,29 +445,61 @@
   </dialog>
 
   <dialog id="prompt-create-modal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 700px;">
       <h3>Crear Nuevo Prompt</h3>
-      <form id="prompt-form">
-        <label>Título: <input type="text" name="title" required></label>
-        <label>Tipo:
-          <select name="prompt_type" required>
-            <option value="lluvia_ideas">Lluvia de Ideas</option>
-            <option value="guion">Guión</option>
-            <option value="audio">Audio</option>
-            <option value="video">Video</option>
-            <option value="seo">SEO</option>
+      <form id="prompt-form" onsubmit="handlePromptCreate(event)">
+        <div class="form-group">
+          <label for="prompt-title">
+            Título
+            <span id="prompt-title-count" class="char-counter">0/100</span>
+          </label>
+          <input type="text" id="prompt-title" name="title" required maxlength="100" oninput="updateCharCounter('prompt-title', 'prompt-title-count', 100)" placeholder="Ej: Guión para tutorial de Python">
+        </div>
+        <div class="form-group">
+          <label for="prompt-category">Categoría</label>
+          <select id="prompt-category" name="category" required>
+            <option value="">Selecciona una categoría</option>
           </select>
-        </label>
-        <label>Descripción: <textarea name="description" rows="2"></textarea></label>
-        <label>Contenido del Prompt (usa {{variable}} para variables):
-          <textarea name="content" rows="8" required placeholder="Ej: Crea un guión para {{tema}} con duración de {{duracion}} minutos"></textarea>
-        </label>
+        </div>
+        <div class="form-group">
+          <label for="prompt-description">
+            Descripción
+            <span id="prompt-description-count" class="char-counter">0/500</span>
+          </label>
+          <textarea id="prompt-description" name="description" rows="2" maxlength="500" oninput="updateCharCounter('prompt-description', 'prompt-description-count', 500)" placeholder="Breve descripción del prompt..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="prompt-content">
+            Contenido del Prompt (usa {{variable}} para variables dinámicas)
+            <span id="prompt-content-count" class="char-counter">0/5000</span>
+          </label>
+          <textarea id="prompt-content" name="content" rows="8" required maxlength="5000" oninput="updateCharCounter('prompt-content', 'prompt-content-count', 5000); updateDetectedVariables()" placeholder="Ej: Crea un guión para {{tema}} con duración de {{duracion}} minutos"></textarea>
+        </div>
         <div id="detected-variables" class="info-box"></div>
         <div class="modal-actions">
-          <button type="button" onclick="dom('prompt-create-modal').close()" class="btn-outline">Cancelar</button>
+          <button type="button" onclick="closePromptCreateModal()" class="btn-outline">Cancelar</button>
           <button type="submit" class="btn-primary">Crear Prompt</button>
         </div>
       </form>
+    </div>
+  </dialog>
+
+  <dialog id="category-manage-modal" class="modal">
+    <div class="modal-content" style="max-width: 600px;">
+      <h3>Gestionar Categorías</h3>
+      <div class="form-group">
+        <label for="new-category-name">Nueva Categoría</label>
+        <div class="input-with-button" style="display: flex; gap: 0.5rem;">
+          <input type="text" id="new-category-name" placeholder="Nombre de la nueva categoría" style="flex: 1;">
+          <button type="button" class="btn-primary" onclick="createNewCategory()">Crear</button>
+        </div>
+      </div>
+      <div id="categories-list" style="margin: 1rem 0;">
+        <!-- Lista de categorías -->
+      </div>
+      <div class="modal-actions">
+        <button type="button" onclick="dom('category-manage-modal').close()" class="btn-outline">Cerrar</button>
+      </div>
     </div>
   </dialog>
 
@@ -506,6 +514,142 @@
       </div>
     </div>
   </dialog>
+
+  <!-- OVERLAY BIBLIOTECA DE PROMPTS -->
+  <div id="prompts-overlay" class="prompts-overlay hidden">
+    <div class="prompts-overlay-content">
+      <div class="prompts-overlay-header">
+        <h2><i class="fas fa-terminal"></i> Biblioteca de Prompts</h2>
+        <button class="btn-icon btn-close-overlay" onclick="closePromptsOverlay()" title="Cerrar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="prompts-overlay-body">
+        <!-- Barra lateral de prompts -->
+        <div class="prompts-sidebar">
+          <div class="prompts-search-box">
+            <input type="text" id="overlay-prompt-search" placeholder="Buscar prompts..." oninput="loadOverlayPromptsList()">
+            <select id="overlay-prompt-category-filter" onchange="loadOverlayPromptsList()">
+              <option value="">Todas las categorías</option>
+            </select>
+          </div>
+          
+          <div class="prompts-sidebar-actions">
+            <button class="btn-full btn-primary btn-sm" onclick="showOverlayPromptCreate()"><i class="fas fa-plus"></i> Nuevo Prompt</button>
+            <button class="btn-full btn-secondary btn-sm" onclick="showOverlayCategories()"><i class="fas fa-folder-plus"></i> Categorías</button>
+          </div>
+          
+          <div id="overlay-prompts-list" class="overlay-prompts-list">
+            <p class="text-muted">Cargando prompts...</p>
+          </div>
+        </div>
+        
+        <!-- Área principal de prompts -->
+        <div class="prompts-main-area">
+          <!-- Vista de lista/detail -->
+          <div id="overlay-view-list" class="overlay-view active">
+            <div class="overlay-empty-state">
+              <i class="fas fa-hand-pointer"></i>
+              <p>Selecciona un prompt de la lista o crea uno nuevo</p>
+            </div>
+          </div>
+          
+          <!-- Vista de creación/edición -->
+          <div id="overlay-view-edit" class="overlay-view">
+            <div class="overlay-edit-header">
+              <button class="btn-outline btn-sm" onclick="showOverlayListView()"><i class="fas fa-arrow-left"></i> Volver</button>
+              <h3 id="overlay-edit-title">Nuevo Prompt</h3>
+            </div>
+            
+            <form id="overlay-prompt-form" onsubmit="handleOverlayPromptCreate(event)">
+              <input type="hidden" id="overlay-edit-id">
+              <div class="form-group">
+                <label for="overlay-prompt-title">
+                  Título
+                  <span id="overlay-prompt-title-count" class="char-counter">0/100</span>
+                </label>
+                <input type="text" id="overlay-prompt-title" name="title" required maxlength="100" 
+                       oninput="updateCharCounter('overlay-prompt-title', 'overlay-prompt-title-count', 100)" 
+                       placeholder="Ej: Guión para tutorial de Python">
+              </div>
+              
+              <div class="form-group">
+                <label for="overlay-prompt-category">Categoría</label>
+                <select id="overlay-prompt-category" name="category" required>
+                  <option value="">Selecciona una categoría</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="overlay-prompt-description">
+                  Descripción
+                  <span id="overlay-prompt-description-count" class="char-counter">0/500</span>
+                </label>
+                <textarea id="overlay-prompt-description" name="description" rows="2" maxlength="500" 
+                          oninput="updateCharCounter('overlay-prompt-description', 'overlay-prompt-description-count', 500)" 
+                          placeholder="Breve descripción del prompt..."></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="overlay-prompt-content">
+                  Contenido del Prompt (usa {{variable}} para variables dinámicas)
+                  <span id="overlay-prompt-content-count" class="char-counter">0/5000</span>
+                </label>
+                <textarea id="overlay-prompt-content" name="content" rows="12" required maxlength="5000" 
+                          oninput="updateCharCounter('overlay-prompt-content', 'overlay-prompt-content-count', 5000); updateDetectedVariables()" 
+                          placeholder="Ej: Crea un guión para {{tema}} con duración de {{duracion}} minutos"></textarea>
+              </div>
+              
+              <div id="overlay-detected-variables" class="info-box"></div>
+              
+              <div class="overlay-edit-actions">
+                <button type="button" class="btn-outline" onclick="showOverlayListView()">Cancelar</button>
+                <button type="submit" class="btn-primary">Crear Prompt</button>
+              </div>
+            </form>
+          </div>
+          
+          <!-- Vista de detalle de prompt -->
+          <div id="overlay-view-detail" class="overlay-view">
+            <div class="overlay-detail-header">
+              <button class="btn-outline btn-sm" onclick="showOverlayListView()"><i class="fas fa-arrow-left"></i> Volver</button>
+              <h3 id="overlay-detail-title">Detalle del Prompt</h3>
+              <div class="overlay-detail-actions">
+                <button class="btn-secondary btn-sm" onclick="showOverlayEditFromDetail()"><i class="fas fa-edit"></i> Editar</button>
+                <button class="btn-danger btn-sm" onclick="deleteOverlayPrompt()"><i class="fas fa-trash"></i> Eliminar</button>
+                <button class="btn-primary btn-sm" onclick="copyOverlayPrompt()"><i class="fas fa-copy"></i> Copiar</button>
+              </div>
+            </div>
+            
+            <div id="overlay-detail-content" class="overlay-detail-content">
+              <!-- Contenido dinámico -->
+            </div>
+          </div>
+          
+          <!-- Vista de gestión de categorías -->
+          <div id="overlay-view-categories" class="overlay-view">
+            <div class="overlay-edit-header">
+              <button class="btn-outline btn-sm" onclick="showOverlayListView()"><i class="fas fa-arrow-left"></i> Volver</button>
+              <h3>Gestionar Categorías</h3>
+            </div>
+            
+            <div class="form-group">
+              <label for="overlay-new-category-name">Nueva Categoría</label>
+              <div class="input-with-button">
+                <input type="text" id="overlay-new-category-name" placeholder="Nombre de la nueva categoría">
+                <button class="btn-primary btn-sm" onclick="createOverlayCategory()">Crear</button>
+              </div>
+            </div>
+            
+            <div id="overlay-categories-list" class="overlay-categories-list">
+              <!-- Lista de categorías -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <dialog id="automation-modal" class="modal">
     <div class="modal-content">

@@ -24,7 +24,20 @@ def import_channel_stats(channel_id: int, db: Session = Depends(get_db)):
 def get_daily_stats(channel_id: int, db: Session = Depends(get_db)):
     """Obtiene las estadísticas diarias de un canal."""
     stats = db.query(DailyStat).filter(DailyStat.channel_id == channel_id).order_by(DailyStat.stat_date.asc()).all()
-    return stats
+    # Convertir objetos SQLAlchemy a diccionarios para serialización JSON
+    return [
+        {
+            "id": s.id,
+            "channel_id": s.channel_id,
+            "channel_name": s.channel_name,
+            "view_count": s.view_count,
+            "subscriber_count": s.subscriber_count,
+            "video_count": s.video_count,
+            "stat_date": s.stat_date.isoformat() if s.stat_date else None,
+            "fecha_ejecucion": s.fecha_ejecucion
+        }
+        for s in stats
+    ]
 
 @router.get("/publications-history/{channel_id}")
 def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
@@ -49,16 +62,16 @@ def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
         } for h in history
     ]
 
-@router.get("/check-today/{channel_id}")
-def check_and_fetch_today_stats(channel_id: int, db: Session = Depends(get_db)):
+@router.post("/check-today/{channel_id}")
+async def check_and_fetch_today_stats(channel_id: int, db: Session = Depends(get_db)):
     """Verifica si hay datos de hoy para el canal. Si no los hay, ejecuta DatosDiarios.py y los guarda."""
     from datetime import date
-    today = date.today().isoformat()
+    today = date.today()
     
     # Buscar datos de hoy
     existing = db.query(DailyStat).filter(
         DailyStat.channel_id == channel_id,
-        func.cast(DailyStat.stat_date, Date) == today or DailyStat.fecha_ejecucion == today
+        DailyStat.stat_date == today
     ).first()
     
     if existing:

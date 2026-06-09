@@ -7,9 +7,9 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # --- CONFIGURACIÓN ---
-API_KEY = "A-gI"
+API_KEY = "aa"
 SERVER_URL = "http://127.0.0.1:9080"
-DEFAULT_OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "channels_data")
+DEFAULT_OUTPUT_DIR ="..\channels_data"
 
 # Validación: Al menos necesitamos el nombre del canal
 if len(sys.argv) < 2:

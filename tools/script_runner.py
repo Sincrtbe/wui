@@ -58,7 +58,7 @@ def list_available_scripts() -> list[dict]:
     return scripts
 
 
-def run_script(script_name: str, args: list[str] | None = None, timeout: int = DEFAULT_TIMEOUT, cwd: str | None = None) -> ScriptResult:
+def run_script(script_name: str, args: list[str] | None = None, timeout: int = DEFAULT_TIMEOUT, cwd: str | None = None, env: dict | None = None) -> ScriptResult:
     """
     Ejecuta un script desde la carpeta tools/.
     
@@ -122,12 +122,18 @@ def run_script(script_name: str, args: list[str] | None = None, timeout: int = D
 
         working_dir = Path(cwd) if cwd else TOOLS_DIR
 
+        # Combinar el entorno actual con variables personalizadas
+        subprocess_env = os.environ.copy()
+        if env:
+            subprocess_env.update(env)
+
         result = subprocess.run(
             cmd,
             cwd=str(working_dir),
             capture_output=True,
             text=True,
             timeout=timeout,
+            env=subprocess_env,
         )
 
         end_time = datetime.utcnow()

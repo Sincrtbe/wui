@@ -1,11 +1,23 @@
 """Servicio de análisis de datos."""
 import json
 import os
+from pathlib import Path
 from sqlalchemy.orm import Session
 from app.models.daily_stat import DailyStat
 from app.models.channel import Channel
 from tools.script_runner import run_script
 from datetime import date
+
+# Ruta absoluta al proyecto (padre de app/)
+PROJECT_ROOT = Path(__file__).parent.parent.resolve()
+METRICS_DIR = str(PROJECT_ROOT / "metricas")
+
+# Cargar variables de entorno desde .env (en la raíz del proyecto)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(str(PROJECT_ROOT / ".env"))
+except ImportError:
+    pass  # Si no está disponible, continuar sin dotenv
 
 def run_daily_stats_import(db: Session, channel_id: int):
     """Ejecuta DatosDiarios.py para un canal e importa los resultados a la BD."""
@@ -29,16 +41,17 @@ def run_daily_stats_import(db: Session, channel_id: int):
     if not yt_id:
         return {"error": "No se pudo determinar el ID de YouTube del canal"}
     
-    # Ejecutar el script
-    # El script DatosDiarios.py guarda en la carpeta 'metricas'
-    output_dir = "metricas"
-    result = run_script("DatosDiarios.py", args=[yt_id, output_dir])
+    # Obtener la API key de YouTube desde variables de entorno
+    youtube_api_key = os.environ.get("YOUTUBE_API_KEY", "")
+    
+    # Ejecutar el script con la ruta absoluta a metricas
+    result = run_script("DatosDiarios.py", args=[yt_id, METRICS_DIR], env={"YOUTUBE_API_KEY": youtube_api_key})
     
     if not result.success:
         return {"error": f"Error al ejecutar script: {result.error or result.stderr}"}
     
-    # Leer el JSON generado (se guarda en metricas/ relativo al proyecto)
-    json_path = os.path.join(output_dir, f"{yt_id}_stats.json")
+    # Leer el JSON generado (se guarda en metricas/ absoluto)
+    json_path = os.path.join(METRICS_DIR, f"{yt_id}_stats.json")
     if not os.path.exists(json_path):
         return {"error": "Archivo de resultados no encontrado"}
         
