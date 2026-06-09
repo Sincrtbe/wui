@@ -1,20 +1,39 @@
-# Wui - Plataforma de Automatización de Canales YouTube
+# Wui - Plataforma de Automatización de YouTube
 
 ## Estado del Proyecto
-**Fecha última actualización:** 2026-06-06  
-**Estado:** En desarrollo activo
+**Fecha última actualización:** 2026-09-06  
+**Estado:** En desarrollo activo  
+**Versión:** 1.0.0
 
 ---
 
-## Descripción del Proyecto
+## Descripción
 
-Wui es una plataforma local de automatización para la gestión de múltiples canales de YouTube. Permite:
-- Gestionar múltiples canales de YouTube
-- Crear y organizar contenido (ideas, guiones, artículos, videos)
-- Programar publicaciones (videos largos, shorts, artículos)
-- Analizar métricas de rendimiento
-- Automatizar flujos de trabajo
-- Gestionar una biblioteca de prompts con IA
+Wui es una plataforma local de automatización para la gestión de múltiples canales de YouTube. Permite gestionar canales, crear contenido, programar publicaciones, analizar métricas, automatizar flujos de trabajo y gestionar una biblioteca de prompts con IA.
+
+---
+
+## Stack Tecnológico
+
+### Lenguajes
+- **Python** 3.x (backend principal)
+- **JavaScript** (frontend)
+- **HTML5/CSS3** (frontend)
+
+### Frameworks y Librerías
+- **FastAPI** 0.104.1 (backend API REST)
+- **SQLAlchemy** 2.0.23 (ORM)
+- **Uvicorn** 0.24.0 (servidor ASGI)
+- **APScheduler** 3.10.4 (tareas programadas/cron)
+- **pydantic** 2.5.0 (validación de datos)
+- **google-api-python-client** 2.197.0 (API de YouTube)
+- **pystray** 0.19.5 (system tray icon)
+- **Pillow** 10.1.0 (manipulación de imágenes)
+- **python-dotenv** 1.0.0 (variables de entorno)
+- **alembic** 1.13.1 (migraciones de base de datos)
+
+### Base de Datos
+- **SQLite** (app.db)
 
 ---
 
@@ -22,49 +41,66 @@ Wui es una plataforma local de automatización para la gestión de múltiples ca
 
 ```
 Wui/
+├── .env                          # Variables de entorno (API keys, etc.)
+├── .gitignore                    # Archivos a ignorar por git
+├── app.db                        # Base de datos SQLite
+├── requirements.txt              # Dependencias Python
+├── run_server.bat                # Launcher del servidor
+├── iniciar.bat                   # Launcher Windows
+├── systemtray.py                 # System tray icon
+├── README.md                     # Documentación principal
+│
 ├── app/
 │   ├── __init__.py
-│   ├── main.py                    # FastAPI application principal
+│   ├── main.py                   # Aplicación FastAPI principal
 │   ├── core/
-│   │   ├── database.py            # Configuración de base de datos SQLite
-│   │   └── config.py              # Configuración de la aplicación
-│   ├── models/
-│   │   ├── __init__.py            # Imports de modelos
-│   │   ├── channel.py             # Modelo Channel (canales de YouTube)
-│   │   ├── channel_schedule.py    # Modelo ChannelSchedule (programación por canal)
-│   │   ├── publication_schedule.py # Modelo PublicationSchedule (publicaciones programadas)
-│   │   ├── script.py              # Modelo Script (guiones)
-│   │   ├── prompt.py              # Modelo Prompt (biblioteca de prompts)
-│   │   └── daily_stat.py          # Modelo DailyStat (estadísticas diarias)
-│   ├── routers/
-│   │   ├── channels.py            # CRUD de canales
-│   │   ├── schedule.py            # Programación de publicaciones
-│   │   ├── prompts.py             # Biblioteca de prompts
-│   │   ├── analytics.py           # Análisis de métricas
-│   │   └── dashboard.py           # Dashboard general
-│   ├── schemas/
-│   │   ├── channel.py             # Esquemas Pydantic para canales
-│   │   └── dashboard.py           # Esquemas para dashboard
-│   ├── services/
-│   │   ├── channel_service.py     # Lógica de negocio de canales
-│   │   ├── schedule_service.py    # Lógica de programación
-│   │   ├── analytics_service.py   # Lógica de análisis
-│   │   └── prompt_service.py      # Lógica de prompts
-│   ├── tasks/
-│   │   └── scheduler.py           # Tareas programadas (APScheduler)
-│   └── static/
-│       ├── index.html             # Interfaz principal
-│       ├── app.js                 # JavaScript frontend
-│       └── styles.css             # Estilos CSS
-├── tools/
-│   ├── creacionDcanal.py          # Script de creación de canales
-│   ├── DatosDiarios.py            # Script de datos diarios
-│   └── script_runner.py           # Ejecutor de scripts
-├── channels_data/                 # Datos de canales (JSON, imágenes)
-├── app.db                         # Base de datos SQLite
-├── requirements.txt               # Dependencias Python
-├── run_server.bat                 # Script de inicio del servidor
-└── iniciar.bat                    # Script de inicio rápido
+│   │   ├── config.py             # Configuración de la app
+│   │   └── database.py           # Configuración de base de datos
+│   ├── models/                   # Modelos SQLAlchemy
+│   │   ├── __init__.py
+│   │   ├── channel.py
+│   │   ├── channel_schedule.py
+│   │   ├── daily_stat.py
+│   │   ├── prompt.py
+│   │   ├── publication_schedule.py
+│   │   ├── script.py
+│   │   ├── video.py
+│   │   └── ...
+│   ├── routers/                  # Endpoints de la API REST
+│   │   ├── channels.py           # CRUD canales
+│   │   ├── schedule.py           # Gestión de horarios
+│   │   ├── dashboard.py          # Dashboard API
+│   │   ├── analytics.py          # Analytics
+│   │   ├── prompts.py            # Gestión prompts
+│   │   └── ...
+│   ├── schemas/                  # Esquemas Pydantic
+│   ├── services/                 # Lógica de negocio
+│   │   ├── channel_service.py
+│   │   ├── schedule_service.py
+│   │   ├── analytics_service.py
+│   │   └── prompt_service.py
+│   ├── static/                   # Archivos frontend
+│   │   ├── index.html            # UI principal
+│   │   ├── app.js                # JavaScript frontend
+│   │   └── styles.css            # Estilos CSS
+│   └── tasks/                    # Tareas programadas
+│       └── scheduler.py          # APScheduler initialization
+│
+├── channels_data/                # Datos de canales (imágenes, JSON)
+├── prompts/                      # Plantillas de prompts por categoría
+│   ├── audio/
+│   ├── guion/
+│   ├── lluvia_ideas/
+│   ├── otro/
+│   ├── seo/
+│   └── video/
+├── skills/                       # Skills de desarrollo
+│   └── desarrollosoftware/
+└── tools/                        # Herramientas utilitarias
+    ├── creacionDcanal.py
+    ├── DatosDiarios.py
+    ├── qwen3tts.py
+    └── script_runner.py
 ```
 
 ---
@@ -73,11 +109,12 @@ Wui/
 
 ### 1. Gestión de Canales
 - CRUD completo de canales de YouTube
-- Almacenamiento de thumbnail/imagen del canal
-- Color personalizado por canal
+- Datos extendidos: email, social_links, checkpoints, color personalizado
+- Thumbnail/imagen del canal
 - URL personalizada
 - Estado de scraping (éxito/error)
 - Fecha de última actualización
+- Generación de ficheros por canal
 
 ### 2. Programación de Publicaciones
 - Configuración de periodicidad por canal:
@@ -87,7 +124,7 @@ Wui/
 - Fecha de inicio configurable
 - Estado activo/inactivo por canal
 - Calendario bimensual (mes actual + siguiente)
-- Generación automática de publicaciones basadas en la programación
+- Generación automática de publicaciones
 - Próximas publicaciones con indicador de guión
 
 ### 3. Gestión de Contenido
@@ -102,6 +139,7 @@ Wui/
 - Evolución de vistas en gráfico
 - Historial de publicaciones
 - Importación de datos diarios
+- Botón "Comprobar Datos de Hoy"
 
 ### 5. Biblioteca de Prompts
 - Creación y gestión de prompts
@@ -115,56 +153,40 @@ Wui/
 - Tareas programadas con cron
 - Ejecución de workflows
 - Historial de ejecuciones
+- Sincronización con APScheduler
 
-### 7. Configuración
+### 7. Dashboard
+- Resumen general con métricas
+- Filtros por canal
+- Calendario de publicaciones con día actual marcado
+- Colores por canal
+- Resumen de guiones y vídeos por estado
+
+### 8. Configuración
 - Servicios externos (API keys, URLs)
+- YouTube API Key segura (almacenamiento en .env)
 - Programación de analíticas (cron)
 - Configuración de video (transiciones, subtítulos)
+
+### 9. System Tray
+- Icono en bandeja del sistema
+- Control del servidor desde la bandeja
 
 ---
 
 ## Base de Datos (SQLite)
 
-### Tablas principales:
+### Tablas principales
 
-1. **channels** - Canales de YouTube
-   - id, title, customUrl, publishedAt, description
-   - thumbnail, channel_color, last_scraped_at
-   - last_scrape_status, created_at, updated_at
-
-2. **channel_schedules** - Programación por canal
-   - id, channel_id (FK)
-   - long_video_enabled, long_video_frequency
-   - short_video_enabled, short_video_frequency
-   - article_enabled, article_frequency
-   - start_date, timezone, is_active
-   - created_at, updated_at
-
-3. **publication_schedules** - Publicaciones programadas
-   - id, channel_id (FK), script_id (FK)
-   - content_type (long_video, short, article)
-   - scheduled_datetime, status (planned, published, cancelled)
-   - notes, created_at, updated_at
-
-4. **scripts** - Guiones
-   - id, channel_id (FK)
-   - title, description, script_content
-   - article_content, voice_script, graphic_script
-   - tags, status, created_at, updated_at
-
-5. **prompts** - Biblioteca de prompts
-   - id, title, description, content
-   - prompt_type, variables (JSON)
-   - rating, usage_count, version
-   - created_at, updated_at
-
-6. **daily_stats** - Estadísticas diarias
-   - id, channel_id (FK)
-   - stat_date, subscriber_count, view_count
-   - video_count, created_at, updated_at
-
-7. **config** - Configuración del sistema
-   - id, key, value, updated_at
+| Tabla | Descripción |
+|-------|-------------|
+| **channels** | Canales de YouTube (id, title, customUrl, thumbnail, channel_color, email, social_links, checkpoints, last_scraped_at, last_scrape_status, created_at, updated_at) |
+| **channel_schedules** | Programación por canal (id, channel_id, long_video_enabled/frequency, short_video_enabled/frequency, article_enabled/frequency, start_date, timezone, is_active, created_at, updated_at) |
+| **publication_schedules** | Publicaciones programadas (id, channel_id, script_id, content_type, scheduled_datetime, status, notes, created_at, updated_at) |
+| **scripts** | Guiones (id, channel_id, title, description, script_content, article_content, voice_script, graphic_script, tags, status, created_at, updated_at) |
+| **prompts** | Biblioteca de prompts (id, title, description, content, prompt_type, variables, rating, usage_count, version, created_at, updated_at) |
+| **daily_stats** | Estadísticas diarias (id, channel_id, stat_date, subscriber_count, view_count, video_count, created_at, updated_at) |
+| **config** | Configuración del sistema (id, key, value, updated_at) |
 
 ---
 
@@ -209,277 +231,77 @@ Wui/
 ### Configuración
 - `GET /api/config` - Listar configuración
 - `POST /api/config` - Guardar configuración
+- `GET /api/config/youtube-key` - Estado de la API Key (enmascarada)
+- `POST /api/config/youtube-key` - Guardar API Key
+
+### Otros
+- `GET /health` - Health check
+- `/` - Redirige a `/ui`
+- `POST /admin/shutdown` - Apagar servidor
+- `POST /admin/restart` - Reiniciar servidor
 
 ---
 
-## Correcciones Realizadas
+## Correcciones y Bugs Reparados
 
-### 1. Sistema seguro de YouTube API Key con almacenamiento en .env
-**Fecha:** 2026-06-06  
-**Problema:** La API Key de YouTube estaba codificada en duro en los scripts `tools/creacionDcanal.py` y `tools/DatosDiarios.py` (valores como `"A-gI"`, `"I"`). Esto era inseguro porque:
-1. La key aparecía en el código fuente del proyecto
-2. Si el código se subía a git, la key quedaría expuesta públicamente
-3. No había forma de configurarla dinámicamente desde la interfaz web
-4. Cada script tenía su propia key hardcodeada
+### YouTube API Key segura
+- **Problema:** API Key hardcodeada en los scripts
+- **Solución:** Sistema completo con `.env`, configuración en `config.py`, endpoints seguros, UI con key enmascarada
+- **Seguridad:** La key nunca se almacena en BD, nunca se muestra en claro, nunca se sube a git
 
-**Causa:** 
-1. No existía un sistema centralizado para gestionar credenciales
-2. Los scripts de herramientas leían la API key directamente del código
-3. El fichero `.gitignore` ya tenía `.env` excluido, pero nadie lo usaba
+### Calendario descuadrado
+- **Problema:** Headers insertados dentro del CSS grid
+- **Solución:** Reordenar estructura HTML (headers fuera del grid), eliminar `aspect-ratio: 1`
 
-**Solución:** Implementar un sistema completo de gestión de API Key:
+### Calendario no mostraba eventos
+- **Problema:** Zona horaria causaba errores en filtrado de fechas
+- **Solución:** Parsing directo de cadena ISO en lugar de `new Date()`
 
-1. **Fichero `.env`** - Almacenamiento seguro de la API key (excluido de git):
-   ```env
-   YOUTUBE_API_KEY=
-   ```
+### Serialización de tags
+- **Problema:** `GET /api/scripts` devolvía error 500 por Tag objects
+- **Solución:** Añadido `field_serializer` en `ScriptResponse`
 
-2. **`app/core/config.py`** - Nuevas funciones para gestión segura:
-   - `get_youtube_api_key()` - Obtiene la key desde variables de entorno
-   - `is_youtube_api_key_configured()` - Verifica si la key está configurada
-   - `mask_api_key(key)` - Enmascara la key (muestra solo primeros y últimos 2 caracteres)
+### Router `/api/scripts` faltante
+- **Problema:** No existía el router de scripts
+- **Solución:** Creado `app/routers/scripts.py` con CRUD completo
 
-3. **`app/routers/config.py`** - Nuevos endpoints de API:
-   - `GET /api/config/youtube-key` - Estado de la API key (siempre devuelve key enmascarada)
-   - `POST /api/config/youtube-key` - Guarda la API key en el fichero `.env`
+### Scheduler sincronización
+- **Problema:** Desincronización entre APScheduler y tareas
+- **Solución:** Sincronización en `create()`, `update()` y `delete()`
 
-4. **`app/static/index.html`** - Campo en la UI de Configuración:
-   - Input de tipo password para la YouTube API Key
-   - Botón mostrar/ocultar (ojo)
-   - Badge de estado (✓ Configurada / No configurada)
-   - Botón "Guardar API Key" independiente
-
-5. **`app/static/app.js`** - Funcionalidad frontend:
-   - `toggleYoutubeKeyVisibility()` - Toggle visibilidad de la key
-   - `loadYoutubeKeyStatus()` - Carga el estado desde la API (con key enmascarada)
-   - `saveYoutubeKey()` - Guarda la key en el servidor
-   - Modificación de `loadConfig()` - Excluye youtube_api_key del formulario general
-
-**Flujo de uso:**
-1. El usuario va a Configuración → Servicios
-2. Introduce su API Key de YouTube (formato `AIza...`)
-3. Pulsa "Guardar API Key"
-4. La key se almacena en `.env` (que está en `.gitignore`)
-5. La UI muestra la key enmascarada: `AI****************************b3x`
-6. Los scripts pueden leer la key desde las variables de entorno
-
-**Archivos modificados:**
-- `.env` - Creado para almacenar YOUTUBE_API_KEY
-- `app/core/config.py` - Funciones get_youtube_api_key(), is_youtube_api_key_configured(), mask_api_key()
-- `app/routers/config.py` - Endpoints GET/POST /api/config/youtube-key
-- `app/static/index.html` - Campo YouTube API Key con UI
-- `app/static/app.js` - Funciones de gestión de YouTube API Key
-
-**Seguridad:**
-- ✅ La API key NUNCA se almacena en la base de datos
-- ✅ La API key NUNCA se muestra en claro en la UI (siempre enmascarada)
-- ✅ La API key NUNCA se sube a git (`.env` en `.gitignore`)
-- ✅ El endpoint GET siempre devuelve la key enmascarada
-- ✅ Las herramientas pueden leer la key desde `os.getenv("YOUTUBE_API_KEY")`
-
----
-
-### 2. Calendario descuadrado en detalle de canal (Bug en renderCalendarView y CSS)
-**Fecha:** 2026-06-06  
-**Problema:** El calendario de publicaciones en el detalle de canal se mostraba descuadrado. Los headers de los meses y los días de la semana se insertaban DENTRO del `.calendar-grid`, rompiendo la estructura del grid CSS de 7 columnas. Además, el CSS usaba `aspect-ratio: 1` que causaba celdas de tamaño inconsistente.
-
-**Causa:** 
-1. En `app/static/app.js`, la función `renderCalendarView` insertaba `<div class="calendar-header">` y `<div class="calendar-weekdays">` DENTRO del `<div class="calendar-grid">`, lo que hacía que el CSS grid intentara renderizarlos como celdas del grid.
-2. El CSS usaba `aspect-ratio: 1` en `.calendar-cell`, lo que causaba que las celdas tuvieran un tamaño dependiente del contenedor, causando desajustes.
-
-**Solución:** 
-1. En `app/static/app.js`, reordenar la estructura HTML para que `calendar-header` y `calendar-weekdays` estén FUERA del `calendar-grid`:
-```javascript
-// ANTES (incorrecto - header dentro del grid):
-html += '<div class="calendar-grid">';
-html += '<div class="calendar-header">...</div>';
-html += '<div class="calendar-weekdays">...</div>';
-// ... celdas ...
-html += '</div>';
-
-// DESPUÉS (correcto - header fuera del grid):
-html += '<div class="calendar-header">...</div>';
-html += '<div class="calendar-weekdays">...</div>';
-html += '<div class="calendar-grid">';
-// ... celdas ...
-html += '</div>';
-```
-
-2. En `app/static/styles.css`, eliminar `aspect-ratio: 1` y usar `min-height` fijo:
-```css
-/* ANTES */
-.calendar-cell {
-  aspect-ratio: 1;
-  min-height: 50px;
-}
-
-/* DESPUÉS */
-.calendar-cell {
-  min-height: 50px;
-  /* sin aspect-ratio */
-}
-```
-
-**Archivos modificados:**
-- `app/static/app.js` - Función `renderCalendarView` (estructura HTML de mes actual y siguiente)
-- `app/static/styles.css` - CSS de `.calendar-cell` (eliminado aspect-ratio, añadido min-height fijo)
-- `app/static/styles.css` - CSS de `.calendar-grid` (gap reducido a 2px para mejor alineación)
-- `app/static/styles.css` - CSS de `.calendar-header` y `.calendar-weekdays` (estilos independientes)
-
----
-
-### 3. Calendario no muestra eventos (Bug en renderCalendarView)
-**Fecha:** 2026-06-06  
-**Problema:** Las programaciones generadas no aparecían en el calendario del detalle de canal. La API devolvía los datos correctamente (`/api/schedules/channel/1/calendar/months` retornaba eventos con fechas como `"2026-06-04"`), pero el frontend no los filtraba correctamente por día.
-
-**Causa:** La función `renderCalendarView` en `app/static/app.js` usaba `new Date(e.date).getDate()` para filtrar eventos por día. Las fechas ISO `"YYYY-MM-DD"` pueden interpretarse incorrectamente dependiendo de la zona horaria (se interpretan como UTC y al aplicar `getDate()` puede dar un día diferente en zonas UTC+2).
-
-**Solución:** Cambiar el filtrado de fechas para usar parsing directo de la cadena ISO en lugar de `new Date()`:
-```javascript
-// ANTES (incorrecto por zona horaria):
-const dayEvents = eventsCurrent.filter(e => new Date(e.date).getDate() === currentDay);
-
-// DESPUÉS (correcto, parsing directo):
-const dayEvents = eventsCurrent.filter(e => {
-  const parts = e.date.split('-');
-  return parseInt(parts[2]) === currentDay;
-});
-```
-
-**Archivos modificados:**
-- `app/static/app.js` - Función `renderCalendarView` (líneas de filtrado de `dayEvents` en mes actual y siguiente)
-
-### 4. Conflicto de nombres en routers/schedule.py
-**Problema:** La función del router `update_channel_schedule` tenía el mismo nombre que la función del servicio importada, causando un `TypeError` al intentar guardar la configuración de periodicidad.
-
-**Error:**
-```
-TypeError: 'function' object has no attribute 'channel_id'
-```
-
-**Solución:** Renombrar la importación del servicio como `service_update_channel_schedule` y la función del router como `put_channel_schedule`.
-
-### 5. Calendario bimensual
-**Problema:** El calendario solo mostraba un mes y no estaba correctamente alineado.
-
-**Solución:** 
-- Implementar `renderCalendarView` que muestra mes actual y siguiente
-- Usar grid de 7 columnas (Lunes a Domingo)
-- Calcular correctamente el primer día del mes
-- Usar 42 celdas (6 semanas) para cubrir todos los casos
-
-### 6. Estructura de la página de canales
-**Mejora:** Reorganizar la vista de detalle de canal en secciones:
-- Información general
-- Estadísticas recientes
-- Configuración de periodicidad (con tarjetas para cada tipo de contenido)
-- Calendario de publicaciones (bimensual)
-- Próximas publicaciones
-
-### 7. Botón "Comprobar Datos de Hoy" en Análisis
-**Fecha:** 2026-06-06  
-**Funcionalidad:** Añadir un botón en la sección de Análisis para comprobar y descargar los datos diarios del canal seleccionado.
-
-**Solución implementada:**
-
-1. **HTML (`app/static/index.html`):**
-   - Añadido botón "Comprobar Datos de Hoy" en la sección de análisis
-   - Añadido contenedor de estado para mensajes (`today-data-status`)
-   - Botón visible cuando se selecciona un canal
-
-2. **JavaScript (`app/static/app.js`):**
-   - Modificación de `initAnalisis()` para manejar el botón
-   - Al pulsar, llama al endpoint `/api/analytics/check-today/{channel_id}`
-   - Muestra mensajes de estado (éxito/error)
-   - Actualiza automáticamente las estadísticas si se obtienen datos
-
-3. **CSS (`app/static/styles.css`):**
-   - Añadida clase `.status-info` para mensajes informativos (azul)
-   - Ya existían `.status-success` (verde) y `.status-error` (rojo)
-
-**Flujo de uso:**
-1. El usuario selecciona un canal en la sección Análisis
-2. Aparece el botón "Comprobar Datos de Hoy"
-3. Al pulsarlo, se llama al endpoint `/api/analytics/check-today/{id}`
-4. Si hay datos de hoy en la BD, se muestran directamente
-5. Si no hay datos, se intenta descargar desde YouTube API
-6. Se muestran mensajes de estado con información sobre las vistas, suscriptores y videos
-
-**Archivos modificados:**
-- `app/static/index.html` - Botón y contenedor de estado
-- `app/static/app.js` - Lógica del botón "Comprobar Datos de Hoy"
-- `app/static/styles.css` - Clase `.status-info`
-
----
-
-### 8. Calendario del dashboard no muestra programaciones (Bug en renderCalendar)
-**Fecha:** 2026-06-06  
-**Problema:** Las programaciones generadas no aparecían en el calendario del dashboard principal. La API `/api/dashboard/summary` devolvía correctamente los eventos con fechas como `"2026-06-07T10:00:00"`, pero la función `renderCalendar` en `app/static/app.js` no los filtraba correctamente por día.
-
-**Causa:** La función `renderCalendar` usaba `new Date(e.date).getDate()` para filtrar eventos por día. Las fechas ISO con hora (`"YYYY-MM-DDTHH:MM:SS"`) se interpretan como UTC y al aplicar `getDate()` en zonas UTC+2 puede dar un día diferente. Además, el mes se comparaba con `ed.getMonth()` que también podía variar por zona horaria.
-
-**Solución:** Cambiar el filtrado de fechas para usar parsing directo de la cadena ISO en lugar de `new Date()`:
-```javascript
-// ANTES (incorrecto por zona horaria):
-const dayEvents = events.filter(e => {
-  const ed = new Date(e.date);
-  return ed.getDate() === d && ed.getMonth() === month;
-});
-
-// DESPUÉS (correcto, parsing directo de la cadena ISO):
-const dayEvents = events.filter(e => {
-  const dateStr = typeof e.date === 'string' ? e.date : e.date?.toISOString?.().split('T')[0] || '';
-  const parts = dateStr.split('-');
-  if (parts.length !== 3) return false;
-  const eventYear = parseInt(parts[0]);
-  const eventMonth = parseInt(parts[1]) - 1; // Mes en formato 0-11
-  const eventDay = parseInt(parts[2]);
-  return eventDay === d && eventMonth === month && eventYear === year;
-});
-```
-
-**Archivos modificados:**
-- `app/static/app.js` - Función `renderCalendar` (filtrado de `dayEvents` para eventos del dashboard)
-
----
-
-## Tecnologías Utilizadas
-
-- **Backend:** Python 3.x, FastAPI, SQLAlchemy, APScheduler
-- **Base de datos:** SQLite
-- **Frontend:** HTML5, CSS3, JavaScript vanilla
-- **Dependencias:**
-  - fastapi
-  - uvicorn
-  - sqlalchemy
-  - aiosqlite
-  - apscheduler
-  - httpx
-  - python-multipart
-  - requests
+### Parser de cron
+- **Problema:** Sin validación de expresiones cron
+- **Solución:** Validación de 5 campos y manejo de errores
 
 ---
 
 ## Instrucciones de Uso
 
+### Instalación
+```bash
+pip install -r requirements.txt
+```
+
 ### Iniciar el servidor
 ```bash
+# Opción 1: Batch file
 .\run_server.bat
-```
-O manualmente:
-```bash
+
+# Opción 2: Manual
 uvicorn app.main:app --reload --port 9080
 ```
 
-### Acceder a la interfaz
-Abrir navegador en: `http://127.0.0.1:9080`
+### Acceder
+- **UI Web:** http://127.0.0.1:9080/ui
+- **API Base:** http://127.0.0.1:9080
+- **Health Check:** http://127.0.0.1:9080/health
 
 ### Flujo de trabajo recomendado
-1. **Crear canal:** Ir a "Canales" → Introducir nombre → "Crear Ficheros" → "Guardar Canal en BD"
-2. **Configurar programación:** Seleccionar canal → Activar tipos de contenido → Configurar frecuencia → Guardar
-3. **Generar calendario:** "Generar Mes Actual" y "Generar Mes Siguiente"
-4. **Gestionar contenido:** Seleccionar canal → Gestionar contenido → Crear ideas → Generar guiones
-5. **Asociar guiones:** En "Próximas Publicaciones" → Asociar guión a publicación
+1. **Configurar API Key:** Configuración → Servicios → YouTube API Key
+2. **Crear canal:** Canales → Introducir nombre → Guardar
+3. **Configurar programación:** Seleccionar canal → Activar tipos → Configurar frecuencia
+4. **Generar calendario:** "Generar Mes Actual" y "Generar Mes Siguiente"
+5. **Gestionar contenido:** Crear ideas → Generar guiones → Asociar a publicaciones
 
 ---
 
@@ -489,51 +311,20 @@ Abrir navegador en: `http://127.0.0.1:9080`
 - [ ] Soporte para más plataformas (TikTok, Twitter, etc.)
 - [ ] Exportación de contenido a video
 - [ ] Notificaciones de publicaciones programadas
-- [ ] Sistema de tray icon (systemtray.py existente)
-- [ ] Mejorar responsive del calendario
+- [ ] Sistema de autenticación de usuarios
 - [ ] Exportar/Importar base de datos
 - [ ] Sistema de backups automático
+- [ ] Mejorar responsive del calendario
 
 ---
 
-## Notas Técnicas
+## Repositorio
 
-### Modelo de Programación
-La programación se basa en frecuencias relativas a la `start_date`:
-- Si `start_date` es 2026-05-01 y frecuencia es 3 días
-- Las publicaciones se generan en días: 0, 3, 6, 9, 12...
-- Cada tipo de contenido tiene su propia frecuencia
-
-### Estados de Publicación
-- `planned` - Programada pero no publicada
-- `published` - Publicada
-- `cancelled` - Cancelada
-
-### Estados de Script
-- `idea` - Solo idea
-- `script` - Guión generado
-- `developed` - Contenido desarrollado
-- `video` - Video final
-
----
-
-## Equipo
-Desarrollo activo - Ver historial de git para contribuciones.
-
-## Repositorio Git
 - **Remote:** https://github.com/Sincrtbe/wui.git
-- **Branch:** master
-- **Commit inicial:** `2437973` - "Initial commit - Wui Platform v1.0"
-- **Fecha de subida:** 2026-06-06
-- **Estado:** ✅ Subido correctamente
+- **Rama:** master
+- **Estado:** Activo
 
-**Contenido del commit inicial:**
-- Sistema seguro de YouTube API Key con almacenamiento en .env
-- Calendario bimensual corregido (layout y filtrado de eventos)
-- Endpoint de comprobación de datos de hoy
-- Gestión de prompts con IA
-- Tareas programadas con APScheduler
-- CRUD completo de canales y programación
+---
 
 ## Licencia
 Proyecto interno de automatización.
