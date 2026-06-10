@@ -1,4 +1,4 @@
-const apiBase = "";
+const apiBase = "/";
 
 function dom(id) {
   return document.getElementById(id);
