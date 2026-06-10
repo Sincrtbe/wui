@@ -398,9 +398,19 @@ function initAnalisis() {
 }
 
 function loadChannelAnalytics(channelId) {
+  // Mostrar estado de carga
+  dom("views-chart").innerHTML = '<p class="chart-placeholder">Cargando gráfico...</p>';
+  dom("subscribers-chart").innerHTML = '<p class="chart-placeholder">Cargando gráfico...</p>';
+  dom("publications-history-list").innerHTML = 'Cargando...';
+  dom("stat-subscribers").innerText = '...';
+  dom("stat-views").innerText = '...';
+  dom("stat-video-count").innerText = '...';
+
+  // Cargar estadísticas diarias
   fetchJson(`${apiBase}/api/analytics/daily-stats/${channelId}`)
     .then(stats => {
-      if (stats.length > 0) {
+      console.log("Analytics stats received:", stats);
+      if (stats && stats.length > 0) {
         const last = stats[stats.length - 1];
         dom("stat-subscribers").innerText = last.subscriber_count.toLocaleString();
         dom("stat-views").innerText = last.view_count.toLocaleString();
@@ -409,19 +419,36 @@ function loadChannelAnalytics(channelId) {
         // Render charts with real data
         renderViewsChart(stats);
         renderSubscribersChart(stats);
+      } else {
+        dom("views-chart").innerHTML = '<p class="chart-placeholder" style="color:#888;">No hay datos de rendimiento disponibles. Ejecuta "Comprobar Datos de Hoy" para obtener estadísticas.</p>';
+        dom("subscribers-chart").innerHTML = '<p class="chart-placeholder" style="color:#888;">No hay datos de rendimiento disponibles. Ejecuta "Comprobar Datos de Hoy" para obtener estadísticas.</p>';
       }
+    })
+    .catch(err => {
+      console.error("Error cargando analytics:", err);
+      dom("views-chart").innerHTML = '<p class="chart-placeholder" style="color:#ef4444;">Error al cargar datos: ' + err.message + '</p>';
+      dom("subscribers-chart").innerHTML = '<p class="chart-placeholder" style="color:#ef4444;">Error al cargar datos: ' + err.message + '</p>';
     });
 
+  // Cargar historial de publicaciones
   fetchJson(`${apiBase}/api/analytics/publications-history/${channelId}`)
     .then(history => {
-      // Build a date → platform lookup from the backend history
-      dom("publications-history-list").innerHTML = history.map(h => `
-        <div class="item-row">
-          <span>${h.date ? new Date(h.date).toLocaleDateString() : 'N/A'}</span>
-          <strong>${h.title || 'Sin título'}</strong>
-          <span class="badge">${h.content_type || h.platform || 'unknown'}</span>
-        </div>
-      `).join("") || "Sin historial de publicaciones";
+      console.log("Publications history received:", history);
+      if (history && history.length > 0) {
+        dom("publications-history-list").innerHTML = history.map(h => `
+          <div class="item-row">
+            <span>${h.date ? new Date(h.date).toLocaleDateString() : 'N/A'}</span>
+            <strong>${h.title || 'Sin título'}</strong>
+            <span class="badge">${h.content_type || h.platform || 'unknown'}</span>
+          </div>
+        `).join("");
+      } else {
+        dom("publications-history-list").innerHTML = '<p class="text-muted">Sin historial de publicaciones</p>';
+      }
+    })
+    .catch(err => {
+      console.error("Error cargando publicaciones:", err);
+      dom("publications-history-list").innerHTML = '<p class="text-error">Error al cargar historial: ' + err.message + '</p>';
     });
 }
 
