@@ -1,14 +1,1 @@
-"""Schemas de etiqueta."""
-from pydantic import BaseModel
-
-
-class TagCreate(BaseModel):
-    name: str
-
-
-class TagResponse(BaseModel):
-    id: int
-    name: str
-
-    class Config:
-        from_attributes = True
+IiIiU2NoZW1hcyBkZSBldGlxdWV0YS4iIiIKZnJvbSBweWRhbnRpYyBpbXBvcnQgQmFzZU1vZGVsCgoKY2xhc3MgVGFnQ3JlYXRlKEJhc2VNb2RlbCk6CiAgICBuYW1lOiBzdHIKCgpjbGFzcyBUYWdSZXNwb25zZShCYXNlTW9kZWwpOgogICAgaWQ6IGludAogICAgbmFtZTogc3RyCgogICAgY2xhc3MgQ29uZmlnOgogICAgICAgIGZyb21fYXR0cmlidXRlcyA9IFRydWUK

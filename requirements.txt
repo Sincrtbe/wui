@@ -1,13 +1,1 @@
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-sqlalchemy==2.0.23
-pydantic==2.5.0
-pydantic-settings==2.1.0
-python-dateutil==2.8.2
-apscheduler==3.10.4
-alembic==1.13.1
-google-api-python-client==2.197.0
-requests==2.34.2
-pystray==0.19.5
-Pillow==10.1.0
-python-dotenv==1.0.0
+ZmFzdGFwaT09MC4xMDQuMQp1dmljb3JuW3N0YW5kYXJkXT09MC4yNC4wCnNxbGFsY2hlbXk9PTIuMC4yMwpweWRhbnRpYz09Mi41LjAKcHlkYW50aWMtc2V0dGluZ3M9PTIuMS4wCnB5dGhvbi1kYXRldXRpbD09Mi44LjIKYXBzY2hlZHVsZXI9PTMuMTAuNAphbGVtYmljPT0xLjEzLjEKZ29vZ2xlLWFwaS1weXRob24tY2xpZW50PT0yLjE5Ny4wCnJlcXVlc3RzPT0yLjM0LjIKcHlzdHJheT09MC4xOS41ClBpbGxvdz09MTAuMS4wCnB5dGhvbi1kb3RlbnY9PTEuMC4wCnNsb3dhcGk9PTAuMS45Cg==

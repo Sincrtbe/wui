@@ -1,8 +1,1 @@
-"""Dependencias comunes de la aplicación."""
-from sqlalchemy.orm import Session
-from app.core.database import get_db
-
-
-def get_session(db: Session = None) -> Session:
-    """Obtiene la sesión de BD."""
-    return db or next(get_db())
+IiIiRGVwZW5kZW5jaWFzIGNvbXVuZXMgZGUgbGEgYXBsaWNhY2nDs24uIiIiCmZyb20gc3FsYWxjaGVteS5vcm0gaW1wb3J0IFNlc3Npb24KZnJvbSBhcHAuY29yZS5kYXRhYmFzZSBpbXBvcnQgZ2V0X2RiCgoKZGVmIGdldF9zZXNzaW9uKGRiOiBTZXNzaW9uID0gTm9uZSkgLT4gU2Vzc2lvbjoKICAgICIiIk9idGllbmUgbGEgc2VzacOzbiBkZSBCRC4iIiIKICAgIHJldHVybiBkYiBvciBuZXh0KGdldF9kYigpKQo=

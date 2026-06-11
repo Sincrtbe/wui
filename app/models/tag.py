@@ -1,12 +1,1 @@
-"""Modelo de etiqueta."""
-from sqlalchemy import Column, Integer, String
-from app.core.database import Base
-
-
-class Tag(Base):
-    """Modelo de etiqueta."""
-
-    __tablename__ = "tags"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True, nullable=False)
+IiIiTW9kZWxvIGRlIGV0aXF1ZXRhLiIiIgpmcm9tIHNxbGFsY2hlbXkgaW1wb3J0IENvbHVtbiwgSW50ZWdlciwgU3RyaW5nCmZyb20gYXBwLmNvcmUuZGF0YWJhc2UgaW1wb3J0IEJhc2UKCgpjbGFzcyBUYWcoQmFzZSk6CiAgICAiIiJNb2RlbG8gZGUgZXRpcXVldGEuIiIiCgogICAgX190YWJsZW5hbWVfXyA9ICJ0YWdzIgoKICAgIGlkID0gQ29sdW1uKEludGVnZXIsIHByaW1hcnlfa2V5PVRydWUsIGluZGV4PVRydWUpCiAgICBuYW1lID0gQ29sdW1uKFN0cmluZywgdW5pcXVlPVRydWUsIGluZGV4PVRydWUsIG51bGxhYmxlPUZhbHNlKQo=
