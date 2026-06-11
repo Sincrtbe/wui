@@ -7,9 +7,15 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # --- CONFIGURACIÓN ---
-API_KEY = "aa"
-SERVER_URL = "http://127.0.0.1:9080"
-DEFAULT_OUTPUT_DIR ="..\channels_data"
+API_KEY = os.getenv("YOUTUBE_API_KEY", "")
+SERVER_URL = os.getenv("WUI_SERVER_URL", "http://127.0.0.1:9080")
+DEFAULT_OUTPUT_DIR = os.path.join("..", "channels_data")
+
+# Validar API_KEY
+if not API_KEY:
+    print("ERROR: YOUTUBE_API_KEY no está configurada en las variables de entorno.")
+    print("Crea un archivo .env con la clave o ejecuta: export YOUTUBE_API_KEY='tu_clave'")
+    sys.exit(1)
 
 # Validación: Al menos necesitamos el nombre del canal
 if len(sys.argv) < 2:

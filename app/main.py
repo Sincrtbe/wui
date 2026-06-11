@@ -3,17 +3,55 @@ from contextlib import asynccontextmanager
 import multiprocessing
 import sys
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 from sqlalchemy import text
+from functools import wraps
 from app.core.database import Base, engine, SessionLocal
-from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content, logs, prompts, scripts_tools, schedule
+from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content, logs, prompts, scripts_tools, schedule, auth
 from app.tasks.scheduler import init_scheduler, shutdown_scheduler
+from app.core.config import settings
+
+# Limitador de tasa para prevenir brute force en login
+limiter = Limiter(key_func=get_remote_address, default_limits=["5/minute"])
 
 # Variable global para el proceso del servidor
 _server_process = None
+
+# Rutas públicas (sin autenticación)
+PUBLIC_ROUTES = [
+    "/api/auth/login",
+    "/api/auth/check",
+    "/api/auth/logout",
+    "/health",
+]
+
+def require_auth(request: Request):
+    """Middleware para verificar autenticación."""
+    # Obtener credenciales del header Authorization
+    auth_header = request.headers.get("Authorization", "")
+    
+    if not auth_header.startswith("Basic "):
+        raise HTTPException(status_code=401, detail="No autenticado")
+    
+    import base64
+    try:
+        encoded_credentials = auth_header[6:]  # Quitar "Basic "
+        decoded = base64.b64decode(encoded_credentials).decode("utf-8")
+        username, password = decoded.split(":", 1)
+    except Exception:
+        raise HTTPException(status_code=401, detail="Credenciales inválidas")
+    
+    # Verificar credenciales
+    if username != settings.ADMIN_USER or password != settings.ADMIN_PASS:
+        raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+    
+    return True
 
 
 
@@ -167,13 +205,54 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Configurar rate limiter
+app.state.limiter = limiter
+
+
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
+    """Manejador de errores de límite de tasa."""
+    return JSONResponse(
+        status_code=429,
+        content={"detail": "Demasiados intentos. Espera un momento antes de reintentar."},
+    )
+
+@app.middleware("http")
+async def auth_middleware(request: Request, call_next):
+    """Middleware para verificar autenticación en todas las rutas."""
+    # Permitir acceso a rutas públicas
+    if request.url.path in PUBLIC_ROUTES or request.url.path.startswith("/ui/") or request.url.path == "/":
+        response = await call_next(request)
+        return response
+    
+    # Verificar autenticación para todas las demás rutas
+    try:
+        require_auth(request)
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"detail": e.detail},
+            headers={"WWW-Authenticate": 'Basic realm="Login required"'},
+        )
+    
+    response = await call_next(request)
+    return response
+
+# CORS: solo permitir orígenes específicos, métodos seguros y headers mínimos
+# En producción, ajustar ALLOWED_ORIGINS con los dominios reales
+ALLOWED_ORIGINS = os.getenv("WUI_ALLOWED_ORIGINS", "http://localhost:9080,http://127.0.0.1:9080").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type", "Accept"],
+    expose_headers=["WWW-Authenticate"],
 )
+
+# Incluir router de autenticación PRIMERO (antes que las rutas protegidas)
+app.include_router(auth.router)
 
 app.include_router(channels.router)
 app.include_router(scripts.router)
@@ -195,8 +274,8 @@ app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")
 
 @app.get("/")
 def root():
-    """Redirige a la interfaz web."""
-    return RedirectResponse(url="/ui")
+    """Redirige a la página de login."""
+    return RedirectResponse(url="/ui/login.html")
 
 
 @app.get("/health")

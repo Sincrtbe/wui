@@ -10,7 +10,16 @@ load_dotenv()
 class Settings(BaseSettings):
     """Configuración global de la app."""
     DATABASE_URL: str = "sqlite:///./app.db"
-    DEBUG: bool = True
+    DEBUG: bool = False
+    ADMIN_USER: str = "admin"
+    ADMIN_PASS: str = "admin123"
+    
+    # Forzar DEBUG=False en producción (solo se puede activar con WUI_DEBUG=true)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # Si no está explícitamente activado por env var, forzar DEBUG=False
+        if os.getenv("WUI_DEBUG", "").lower() not in ("true", "1", "yes"):
+            self.DEBUG = False
 
     class Config:
         env_file = ".env"

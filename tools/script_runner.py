@@ -79,7 +79,55 @@ def run_script(script_name: str, args: list[str] | None = None, timeout: int = D
             error="El nombre del script es obligatorio",
         )
 
-    script_path = TOOLS_DIR / script_name
+    # Seguridad: evitar path traversal (../../etc/passwd)
+    # Solo permitir nombres de archivo simples (sin / ni \ ni ..)
+    if os.sep in script_name or '/' in script_name or '..' in script_name.split('/'):
+        return ScriptResult(
+            script_name=script_name,
+            language="unknown",
+            success=False,
+            error="Nombre de script no válido: solo se permiten nombres de archivo simples",
+        )
+
+    # Validar extensiones permitidas de forma estricta
+    if not script_name.endswith(tuple(SUPPORTED_EXTENSIONS.keys())):
+        return ScriptResult(
+            script_name=script_name,
+            language="unknown",
+            success=False,
+            error=f"Extensión no permitida: {script_name}. Tipos permitidos: {', '.join(SUPPORTED_EXTENSIONS.keys())}",
+        )
+
+    # Validar args para evitar inyección de comandos
+    if args:
+        for arg in args:
+            if not isinstance(arg, str) or len(arg) > 500:
+                return ScriptResult(
+                    script_name=script_name,
+                    language="unknown",
+                    success=False,
+                    error="Argumentos inválidos: solo strings de máximo 500 caracteres",
+                )
+            # Rechazar caracteres peligrosos en args
+            dangerous_chars = [';', '&&', '||', '`', '$(', '{', '}', '|', '\n', '\r']
+            if any(c in arg for c in dangerous_chars):
+                return ScriptResult(
+                    script_name=script_name,
+                    language="unknown",
+                    success=False,
+                    error=f"Argumento peligroso detectado en: {arg[:50]}...",
+                )
+
+    script_path = (TOOLS_DIR / script_name).resolve()
+
+    # Verificar que el path resuelto está dentro de TOOLS_DIR
+    if not str(script_path).startswith(str(TOOLS_DIR.resolve())):
+        return ScriptResult(
+            script_name=script_name,
+            language="unknown",
+            success=False,
+            error="Acceso denegado: el script debe estar dentro de la carpeta tools/",
+        )
 
     if not script_path.exists():
         return ScriptResult(

@@ -1,14 +1,55 @@
 const apiBase = "/";
 
+// Función para escapar HTML y prevenir XSS
+function escapeHtml(str) {
+  if (typeof str !== 'string') return str;
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+/**
+ * Renderiza un template HTML de forma segura, escapando todas las variables.
+ * Usa {0}, {1}, {2}... como placeholders para los argumentos.
+ * Ejemplo: safeHtml('<div>{0}</div>', userName)
+ */
+function safeHtml(template, ...args) {
+  let result = template;
+  args.forEach((arg, i) => {
+    result = result.replace(new RegExp(`\\{${i}\\}`, 'g'), escapeHtml(arg));
+  });
+  return result;
+}
+
+// Verificar autenticación al cargar la página
+(function checkAuth() {
+  const credentials = sessionStorage.getItem('auth_credentials');
+  if (!credentials) {
+    window.location.href = '/ui/login.html';
+  }
+})();
+
 function dom(id) {
   return document.getElementById(id);
 }
 
 function fetchJson(path, opts = {}) {
+  // Obtener credenciales almacenadas
+  const credentials = sessionStorage.getItem('auth_credentials');
+  
   return fetch(path, {
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": credentials ? `Basic ${credentials}` : ''
+    },
     ...opts,
   }).then(async (response) => {
+    if (response.status === 401) {
+      // Redirigir a login si hay error de autenticación
+      sessionStorage.removeItem('auth_credentials');
+      window.location.href = '/ui/login.html';
+      throw new Error('No autenticado');
+    }
     if (!response.ok) {
       const text = await response.text();
       throw new Error(`Error ${response.status}: ${text}`);
@@ -73,8 +114,8 @@ function renderSummary(data) {
   
   content.innerHTML = `
     <div class="summary-stats">
-      <p><strong>Guiones:</strong> ${Object.entries(data.scripts_by_status || {}).map(([s, c]) => `${s}: ${c}`).join(", ")}</p>
-      <p><strong>Videos:</strong> ${Object.entries(data.videos_by_status || {}).map(([s, c]) => `${s}: ${c}`).join(", ")}</p>
+      <p><strong>Guiones:</strong> ${Object.entries(data.scripts_by_status || {}).map(([s, c]) => `${escapeHtml(String(s))}: ${c}`).join(", ")}</p>
+      <p><strong>Videos:</strong> ${Object.entries(data.videos_by_status || {}).map(([s, c]) => `${escapeHtml(String(s))}: ${c}`).join(", ")}</p>
       <p><strong>Automatizaciones activas:</strong> ${data.active_automation_runs?.length || 0}</p>
     </div>
   `;
@@ -118,7 +159,7 @@ function renderCalendar(events) {
     html += `
       <div class="calendar-cell ${isToday ? 'today' : ''} ${isMarked ? 'marked' : ''}">
         <span class="calendar-day">${d}</span>
-        ${dayEvents.map(e => `<div class="calendar-event" style="background:${e.color}">${e.title}</div>`).join("")}
+        ${dayEvents.map(e => `<div class="calendar-event" style="background:${escapeHtml(e.color)}">${escapeHtml(e.title)}</div>`).join("")}
       </div>
     `;
   }
@@ -134,13 +175,13 @@ function renderChannelsOverview(channels) {
       <div class="flex-header">
         <img src="${apiBase}/api/channels/${c.channel_id}/thumbnail" class="channel-img" onerror="this.src='https://via.placeholder.com/50'">
         <div>
-          <strong>${c.channel_name}</strong>
-          <div class="text-small">${c.customUrl || ''}</div>
+          <strong>${escapeHtml(c.channel_name)}</strong>
+          <div class="text-small">${escapeHtml(c.customUrl || '')}</div>
         </div>
       </div>
       <div class="mt-10">
         <span class="badge" style="background:${c.channel_color || '#eee'}">Canal</span>
-        <p class="text-small">${c.description ? c.description.substring(0, 60) + '...' : 'Sin descripción'}</p>
+        <p class="text-small">${c.description ? escapeHtml(c.description.substring(0, 60)) + '...' : 'Sin descripción'}</p>
       </div>
     </div>
   `).join("");
@@ -188,8 +229,8 @@ function loadChannelContent(channelId) {
         list.innerHTML = items.map(item => `
           <div class="item-row">
             <div>
-              <strong>${item.title}</strong>
-              <div class="text-small">${item.status} | ${new Date(item.created_at).toLocaleDateString()}</div>
+              <strong>${escapeHtml(item.title)}</strong>
+              <div class="text-small">${escapeHtml(item.status)} | ${new Date(item.created_at).toLocaleDateString()}</div>
             </div>
             <button onclick="openWorkflowModal(${item.id})" class="btn-outline btn-sm">Gestionar</button>
           </div>
@@ -239,26 +280,26 @@ async function openWorkflowModal(itemId) {
 
   if (currentItem.stage === "idea") {
     fields.innerHTML = `
-      <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
-      <label>Notas de la Idea: <textarea name="idea_notes" rows="5">${currentItem.idea_notes || ""}</textarea></label>
+      <label>Título: <input type="text" name="title" value="${escapeHtml(currentItem.title)}"></label>
+      <label>Notas de la Idea: <textarea name="idea_notes" rows="5">${escapeHtml(currentItem.idea_notes || "")}</textarea></label>
     `;
     genBtn.classList.remove("hidden");
   } else if (currentItem.stage === "script") {
     fields.innerHTML = `
-      <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
-      <label>Contenido del Guión: <textarea name="script_content" rows="10">${currentItem.script_content || ""}</textarea></label>
-      <label>Contenido del Artículo: <textarea name="article_content" rows="5">${currentItem.article_content || ""}</textarea></label>
+      <label>Título: <input type="text" name="title" value="${escapeHtml(currentItem.title)}"></label>
+      <label>Contenido del Guión: <textarea name="script_content" rows="10">${escapeHtml(currentItem.script_content || "")}</textarea></label>
+      <label>Contenido del Artículo: <textarea name="article_content" rows="5">${escapeHtml(currentItem.article_content || "")}</textarea></label>
     `;
     genBtn.classList.add("hidden");
   } else if (currentItem.stage === "developed") {
     fields.innerHTML = `
-      <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
-      <label>Datos de Desarrollo (JSON): <textarea name="developed_data" rows="5">${JSON.stringify(currentItem.developed_data || {}, null, 2)}</textarea></label>
+      <label>Título: <input type="text" name="title" value="${escapeHtml(currentItem.title)}"></label>
+      <label>Datos de Desarrollo (JSON): <textarea name="developed_data" rows="5">${escapeHtml(JSON.stringify(currentItem.developed_data || {}, null, 2))}</textarea></label>
     `;
     genBtn.classList.add("hidden");
   } else if (currentItem.stage === "video") {
     fields.innerHTML = `
-      <label>Título: <input type="text" name="title" value="${currentItem.title}"></label>
+      <label>Título: <input type="text" name="title" value="${escapeHtml(currentItem.title)}"></label>
       <p>Etapa final del video. Aquí se gestionaría la exportación.</p>
     `;
     genBtn.classList.add("hidden");
@@ -367,16 +408,16 @@ function initAnalisis() {
         if (res.has_today_data) {
           const fetched = res.fetched ? ' (recién descargados)' : ' (ya existían)';
           statusEl.className = "status-message success";
-          statusEl.innerHTML = `<i class="fas fa-check-circle"></i> Datos de hoy encontrados${fetched} — Vistas: ${res.data?.view_count || 0}, Suscriptores: ${res.data?.subscriber_count || 0}, Videos: ${res.data?.video_count || 0}`;
+          statusEl.innerHTML = `<i class="fas fa-check-circle"></i> Datos de hoy encontrados${escapeHtml(fetched)} — Vistas: ${escapeHtml(String(res.data?.view_count || 0))}, Suscriptores: ${escapeHtml(String(res.data?.subscriber_count || 0))}, Videos: ${escapeHtml(String(res.data?.video_count || 0))}`;
           loadChannelAnalytics(id);
         } else {
           statusEl.className = "status-message error";
-          statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> No se pudieron obtener los datos: ${res.error || 'Error desconocido'}`;
+          statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> No se pudieron obtener los datos: ${escapeHtml(res.error || 'Error desconocido')}`;
         }
       })
       .catch(err => {
         statusEl.className = "status-message error";
-        statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> Error: ${err.message}`;
+        statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> Error: ${escapeHtml(err.message)}`;
       })
       .finally(() => {
         checkBtn.disabled = false;
@@ -426,8 +467,10 @@ function loadChannelAnalytics(channelId) {
     })
     .catch(err => {
       console.error("Error cargando analytics:", err);
-      dom("views-chart").innerHTML = '<p class="chart-placeholder" style="color:#ef4444;">Error al cargar datos: ' + err.message + '</p>';
-      dom("subscribers-chart").innerHTML = '<p class="chart-placeholder" style="color:#ef4444;">Error al cargar datos: ' + err.message + '</p>';
+      dom("views-chart").innerHTML = '<p class="chart-placeholder" style="color:#ef4444;">Error al cargar datos: </p>';
+      dom("views-chart").insertAdjacentText('beforeend', escapeHtml(err.message));
+      dom("subscribers-chart").innerHTML = '<p class="chart-placeholder" style="color:#ef4444;">Error al cargar datos: </p>';
+      dom("subscribers-chart").insertAdjacentText('beforeend', escapeHtml(err.message));
     });
 
   // Cargar historial de publicaciones
@@ -438,8 +481,8 @@ function loadChannelAnalytics(channelId) {
         dom("publications-history-list").innerHTML = history.map(h => `
           <div class="item-row">
             <span>${h.date ? new Date(h.date).toLocaleDateString() : 'N/A'}</span>
-            <strong>${h.title || 'Sin título'}</strong>
-            <span class="badge">${h.content_type || h.platform || 'unknown'}</span>
+            <strong>${escapeHtml(h.title || 'Sin título')}</strong>
+            <span class="badge">${escapeHtml(h.content_type || h.platform || 'unknown')}</span>
           </div>
         `).join("");
       } else {
@@ -448,7 +491,8 @@ function loadChannelAnalytics(channelId) {
     })
     .catch(err => {
       console.error("Error cargando publicaciones:", err);
-      dom("publications-history-list").innerHTML = '<p class="text-error">Error al cargar historial: ' + err.message + '</p>';
+      dom("publications-history-list").innerHTML = '<p class="text-error">Error al cargar historial: </p>';
+      dom("publications-history-list").insertAdjacentText('beforeend', escapeHtml(err.message));
     });
 }
 
@@ -473,9 +517,9 @@ function renderViewsChart(stats) {
     const displayDiff = i === 0 ? s.view_count : (s.view_count - sorted[i - 1].view_count);
     const maxView = Math.max(...sorted.map(x => x.view_count), 1);
     const heightPct = Math.max(5, (displayDiff >= 0 ? displayDiff : 0) / maxView * 80 + 10);
-    html += `<div class="evolution-point ${cssClass}" title="${dateFull}: ${s.view_count} vistas (total)">
+    html += `<div class="evolution-point ${cssClass}" title="${escapeHtml(dateFull)}: ${s.view_count} vistas (total)">
       <span class="point-value">${valueLabel}</span>
-      <span class="point-date">${dateShort}</span>
+      <span class="point-date">${escapeHtml(dateShort)}</span>
     </div>`;
   });
   html += '</div>';
@@ -486,9 +530,9 @@ function renderViewsChart(stats) {
     const dateShort = s.stat_date ? s.stat_date.slice(5) : 'N/A';
     const maxView = Math.max(...sorted.map(x => x.view_count), 1);
     const barH = Math.max(4, s.view_count / maxView * 100);
-    html += `<div class="bar-item" title="${s.stat_date}: ${s.view_count} vistas">
+    html += `<div class="bar-item" title="${escapeHtml(s.stat_date || 'N/A')}: ${s.view_count} vistas">
       <div class="bar-fill" style="height:${barH}%"></div>
-      <span class="bar-label">${dateShort}</span>
+      <span class="bar-label">${escapeHtml(dateShort)}</span>
     </div>`;
   });
   html += '</div></div>';
@@ -513,9 +557,9 @@ function renderSubscribersChart(stats) {
       valueLabel = (diff >= 0 ? '+' : '') + diff.toLocaleString();
     }
     const cssClass = i === 0 ? 'point-first' : (diff >= 0 ? 'point-up' : 'point-down');
-    html += `<div class="evolution-point ${cssClass}" title="${dateFull}: ${s.subscriber_count} suscriptores (total)">
+    html += `<div class="evolution-point ${cssClass}" title="${escapeHtml(dateFull)}: ${s.subscriber_count} suscriptores (total)">
       <span class="point-value">${valueLabel}</span>
-      <span class="point-date">${dateShort}</span>
+      <span class="point-date">${escapeHtml(dateShort)}</span>
     </div>`;
   });
   html += '</div>';
@@ -525,9 +569,9 @@ function renderSubscribersChart(stats) {
     const dateShort = s.stat_date ? s.stat_date.slice(5) : 'N/A';
     const maxSub = Math.max(...sorted.map(x => x.subscriber_count), 1);
     const barH = Math.max(4, s.subscriber_count / maxSub * 100);
-    html += `<div class="bar-item" title="${s.stat_date}: ${s.subscriber_count} suscriptores">
+    html += `<div class="bar-item" title="${escapeHtml(s.stat_date || 'N/A')}: ${s.subscriber_count} suscriptores">
       <div class="bar-fill" style="height:${barH}%"></div>
-      <span class="bar-label">${dateShort}</span>
+      <span class="bar-label">${escapeHtml(dateShort)}</span>
     </div>`;
   });
   html += '</div></div>';
@@ -709,7 +753,7 @@ function loadPromptsList() {
       })
       .catch(err => {
         if (listContainer) {
-          listContainer.innerHTML = `<p class="text-error">Error al cargar prompts: ${err.message}</p>`;
+          listContainer.innerHTML = `<p class="text-error">Error al cargar prompts: ${escapeHtml(err.message)}</p>`;
         }
       });
   }
@@ -947,7 +991,7 @@ function updateDetectedVariables() {
   if (!container) return;
   
   if (unique.length > 0) {
-    container.innerHTML = `<i class="fas fa-code"></i> <strong>Variables detectadas:</strong> ${unique.map(v => `<code>${v}</code>`).join(", ")}`;
+    container.innerHTML = `<i class="fas fa-code"></i> <strong>Variables detectadas:</strong> ${unique.map(v => `<code>${escapeHtml(v)}</code>`).join(", ")}`;
   } else {
     container.innerHTML = "No se detectaron variables. Usa el formato <code>{{variable}}</code> en el contenido.";
   }
@@ -989,7 +1033,7 @@ function loadCategoriesList() {
     })
     .catch(err => {
       const container = dom("categories-list");
-      if (container) container.innerHTML = `<p class="text-error">Error: ${err.message}</p>`;
+      if (container) container.innerHTML = `<p class="text-error">Error: ${escapeHtml(err.message)}</p>`;
     });
 }
 
@@ -1072,7 +1116,7 @@ function loadOverlayPromptsList() {
     })
     .catch(err => {
       const container = dom("overlay-prompts-list");
-      if (container) container.innerHTML = `<p class="text-error">Error: ${err.message}</p>`;
+      if (container) container.innerHTML = `<p class="text-error">Error: ${escapeHtml(err.message)}</p>`;
     });
 }
 
@@ -1331,7 +1375,7 @@ function loadOverlayCategoriesList() {
     })
     .catch(err => {
       const container = dom("overlay-categories-list");
-      if (container) container.innerHTML = `<p class="text-error">Error: ${err.message}</p>`;
+      if (container) container.innerHTML = `<p class="text-error">Error: ${escapeHtml(err.message)}</p>`;
     });
 }
 
@@ -1608,7 +1652,7 @@ function loadChannelDetailInfo(channelId) {
       `;
     })
     .catch(err => {
-      dom("channel-info-content").innerHTML = `<p class="text-error">Error al cargar información: ${err.message}</p>`;
+      dom("channel-info-content").innerHTML = `<p class="text-error">Error al cargar información: ${escapeHtml(err.message)}</p>`;
     });
 }
 
@@ -1643,7 +1687,7 @@ function loadChannelStats(channelId) {
       }
     })
     .catch(err => {
-      dom("channel-stats-content").innerHTML = `<p class="text-error">Error al cargar estadísticas: ${err.message}</p>`;
+      dom("channel-stats-content").innerHTML = `<p class="text-error">Error al cargar estadísticas: ${escapeHtml(err.message)}</p>`;
     });
 }
 
