@@ -1,1 +1,28 @@
-IiIiU2NoZW1hcyBkZSBwdWJsaWNhY2nDs24uIiIiCmZyb20gcHlkYW50aWMgaW1wb3J0IEJhc2VNb2RlbApmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRldGltZQoKCmNsYXNzIFB1YmxpY2F0aW9uQ3JlYXRlKEJhc2VNb2RlbCk6CiAgICBjaGFubmVsX2lkOiBpbnQKICAgIHNjcmlwdF9pZDogaW50IHwgTm9uZSA9IE5vbmUKICAgIHNjaGVkdWxlZF9kYXRldGltZTogZGF0ZXRpbWUKICAgIG5vdGVzOiBzdHIgfCBOb25lID0gTm9uZQoKCmNsYXNzIFB1YmxpY2F0aW9uVXBkYXRlKEJhc2VNb2RlbCk6CiAgICBzY2hlZHVsZWRfZGF0ZXRpbWU6IGRhdGV0aW1lIHwgTm9uZSA9IE5vbmUKICAgIHN0YXR1czogc3RyIHwgTm9uZSA9IE5vbmUKICAgIG5vdGVzOiBzdHIgfCBOb25lID0gTm9uZQoKCmNsYXNzIFB1YmxpY2F0aW9uUmVzcG9uc2UoQmFzZU1vZGVsKToKICAgIGlkOiBpbnQKICAgIGNoYW5uZWxfaWQ6IGludAogICAgc2NyaXB0X2lkOiBpbnQgfCBOb25lCiAgICBzY2hlZHVsZWRfZGF0ZXRpbWU6IGRhdGV0aW1lCiAgICBzdGF0dXM6IHN0cgogICAgbm90ZXM6IHN0ciB8IE5vbmUKCiAgICBjbGFzcyBDb25maWc6CiAgICAgICAgZnJvbV9hdHRyaWJ1dGVzID0gVHJ1ZQo=
+"""Schemas de publicación."""
+from pydantic import BaseModel
+from datetime import datetime
+
+
+class PublicationCreate(BaseModel):
+    channel_id: int
+    script_id: int | None = None
+    scheduled_datetime: datetime
+    notes: str | None = None
+
+
+class PublicationUpdate(BaseModel):
+    scheduled_datetime: datetime | None = None
+    status: str | None = None
+    notes: str | None = None
+
+
+class PublicationResponse(BaseModel):
+    id: int
+    channel_id: int
+    script_id: int | None
+    scheduled_datetime: datetime
+    status: str
+    notes: str | None
+
+    class Config:
+        from_attributes = True

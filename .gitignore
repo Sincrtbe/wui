@@ -1,1 +1,56 @@
-IyBEYXRhYmFzZQoqLmRiCiouc3FsaXRlCiouc3FsaXRlMwoKIyBQeXRob24KX19weWNhY2hlX18vCioucHlbY29kXQoqLnB5bwoqLnB5ZAouUHl0aG9uCiouZWdnLWluZm8vCiouZWdnCmRpc3QvCmJ1aWxkLwoqLnNvCgojIFZpcnR1YWwgRW52aXJvbm1lbnQKdmVudi8KZW52LwpFTlYvCgojIElERQoudnNjb2RlLwouaWRlYS8KKi5zd3AKKi5zd28KKn4KCiMgRW52aXJvbm1lbnQgdmFyaWFibGVzCi5lbnYKCiMgQ2hhbm5lbHMgZGF0YSAtIGV4Y2x1ZGUgb25seSBsYXJnZSBtZWRpYSBmaWxlcwojIGNoYW5uZWxzX2RhdGEvKi5qc29uIChrZWVwIEpTT04gZmlsZXMpCiMgY2hhbm5lbHNfZGF0YS8qLmpwZyAoa2VlcCBpbWFnZSBmaWxlcykKY2hhbm5lbHNfZGF0YS8qLm1wNApjaGFubmVsc19kYXRhLyouYXZpCmNoYW5uZWxzX2RhdGEvKi5ta3YKY2hhbm5lbHNfZGF0YS8qLm1vdgpjaGFubmVsc19kYXRhLyouemlwCmNoYW5uZWxzX2RhdGEvKi5yYXIKCiMgTWV0cmljcyBmb2xkZXIKbWV0cmljYXMvCgojIExvZ3MKKi5sb2cKCiMgT1MgZmlsZXMKLkRTX1N0b3JlClRodW1icy5kYgpkZXNrdG9wLmluaQoKIyBUZW1wb3JhcnkgZmlsZXMKKi50bXAKKi50ZW1w
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+*.so
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+
+# Channels data - exclude only large media files
+# channels_data/*.json (keep JSON files)
+# channels_data/*.jpg (keep image files)
+channels_data/*.mp4
+channels_data/*.avi
+channels_data/*.mkv
+channels_data/*.mov
+channels_data/*.zip
+channels_data/*.rar
+
+# Metrics folder
+metricas/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp

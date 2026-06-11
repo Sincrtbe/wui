@@ -1,1 +1,53 @@
-IiIiUm91dGVyIGRlIHB1YmxpY2FjaW9uZXMuIiIiCmZyb20gZmFzdGFwaSBpbXBvcnQgQVBJUm91dGVyLCBEZXBlbmRzLCBIVFRQRXhjZXB0aW9uLCBRdWVyeQpmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRldGltZQpmcm9tIHNxbGFsY2hlbXkub3JtIGltcG9ydCBTZXNzaW9uCmZyb20gYXBwLmNvcmUuZGF0YWJhc2UgaW1wb3J0IGdldF9kYgpmcm9tIGFwcC5zY2hlbWFzLnB1YmxpY2F0aW9uIGltcG9ydCBQdWJsaWNhdGlvbkNyZWF0ZSwgUHVibGljYXRpb25VcGRhdGUsIFB1YmxpY2F0aW9uUmVzcG9uc2UKZnJvbSBhcHAuc2VydmljZXMucHVibGljYXRpb25fc2VydmljZSBpbXBvcnQgUHVibGljYXRpb25TZXJ2aWNlCgpyb3V0ZXIgPSBBUElSb3V0ZXIocHJlZml4PSIvYXBpL3B1YmxpY2F0aW9ucyIsIHRhZ3M9WyJwdWJsaWNhdGlvbnMiXSkKCgpAcm91dGVyLnBvc3QoIiIsIHJlc3BvbnNlX21vZGVsPVB1YmxpY2F0aW9uUmVzcG9uc2UpCmRlZiBjcmVhdGVfcHVibGljYXRpb24ocHVibGljYXRpb246IFB1YmxpY2F0aW9uQ3JlYXRlLCBkYjogU2Vzc2lvbiA9IERlcGVuZHMoZ2V0X2RiKSk6CiAgICAiIiJDcmVhIHVuYSBudWV2YSBwdWJsaWNhY2nDs24gcHJvZ3JhbWFkYS4iIiIKICAgIHJldHVybiBQdWJsaWNhdGlvblNlcnZpY2UuY3JlYXRlKGRiLCBwdWJsaWNhdGlvbikKCgpAcm91dGVyLmdldCgiIiwgcmVzcG9uc2VfbW9kZWw9bGlzdFtQdWJsaWNhdGlvblJlc3BvbnNlXSkKZGVmIGdldF9wdWJsaWNhdGlvbnMoCiAgICBzdGFydDogZGF0ZXRpbWUgfCBOb25lID0gUXVlcnkoTm9uZSksCiAgICBlbmQ6IGRhdGV0aW1lIHwgTm9uZSA9IFF1ZXJ5KE5vbmUpLAogICAgY2hhbm5lbF9pZDogaW50IHwgTm9uZSA9IFF1ZXJ5KE5vbmUpLAogICAgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYiksCik6CiAgICAiIiJPYnRpZW5lIHB1YmxpY2FjaW9uZXMgY29uIGZpbHRyb3Mgb3BjaW9uYWxlcy4iIiIKICAgIHJldHVybiBQdWJsaWNhdGlvblNlcnZpY2UuZ2V0X2FsbChkYiwgc3RhcnQsIGVuZCwgY2hhbm5lbF9pZCkKCgpAcm91dGVyLmdldCgiL3twdWJsaWNhdGlvbl9pZH0iLCByZXNwb25zZV9tb2RlbD1QdWJsaWNhdGlvblJlc3BvbnNlKQpkZWYgZ2V0X3B1YmxpY2F0aW9uKHB1YmxpY2F0aW9uX2lkOiBpbnQsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgICIiIk9idGllbmUgdW5hIHB1YmxpY2FjacOzbiBwb3IgSUQuIiIiCiAgICBwdWJsaWNhdGlvbiA9IFB1YmxpY2F0aW9uU2VydmljZS5nZXRfYnlfaWQoZGIsIHB1YmxpY2F0aW9uX2lkKQogICAgaWYgbm90IHB1YmxpY2F0aW9uOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IlB1YmxpY2FjacOzbiBubyBlbmNvbnRyYWRhIikKICAgIHJldHVybiBwdWJsaWNhdGlvbgoKCkByb3V0ZXIucHV0KCIve3B1YmxpY2F0aW9uX2lkfSIsIHJlc3BvbnNlX21vZGVsPVB1YmxpY2F0aW9uUmVzcG9uc2UpCmRlZiB1cGRhdGVfcHVibGljYXRpb24ocHVibGljYXRpb25faWQ6IGludCwgcHVibGljYXRpb25fdXBkYXRlOiBQdWJsaWNhdGlvblVwZGF0ZSwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiQWN0dWFsaXphIHVuYSBwdWJsaWNhY2nDs24uIiIiCiAgICBwdWJsaWNhdGlvbiA9IFB1YmxpY2F0aW9uU2VydmljZS51cGRhdGUoZGIsIHB1YmxpY2F0aW9uX2lkLCBwdWJsaWNhdGlvbl91cGRhdGUpCiAgICBpZiBub3QgcHVibGljYXRpb246CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDQsIGRldGFpbD0iUHVibGljYWNpw7NuIG5vIGVuY29udHJhZGEiKQogICAgcmV0dXJuIHB1YmxpY2F0aW9uCgoKQHJvdXRlci5kZWxldGUoIi97cHVibGljYXRpb25faWR9IikKZGVmIGRlbGV0ZV9wdWJsaWNhdGlvbihwdWJsaWNhdGlvbl9pZDogaW50LCBkYjogU2Vzc2lvbiA9IERlcGVuZHMoZ2V0X2RiKSk6CiAgICAiIiJFbGltaW5hIHVuYSBwdWJsaWNhY2nDs24uIiIiCiAgICBzdWNjZXNzID0gUHVibGljYXRpb25TZXJ2aWNlLmRlbGV0ZShkYiwgcHVibGljYXRpb25faWQpCiAgICBpZiBub3Qgc3VjY2VzczoKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwNCwgZGV0YWlsPSJQdWJsaWNhY2nDs24gbm8gZW5jb250cmFkYSIpCiAgICByZXR1cm4geyJkZXRhaWwiOiAiUHVibGljYWNpw7NuIGVsaW1pbmFkYSJ9Cg==
+"""Router de publicaciones."""
+from fastapi import APIRouter, Depends, HTTPException, Query
+from datetime import datetime
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.schemas.publication import PublicationCreate, PublicationUpdate, PublicationResponse
+from app.services.publication_service import PublicationService
+
+router = APIRouter(prefix="/api/publications", tags=["publications"])
+
+
+@router.post("", response_model=PublicationResponse)
+def create_publication(publication: PublicationCreate, db: Session = Depends(get_db)):
+    """Crea una nueva publicación programada."""
+    return PublicationService.create(db, publication)
+
+
+@router.get("", response_model=list[PublicationResponse])
+def get_publications(
+    start: datetime | None = Query(None),
+    end: datetime | None = Query(None),
+    channel_id: int | None = Query(None),
+    db: Session = Depends(get_db),
+):
+    """Obtiene publicaciones con filtros opcionales."""
+    return PublicationService.get_all(db, start, end, channel_id)
+
+
+@router.get("/{publication_id}", response_model=PublicationResponse)
+def get_publication(publication_id: int, db: Session = Depends(get_db)):
+    """Obtiene una publicación por ID."""
+    publication = PublicationService.get_by_id(db, publication_id)
+    if not publication:
+        raise HTTPException(status_code=404, detail="Publicación no encontrada")
+    return publication
+
+
+@router.put("/{publication_id}", response_model=PublicationResponse)
+def update_publication(publication_id: int, publication_update: PublicationUpdate, db: Session = Depends(get_db)):
+    """Actualiza una publicación."""
+    publication = PublicationService.update(db, publication_id, publication_update)
+    if not publication:
+        raise HTTPException(status_code=404, detail="Publicación no encontrada")
+    return publication
+
+
+@router.delete("/{publication_id}")
+def delete_publication(publication_id: int, db: Session = Depends(get_db)):
+    """Elimina una publicación."""
+    success = PublicationService.delete(db, publication_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Publicación no encontrada")
+    return {"detail": "Publicación eliminada"}

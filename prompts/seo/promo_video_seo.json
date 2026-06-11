@@ -1,1 +1,19 @@
-ewogICAgImlkIjogMTc1MTgxMjgwMC4wLAogICAgInRpdGxlIjogIlByb21vY2nDs24gZGUgVmlkZW8gU0VPIiwKICAgICJkZXNjcmlwdGlvbiI6ICJQcm9tcHQgcGFyYSBjcmVhciB1bmEgZGVzY3JpcGNpw7NuIG9wdGltaXphZGEgY29uIFNFTyBwYXJhIHZpZGVvcyBkZSBZb3VUdWJlIiwKICAgICJjYXRlZ29yeSI6ICJzZW8iLAogICAgInByb21wdF90eXBlIjogInNlbyIsCiAgICAiY29udGVudCI6ICJFc2NyaWJlIHVuYSBkZXNjcmlwY2nDs24gb3B0aW1pemFkYSBwYXJhIFNFTyBkZSB1biB2aWRlbyBkZSBZb3VUdWJlIHNvYnJlIHt7dGVtYV9wcmluY2lwYWx9fS4gTGEgZGVzY3JpcGNpw7NuIGRlYmU6XG5cbjEuIEluY2x1aXIgdW5hIGludHJvZHVjY2nDs24gYXRyYWN0YW50ZSBjb24gcGFsYWJyYXMgY2xhdmUgcHJpbmNpcGFsZXMgZW4gbGFzIHByaW1lcmFzIDIgbMOtbmVhc1xuMi4gSW5jbHVpciBwYWxhYnJhcyBjbGF2ZSBzZWN1bmRhcmlhcyBkZSBmb3JtYSBuYXR1cmFsOiB7e3BhbGFicmFzX2NsYXZlX3NlY3VuZGFyaWFzfX1cbjMuIEluY2x1aXIgdGltZXN0YW1wcyBvIGNhcMOtdHVsb3MgcmVsZXZhbnRlc1xuNC4gQcOxYWRpciBlbmxhY2VzIGEgcmVkZXMgc29jaWFsZXMgeSBzdXNjcmlwY2nDs25cbjUuIFVzYXIgaGFzaHRhZ3MgcmVsZXZhbnRlcyAobcOheGltbyAxNSlcblxuRm9ybWF0byBkZSBzYWxpZGE6XG4tIFTDrXR1bG8gb3B0aW1pemFkbyAoNjAgY2FyYWN0ZXJlcyBtw6F4KVxuLSBEZXNjcmlwY2nDs24gY29tcGxldGFcbi0gSGFzaHRhZ3MgcmVjb21lbmRhZG9zXG4tIFRhZ3Mgc3VnZXJpZG9zIiwKICAgICJ2YXJpYWJsZXMiOiBbCiAgICAgICAgInRlbWFfcHJpbmNpcGFsIiwKICAgICAgICAicGFsYWJyYXNfY2xhdmVfc2VjdW5kYXJpYXMiCiAgICBdLAogICAgInJhdGluZyI6IDAuMCwKICAgICJ1c2FnZV9jb3VudCI6IDAsCiAgICAidmVyc2lvbiI6IDEsCiAgICAiaXNfYWN0aXZlIjogImFjdGl2ZSIsCiAgICAibWV0YV9kYXRhIjoge30sCiAgICAiY3JlYXRlZF9hdCI6ICIyMDI2LTA3LTA2VDE4OjAwOjAwIiwKICAgICJ1cGRhdGVkX2F0IjogIjIwMjYtMDctMDZUMTg6MDA6MDAiCn0=
+{
+    "id": 1751812800.0,
+    "title": "Promoción de Video SEO",
+    "description": "Prompt para crear una descripción optimizada con SEO para videos de YouTube",
+    "category": "seo",
+    "prompt_type": "seo",
+    "content": "Escribe una descripción optimizada para SEO de un video de YouTube sobre {{tema_principal}}. La descripción debe:\n\n1. Incluir una introducción atractante con palabras clave principales en las primeras 2 líneas\n2. Incluir palabras clave secundarias de forma natural: {{palabras_clave_secundarias}}\n3. Incluir timestamps o capítulos relevantes\n4. Añadir enlaces a redes sociales y suscripción\n5. Usar hashtags relevantes (máximo 15)\n\nFormato de salida:\n- Título optimizado (60 caracteres máx)\n- Descripción completa\n- Hashtags recomendados\n- Tags sugeridos",
+    "variables": [
+        "tema_principal",
+        "palabras_clave_secundarias"
+    ],
+    "rating": 0.0,
+    "usage_count": 0,
+    "version": 1,
+    "is_active": "active",
+    "meta_data": {},
+    "created_at": "2026-07-06T18:00:00",
+    "updated_at": "2026-07-06T18:00:00"
+}

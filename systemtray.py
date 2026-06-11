@@ -1,1 +1,23 @@
-IyBJbmljaWFyIGVsIHByb2Nlc28gZGUgVXZpY29ybiBlbiBzZWd1bmRvIHBsYW5vCiRqb2IgPSBTdGFydC1Qcm9jZXNzIHB5IC1Bcmd1bWVudExpc3QgIi0zLjEyIC1tIHV2aWNvcm4gYXBwLm1haW46YXBwIC0taG9zdCAxMjcuMC4wLjEgLS1wb3J0IDkwODAiIC1XaW5kb3dTdHlsZSBIaWRkZW4gLVBhc3NUaHJ1CgojIENyZWFyIGVsIG1lbsO6IGVuIGxhIGJhbmRlamEgKHVzYW5kbyB1biBvYmpldG8gQ09NIGRlIFdpbmRvd3MpCkFkZC1UeXBlIC1Bc3NlbWJseU5hbWUgU3lzdGVtLldpbmRvd3MuRm9ybXMKJG5vdGlmeUljb24gPSBOZXctT2JqZWN0IFN5c3RlbS5XaW5kb3dzLkZvcm1zLk5vdGlmeUljb24KJG5vdGlmeUljb24uSWNvbiA9IFtTeXN0ZW0uRHJhd2luZy5TeXN0ZW1JY29uc106OkFwcGxpY2F0aW9uCiRub3RpZnlJY29uLlRleHQgPSAiU2Vydmlkb3IgRmFzdEFQSSAoOTA4MCkiCiRub3RpZnlJY29uLlZpc2libGUgPSAkdHJ1ZQoKIyBDcmVhciBtZW7DuiBjb250ZXh0dWFsCiRtZW51ID0gTmV3LU9iamVjdCBTeXN0ZW0uV2luZG93cy5Gb3Jtcy5Db250ZXh0TWVudQokaXRlbTEgPSAkbWVudS5NZW51SXRlbXMuQWRkKCJBYnJpciBlbiBXZWIiLCB7IFN0YXJ0LVByb2Nlc3MgImh0dHA6Ly8xMjcuMC4wLjE6OTA4MCIgfSkKJGl0ZW0yID0gJG1lbnUuTWVudUl0ZW1zLkFkZCgiQXBhZ2FyIFNlcnZpZG9yIiwgeyAKICAgIFN0b3AtUHJvY2VzcyAtSWQgJGpvYi5JZCAtRm9yY2UKICAgICRub3RpZnlJY29uLlZpc2libGUgPSAkZmFsc2UKICAgIFtTeXN0ZW0uV2luZG93cy5Gb3Jtcy5BcHBsaWNhdGlvbl06OkV4aXQoKQp9KQoKJG5vdGlmeUljb24uQ29udGV4dE1lbnUgPSAkbWVudQoKIyBNYW50ZW5lciBlbCBzY3JpcHQgY29ycmllbmRvCltTeXN0ZW0uV2luZG93cy5Gb3Jtcy5BcHBsaWNhdGlvbl06OlJ1bigp
+# Iniciar el proceso de Uvicorn en segundo plano
+$job = Start-Process py -ArgumentList "-3.12 -m uvicorn app.main:app --host 127.0.0.1 --port 9080" -WindowStyle Hidden -PassThru
+
+# Crear el menú en la bandeja (usando un objeto COM de Windows)
+Add-Type -AssemblyName System.Windows.Forms
+$notifyIcon = New-Object System.Windows.Forms.NotifyIcon
+$notifyIcon.Icon = [System.Drawing.SystemIcons]::Application
+$notifyIcon.Text = "Servidor FastAPI (9080)"
+$notifyIcon.Visible = $true
+
+# Crear menú contextual
+$menu = New-Object System.Windows.Forms.ContextMenu
+$item1 = $menu.MenuItems.Add("Abrir en Web", { Start-Process "http://127.0.0.1:9080" })
+$item2 = $menu.MenuItems.Add("Apagar Servidor", { 
+    Stop-Process -Id $job.Id -Force
+    $notifyIcon.Visible = $false
+    [System.Windows.Forms.Application]::Exit()
+})
+
+$notifyIcon.ContextMenu = $menu
+
+# Mantener el script corriendo
+[System.Windows.Forms.Application]::Run()

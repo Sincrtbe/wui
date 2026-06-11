@@ -1,1 +1,18 @@
-IiIiTW9kZWxvIGRlIHbDrWRlby4iIiIKZnJvbSBkYXRldGltZSBpbXBvcnQgZGF0ZXRpbWUKZnJvbSBzcWxhbGNoZW15IGltcG9ydCBDb2x1bW4sIEludGVnZXIsIFN0cmluZywgRGF0ZVRpbWUsIEZvcmVpZ25LZXkKZnJvbSBhcHAuY29yZS5kYXRhYmFzZSBpbXBvcnQgQmFzZQoKCmNsYXNzIFZpZGVvKEJhc2UpOgogICAgIiIiTW9kZWxvIGRlIHbDrWRlby4iIiIKCiAgICBfX3RhYmxlbmFtZV9fID0gInZpZGVvcyIKCiAgICBpZCA9IENvbHVtbihJbnRlZ2VyLCBwcmltYXJ5X2tleT1UcnVlLCBpbmRleD1UcnVlKQogICAgY2hhbm5lbF9pZCA9IENvbHVtbihJbnRlZ2VyLCBGb3JlaWduS2V5KCJjaGFubmVscy5pZCIpLCBudWxsYWJsZT1GYWxzZSkKICAgIHNjcmlwdF9pZCA9IENvbHVtbihJbnRlZ2VyLCBGb3JlaWduS2V5KCJzY3JpcHRzLmlkIiksIG51bGxhYmxlPVRydWUpCiAgICB0aXRsZSA9IENvbHVtbihTdHJpbmcsIG51bGxhYmxlPUZhbHNlKQogICAgZHVyYXRpb24gPSBDb2x1bW4oSW50ZWdlcikKICAgIHN0YXR1cyA9IENvbHVtbihTdHJpbmcsIGRlZmF1bHQ9InBsYW5uZWQiKQogICAgY3JlYXRlZF9hdCA9IENvbHVtbihEYXRlVGltZSwgZGVmYXVsdD1kYXRldGltZS51dGNub3cpCg==
+"""Modelo de vídeo."""
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from app.core.database import Base
+
+
+class Video(Base):
+    """Modelo de vídeo."""
+
+    __tablename__ = "videos"
+
+    id = Column(Integer, primary_key=True, index=True)
+    channel_id = Column(Integer, ForeignKey("channels.id"), nullable=False)
+    script_id = Column(Integer, ForeignKey("scripts.id"), nullable=True)
+    title = Column(String, nullable=False)
+    duration = Column(Integer)
+    status = Column(String, default="planned")
+    created_at = Column(DateTime, default=datetime.utcnow)

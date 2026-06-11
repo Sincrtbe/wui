@@ -1,1 +1,62 @@
-aW1wb3J0IG9zCmltcG9ydCBzeXMKZnJvbSBsb2dnaW5nLmNvbmZpZyBpbXBvcnQgZmlsZUNvbmZpZwoKZnJvbSBzcWxhbGNoZW15IGltcG9ydCBlbmdpbmVfZnJvbV9jb25maWcKZnJvbSBzcWxhbGNoZW15IGltcG9ydCBwb29sCgpmcm9tIGFsZW1iaWMgaW1wb3J0IGNvbnRleHQKCiMgQWRkIHRoZSBwcm9qZWN0IHJvb3QgdG8gdGhlIHBhdGgKc3lzLnBhdGguaW5zZXJ0KDAsIG9zLnBhdGguZGlybmFtZShvcy5wYXRoLmRpcm5hbWUoX19maWxlX18pKSkKCmZyb20gYXBwLmNvcmUuZGF0YWJhc2UgaW1wb3J0IEJhc2UKZnJvbSBhcHAgaW1wb3J0IG1vZGVscyAgIyBJbXBvcnQgYWxsIG1vZGVscyB0byByZWdpc3RlciB0aGVtCgojIHRoaXMgaXMgdGhlIEFsZW1iaWMgQ29uZmlnIG9iamVjdCwgd2hpY2ggcHJvdmlkZXMKIyBhY2Nlc3MgdG8gdGhlIHZhbHVlcyB3aXRoaW4gdGhlIC5pbmkgZmlsZSBpbiB1c2UuCmNvbmZpZyA9IGNvbnRleHQuY29uZmlnCgojIEludGVycHJldCB0aGUgY29uZmlnIGZpbGUgZm9yIFB5dGhvbiBsb2dnaW5nLgppZiBjb25maWcuY29uZmlnX2ZpbGVfbmFtZSBpcyBub3QgTm9uZToKICAgIGZpbGVDb25maWcoY29uZmlnLmNvbmZpZ19maWxlX25hbWUpCgojIFNldCB0YXJnZXRfbWV0YWRhdGEgdG8gU1FMQWxjaGVteSBCYXNlIG1ldGFkYXRhCnRhcmdldF9tZXRhZGF0YSA9IEJhc2UubWV0YWRhdGEKCgpkZWYgcnVuX21pZ3JhdGlvbnNfb2ZmbGluZSgpIC0+IE5vbmU6CiAgICAiIiJSdW4gbWlncmF0aW9ucyBpbiAnb2ZmbGluZScgbW9kZS4iIiIKICAgIHVybCA9IGNvbmZpZy5nZXRfbWFpbl9vcHRpb24oInNxbGFsY2hlbXkudXJsIikKICAgIGNvbnRleHQuY29uZmlndXJlKAogICAgICAgIHVybD11cmwsCiAgICAgICAgdGFyZ2V0X21ldGFkYXRhPXRhcmdldF9tZXRhZGF0YSwKICAgICAgICBsaXRlcmFsX2JpbmRzPVRydWUsCiAgICAgICAgZGlhbGVjdF9vcHRzPXsicGFyYW1zdHlsZSI6ICJuYW1lZCJ9LAogICAgKQoKICAgIHdpdGggY29udGV4dC5iZWdpbl90cmFuc2FjdGlvbigpOgogICAgICAgIGNvbnRleHQucnVuX21pZ3JhdGlvbnMoKQoKCmRlZiBydW5fbWlncmF0aW9uc19vbmxpbmUoKSAtPiBOb25lOgogICAgIiIiUnVuIG1pZ3JhdGlvbnMgaW4gJ29ubGluZScgbW9kZS4iIiIKICAgIGNvbm5lY3RhYmxlID0gZW5naW5lX2Zyb21fY29uZmlnKAogICAgICAgIGNvbmZpZy5nZXRfc2VjdGlvbihjb25maWcuY29uZmlnX2luaV9zZWN0aW9uLCB7fSksCiAgICAgICAgcHJlZml4PSJzcWxhbGNoZW15LiIsCiAgICAgICAgcG9vbGNsYXNzPXBvb2wuTnVsbFBvb2wsCiAgICApCgogICAgd2l0aCBjb25uZWN0YWJsZS5jb25uZWN0KCkgYXMgY29ubmVjdGlvbjoKICAgICAgICBjb250ZXh0LmNvbmZpZ3VyZSgKICAgICAgICAgICAgY29ubmVjdGlvbj1jb25uZWN0aW9uLCB0YXJnZXRfbWV0YWRhdGE9dGFyZ2V0X21ldGFkYXRhCiAgICAgICAgKQoKICAgICAgICB3aXRoIGNvbnRleHQuYmVnaW5fdHJhbnNhY3Rpb24oKToKICAgICAgICAgICAgY29udGV4dC5ydW5fbWlncmF0aW9ucygpCgoKaWYgY29udGV4dC5pc19vZmZsaW5lX21vZGUoKToKICAgIHJ1bl9taWdyYXRpb25zX29mZmxpbmUoKQplbHNlOgogICAgcnVuX21pZ3JhdGlvbnNfb25saW5lKCkK
+import os
+import sys
+from logging.config import fileConfig
+
+from sqlalchemy import engine_from_config
+from sqlalchemy import pool
+
+from alembic import context
+
+# Add the project root to the path
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+from app.core.database import Base
+from app import models  # Import all models to register them
+
+# this is the Alembic Config object, which provides
+# access to the values within the .ini file in use.
+config = context.config
+
+# Interpret the config file for Python logging.
+if config.config_file_name is not None:
+    fileConfig(config.config_file_name)
+
+# Set target_metadata to SQLAlchemy Base metadata
+target_metadata = Base.metadata
+
+
+def run_migrations_offline() -> None:
+    """Run migrations in 'offline' mode."""
+    url = config.get_main_option("sqlalchemy.url")
+    context.configure(
+        url=url,
+        target_metadata=target_metadata,
+        literal_binds=True,
+        dialect_opts={"paramstyle": "named"},
+    )
+
+    with context.begin_transaction():
+        context.run_migrations()
+
+
+def run_migrations_online() -> None:
+    """Run migrations in 'online' mode."""
+    connectable = engine_from_config(
+        config.get_section(config.config_ini_section, {}),
+        prefix="sqlalchemy.",
+        poolclass=pool.NullPool,
+    )
+
+    with connectable.connect() as connection:
+        context.configure(
+            connection=connection, target_metadata=target_metadata
+        )
+
+        with context.begin_transaction():
+            context.run_migrations()
+
+
+if context.is_offline_mode():
+    run_migrations_offline()
+else:
+    run_migrations_online()

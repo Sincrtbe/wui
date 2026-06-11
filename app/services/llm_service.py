@@ -1,1 +1,132 @@
-IiIiU2VydmljaW8gZGUgaW50ZWdyYWNpw7NuIGNvbiBMTE0gcGFyYSBnZW5lcmFjacOzbiBkZSBjb250ZW5pZG8uIiIiCmltcG9ydCBvcwppbXBvcnQganNvbgpmcm9tIHNxbGFsY2hlbXkub3JtIGltcG9ydCBTZXNzaW9uCmZyb20gYXBwLm1vZGVscy5jb25maWcgaW1wb3J0IEdsb2JhbENvbmZpZwoKCmNsYXNzIExMTVNlcnZpY2U6CiAgICAiIiJTZXJ2aWNpbyBwYXJhIGludGVyYWN0dWFyIGNvbiBMTE0gY29uZmlndXJhZG8gKE9wZW5BSSwgbG9jYWwsIGV0Yy4pLiIiIgoKICAgIEBzdGF0aWNtZXRob2QKICAgIGRlZiBnZXRfbGxtX2NvbmZpZyhkYjogU2Vzc2lvbikgLT4gZGljdDoKICAgICAgICAiIiJPYnRpZW5lIGxhIGNvbmZpZ3VyYWNpw7NuIGRlbCBMTE0gZGVzZGUgbGEgQkQuIiIiCiAgICAgICAgdXJsX2NvbmZpZyA9IGRiLnF1ZXJ5KEdsb2JhbENvbmZpZykuZmlsdGVyKEdsb2JhbENvbmZpZy5rZXkgPT0gImxsbV91cmwiKS5maXJzdCgpCiAgICAgICAga2V5X2NvbmZpZyA9IGRiLnF1ZXJ5KEdsb2JhbENvbmZpZykuZmlsdGVyKEdsb2JhbENvbmZpZy5rZXkgPT0gImxsbV9rZXkiKS5maXJzdCgpCiAgICAgICAgCiAgICAgICAgcmV0dXJuIHsKICAgICAgICAgICAgInVybCI6IHVybF9jb25maWcudmFsdWUgaWYgdXJsX2NvbmZpZyBlbHNlICJodHRwczovL2FwaS5vcGVuYWkuY29tL3YxIiwKICAgICAgICAgICAgImtleSI6IGtleV9jb25maWcudmFsdWUgaWYga2V5X2NvbmZpZyBlbHNlIG9zLmdldGVudigiT1BFTkFJX0FQSV9LRVkiLCAiIikKICAgICAgICB9CgogICAgQHN0YXRpY21ldGhvZAogICAgZGVmIGdlbmVyYXRlX3NjcmlwdF9mcm9tX2lkZWEoZGI6IFNlc3Npb24sIGlkZWFfdGl0bGU6IHN0ciwgaWRlYV9ub3Rlczogc3RyKSAtPiBkaWN0OgogICAgICAgICIiIkdlbmVyYSB1biBndWlvbiBhIHBhcnRpciBkZSB1bmEgaWRlYSB1c2FuZG8gTExNLiIiIgogICAgICAgIHRyeToKICAgICAgICAgICAgZnJvbSBvcGVuYWkgaW1wb3J0IE9wZW5BSQogICAgICAgICAgICAKICAgICAgICAgICAgY29uZmlnID0gTExNU2VydmljZS5nZXRfbGxtX2NvbmZpZyhkYikKICAgICAgICAgICAgCiAgICAgICAgICAgIGNsaWVudCA9IE9wZW5BSShhcGlfa2V5PWNvbmZpZ1sia2V5Il0sIGJhc2VfdXJsPWNvbmZpZ1sidXJsIl0pCiAgICAgICAgICAgIAogICAgICAgICAgICBwcm9tcHQgPSBmIiIiQmFzw6FuZG90ZSBlbiBsYSBzaWd1aWVudGUgaWRlYSBkZSBjb250ZW5pZG8sIGdlbmVyYSB1biBndWnDs24gcHJvZmVzaW9uYWwgcGFyYSB1biB2w61kZW8uCgoqKklkZWE6Kioge2lkZWFfdGl0bGV9CioqRGVzY3JpcGNpw7NuOioqIHtpZGVhX25vdGVzfQoKUG9yIGZhdm9yLCBwcm9wb3JjaW9uYToKMS4gVW4gZ3Vpw7NuIGRlIHZveiBkZXRhbGxhZG8gKGxvIHF1ZSBzZSBkaXLDoSBlbiBlbCB2w61kZW8pCjIuIFVuIGFydMOtY3VsbyBvIGRlc2NyaXBjacOzbiBjb21wbGVtZW50YXJpYQoKRm9ybWF0byBkZSByZXNwdWVzdGEgSlNPTjoKe3sKICAgICJzY3JpcHRfY29udGVudCI6ICIuLi4iLAogICAgImFydGljbGVfY29udGVudCI6ICIuLi4iCn19CiIiIgogICAgICAgICAgICAKICAgICAgICAgICAgcmVzcG9uc2UgPSBjbGllbnQuY2hhdC5jb21wbGV0aW9ucy5jcmVhdGUoCiAgICAgICAgICAgICAgICBtb2RlbD0iZ3B0LTMuNS10dXJibyIsCiAgICAgICAgICAgICAgICBtZXNzYWdlcz1bCiAgICAgICAgICAgICAgICAgICAgeyJyb2xlIjogInN5c3RlbSIsICJjb250ZW50IjogIkVyZXMgdW4gZXhwZXJ0byBlbiBjcmVhY2nDs24gZGUgY29udGVuaWRvIG11bHRpbWVkaWEuIn0sCiAgICAgICAgICAgICAgICAgICAgeyJyb2xlIjogInVzZXIiLCAiY29udGVudCI6IHByb21wdH0KICAgICAgICAgICAgICAgIF0sCiAgICAgICAgICAgICAgICB0ZW1wZXJhdHVyZT0wLjcKICAgICAgICAgICAgKQogICAgICAgICAgICAKICAgICAgICAgICAgcmVzdWx0X3RleHQgPSByZXNwb25zZS5jaG9pY2VzWzBdLm1lc3NhZ2UuY29udGVudAogICAgICAgICAgICAKICAgICAgICAgICAgIyBJbnRlbnRhciBwYXJzZWFyIEpTT04KICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgcmVzdWx0ID0ganNvbi5sb2FkcyhyZXN1bHRfdGV4dCkKICAgICAgICAgICAgZXhjZXB0OgogICAgICAgICAgICAgICAgIyBTaSBubyBlcyBKU09OIHbDoWxpZG8sIGRpdmlkaXIgcG9yIHNlY2Npb25lcwogICAgICAgICAgICAgICAgcmVzdWx0ID0gewogICAgICAgICAgICAgICAgICAgICJzY3JpcHRfY29udGVudCI6IHJlc3VsdF90ZXh0LAogICAgICAgICAgICAgICAgICAgICJhcnRpY2xlX2NvbnRlbnQiOiAiIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAKICAgICAgICAgICAgcmV0dXJuIHsKICAgICAgICAgICAgICAgICJzdWNjZXNzIjogVHJ1ZSwKICAgICAgICAgICAgICAgICJkYXRhIjogcmVzdWx0CiAgICAgICAgICAgIH0KICAgICAgICAKICAgICAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgICAgIHJldHVybiB7CiAgICAgICAgICAgICAgICAic3VjY2VzcyI6IEZhbHNlLAogICAgICAgICAgICAgICAgImVycm9yIjogc3RyKGUpCiAgICAgICAgICAgIH0KCiAgICBAc3RhdGljbWV0aG9kCiAgICBkZWYgZ2VuZXJhdGVfc2VvX21ldGFkYXRhKGRiOiBTZXNzaW9uLCB0aXRsZTogc3RyLCBjb250ZW50OiBzdHIpIC0+IGRpY3Q6CiAgICAgICAgIiIiR2VuZXJhIG1ldGFkYXRvcyBTRU8gKHRhZ3MsIGRlc2NyaXBjacOzbikgcGFyYSB1biB2w61kZW8uIiIiCiAgICAgICAgdHJ5OgogICAgICAgICAgICBmcm9tIG9wZW5haSBpbXBvcnQgT3BlbkFJCiAgICAgICAgICAgIAogICAgICAgICAgICBjb25maWcgPSBMTE1TZXJ2aWNlLmdldF9sbG1fY29uZmlnKGRiKQogICAgICAgICAgICBjbGllbnQgPSBPcGVuQUkoYXBpX2tleT1jb25maWdbImtleSJdLCBiYXNlX3VybD1jb25maWdbInVybCJdKQogICAgICAgICAgICAKICAgICAgICAgICAgcHJvbXB0ID0gZiIiIkFuYWxpemEgZWwgc2lndWllbnRlIGNvbnRlbmlkbyB5IGdlbmVyYSBtZXRhZGF0b3MgU0VPIG9wdGltaXphZG9zIHBhcmEgWW91VHViZToKCioqVMOtdHVsbzoqKiB7dGl0bGV9CioqQ29udGVuaWRvOioqIHtjb250ZW50Wzo1MDBdfS4uLgoKUHJvcG9yY2lvbmE6CjEuIFRhZ3MgcmVsZXZhbnRlcyAobcOheGltbyAxMCkKMi4gRGVzY3JpcGNpw7NuIG9wdGltaXphZGEgKG3DoXhpbW8gNTAwIGNhcmFjdGVyZXMpCjMuIFBhbGFicmFzIGNsYXZlIHByaW5jaXBhbGVzCgpGb3JtYXRvIEpTT046Cnt7CiAgICAidGFncyI6IFsuLi5dLAogICAgImRlc2NyaXB0aW9uIjogIi4uLiIsCiAgICAia2V5d29yZHMiOiBbLi4uXQp9fQoiIiIKICAgICAgICAgICAgCiAgICAgICAgICAgIHJlc3BvbnNlID0gY2xpZW50LmNoYXQuY29tcGxldGlvbnMuY3JlYXRlKAogICAgICAgICAgICAgICAgbW9kZWw9ImdwdC0zLjUtdHVyYm8iLAogICAgICAgICAgICAgICAgbWVzc2FnZXM9WwogICAgICAgICAgICAgICAgICAgIHsicm9sZSI6ICJzeXN0ZW0iLCAiY29udGVudCI6ICJFcmVzIHVuIGV4cGVydG8gZW4gU0VPIHkgb3B0aW1pemFjacOzbiBkZSBjb250ZW5pZG8uIn0sCiAgICAgICAgICAgICAgICAgICAgeyJyb2xlIjogInVzZXIiLCAiY29udGVudCI6IHByb21wdH0KICAgICAgICAgICAgICAgIF0sCiAgICAgICAgICAgICAgICB0ZW1wZXJhdHVyZT0wLjUKICAgICAgICAgICAgKQogICAgICAgICAgICAKICAgICAgICAgICAgcmVzdWx0X3RleHQgPSByZXNwb25zZS5jaG9pY2VzWzBdLm1lc3NhZ2UuY29udGVudAogICAgICAgICAgICAKICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgcmVzdWx0ID0ganNvbi5sb2FkcyhyZXN1bHRfdGV4dCkKICAgICAgICAgICAgZXhjZXB0OgogICAgICAgICAgICAgICAgcmVzdWx0ID0geyJ0YWdzIjogW10sICJkZXNjcmlwdGlvbiI6IHRpdGxlLCAia2V5d29yZHMiOiBbXX0KICAgICAgICAgICAgCiAgICAgICAgICAgIHJldHVybiB7CiAgICAgICAgICAgICAgICAic3VjY2VzcyI6IFRydWUsCiAgICAgICAgICAgICAgICAiZGF0YSI6IHJlc3VsdAogICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgICAgICByZXR1cm4gewogICAgICAgICAgICAgICAgInN1Y2Nlc3MiOiBGYWxzZSwKICAgICAgICAgICAgICAgICJlcnJvciI6IHN0cihlKQogICAgICAgICAgICB9Cg==
+"""Servicio de integración con LLM para generación de contenido."""
+import os
+import json
+from sqlalchemy.orm import Session
+from app.models.config import GlobalConfig
+
+
+class LLMService:
+    """Servicio para interactuar con LLM configurado (OpenAI, local, etc.)."""
+
+    @staticmethod
+    def get_llm_config(db: Session) -> dict:
+        """Obtiene la configuración del LLM desde la BD."""
+        url_config = db.query(GlobalConfig).filter(GlobalConfig.key == "llm_url").first()
+        key_config = db.query(GlobalConfig).filter(GlobalConfig.key == "llm_key").first()
+        
+        return {
+            "url": url_config.value if url_config else "https://api.openai.com/v1",
+            "key": key_config.value if key_config else os.getenv("OPENAI_API_KEY", "")
+        }
+
+    @staticmethod
+    def generate_script_from_idea(db: Session, idea_title: str, idea_notes: str) -> dict:
+        """Genera un guion a partir de una idea usando LLM."""
+        try:
+            from openai import OpenAI
+            
+            config = LLMService.get_llm_config(db)
+            
+            client = OpenAI(api_key=config["key"], base_url=config["url"])
+            
+            prompt = f"""Basándote en la siguiente idea de contenido, genera un guión profesional para un vídeo.
+
+**Idea:** {idea_title}
+**Descripción:** {idea_notes}
+
+Por favor, proporciona:
+1. Un guión de voz detallado (lo que se dirá en el vídeo)
+2. Un artículo o descripción complementaria
+
+Formato de respuesta JSON:
+{{
+    "script_content": "...",
+    "article_content": "..."
+}}
+"""
+            
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "Eres un experto en creación de contenido multimedia."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.7
+            )
+            
+            result_text = response.choices[0].message.content
+            
+            # Intentar parsear JSON
+            try:
+                result = json.loads(result_text)
+            except:
+                # Si no es JSON válido, dividir por secciones
+                result = {
+                    "script_content": result_text,
+                    "article_content": ""
+                }
+            
+            return {
+                "success": True,
+                "data": result
+            }
+        
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e)
+            }
+
+    @staticmethod
+    def generate_seo_metadata(db: Session, title: str, content: str) -> dict:
+        """Genera metadatos SEO (tags, descripción) para un vídeo."""
+        try:
+            from openai import OpenAI
+            
+            config = LLMService.get_llm_config(db)
+            client = OpenAI(api_key=config["key"], base_url=config["url"])
+            
+            prompt = f"""Analiza el siguiente contenido y genera metadatos SEO optimizados para YouTube:
+
+**Título:** {title}
+**Contenido:** {content[:500]}...
+
+Proporciona:
+1. Tags relevantes (máximo 10)
+2. Descripción optimizada (máximo 500 caracteres)
+3. Palabras clave principales
+
+Formato JSON:
+{{
+    "tags": [...],
+    "description": "...",
+    "keywords": [...]
+}}
+"""
+            
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "Eres un experto en SEO y optimización de contenido."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.5
+            )
+            
+            result_text = response.choices[0].message.content
+            
+            try:
+                result = json.loads(result_text)
+            except:
+                result = {"tags": [], "description": title, "keywords": []}
+            
+            return {
+                "success": True,
+                "data": result
+            }
+        
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e)
+            }

@@ -1,1 +1,120 @@
-IiIiUm91dGVyIGRlIGNvbmZpZ3VyYWNpw7NuIGdsb2JhbC4iIiIKaW1wb3J0IG9zCmZyb20gZmFzdGFwaSBpbXBvcnQgQVBJUm91dGVyLCBEZXBlbmRzLCBIVFRQRXhjZXB0aW9uCmZyb20gc3FsYWxjaGVteS5vcm0gaW1wb3J0IFNlc3Npb24KZnJvbSBhcHAuY29yZS5kYXRhYmFzZSBpbXBvcnQgZ2V0X2RiCmZyb20gYXBwLm1vZGVscy5jb25maWcgaW1wb3J0IEdsb2JhbENvbmZpZwpmcm9tIHB5ZGFudGljIGltcG9ydCBCYXNlTW9kZWwKZnJvbSBhcHAuc2VydmljZXMuYXV0b21hdGlvbl9zZXJ2aWNlX3N5bmMgaW1wb3J0IHN5bmNfYW5hbHl0aWNzX3NjaGVkdWxlCmZyb20gYXBwLmNvcmUuY29uZmlnIGltcG9ydCBnZXRfeW91dHViZV9hcGlfa2V5LCBtYXNrX2FwaV9rZXksIGlzX3lvdXR1YmVfYXBpX2tleV9jb25maWd1cmVkCmZyb20gZG90ZW52IGltcG9ydCBsb2FkX2RvdGVudgoKcm91dGVyID0gQVBJUm91dGVyKHByZWZpeD0iL2FwaS9jb25maWciLCB0YWdzPVsiY29uZmlnIl0pCgpjbGFzcyBDb25maWdVcGRhdGUoQmFzZU1vZGVsKToKICAgIGtleTogc3RyCiAgICB2YWx1ZTogc3RyCiAgICBkZXNjcmlwdGlvbjogc3RyIHwgTm9uZSA9IE5vbmUKCiMgRmljaGVybyAuZW52IHBhcmEgbGEgQVBJIGtleSBkZSBZb3VUdWJlCkVOVl9GSUxFID0gb3MucGF0aC5qb2luKG9zLnBhdGguZGlybmFtZShvcy5wYXRoLmRpcm5hbWUob3MucGF0aC5kaXJuYW1lKF9fZmlsZV9fKSkpLCAiLmVudiIpCgoKQHJvdXRlci5nZXQoIiIpCmRlZiBnZXRfYWxsX2NvbmZpZyhkYjogU2Vzc2lvbiA9IERlcGVuZHMoZ2V0X2RiKSk6CiAgICAiIiJPYnRpZW5lIHRvZGEgbGEgY29uZmlndXJhY2nDs24uIiIiCiAgICByZXR1cm4gZGIucXVlcnkoR2xvYmFsQ29uZmlnKS5hbGwoKQoKQHJvdXRlci5wb3N0KCIiKQpkZWYgdXBkYXRlX2NvbmZpZyhjb25maWc6IENvbmZpZ1VwZGF0ZSwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiQ3JlYSBvIGFjdHVhbGl6YSB1bmEgY29uZmlndXJhY2nDs24uIiIiCiAgICBkYl9jb25maWcgPSBkYi5xdWVyeShHbG9iYWxDb25maWcpLmZpbHRlcihHbG9iYWxDb25maWcua2V5ID09IGNvbmZpZy5rZXkpLmZpcnN0KCkKICAgIGlmIGRiX2NvbmZpZzoKICAgICAgICBkYl9jb25maWcudmFsdWUgPSBjb25maWcudmFsdWUKICAgICAgICBpZiBjb25maWcuZGVzY3JpcHRpb246CiAgICAgICAgICAgIGRiX2NvbmZpZy5kZXNjcmlwdGlvbiA9IGNvbmZpZy5kZXNjcmlwdGlvbgogICAgZWxzZToKICAgICAgICBkYl9jb25maWcgPSBHbG9iYWxDb25maWcoa2V5PWNvbmZpZy5rZXksIHZhbHVlPWNvbmZpZy52YWx1ZSwgZGVzY3JpcHRpb249Y29uZmlnLmRlc2NyaXB0aW9uKQogICAgICAgIGRiLmFkZChkYl9jb25maWcpCiAgICAKICAgIGRiLmNvbW1pdCgpCiAgICBkYi5yZWZyZXNoKGRiX2NvbmZpZykKICAgIAogICAgIyBTaSBzZSBhY3R1YWxpemEgbGEgcHJvZ3JhbWFjacOzbiBkZSBhbmFsw610aWNhcywgc2luY3Jvbml6YXIgZWwgc2NoZWR1bGVyCiAgICBpZiBjb25maWcua2V5ID09ICJhbmFseXRpY3Nfc2NoZWR1bGUiOgogICAgICAgIHN5bmNfYW5hbHl0aWNzX3NjaGVkdWxlKGNvbmZpZy52YWx1ZSkKICAgICAgICAKICAgIHJldHVybiBkYl9jb25maWcKCkByb3V0ZXIuZ2V0KCIve2tleX0iKQpkZWYgZ2V0X2NvbmZpZyhrZXk6IHN0ciwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiT2J0aWVuZSB1bmEgY29uZmlndXJhY2nDs24gcG9yIGNsYXZlLiIiIgogICAgY29uZmlnID0gZGIucXVlcnkoR2xvYmFsQ29uZmlnKS5maWx0ZXIoR2xvYmFsQ29uZmlnLmtleSA9PSBrZXkpLmZpcnN0KCkKICAgIGlmIG5vdCBjb25maWc6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDQsIGRldGFpbD0iQ29uZmlndXJhY2nDs24gbm8gZW5jb250cmFkYSIpCiAgICByZXR1cm4gY29uZmlnCgoKIyA9PT09PSBZb3VUdWJlIEFQSSBLZXkgRW5kcG9pbnRzID09PT09CgpjbGFzcyBZb3V0dWJlS2V5VXBkYXRlKEJhc2VNb2RlbCk6CiAgICBhcGlfa2V5OiBzdHIKCgpAcm91dGVyLmdldCgiL3lvdXR1YmUta2V5IikKZGVmIGdldF95b3V0dWJlX2tleV9zdGF0dXMoKToKICAgICIiIk9idGllbmUgZWwgZXN0YWRvIGRlIGxhIFlvdVR1YmUgQVBJIEtleSAoc2llbXByZSBkZXZ1ZWx2ZSBsYSBrZXkgZW5tYXNjYXJhZGEpLgogICAgCiAgICBSZXR1cm5zOgogICAgICAgIGRpY3Q6IEVzdGFkbyBkZSBsYSBBUEkga2V5IGNvbiBpbmZvcm1hY2nDs24gZW5tYXNjYXJhZGEuCiAgICAiIiIKICAgIGtleSA9IGdldF95b3V0dWJlX2FwaV9rZXkoKQogICAgY29uZmlndXJlZCA9IGlzX3lvdXR1YmVfYXBpX2tleV9jb25maWd1cmVkKCkKICAgIG1hc2tlZCA9IG1hc2tfYXBpX2tleShrZXkpIGlmIGNvbmZpZ3VyZWQgZWxzZSBOb25lCiAgICAKICAgIHJldHVybiB7CiAgICAgICAgImNvbmZpZ3VyZWQiOiBjb25maWd1cmVkLAogICAgICAgICJtYXNrZWRfa2V5IjogbWFza2VkLAogICAgICAgICJkaXNwbGF5X2tleSI6IGYie21hc2tlZFs6Ml19KioqKnttYXNrZWRbLTI6XX0iIGlmIG1hc2tlZCBhbmQgbGVuKG1hc2tlZCkgPiA0IGVsc2UgbWFza2VkCiAgICB9CgoKQHJvdXRlci5wb3N0KCIveW91dHViZS1rZXkiKQpkZWYgdXBkYXRlX3lvdXR1YmVfa2V5KGNvbmZpZzogWW91dHViZUtleVVwZGF0ZSk6CiAgICAiIiJHdWFyZGEgbGEgWW91VHViZSBBUEkgS2V5IGVuIGVsIGZpY2hlcm8gLmVudi4KICAgIAogICAgTGEga2V5IHNlIGFsbWFjZW5hIGVuIHRleHRvIHBsYW5vIGVuIC5lbnYgKHF1ZSBlc3TDoSBlbiAuZ2l0aWdub3JlKS4KICAgICIiIgogICAgYXBpX2tleSA9IGNvbmZpZy5hcGlfa2V5LnN0cmlwKCkKICAgIAogICAgaWYgbm90IGFwaV9rZXk6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDAsIGRldGFpbD0iTGEgQVBJIGtleSBubyBwdWVkZSBlc3RhciB2YWPDrWEiKQogICAgCiAgICAjIExlZXIgZWwgLmVudiBhY3R1YWwKICAgIGxvYWRfZG90ZW52KEVOVl9GSUxFKQogICAgZW52X3ZhcnMgPSB7fQogICAgCiAgICBpZiBvcy5wYXRoLmV4aXN0cyhFTlZfRklMRSk6CiAgICAgICAgd2l0aCBvcGVuKEVOVl9GSUxFLCAiciIsIGVuY29kaW5nPSJ1dGYtOCIpIGFzIGY6CiAgICAgICAgICAgIGZvciBsaW5lIGluIGY6CiAgICAgICAgICAgICAgICBsaW5lID0gbGluZS5zdHJpcCgpCiAgICAgICAgICAgICAgICBpZiBsaW5lIGFuZCBub3QgbGluZS5zdGFydHN3aXRoKCIjIikgYW5kICI9IiBpbiBsaW5lOgogICAgICAgICAgICAgICAgICAgIGssIHYgPSBsaW5lLnNwbGl0KCI9IiwgMSkKICAgICAgICAgICAgICAgICAgICBlbnZfdmFyc1trLnN0cmlwKCldID0gdi5zdHJpcCgpCiAgICAKICAgICMgQWN0dWFsaXphciBsYSBrZXkKICAgIGVudl92YXJzWyJZT1VUVUJFX0FQSV9LRVkiXSA9IGFwaV9rZXkKICAgIAogICAgIyBFc2NyaWJpciBkZSB2dWVsdGEKICAgIHdpdGggb3BlbihFTlZfRklMRSwgInciLCBlbmNvZGluZz0idXRmLTgiKSBhcyBmOgogICAgICAgIGZvciBrLCB2IGluIGVudl92YXJzLml0ZW1zKCk6CiAgICAgICAgICAgIGYud3JpdGUoZiJ7a309e3Z9XG4iKQogICAgCiAgICAjIFJlY2FyZ2FyIGxhcyB2YXJpYWJsZXMgZGUgZW50b3JubwogICAgb3MuZW52aXJvblsiWU9VVFVCRV9BUElfS0VZIl0gPSBhcGlfa2V5CiAgICAKICAgIHJldHVybiB7CiAgICAgICAgInN1Y2Nlc3MiOiBUcnVlLAogICAgICAgICJtZXNzYWdlIjogIllvdVR1YmUgQVBJIEtleSBndWFyZGFkYSBjb3JyZWN0YW1lbnRlIiwKICAgICAgICAibWFza2VkX2tleSI6IG1hc2tfYXBpX2tleShhcGlfa2V5KQogICAgfQo=
+"""Router de configuración global."""
+import os
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.models.config import GlobalConfig
+from pydantic import BaseModel
+from app.services.automation_service_sync import sync_analytics_schedule
+from app.core.config import get_youtube_api_key, mask_api_key, is_youtube_api_key_configured
+from dotenv import load_dotenv
+
+router = APIRouter(prefix="/api/config", tags=["config"])
+
+class ConfigUpdate(BaseModel):
+    key: str
+    value: str
+    description: str | None = None
+
+# Fichero .env para la API key de YouTube
+ENV_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env")
+
+
+@router.get("")
+def get_all_config(db: Session = Depends(get_db)):
+    """Obtiene toda la configuración."""
+    return db.query(GlobalConfig).all()
+
+@router.post("")
+def update_config(config: ConfigUpdate, db: Session = Depends(get_db)):
+    """Crea o actualiza una configuración."""
+    db_config = db.query(GlobalConfig).filter(GlobalConfig.key == config.key).first()
+    if db_config:
+        db_config.value = config.value
+        if config.description:
+            db_config.description = config.description
+    else:
+        db_config = GlobalConfig(key=config.key, value=config.value, description=config.description)
+        db.add(db_config)
+    
+    db.commit()
+    db.refresh(db_config)
+    
+    # Si se actualiza la programación de analíticas, sincronizar el scheduler
+    if config.key == "analytics_schedule":
+        sync_analytics_schedule(config.value)
+        
+    return db_config
+
+@router.get("/{key}")
+def get_config(key: str, db: Session = Depends(get_db)):
+    """Obtiene una configuración por clave."""
+    config = db.query(GlobalConfig).filter(GlobalConfig.key == key).first()
+    if not config:
+        raise HTTPException(status_code=404, detail="Configuración no encontrada")
+    return config
+
+
+# ===== YouTube API Key Endpoints =====
+
+class YoutubeKeyUpdate(BaseModel):
+    api_key: str
+
+
+@router.get("/youtube-key")
+def get_youtube_key_status():
+    """Obtiene el estado de la YouTube API Key (siempre devuelve la key enmascarada).
+    
+    Returns:
+        dict: Estado de la API key con información enmascarada.
+    """
+    key = get_youtube_api_key()
+    configured = is_youtube_api_key_configured()
+    masked = mask_api_key(key) if configured else None
+    
+    return {
+        "configured": configured,
+        "masked_key": masked,
+        "display_key": f"{masked[:2]}****{masked[-2:]}" if masked and len(masked) > 4 else masked
+    }
+
+
+@router.post("/youtube-key")
+def update_youtube_key(config: YoutubeKeyUpdate):
+    """Guarda la YouTube API Key en el fichero .env.
+    
+    La key se almacena en texto plano en .env (que está en .gitignore).
+    """
+    api_key = config.api_key.strip()
+    
+    if not api_key:
+        raise HTTPException(status_code=400, detail="La API key no puede estar vacía")
+    
+    # Leer el .env actual
+    load_dotenv(ENV_FILE)
+    env_vars = {}
+    
+    if os.path.exists(ENV_FILE):
+        with open(ENV_FILE, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    env_vars[k.strip()] = v.strip()
+    
+    # Actualizar la key
+    env_vars["YOUTUBE_API_KEY"] = api_key
+    
+    # Escribir de vuelta
+    with open(ENV_FILE, "w", encoding="utf-8") as f:
+        for k, v in env_vars.items():
+            f.write(f"{k}={v}\n")
+    
+    # Recargar las variables de entorno
+    os.environ["YOUTUBE_API_KEY"] = api_key
+    
+    return {
+        "success": True,
+        "message": "YouTube API Key guardada correctamente",
+        "masked_key": mask_api_key(api_key)
+    }

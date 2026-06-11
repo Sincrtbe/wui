@@ -1,1 +1,123 @@
-IiIiU2VydmljaW8gZGUgZGFzaGJvYXJkLiIiIgpmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRldGltZQpmcm9tIHNxbGFsY2hlbXkub3JtIGltcG9ydCBTZXNzaW9uCmZyb20gc3FsYWxjaGVteSBpbXBvcnQgZnVuYwpmcm9tIGFwcC5tb2RlbHMgaW1wb3J0IFNjcmlwdCwgVmlkZW8sIFB1YmxpY2F0aW9uU2NoZWR1bGUsIEF1dG9tYXRpb25SdW4sIEF1dG9tYXRpb25UYXNrLCBDaGFubmVsCmZyb20gYXBwLnNjaGVtYXMuZGFzaGJvYXJkIGltcG9ydCAoCiAgICBEYXNoYm9hcmRTdW1tYXJ5LAogICAgVXBjb21pbmdQdWJsaWNhdGlvblN1bW1hcnksCiAgICBBY3RpdmVBdXRvbWF0aW9uUnVuU3VtbWFyeSwKICAgIERhc2hib2FyZENoYW5uZWxTdW1tYXJ5LAogICAgUHVibGljYXRpb25DYWxlbmRhckV2ZW50LAopCgoKY2xhc3MgRGFzaGJvYXJkU2VydmljZToKICAgICIiIlNlcnZpY2lvIGRlIGdlbmVyYWNpw7NuIGRlIHJlc3VtZW4gZGUgZGFzaGJvYXJkLiIiIgoKICAgIEBzdGF0aWNtZXRob2QKICAgIGRlZiBnZXRfc3VtbWFyeShkYjogU2Vzc2lvbiwgY2hhbm5lbF9pZDogaW50IHwgTm9uZSA9IE5vbmUpIC0+IERhc2hib2FyZFN1bW1hcnk6CiAgICAgICAgIiIiR2VuZXJhIGVsIHJlc3VtZW4gZGVsIGRhc2hib2FyZC4iIiIKICAgICAgICBzY3JpcHRzX2J5X3N0YXR1cyA9IHt9CiAgICAgICAgc2NyaXB0X3F1ZXJ5ID0gZGIucXVlcnkoU2NyaXB0LnN0YXR1cywgZnVuYy5jb3VudChTY3JpcHQuaWQpKS5ncm91cF9ieShTY3JpcHQuc3RhdHVzKQogICAgICAgIGlmIGNoYW5uZWxfaWQgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIHNjcmlwdF9xdWVyeSA9IHNjcmlwdF9xdWVyeS5maWx0ZXIoU2NyaXB0LmNoYW5uZWxfaWQgPT0gY2hhbm5lbF9pZCkKICAgICAgICBmb3Igc3RhdHVzLCBjb3VudCBpbiBzY3JpcHRfcXVlcnkuYWxsKCk6CiAgICAgICAgICAgIHNjcmlwdHNfYnlfc3RhdHVzW3N0YXR1c10gPSBjb3VudAoKICAgICAgICB2aWRlb3NfYnlfc3RhdHVzID0ge30KICAgICAgICB2aWRlb19xdWVyeSA9IGRiLnF1ZXJ5KFZpZGVvLnN0YXR1cywgZnVuYy5jb3VudChWaWRlby5pZCkpLmdyb3VwX2J5KFZpZGVvLnN0YXR1cykKICAgICAgICBpZiBjaGFubmVsX2lkIGlzIG5vdCBOb25lOgogICAgICAgICAgICB2aWRlb19xdWVyeSA9IHZpZGVvX3F1ZXJ5LmZpbHRlcihWaWRlby5jaGFubmVsX2lkID09IGNoYW5uZWxfaWQpCiAgICAgICAgZm9yIHN0YXR1cywgY291bnQgaW4gdmlkZW9fcXVlcnkuYWxsKCk6CiAgICAgICAgICAgIHZpZGVvc19ieV9zdGF0dXNbc3RhdHVzXSA9IGNvdW50CgogICAgICAgIGNoYW5uZWxzX3F1ZXJ5ID0gZGIucXVlcnkoQ2hhbm5lbCkKICAgICAgICBpZiBjaGFubmVsX2lkIGlzIG5vdCBOb25lOgogICAgICAgICAgICBjaGFubmVsc19xdWVyeSA9IGNoYW5uZWxzX3F1ZXJ5LmZpbHRlcihDaGFubmVsLmlkID09IGNoYW5uZWxfaWQpCiAgICAgICAgY2hhbm5lbHMgPSBjaGFubmVsc19xdWVyeS5hbGwoKQogICAgICAgIGNoYW5uZWxzX292ZXJ2aWV3ID0gW10KCiAgICAgICAgZm9yIGNoYW5uZWwgaW4gY2hhbm5lbHM6CiAgICAgICAgICAgIHNjcmlwdF9jb3VudCA9IGRiLnF1ZXJ5KGZ1bmMuY291bnQoU2NyaXB0LmlkKSkuZmlsdGVyKFNjcmlwdC5jaGFubmVsX2lkID09IGNoYW5uZWwuaWQpLnNjYWxhcigpIG9yIDAKICAgICAgICAgICAgdmlkZW9fY291bnQgPSBkYi5xdWVyeShmdW5jLmNvdW50KFZpZGVvLmlkKSkuZmlsdGVyKFZpZGVvLmNoYW5uZWxfaWQgPT0gY2hhbm5lbC5pZCkuc2NhbGFyKCkgb3IgMAogICAgICAgICAgICB1cGNvbWluZ19jb3VudCA9ICgKICAgICAgICAgICAgICAgIGRiLnF1ZXJ5KGZ1bmMuY291bnQoUHVibGljYXRpb25TY2hlZHVsZS5pZCkpCiAgICAgICAgICAgICAgICAuZmlsdGVyKFB1YmxpY2F0aW9uU2NoZWR1bGUuY2hhbm5lbF9pZCA9PSBjaGFubmVsLmlkKQogICAgICAgICAgICAgICAgLmZpbHRlcihQdWJsaWNhdGlvblNjaGVkdWxlLnNjaGVkdWxlZF9kYXRldGltZSA+PSBkYXRldGltZS51dGNub3coKSkKICAgICAgICAgICAgICAgIC5maWx0ZXIoUHVibGljYXRpb25TY2hlZHVsZS5zdGF0dXMgPT0gInBsYW5uZWQiKQogICAgICAgICAgICAgICAgLnNjYWxhcigpCiAgICAgICAgICAgICAgICBvciAwCiAgICAgICAgICAgICkKICAgICAgICAgICAgcGVuZGluZ19jb3VudCA9ICgKICAgICAgICAgICAgICAgIGRiLnF1ZXJ5KGZ1bmMuY291bnQoUHVibGljYXRpb25TY2hlZHVsZS5pZCkpCiAgICAgICAgICAgICAgICAuZmlsdGVyKFB1YmxpY2F0aW9uU2NoZWR1bGUuY2hhbm5lbF9pZCA9PSBjaGFubmVsLmlkKQogICAgICAgICAgICAgICAgLmZpbHRlcihQdWJsaWNhdGlvblNjaGVkdWxlLnN0YXR1cyA9PSAicGxhbm5lZCIpCiAgICAgICAgICAgICAgICAuc2NhbGFyKCkKICAgICAgICAgICAgICAgIG9yIDAKICAgICAgICAgICAgKQoKICAgICAgICAgICAgdGh1bWJuYWlsX3VybCA9IGYiL2FwaS9jaGFubmVscy97Y2hhbm5lbC5pZH0vdGh1bWJuYWlsIiBpZiBjaGFubmVsLnRodW1ibmFpbF9maWxlIGVsc2UgTm9uZQoKICAgICAgICAgICAgY2hhbm5lbHNfb3ZlcnZpZXcuYXBwZW5kKAogICAgICAgICAgICAgICAgRGFzaGJvYXJkQ2hhbm5lbFN1bW1hcnkoCiAgICAgICAgICAgICAgICAgICAgY2hhbm5lbF9pZD1jaGFubmVsLmlkLAogICAgICAgICAgICAgICAgICAgIGNoYW5uZWxfbmFtZT1jaGFubmVsLnRpdGxlLAogICAgICAgICAgICAgICAgICAgIGNoYW5uZWxfY29sb3I9Y2hhbm5lbC5jb2xvciwKICAgICAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbj1jaGFubmVsLmRlc2NyaXB0aW9uLAogICAgICAgICAgICAgICAgICAgIGN1c3RvbVVybD1jaGFubmVsLmN1c3RvbV91cmwsCiAgICAgICAgICAgICAgICAgICAgcHVibGlzaGVkQXQ9Y2hhbm5lbC5wdWJsaXNoZWRfYXQsCiAgICAgICAgICAgICAgICAgICAgdG9waWNJZHM9Y2hhbm5lbC50b3BpY19pZHMsCiAgICAgICAgICAgICAgICAgICAgdG9waWNDYXRlZ29yaWVzPWNoYW5uZWwudG9waWNfY2F0ZWdvcmllcywKICAgICAgICAgICAgICAgICAgICB0aHVtYm5haWxfZmlsZT1jaGFubmVsLnRodW1ibmFpbF9maWxlLAogICAgICAgICAgICAgICAgICAgIHRodW1ibmFpbF91cmw9dGh1bWJuYWlsX3VybCwKICAgICAgICAgICAgICAgICAgICB0b3RhbF9zY3JpcHRzPXNjcmlwdF9jb3VudCwKICAgICAgICAgICAgICAgICAgICB0b3RhbF92aWRlb3M9dmlkZW9fY291bnQsCiAgICAgICAgICAgICAgICAgICAgdXBjb21pbmdfcHVibGljYXRpb25zPXVwY29taW5nX2NvdW50LAogICAgICAgICAgICAgICAgICAgIHBlbmRpbmdfcHVibGljYXRpb25zPXBlbmRpbmdfY291bnQsCiAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICkKCiAgICAgICAgcHViX3F1ZXJ5ID0gZGIucXVlcnkoUHVibGljYXRpb25TY2hlZHVsZSkuZmlsdGVyKFB1YmxpY2F0aW9uU2NoZWR1bGUuc2NoZWR1bGVkX2RhdGV0aW1lID49IGRhdGV0aW1lLnV0Y25vdygpKQogICAgICAgIGlmIGNoYW5uZWxfaWQgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIHB1Yl9xdWVyeSA9IHB1Yl9xdWVyeS5maWx0ZXIoUHVibGljYXRpb25TY2hlZHVsZS5jaGFubmVsX2lkID09IGNoYW5uZWxfaWQpCiAgICAgICAgcHViX3F1ZXJ5ID0gcHViX3F1ZXJ5Lm9yZGVyX2J5KFB1YmxpY2F0aW9uU2NoZWR1bGUuc2NoZWR1bGVkX2RhdGV0aW1lKS5saW1pdCgzMCkKICAgICAgICBwdWJsaWNhdGlvbl9jYWxlbmRhciA9IFtdCgogICAgICAgIGZvciBwdWIgaW4gcHViX3F1ZXJ5LmFsbCgpOgogICAgICAgICAgICBjaGFubmVsID0gZGIucXVlcnkoQ2hhbm5lbCkuZmlsdGVyKENoYW5uZWwuaWQgPT0gcHViLmNoYW5uZWxfaWQpLmZpcnN0KCkKICAgICAgICAgICAgc2NyaXB0ID0gTm9uZQogICAgICAgICAgICBpZiBwdWIuc2NyaXB0X2lkIGlzIG5vdCBOb25lOgogICAgICAgICAgICAgICAgc2NyaXB0ID0gZGIucXVlcnkoU2NyaXB0KS5maWx0ZXIoU2NyaXB0LmlkID09IHB1Yi5zY3JpcHRfaWQpLmZpcnN0KCkKICAgICAgICAgICAgcHVibGljYXRpb25fY2FsZW5kYXIuYXBwZW5kKAogICAgICAgICAgICAgICAgUHVibGljYXRpb25DYWxlbmRhckV2ZW50KAogICAgICAgICAgICAgICAgICAgIGlkPXB1Yi5pZCwKICAgICAgICAgICAgICAgICAgICBjaGFubmVsX2lkPXB1Yi5jaGFubmVsX2lkLAogICAgICAgICAgICAgICAgICAgIGNoYW5uZWxfbmFtZT1jaGFubmVsLnRpdGxlIGlmIGNoYW5uZWwgZWxzZSAiRGVzY29ub2NpZG8iLAogICAgICAgICAgICAgICAgICAgIGNoYW5uZWxfY29sb3I9Y2hhbm5lbC5jb2xvciBpZiBjaGFubmVsIGVsc2UgIiMzYjgyZjYiLAogICAgICAgICAgICAgICAgICAgIHRpdGxlPXNjcmlwdC50aXRsZSBpZiBzY3JpcHQgZWxzZSBwdWIubm90ZXMgb3IgIlB1YmxpY2FjacOzbiBwcm9ncmFtYWRhIiwKICAgICAgICAgICAgICAgICAgICBkYXRlPXB1Yi5zY2hlZHVsZWRfZGF0ZXRpbWUsCiAgICAgICAgICAgICAgICAgICAgc3RhdHVzPXB1Yi5zdGF0dXMsCiAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICkKCiAgICAgICAgYWN0aXZlX3J1bnMgPSBkYi5xdWVyeShBdXRvbWF0aW9uUnVuKS5maWx0ZXIoQXV0b21hdGlvblJ1bi5zdGF0dXMuaW5fKFsicGVuZGluZyIsICJydW5uaW5nIl0pKSAuYWxsKCkKICAgICAgICBhY3RpdmVfYXV0b21hdGlvbl9ydW5zID0gW10KICAgICAgICBmb3IgcnVuIGluIGFjdGl2ZV9ydW5zOgogICAgICAgICAgICB0YXNrID0gZGIucXVlcnkoQXV0b21hdGlvblRhc2spLmZpbHRlcihBdXRvbWF0aW9uVGFzay5pZCA9PSBydW4udGFza19pZCkuZmlyc3QoKQogICAgICAgICAgICBhY3RpdmVfYXV0b21hdGlvbl9ydW5zLmFwcGVuZCgKICAgICAgICAgICAgICAgIEFjdGl2ZUF1dG9tYXRpb25SdW5TdW1tYXJ5KAogICAgICAgICAgICAgICAgICAgIHJ1bl9pZD1ydW4uaWQsCiAgICAgICAgICAgICAgICAgICAgdGFza19uYW1lPXRhc2submFtZSBpZiB0YXNrIGVsc2UgIkRlc2Nvbm9jaWRhIiwKICAgICAgICAgICAgICAgICAgICBzdGF0dXM9cnVuLnN0YXR1cywKICAgICAgICAgICAgICAgICAgICBzdGFydGVkX2F0PXJ1bi5zdGFydGVkX2F0LAogICAgICAgICAgICAgICAgKQogICAgICAgICAgICApCgogICAgICAgIHJldHVybiBEYXNoYm9hcmRTdW1tYXJ5KAogICAgICAgICAgICBzY3JpcHRzX2J5X3N0YXR1cz1zY3JpcHRzX2J5X3N0YXR1cywKICAgICAgICAgICAgdmlkZW9zX2J5X3N0YXR1cz12aWRlb3NfYnlfc3RhdHVzLAogICAgICAgICAgICBjaGFubmVsc19vdmVydmlldz1jaGFubmVsc19vdmVydmlldywKICAgICAgICAgICAgcHVibGljYXRpb25fY2FsZW5kYXI9cHVibGljYXRpb25fY2FsZW5kYXIsCiAgICAgICAgICAgIGFjdGl2ZV9hdXRvbWF0aW9uX3J1bnM9YWN0aXZlX2F1dG9tYXRpb25fcnVucywKICAgICAgICApCg==
+"""Servicio de dashboard."""
+from datetime import datetime
+from sqlalchemy.orm import Session
+from sqlalchemy import func
+from app.models import Script, Video, PublicationSchedule, AutomationRun, AutomationTask, Channel
+from app.schemas.dashboard import (
+    DashboardSummary,
+    UpcomingPublicationSummary,
+    ActiveAutomationRunSummary,
+    DashboardChannelSummary,
+    PublicationCalendarEvent,
+)
+
+
+class DashboardService:
+    """Servicio de generación de resumen de dashboard."""
+
+    @staticmethod
+    def get_summary(db: Session, channel_id: int | None = None) -> DashboardSummary:
+        """Genera el resumen del dashboard."""
+        scripts_by_status = {}
+        script_query = db.query(Script.status, func.count(Script.id)).group_by(Script.status)
+        if channel_id is not None:
+            script_query = script_query.filter(Script.channel_id == channel_id)
+        for status, count in script_query.all():
+            scripts_by_status[status] = count
+
+        videos_by_status = {}
+        video_query = db.query(Video.status, func.count(Video.id)).group_by(Video.status)
+        if channel_id is not None:
+            video_query = video_query.filter(Video.channel_id == channel_id)
+        for status, count in video_query.all():
+            videos_by_status[status] = count
+
+        channels_query = db.query(Channel)
+        if channel_id is not None:
+            channels_query = channels_query.filter(Channel.id == channel_id)
+        channels = channels_query.all()
+        channels_overview = []
+
+        for channel in channels:
+            script_count = db.query(func.count(Script.id)).filter(Script.channel_id == channel.id).scalar() or 0
+            video_count = db.query(func.count(Video.id)).filter(Video.channel_id == channel.id).scalar() or 0
+            upcoming_count = (
+                db.query(func.count(PublicationSchedule.id))
+                .filter(PublicationSchedule.channel_id == channel.id)
+                .filter(PublicationSchedule.scheduled_datetime >= datetime.utcnow())
+                .filter(PublicationSchedule.status == "planned")
+                .scalar()
+                or 0
+            )
+            pending_count = (
+                db.query(func.count(PublicationSchedule.id))
+                .filter(PublicationSchedule.channel_id == channel.id)
+                .filter(PublicationSchedule.status == "planned")
+                .scalar()
+                or 0
+            )
+
+            thumbnail_url = f"/api/channels/{channel.id}/thumbnail" if channel.thumbnail_file else None
+
+            channels_overview.append(
+                DashboardChannelSummary(
+                    channel_id=channel.id,
+                    channel_name=channel.title,
+                    channel_color=channel.color,
+                    description=channel.description,
+                    customUrl=channel.custom_url,
+                    publishedAt=channel.published_at,
+                    topicIds=channel.topic_ids,
+                    topicCategories=channel.topic_categories,
+                    thumbnail_file=channel.thumbnail_file,
+                    thumbnail_url=thumbnail_url,
+                    total_scripts=script_count,
+                    total_videos=video_count,
+                    upcoming_publications=upcoming_count,
+                    pending_publications=pending_count,
+                )
+            )
+
+        pub_query = db.query(PublicationSchedule).filter(PublicationSchedule.scheduled_datetime >= datetime.utcnow())
+        if channel_id is not None:
+            pub_query = pub_query.filter(PublicationSchedule.channel_id == channel_id)
+        pub_query = pub_query.order_by(PublicationSchedule.scheduled_datetime).limit(30)
+        publication_calendar = []
+
+        for pub in pub_query.all():
+            channel = db.query(Channel).filter(Channel.id == pub.channel_id).first()
+            script = None
+            if pub.script_id is not None:
+                script = db.query(Script).filter(Script.id == pub.script_id).first()
+            publication_calendar.append(
+                PublicationCalendarEvent(
+                    id=pub.id,
+                    channel_id=pub.channel_id,
+                    channel_name=channel.title if channel else "Desconocido",
+                    channel_color=channel.color if channel else "#3b82f6",
+                    title=script.title if script else pub.notes or "Publicación programada",
+                    date=pub.scheduled_datetime,
+                    status=pub.status,
+                )
+            )
+
+        active_runs = db.query(AutomationRun).filter(AutomationRun.status.in_(["pending", "running"])) .all()
+        active_automation_runs = []
+        for run in active_runs:
+            task = db.query(AutomationTask).filter(AutomationTask.id == run.task_id).first()
+            active_automation_runs.append(
+                ActiveAutomationRunSummary(
+                    run_id=run.id,
+                    task_name=task.name if task else "Desconocida",
+                    status=run.status,
+                    started_at=run.started_at,
+                )
+            )
+
+        return DashboardSummary(
+            scripts_by_status=scripts_by_status,
+            videos_by_status=videos_by_status,
+            channels_overview=channels_overview,
+            publication_calendar=publication_calendar,
+            active_automation_runs=active_automation_runs,
+        )

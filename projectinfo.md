@@ -1,1 +1,61 @@
-IyBXdWkgLSBGaWNoYSBUw6ljbmljYSBkZWwgUHJveWVjdG8KCiMjIEluZm9ybWFjacOzbiBHZW5lcmFsCnwgQ2FtcG8gfCBWYWxvciB8CnwtLS0tLS0tfC0tLS0tLS18CnwgKipOb21icmUqKiB8IFd1aSB8CnwgKipWZXJzacOzbioqIHwgMS4wLjAgfAp8ICoqVGlwbyoqIHwgUGxhdGFmb3JtYSBkZSBhdXRvbWF0aXphY2nDs24gZGUgY29udGVuaWRvIHwKfCAqKlBsYXRhZm9ybWEgb2JqZXRpdm8qKiB8IFlvdVR1YmUgfAp8ICoqTGljZW5jaWEqKiB8IEludGVybmEgfAoKIyMgU3RhY2sgVGVjbm9sw7NnaWNvCi0gKipCYWNrZW5kOioqIFB5dGhvbiAzLnggKyBGYXN0QVBJIDAuMTA0LjEKLSAqKkZyb250ZW5kOioqIEhUTUw1ICsgQ1NTMyArIEphdmFTY3JpcHQgdmFuaWxsYQotICoqQmFzZSBkZSBkYXRvczoqKiBTUUxpdGUgKGFwcC5kYikKLSAqKk9STToqKiBTUUxBbGNoZW15IDIuMC4yMwotICoqU2Vydmlkb3I6KiogVXZpY29ybiAwLjI0LjAKLSAqKlRhcmVhcyBwcm9ncmFtYWRhczoqKiBBUFNjaGVkdWxlciAzLjEwLjQKLSAqKlZhbGlkYWNpw7NuOioqIHB5ZGFudGljIDIuNS4wCi0gKipBUEkgWW91VHViZToqKiBnb29nbGUtYXBpLXB5dGhvbi1jbGllbnQgMi4xOTcuMAoKIyMgQXJxdWl0ZWN0dXJhCmBgYApNb25vbGl0byB0cmFkaWNpb25hbCBjb24gc2VwYXJhY2nDs24gY2xhcmEgZGUgcmVzcG9uc2FiaWxpZGFkZXM6Ci0gQVBJIFJFU1QgKEZhc3RBUEkgcm91dGVycykKLSBNb2RlbG9zIChTUUxBbGNoZW15KQotIFZpc3Rhcy9Fc3TDoXRpY2FzIChzdGF0aWMvKQotIFRhcmVhcyBlbiBzZWd1bmRvIHBsYW5vIChBUFNjaGVkdWxlcikKYGBgCgojIyBFbmRwb2ludHMgUHJpbmNpcGFsZXMKLSBgL3VpYCDihpIgSW50ZXJmYXogd2ViCi0gYC9hcGkvY2hhbm5lbHNgIOKGkiBDUlVEIGNhbmFsZXMgWW91VHViZQotIGAvYXBpL3NjaGVkdWxlc2Ag4oaSIFByb2dyYW1hY2nDs24gcHVibGljYWNpb25lcwotIGAvYXBpL3Byb21wdHNgIOKGkiBCaWJsaW90ZWNhIGRlIHByb21wdHMKLSBgL2FwaS9hbmFseXRpY3NgIOKGkiBNw6l0cmljYXMgeSBlc3RhZMOtc3RpY2FzCi0gYC9hcGkvZGFzaGJvYXJkYCDihpIgUmVzdW1lbiBnZW5lcmFsCi0gYC9hcGkvY29uZmlnYCDihpIgQ29uZmlndXJhY2nDs24gZGVsIHNpc3RlbWEKLSBgL2hlYWx0aGAg4oaSIEhlYWx0aCBjaGVjawoKIyMgUHVlcnRvcyB5IEFjY2VzbwotICoqVUk6KiogaHR0cDovLzEyNy4wLjAuMTo5MDgwL3VpCi0gKipBUEk6KiogaHR0cDovLzEyNy4wLjAuMTo5MDgwCi0gKipIZWFsdGg6KiogaHR0cDovLzEyNy4wLjAuMTo5MDgwL2hlYWx0aAoKIyMgUmVwb3NpdG9yaW8KLSAqKlJlbW90ZToqKiBodHRwczovL2dpdGh1Yi5jb20vU2luY3J0YmUvd3VpLmdpdAotICoqw5psdGltbyBjb21taXQ6KiogZmI5MDZhMjdlN2UzMGY4ZDE5NGJiZDMwNGE1YjU0ZTdlYzYzYTEwZDcKLSAqKlJhbWE6KiogbWFzdGVyCgojIyBEb2N1bWVudGFjacOzbgp8IEFyY2hpdm8gfCBQcm9ww7NzaXRvIHwKfC0tLS0tLS0tLXwtLS0tLS0tLS0tLXwKfCBgaW5wcm9ncmVzcy5tZGAgfCBEb2N1bWVudG8gcHJpbmNpcGFsIGRlbCBwcm95ZWN0byB8CnwgYGJ1Zy5tZGAgfCBIaXN0b3JpYWwgZGUgYnVncyB5IGNvcnJlY2Npb25lcyB8CnwgYHByb2plY3RpbmZvLm1kYCB8IEZpY2hhIHTDqWNuaWNhIChlc3RlIGFyY2hpdm8pIHwKCiMjIExhbnphbWllbnRvCi0gYHJ1bl9zZXJ2ZXIuYmF0YCDihpIgSW5pY2lhIGVsIHNlcnZpZG9yIEZhc3RBUEkKLSBgaW5pY2lhci5iYXRgIOKGkiBMYXVuY2hlciBXaW5kb3dzCi0gYHN5c3RlbXRyYXkucHlgIOKGkiBJY29ubyBlbiBiYW5kZWphIGRlbCBzaXN0ZW1h
+# Wui - Ficha Técnica del Proyecto
+
+## Información General
+| Campo | Valor |
+|-------|-------|
+| **Nombre** | Wui |
+| **Versión** | 1.0.0 |
+| **Tipo** | Plataforma de automatización de contenido |
+| **Plataforma objetivo** | YouTube |
+| **Licencia** | Interna |
+
+## Stack Tecnológico
+- **Backend:** Python 3.x + FastAPI 0.104.1
+- **Frontend:** HTML5 + CSS3 + JavaScript vanilla
+- **Base de datos:** SQLite (app.db)
+- **ORM:** SQLAlchemy 2.0.23
+- **Servidor:** Uvicorn 0.24.0
+- **Tareas programadas:** APScheduler 3.10.4
+- **Validación:** pydantic 2.5.0
+- **API YouTube:** google-api-python-client 2.197.0
+
+## Arquitectura
+```
+Monolito tradicional con separación clara de responsabilidades:
+- API REST (FastAPI routers)
+- Modelos (SQLAlchemy)
+- Vistas/Estáticas (static/)
+- Tareas en segundo plano (APScheduler)
+```
+
+## Endpoints Principales
+- `/ui` → Interfaz web
+- `/api/channels` → CRUD canales YouTube
+- `/api/schedules` → Programación publicaciones
+- `/api/prompts` → Biblioteca de prompts
+- `/api/analytics` → Métricas y estadísticas
+- `/api/dashboard` → Resumen general
+- `/api/config` → Configuración del sistema
+- `/health` → Health check
+
+## Puertos y Acceso
+- **UI:** http://127.0.0.1:9080/ui
+- **API:** http://127.0.0.1:9080
+- **Health:** http://127.0.0.1:9080/health
+
+## Repositorio
+- **Remote:** https://github.com/Sincrtbe/wui.git
+- **Último commit:** fb906a27e7e30f8d194bbd304a5b54e7ec63a10d7
+- **Rama:** master
+
+## Documentación
+| Archivo | Propósito |
+|---------|-----------|
+| `inprogress.md` | Documento principal del proyecto |
+| `bug.md` | Historial de bugs y correcciones |
+| `projectinfo.md` | Ficha técnica (este archivo) |
+
+## Lanzamiento
+- `run_server.bat` → Inicia el servidor FastAPI
+- `iniciar.bat` → Launcher Windows
+- `systemtray.py` → Icono en bandeja del sistema

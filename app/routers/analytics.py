@@ -1,1 +1,114 @@
-IiIiUm91dGVyIGRlIGFuw6FsaXNpcyB5IGVzdGFkw61zdGljYXMuIiIiCmZyb20gZmFzdGFwaSBpbXBvcnQgQVBJUm91dGVyLCBEZXBlbmRzLCBIVFRQRXhjZXB0aW9uCmZyb20gc3FsYWxjaGVteS5vcm0gaW1wb3J0IFNlc3Npb24KZnJvbSBhcHAuY29yZS5kYXRhYmFzZSBpbXBvcnQgZ2V0X2RiCmZyb20gYXBwLm1vZGVscy5kYWlseV9zdGF0IGltcG9ydCBEYWlseVN0YXQKZnJvbSBhcHAubW9kZWxzLnB1YmxpY2F0aW9uX3NjaGVkdWxlIGltcG9ydCBQdWJsaWNhdGlvblNjaGVkdWxlCmZyb20gYXBwLm1vZGVscy52aWRlbyBpbXBvcnQgVmlkZW8KZnJvbSBhcHAubW9kZWxzLnNjcmlwdCBpbXBvcnQgU2NyaXB0CmZyb20gc3FsYWxjaGVteSBpbXBvcnQgZnVuYywgRGF0ZQpmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRlLCB0aW1lZGVsdGEKZnJvbSBhcHAuc2VydmljZXMuYW5hbHl0aWNzX3NlcnZpY2UgaW1wb3J0IHJ1bl9kYWlseV9zdGF0c19pbXBvcnQKCnJvdXRlciA9IEFQSVJvdXRlcihwcmVmaXg9Ii9hcGkvYW5hbHl0aWNzIiwgdGFncz1bImFuYWx5dGljcyJdKQoKQHJvdXRlci5wb3N0KCIvaW1wb3J0L3tjaGFubmVsX2lkfSIpCmRlZiBpbXBvcnRfY2hhbm5lbF9zdGF0cyhjaGFubmVsX2lkOiBpbnQsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgICIiIkVqZWN1dGEgbGEgaW1wb3J0YWNpw7NuIGRlIGVzdGFkw61zdGljYXMgcGFyYSB1biBjYW5hbC4iIiIKICAgIHJlc3VsdCA9IHJ1bl9kYWlseV9zdGF0c19pbXBvcnQoZGIsIGNoYW5uZWxfaWQpCiAgICBpZiAiZXJyb3IiIGluIHJlc3VsdDoKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTUwMCwgZGV0YWlsPXJlc3VsdFsiZXJyb3IiXSkKICAgIHJldHVybiByZXN1bHQKCkByb3V0ZXIuZ2V0KCIvZGFpbHktc3RhdHMve2NoYW5uZWxfaWR9IikKZGVmIGdldF9kYWlseV9zdGF0cyhjaGFubmVsX2lkOiBpbnQsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgICIiIk9idGllbmUgbGFzIGVzdGFkw61zdGljYXMgZGlhcmlhcyBkZSB1biBjYW5hbC4iIiIKICAgIHN0YXRzID0gZGIucXVlcnkoRGFpbHlTdGF0KS5maWx0ZXIoRGFpbHlTdGF0LmNoYW5uZWxfaWQgPT0gY2hhbm5lbF9pZCkub3JkZXJfYnkoRGFpbHlTdGF0LnN0YXRfZGF0ZS5hc2MoKSkuYWxsKCkKICAgICMgQ29udmVydGlyIG9iamV0b3MgU1FMQWxjaGVteSBhIGRpY2Npb25hcmlvcyBwYXJhIHNlcmlhbGl6YWNpw7NuIEpTT04KICAgIHJldHVybiBbCiAgICAgICAgewogICAgICAgICAgICAiaWQiOiBzLmlkLAogICAgICAgICAgICAiY2hhbm5lbF9pZCI6IHMuY2hhbm5lbF9pZCwKICAgICAgICAgICAgImNoYW5uZWxfbmFtZSI6IHMuY2hhbm5lbF9uYW1lLAogICAgICAgICAgICAidmlld19jb3VudCI6IHMudmlld19jb3VudCwKICAgICAgICAgICAgInN1YnNjcmliZXJfY291bnQiOiBzLnN1YnNjcmliZXJfY291bnQsCiAgICAgICAgICAgICJ2aWRlb19jb3VudCI6IHMudmlkZW9fY291bnQsCiAgICAgICAgICAgICJzdGF0X2RhdGUiOiBzLnN0YXRfZGF0ZS5pc29mb3JtYXQoKSBpZiBzLnN0YXRfZGF0ZSBlbHNlIE5vbmUsCiAgICAgICAgICAgICJmZWNoYV9lamVjdWNpb24iOiBzLmZlY2hhX2VqZWN1Y2lvbgogICAgICAgIH0KICAgICAgICBmb3IgcyBpbiBzdGF0cwogICAgXQoKQHJvdXRlci5nZXQoIi9wdWJsaWNhdGlvbnMtaGlzdG9yeS97Y2hhbm5lbF9pZH0iKQpkZWYgZ2V0X3B1YmxpY2F0aW9uc19oaXN0b3J5KGNoYW5uZWxfaWQ6IGludCwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiT2J0aWVuZSBlbCBoaXN0b3JpYWwgZGUgcHVibGljYWNpb25lcyBkZSB1biBjYW5hbC4iIiIKICAgICMgQnVzY2FyIHB1YmxpY2FjaW9uZXMgeSBzY3JpcHRzIGFzb2NpYWRvcwogICAgaGlzdG9yeSA9IGRiLnF1ZXJ5KAogICAgICAgIFB1YmxpY2F0aW9uU2NoZWR1bGUuc2NoZWR1bGVkX2RhdGV0aW1lLAogICAgICAgIFB1YmxpY2F0aW9uU2NoZWR1bGUuc3RhdHVzLAogICAgICAgIFB1YmxpY2F0aW9uU2NoZWR1bGUubm90ZXMsCiAgICAgICAgUHVibGljYXRpb25TY2hlZHVsZS5jb250ZW50X3R5cGUsCiAgICAgICAgU2NyaXB0LnRpdGxlCiAgICApLm91dGVyam9pbihTY3JpcHQsIFB1YmxpY2F0aW9uU2NoZWR1bGUuc2NyaXB0X2lkID09IFNjcmlwdC5pZCkuZmlsdGVyKAogICAgICAgIFB1YmxpY2F0aW9uU2NoZWR1bGUuY2hhbm5lbF9pZCA9PSBjaGFubmVsX2lkCiAgICApLm9yZGVyX2J5KFB1YmxpY2F0aW9uU2NoZWR1bGUuc2NoZWR1bGVkX2RhdGV0aW1lLmRlc2MoKSkuYWxsKCkKICAgIAogICAgcmV0dXJuIFsKICAgICAgICB7CiAgICAgICAgICAgICJkYXRlIjogaC5zY2hlZHVsZWRfZGF0ZXRpbWUuaXNvZm9ybWF0KCkgaWYgaC5zY2hlZHVsZWRfZGF0ZXRpbWUgZWxzZSBOb25lLAogICAgICAgICAgICAiY29udGVudF90eXBlIjogaC5jb250ZW50X3R5cGUgb3IgInVua25vd24iLAogICAgICAgICAgICAidGl0bGUiOiBoLnRpdGxlIG9yICJTaW4gZ3Vpb24gYXNvY2lhZG8iLAogICAgICAgICAgICAic3RhdHVzIjogaC5zdGF0dXMgb3IgInBsYW5uZWQiCiAgICAgICAgfSBmb3IgaCBpbiBoaXN0b3J5CiAgICBdCgpAcm91dGVyLnBvc3QoIi9jaGVjay10b2RheS97Y2hhbm5lbF9pZH0iKQphc3luYyBkZWYgY2hlY2tfYW5kX2ZldGNoX3RvZGF5X3N0YXRzKGNoYW5uZWxfaWQ6IGludCwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiVmVyaWZpY2Egc2kgaGF5IGRhdG9zIGRlIGhveSBwYXJhIGVsIGNhbmFsLiBTaSBubyBsb3MgaGF5LCBlamVjdXRhIERhdG9zRGlhcmlvcy5weSB5IGxvcyBndWFyZGEuIiIiCiAgICBmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRlCiAgICB0b2RheSA9IGRhdGUudG9kYXkoKQogICAgCiAgICAjIEJ1c2NhciBkYXRvcyBkZSBob3kKICAgIGV4aXN0aW5nID0gZGIucXVlcnkoRGFpbHlTdGF0KS5maWx0ZXIoCiAgICAgICAgRGFpbHlTdGF0LmNoYW5uZWxfaWQgPT0gY2hhbm5lbF9pZCwKICAgICAgICBEYWlseVN0YXQuc3RhdF9kYXRlID09IHRvZGF5CiAgICApLmZpcnN0KCkKICAgIAogICAgaWYgZXhpc3Rpbmc6CiAgICAgICAgcmV0dXJuIHsKICAgICAgICAgICAgImhhc190b2RheV9kYXRhIjogVHJ1ZSwKICAgICAgICAgICAgImRhdGEiOiB7CiAgICAgICAgICAgICAgICAidmlld19jb3VudCI6IGV4aXN0aW5nLnZpZXdfY291bnQsCiAgICAgICAgICAgICAgICAic3Vic2NyaWJlcl9jb3VudCI6IGV4aXN0aW5nLnN1YnNjcmliZXJfY291bnQsCiAgICAgICAgICAgICAgICAidmlkZW9fY291bnQiOiBleGlzdGluZy52aWRlb19jb3VudCwKICAgICAgICAgICAgICAgICJmZWNoYV9lamVjdWNpb24iOiBleGlzdGluZy5mZWNoYV9lamVjdWNpb24KICAgICAgICAgICAgfQogICAgICAgIH0KICAgIAogICAgIyBObyBoYXkgZGF0b3MgZGUgaG95LCBlamVjdXRhciBEYXRvc0RpYXJpb3MucHkKICAgIGZyb20gYXBwLnNlcnZpY2VzLmFuYWx5dGljc19zZXJ2aWNlIGltcG9ydCBydW5fZGFpbHlfc3RhdHNfaW1wb3J0CiAgICByZXN1bHQgPSBydW5fZGFpbHlfc3RhdHNfaW1wb3J0KGRiLCBjaGFubmVsX2lkKQogICAgCiAgICBpZiAiZXJyb3IiIGluIHJlc3VsdDoKICAgICAgICByZXR1cm4geyJoYXNfdG9kYXlfZGF0YSI6IEZhbHNlLCAiZXJyb3IiOiByZXN1bHRbImVycm9yIl19CiAgICAKICAgIHJldHVybiB7CiAgICAgICAgImhhc190b2RheV9kYXRhIjogVHJ1ZSwKICAgICAgICAiZGF0YSI6IHJlc3VsdC5nZXQoImRhdGEiLCB7fSksCiAgICAgICAgImZldGNoZWQiOiBUcnVlCiAgICB9CgoKQHJvdXRlci5nZXQoIi9zdW1tYXJ5L3tjaGFubmVsX2lkfSIpCmRlZiBnZXRfY2hhbm5lbF9zdW1tYXJ5KGNoYW5uZWxfaWQ6IGludCwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiUmVzdW1lbiBkZSBhY3RpdmlkYWQgZGVsIGNhbmFsLiIiIgogICAgIyBDb250YXIgdmlkZW9zIHBvciBlc3RhZG8KICAgIHZpZGVvX3N0YXRzID0gZGIucXVlcnkoVmlkZW8uc3RhdHVzLCBmdW5jLmNvdW50KFZpZGVvLmlkKSkuZmlsdGVyKFZpZGVvLmNoYW5uZWxfaWQgPT0gY2hhbm5lbF9pZCkuZ3JvdXBfYnkoVmlkZW8uc3RhdHVzKS5hbGwoKQogICAgCiAgICAjIENvbnRhciBwdWJsaWNhY2lvbmVzCiAgICBwdWJfY291bnQgPSBkYi5xdWVyeShmdW5jLmNvdW50KFB1YmxpY2F0aW9uU2NoZWR1bGUuaWQpKS5maWx0ZXIoUHVibGljYXRpb25TY2hlZHVsZS5jaGFubmVsX2lkID09IGNoYW5uZWxfaWQpLnNjYWxhcigpCiAgICAKICAgIHJldHVybiB7CiAgICAgICAgInZpZGVvX3N0YXRzIjogZGljdCh2aWRlb19zdGF0cyksCiAgICAgICAgInRvdGFsX3B1YmxpY2F0aW9ucyI6IHB1Yl9jb3VudAogICAgfQo=
+"""Router de análisis y estadísticas."""
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.models.daily_stat import DailyStat
+from app.models.publication_schedule import PublicationSchedule
+from app.models.video import Video
+from app.models.script import Script
+from sqlalchemy import func, Date
+from datetime import date, timedelta
+from app.services.analytics_service import run_daily_stats_import
+
+router = APIRouter(prefix="/api/analytics", tags=["analytics"])
+
+@router.post("/import/{channel_id}")
+def import_channel_stats(channel_id: int, db: Session = Depends(get_db)):
+    """Ejecuta la importación de estadísticas para un canal."""
+    result = run_daily_stats_import(db, channel_id)
+    if "error" in result:
+        raise HTTPException(status_code=500, detail=result["error"])
+    return result
+
+@router.get("/daily-stats/{channel_id}")
+def get_daily_stats(channel_id: int, db: Session = Depends(get_db)):
+    """Obtiene las estadísticas diarias de un canal."""
+    stats = db.query(DailyStat).filter(DailyStat.channel_id == channel_id).order_by(DailyStat.stat_date.asc()).all()
+    # Convertir objetos SQLAlchemy a diccionarios para serialización JSON
+    return [
+        {
+            "id": s.id,
+            "channel_id": s.channel_id,
+            "channel_name": s.channel_name,
+            "view_count": s.view_count,
+            "subscriber_count": s.subscriber_count,
+            "video_count": s.video_count,
+            "stat_date": s.stat_date.isoformat() if s.stat_date else None,
+            "fecha_ejecucion": s.fecha_ejecucion
+        }
+        for s in stats
+    ]
+
+@router.get("/publications-history/{channel_id}")
+def get_publications_history(channel_id: int, db: Session = Depends(get_db)):
+    """Obtiene el historial de publicaciones de un canal."""
+    # Buscar publicaciones y scripts asociados
+    history = db.query(
+        PublicationSchedule.scheduled_datetime,
+        PublicationSchedule.status,
+        PublicationSchedule.notes,
+        PublicationSchedule.content_type,
+        Script.title
+    ).outerjoin(Script, PublicationSchedule.script_id == Script.id).filter(
+        PublicationSchedule.channel_id == channel_id
+    ).order_by(PublicationSchedule.scheduled_datetime.desc()).all()
+    
+    return [
+        {
+            "date": h.scheduled_datetime.isoformat() if h.scheduled_datetime else None,
+            "content_type": h.content_type or "unknown",
+            "title": h.title or "Sin guion asociado",
+            "status": h.status or "planned"
+        } for h in history
+    ]
+
+@router.post("/check-today/{channel_id}")
+async def check_and_fetch_today_stats(channel_id: int, db: Session = Depends(get_db)):
+    """Verifica si hay datos de hoy para el canal. Si no los hay, ejecuta DatosDiarios.py y los guarda."""
+    from datetime import date
+    today = date.today()
+    
+    # Buscar datos de hoy
+    existing = db.query(DailyStat).filter(
+        DailyStat.channel_id == channel_id,
+        DailyStat.stat_date == today
+    ).first()
+    
+    if existing:
+        return {
+            "has_today_data": True,
+            "data": {
+                "view_count": existing.view_count,
+                "subscriber_count": existing.subscriber_count,
+                "video_count": existing.video_count,
+                "fecha_ejecucion": existing.fecha_ejecucion
+            }
+        }
+    
+    # No hay datos de hoy, ejecutar DatosDiarios.py
+    from app.services.analytics_service import run_daily_stats_import
+    result = run_daily_stats_import(db, channel_id)
+    
+    if "error" in result:
+        return {"has_today_data": False, "error": result["error"]}
+    
+    return {
+        "has_today_data": True,
+        "data": result.get("data", {}),
+        "fetched": True
+    }
+
+
+@router.get("/summary/{channel_id}")
+def get_channel_summary(channel_id: int, db: Session = Depends(get_db)):
+    """Resumen de actividad del canal."""
+    # Contar videos por estado
+    video_stats = db.query(Video.status, func.count(Video.id)).filter(Video.channel_id == channel_id).group_by(Video.status).all()
+    
+    # Contar publicaciones
+    pub_count = db.query(func.count(PublicationSchedule.id)).filter(PublicationSchedule.channel_id == channel_id).scalar()
+    
+    return {
+        "video_stats": dict(video_stats),
+        "total_publications": pub_count
+    }

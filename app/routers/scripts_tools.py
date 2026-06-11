@@ -1,1 +1,51 @@
-IiIiUm91dGVyIGRlIGVqZWN1Y2nDs24gZGUgc2NyaXB0cyBkZSBoZXJyYW1pZW50YXMuIiIiCmZyb20gZmFzdGFwaSBpbXBvcnQgQVBJUm91dGVyLCBRdWVyeQpmcm9tIHR5cGluZyBpbXBvcnQgT3B0aW9uYWwKZnJvbSB0b29scy5zY3JpcHRfcnVubmVyIGltcG9ydCBsaXN0X2F2YWlsYWJsZV9zY3JpcHRzLCBydW5fc2NyaXB0LCBTY3JpcHRSZXN1bHQKCnJvdXRlciA9IEFQSVJvdXRlcihwcmVmaXg9Ii9hcGkvc2NyaXB0cy10b29scyIsIHRhZ3M9WyJzY3JpcHRzLXRvb2xzIl0pCgoKQHJvdXRlci5nZXQoIi9saXN0IikKZGVmIGxpc3Rfc2NyaXB0cygpIC0+IGxpc3RbZGljdF06CiAgICAiIiJMaXN0YSB0b2RvcyBsb3Mgc2NyaXB0cyBkaXNwb25pYmxlcyBlbiBsYSBjYXJwZXRhIHRvb2xzLy4iIiIKICAgIHJldHVybiBsaXN0X2F2YWlsYWJsZV9zY3JpcHRzKCkKCgpAcm91dGVyLnBvc3QoIi9ydW4iKQpkZWYgZXhlY3V0ZV9zY3JpcHQoCiAgICBzY3JpcHQ6IHN0ciA9IFF1ZXJ5KC4uLiwgZGVzY3JpcHRpb249Ik5vbWJyZSBkZWwgc2NyaXB0IGEgZWplY3V0YXIiKSwKICAgIGFyZ3Nfc3RyOiBPcHRpb25hbFtzdHJdID0gUXVlcnkoTm9uZSwgZGVzY3JpcHRpb249IkFyZ3VtZW50b3Mgc2VwYXJhZG9zIHBvciBjb21hcyIpLAogICAgdGltZW91dDogaW50ID0gUXVlcnkoMzAwLCBnZT0xLCBsZT0zNjAwLCBkZXNjcmlwdGlvbj0iVGltZW91dCBlbiBzZWd1bmRvcyIpLAogICAgY3dkOiBPcHRpb25hbFtzdHJdID0gUXVlcnkoTm9uZSwgZGVzY3JpcHRpb249IkRpcmVjdG9yaW8gZGUgdHJhYmFqbyIpLAopIC0+IGRpY3Q6CiAgICAiIiIKICAgIEVqZWN1dGEgdW4gc2NyaXB0IGRlc2RlIGxhIGNhcnBldGEgdG9vbHMvLgogICAgCiAgICAtICoqc2NyaXB0Kio6IE5vbWJyZSBkZWwgYXJjaGl2byBkZWwgc2NyaXB0IChlajogImV4YW1wbGUucHkiKQogICAgLSAqKmFyZ3Nfc3RyKio6IEFyZ3VtZW50b3Mgc2VwYXJhZG9zIHBvciBjb21hcyAob3BjaW9uYWwpCiAgICAtICoqdGltZW91dCoqOiBUaW1lb3V0IGVuIHNlZ3VuZG9zICgxLTM2MDAsIHBvciBkZWZlY3RvIDMwMCkKICAgIC0gKipjd2QqKjogRGlyZWN0b3JpbyBkZSB0cmFiYWpvIG9wY2lvbmFsCiAgICAiIiIKICAgIGFyZ3MgPSBOb25lCiAgICBpZiBhcmdzX3N0cjoKICAgICAgICBhcmdzID0gW2Euc3RyaXAoKSBmb3IgYSBpbiBhcmdzX3N0ci5zcGxpdCgiLCIpIGlmIGEuc3RyaXAoKV0KCiAgICByZXN1bHQ6IFNjcmlwdFJlc3VsdCA9IHJ1bl9zY3JpcHQoCiAgICAgICAgc2NyaXB0X25hbWU9c2NyaXB0LAogICAgICAgIGFyZ3M9YXJncywKICAgICAgICB0aW1lb3V0PXRpbWVvdXQsCiAgICAgICAgY3dkPWN3ZCwKICAgICkKCiAgICByZXR1cm4gewogICAgICAgICJzY3JpcHRfbmFtZSI6IHJlc3VsdC5zY3JpcHRfbmFtZSwKICAgICAgICAibGFuZ3VhZ2UiOiByZXN1bHQubGFuZ3VhZ2UsCiAgICAgICAgInN1Y2Nlc3MiOiByZXN1bHQuc3VjY2VzcywKICAgICAgICAic3Rkb3V0IjogcmVzdWx0LnN0ZG91dCwKICAgICAgICAic3RkZXJyIjogcmVzdWx0LnN0ZGVyciwKICAgICAgICAicmV0dXJuX2NvZGUiOiByZXN1bHQucmV0dXJuX2NvZGUsCiAgICAgICAgImV4ZWN1dGlvbl90aW1lIjogcm91bmQocmVzdWx0LmV4ZWN1dGlvbl90aW1lLCAzKSwKICAgICAgICAiZXhlY3V0ZWRfYXQiOiByZXN1bHQuZXhlY3V0ZWRfYXQuaXNvZm9ybWF0KCksCiAgICAgICAgImVycm9yIjogcmVzdWx0LmVycm9yLAogICAgfQ==
+"""Router de ejecución de scripts de herramientas."""
+from fastapi import APIRouter, Query
+from typing import Optional
+from tools.script_runner import list_available_scripts, run_script, ScriptResult
+
+router = APIRouter(prefix="/api/scripts-tools", tags=["scripts-tools"])
+
+
+@router.get("/list")
+def list_scripts() -> list[dict]:
+    """Lista todos los scripts disponibles en la carpeta tools/."""
+    return list_available_scripts()
+
+
+@router.post("/run")
+def execute_script(
+    script: str = Query(..., description="Nombre del script a ejecutar"),
+    args_str: Optional[str] = Query(None, description="Argumentos separados por comas"),
+    timeout: int = Query(300, ge=1, le=3600, description="Timeout en segundos"),
+    cwd: Optional[str] = Query(None, description="Directorio de trabajo"),
+) -> dict:
+    """
+    Ejecuta un script desde la carpeta tools/.
+    
+    - **script**: Nombre del archivo del script (ej: "example.py")
+    - **args_str**: Argumentos separados por comas (opcional)
+    - **timeout**: Timeout en segundos (1-3600, por defecto 300)
+    - **cwd**: Directorio de trabajo opcional
+    """
+    args = None
+    if args_str:
+        args = [a.strip() for a in args_str.split(",") if a.strip()]
+
+    result: ScriptResult = run_script(
+        script_name=script,
+        args=args,
+        timeout=timeout,
+        cwd=cwd,
+    )
+
+    return {
+        "script_name": result.script_name,
+        "language": result.language,
+        "success": result.success,
+        "stdout": result.stdout,
+        "stderr": result.stderr,
+        "return_code": result.return_code,
+        "execution_time": round(result.execution_time, 3),
+        "executed_at": result.executed_at.isoformat(),
+        "error": result.error,
+    }

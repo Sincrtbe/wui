@@ -1,1 +1,14 @@
-IiIiUm91dGVyIGRlIGRhc2hib2FyZC4iIiIKZnJvbSBmYXN0YXBpIGltcG9ydCBBUElSb3V0ZXIsIERlcGVuZHMKZnJvbSBzcWxhbGNoZW15Lm9ybSBpbXBvcnQgU2Vzc2lvbgpmcm9tIGFwcC5jb3JlLmRhdGFiYXNlIGltcG9ydCBnZXRfZGIKZnJvbSBhcHAuc2VydmljZXMuZGFzaGJvYXJkX3NlcnZpY2UgaW1wb3J0IERhc2hib2FyZFNlcnZpY2UKZnJvbSBhcHAuc2NoZW1hcy5kYXNoYm9hcmQgaW1wb3J0IERhc2hib2FyZFN1bW1hcnkKCnJvdXRlciA9IEFQSVJvdXRlcihwcmVmaXg9Ii9hcGkvZGFzaGJvYXJkIiwgdGFncz1bImRhc2hib2FyZCJdKQoKCkByb3V0ZXIuZ2V0KCIvc3VtbWFyeSIsIHJlc3BvbnNlX21vZGVsPURhc2hib2FyZFN1bW1hcnkpCmRlZiBnZXRfZGFzaGJvYXJkX3N1bW1hcnkoY2hhbm5lbF9pZDogaW50IHwgTm9uZSA9IE5vbmUsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgICIiIk9idGllbmUgZWwgcmVzdW1lbiBkZWwgZGFzaGJvYXJkLiIiIgogICAgcmV0dXJuIERhc2hib2FyZFNlcnZpY2UuZ2V0X3N1bW1hcnkoZGIsIGNoYW5uZWxfaWQpCg==
+"""Router de dashboard."""
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.services.dashboard_service import DashboardService
+from app.schemas.dashboard import DashboardSummary
+
+router = APIRouter(prefix="/api/dashboard", tags=["dashboard"])
+
+
+@router.get("/summary", response_model=DashboardSummary)
+def get_dashboard_summary(channel_id: int | None = None, db: Session = Depends(get_db)):
+    """Obtiene el resumen del dashboard."""
+    return DashboardService.get_summary(db, channel_id)

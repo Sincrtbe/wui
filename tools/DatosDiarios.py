@@ -1,1 +1,74 @@
-aW1wb3J0IHN5cwppbXBvcnQgb3MKaW1wb3J0IGpzb24KaW1wb3J0IGRhdGV0aW1lCmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aApmcm9tIGdvb2dsZWFwaWNsaWVudC5kaXNjb3ZlcnkgaW1wb3J0IGJ1aWxkCgojIC0tLSBDT05GSUdVUkFDScOTTiAtLS0KQVBJX0tFWSA9IG9zLmVudmlyb24uZ2V0KCJZT1VUVUJFX0FQSV9LRVkiLCAiIikKaWYgbm90IEFQSV9LRVk6CiAgICBwcmludChqc29uLmR1bXBzKHsiZXJyb3IiOiAiRmFsdGEgbGEgdmFyaWFibGUgZGUgZW50b3JubyBZT1VUVUJFX0FQSV9LRVkifSwgaW5kZW50PTQpKQogICAgc3lzLmV4aXQoMSkKCiMgUnV0YSBhYnNvbHV0YSBhIGxhIGNhcnBldGEgbWV0cmljYXMgZGVzZGUgZWwgc2NyaXB0ClNDUklQVF9ESVIgPSBQYXRoKF9fZmlsZV9fKS5wYXJlbnQucmVzb2x2ZSgpClBST0pFQ1RfUk9PVCA9IFNDUklQVF9ESVIucGFyZW50LnJlc29sdmUoKQpERUZBVUxUX09VVFBVVF9ESVIgPSBzdHIoUFJPSkVDVF9ST09UIC8gIm1ldHJpY2FzIikKCiMgVmFsaWRhY2nDs246IEFsIG1lbm9zIG5lY2VzaXRhbW9zIGVsIElEIGRlbCBjYW5hbAppZiBsZW4oc3lzLmFyZ3YpIDwgMjoKICAgIGVycm9yX21zZyA9IHsKICAgICAgICAiZXJyb3IiOiAiRmFsdGEgZWwgSUQgZGVsIGNhbmFsLiIsCiAgICAgICAgInVzb18xIjogInB5dGhvbiBzY3JpcHQyLnB5IFVDX3h4eHgiLAogICAgICAgICJ1c29fMiI6ICJweXRob24gc2NyaXB0Mi5weSBVQ194eHh4ICdudWV2YV9ydXRhX2NhcnBldGEnIgogICAgfQogICAgcHJpbnQoanNvbi5kdW1wcyhlcnJvcl9tc2csIGluZGVudD00KSkKICAgIHN5cy5leGl0KDEpCgpjaGFubmVsX2lkID0gc3lzLmFyZ3ZbMV0KCiMgTMOzZ2ljYSBkZSBsYSBydXRhOiBTaSBwYXNhbiB1biAywrogcGFyw6FtZXRybywgc29icmVzY3JpYmUgbGEgcnV0YSBwb3IgZGVmZWN0bwppZiBsZW4oc3lzLmFyZ3YpID49IDM6CiAgICBPVVRQVVRfRElSID0gc3lzLmFyZ3ZbMl0KZWxzZToKICAgIE9VVFBVVF9ESVIgPSBERUZBVUxUX09VVFBVVF9ESVIKCiMgQ3JlYXIgbGEgY2FycGV0YSBhdXRvbcOhdGljYW1lbnRlIChzZWEgbGEgZGUgcG9yIGRlZmVjdG8gbyBsYSBzb2JyZXNjcml0YSkKb3MubWFrZWRpcnMoT1VUUFVUX0RJUiwgZXhpc3Rfb2s9VHJ1ZSkKCnlvdXR1YmUgPSBidWlsZCgneW91dHViZScsICd2MycsIGRldmVsb3BlcktleT1BUElfS0VZKQoKdHJ5OgogICAgIyBDb25zdWx0YXIgbGFzIGVzdGFkw61zdGljYXMgcMO6YmxpY2FzIGRlbCBjYW5hbAogICAgcmVzcG9uc2UgPSB5b3V0dWJlLmNoYW5uZWxzKCkubGlzdCgKICAgICAgICBwYXJ0PSJzdGF0aXN0aWNzIiwKICAgICAgICBpZD1jaGFubmVsX2lkCiAgICApLmV4ZWN1dGUoKQoKICAgIGlmIG5vdCByZXNwb25zZS5nZXQoIml0ZW1zIik6CiAgICAgICAgcHJpbnQoanNvbi5kdW1wcyh7ImVycm9yIjogZiJObyBzZSBlbmNvbnRyw7MgbmluZ8O6biBjYW5hbCBjb24gZWwgSUQ6IHtjaGFubmVsX2lkfSJ9LCBpbmRlbnQ9NCkpCiAgICAgICAgc3lzLmV4aXQoMSkKCiAgICBzdGF0cyA9IHJlc3BvbnNlWyJpdGVtcyJdWzBdWyJzdGF0aXN0aWNzIl0KCiAgICAjIENvbnN0cnVpciBlbCBKU09OIGRlIHNhbGlkYSBjb24gbGEgZmVjaGEgZGUgaG95CiAgICByZXN1bHRhZG8gPSB7CiAgICAgICAgInZpZXdDb3VudCI6IGludChzdGF0cy5nZXQoInZpZXdDb3VudCIsIDApKSwKICAgICAgICAic3Vic2NyaWJlckNvdW50IjogaW50KHN0YXRzLmdldCgic3Vic2NyaWJlckNvdW50IiwgMCkpLAogICAgICAgICJ2aWRlb0NvdW50IjogaW50KHN0YXRzLmdldCgidmlkZW9Db3VudCIsIDApKSwKICAgICAgICAiZmVjaGFfZWplY3VjaW9uIjogZGF0ZXRpbWUuZGF0ZS50b2RheSgpLmlzb2Zvcm1hdCgpCiAgICB9CgogICAgIyBEZWZpbmlyIGxhIHJ1dGEgZGVsIGFyY2hpdm8gdXRpbGl6YW5kbyBsYSBjYXJwZXRhIGNvcnJlc3BvbmRpZW50ZQogICAgcnV0YV9zdGF0cyA9IG9zLnBhdGguam9pbihPVVRQVVRfRElSLCBmIntjaGFubmVsX2lkfV9zdGF0cy5qc29uIikKCiAgICAjIEd1YXJkYXIgZWwgSlNPTiBlbiBsYSBjYXJwZXRhCiAgICB3aXRoIG9wZW4ocnV0YV9zdGF0cywgInciLCBlbmNvZGluZz0idXRmLTgiKSBhcyBmOgogICAgICAgIGpzb24uZHVtcChyZXN1bHRhZG8sIGYsIGVuc3VyZV9hc2NpaT1GYWxzZSwgaW5kZW50PTQpCgogICAgIyBJbXByaW1pciBwb3IgY29uc29sYSBlbCBKU09OIHB1cm8gcGFyYSB0dSBoZXJyYW1pZW50YQogICAgcHJpbnQoanNvbi5kdW1wcyhyZXN1bHRhZG8sIGVuc3VyZV9hc2NpaT1GYWxzZSwgaW5kZW50PTQpKQoKZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgcHJpbnQoanNvbi5kdW1wcyh7ImVycm9yIjogc3RyKGUpfSwgaW5kZW50PTQpKQ==
+import sys
+import os
+import json
+import datetime
+from pathlib import Path
+from googleapiclient.discovery import build
+
+# --- CONFIGURACIÓN ---
+API_KEY = os.environ.get("YOUTUBE_API_KEY", "")
+if not API_KEY:
+    print(json.dumps({"error": "Falta la variable de entorno YOUTUBE_API_KEY"}, indent=4))
+    sys.exit(1)
+
+# Ruta absoluta a la carpeta metricas desde el script
+SCRIPT_DIR = Path(__file__).parent.resolve()
+PROJECT_ROOT = SCRIPT_DIR.parent.resolve()
+DEFAULT_OUTPUT_DIR = str(PROJECT_ROOT / "metricas")
+
+# Validación: Al menos necesitamos el ID del canal
+if len(sys.argv) < 2:
+    error_msg = {
+        "error": "Falta el ID del canal.",
+        "uso_1": "python script2.py UC_xxxx",
+        "uso_2": "python script2.py UC_xxxx 'nueva_ruta_carpeta'"
+    }
+    print(json.dumps(error_msg, indent=4))
+    sys.exit(1)
+
+channel_id = sys.argv[1]
+
+# Lógica de la ruta: Si pasan un 2º parámetro, sobrescribe la ruta por defecto
+if len(sys.argv) >= 3:
+    OUTPUT_DIR = sys.argv[2]
+else:
+    OUTPUT_DIR = DEFAULT_OUTPUT_DIR
+
+# Crear la carpeta automáticamente (sea la de por defecto o la sobrescrita)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+youtube = build('youtube', 'v3', developerKey=API_KEY)
+
+try:
+    # Consultar las estadísticas públicas del canal
+    response = youtube.channels().list(
+        part="statistics",
+        id=channel_id
+    ).execute()
+
+    if not response.get("items"):
+        print(json.dumps({"error": f"No se encontró ningún canal con el ID: {channel_id}"}, indent=4))
+        sys.exit(1)
+
+    stats = response["items"][0]["statistics"]
+
+    # Construir el JSON de salida con la fecha de hoy
+    resultado = {
+        "viewCount": int(stats.get("viewCount", 0)),
+        "subscriberCount": int(stats.get("subscriberCount", 0)),
+        "videoCount": int(stats.get("videoCount", 0)),
+        "fecha_ejecucion": datetime.date.today().isoformat()
+    }
+
+    # Definir la ruta del archivo utilizando la carpeta correspondiente
+    ruta_stats = os.path.join(OUTPUT_DIR, f"{channel_id}_stats.json")
+
+    # Guardar el JSON en la carpeta
+    with open(ruta_stats, "w", encoding="utf-8") as f:
+        json.dump(resultado, f, ensure_ascii=False, indent=4)
+
+    # Imprimir por consola el JSON puro para tu herramienta
+    print(json.dumps(resultado, ensure_ascii=False, indent=4))
+
+except Exception as e:
+    print(json.dumps({"error": str(e)}, indent=4))

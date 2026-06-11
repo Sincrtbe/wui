@@ -1,1 +1,118 @@
-IiIiSW5pY2lhbGl6YXIgZXNxdWVtYSBkZSBiYXNlIGRlIGRhdG9zCgpSZXZpc2lvbiBJRDogN2Q4ZDk5MTYxZmU5ClJldmlzZXM6IApDcmVhdGUgRGF0ZTogMjAyNi0wNi0xMSAwNTo0Nzo0OC4wNDc3MTYKCiIiIgpmcm9tIHR5cGluZyBpbXBvcnQgU2VxdWVuY2UsIFVuaW9uCgpmcm9tIGFsZW1iaWMgaW1wb3J0IG9wCmltcG9ydCBzcWxhbGNoZW15IGFzIHNhCgoKIyByZXZpc2lvbiBpZGVudGlmaWVycywgdXNlZCBieSBBbGVtYmljLgpyZXZpc2lvbjogc3RyID0gJzdkOGQ5OTE2MWZlOScKZG93bl9yZXZpc2lvbjogVW5pb25bc3RyLCBTZXF1ZW5jZVtzdHJdLCBOb25lXSA9IE5vbmUKYnJhbmNoX2xhYmVsczogVW5pb25bc3RyLCBTZXF1ZW5jZVtzdHJdLCBOb25lXSA9IE5vbmUKZGVwZW5kc19vbjogVW5pb25bc3RyLCBTZXF1ZW5jZVtzdHJdLCBOb25lXSA9IE5vbmUKCgpkZWYgdXBncmFkZSgpIC0+IE5vbmU6CiAgICAiIiJVcGdyYWRlIHNjaGVtYS4iIiIKICAgICMgIyMjIGNvbW1hbmRzIGF1dG8gZ2VuZXJhdGVkIGJ5IEFsZW1iaWMgLSBwbGVhc2UgYWRqdXN0ISAjIyMKICAgICMgU1FMaXRlIG5vIHNvcG9ydGEgRFJPUCBJTkRFWCBkaXJlY3RhbWVudGUsIGFzw60gcXVlIHVzYW1vcyBJRiBFWElTVFMKICAgIHRyeToKICAgICAgICBvcC5leGVjdXRlKCJEUk9QIElOREVYIElGIEVYSVNUUyBpeF9hcHNjaGVkdWxlcl9qb2JzX25leHRfcnVuX3RpbWUiKQogICAgZXhjZXB0IEV4Y2VwdGlvbjoKICAgICAgICBwYXNzCiAgICB0cnk6CiAgICAgICAgb3AuZHJvcF90YWJsZSgnYXBzY2hlZHVsZXJfam9icycpCiAgICBleGNlcHQgRXhjZXB0aW9uOgogICAgICAgIHBhc3MKICAgIHRyeToKICAgICAgICBvcC5kcm9wX2NvbHVtbignY2hhbm5lbHMnLCAnZmVjaGFfZWplY3VjaW9uJykKICAgIGV4Y2VwdCBFeGNlcHRpb246CiAgICAgICAgcGFzcwogICAgdHJ5OgogICAgICAgIG9wLmRyb3BfY29sdW1uKCdjaGFubmVscycsICdjaGFubmVsX25hbWUnKQogICAgZXhjZXB0IEV4Y2VwdGlvbjoKICAgICAgICBwYXNzCiAgICAKICAgICMgU1FMaXRlIG5vIHNvcG9ydGEgQUxURVIgQ09MVU1OLCBuZWNlc2l0YW1vcyByZWNyZWFyIGxhIHRhYmxhIHByb21wdHMKICAgICMgR3VhcmRhciBkYXRvcyBleGlzdGVudGVzCiAgICBvcC5leGVjdXRlKCJDUkVBVEUgVEFCTEUgcHJvbXB0c19iYWNrdXAgQVMgU0VMRUNUICogRlJPTSBwcm9tcHRzIikKICAgIG9wLmRyb3BfdGFibGUoJ3Byb21wdHMnKQogICAgCiAgICAjIENyZWFyIGxhIG51ZXZhIHRhYmxhIHNpbiBOT1QgTlVMTCBlbiBwcm9tcHRfdHlwZQogICAgb3AuY3JlYXRlX3RhYmxlKCdwcm9tcHRzJywKICAgICAgICBzYS5Db2x1bW4oJ2lkJywgc2EuSW50ZWdlcigpLCBudWxsYWJsZT1GYWxzZSksCiAgICAgICAgc2EuQ29sdW1uKCd0aXRsZScsIHNhLlN0cmluZyhsZW5ndGg9MjU1KSwgbnVsbGFibGU9RmFsc2UpLAogICAgICAgIHNhLkNvbHVtbignY29udGVudCcsIHNhLlRleHQoKSwgbnVsbGFibGU9RmFsc2UpLAogICAgICAgIHNhLkNvbHVtbignZGVzY3JpcHRpb24nLCBzYS5UZXh0KCksIG51bGxhYmxlPVRydWUpLAogICAgICAgIHNhLkNvbHVtbignY2F0ZWdvcnknLCBzYS5TdHJpbmcobGVuZ3RoPTEwMCksIG51bGxhYmxlPUZhbHNlLCBzZXJ2ZXJfZGVmYXVsdD0nb3RybycpLAogICAgICAgIHNhLkNvbHVtbigncmF0aW5nJywgc2EuRmxvYXQoKSwgbnVsbGFibGU9VHJ1ZSwgc2VydmVyX2RlZmF1bHQ9JzAuMCcpLAogICAgICAgIHNhLkNvbHVtbigndXNhZ2VfY291bnQnLCBzYS5JbnRlZ2VyKCksIG51bGxhYmxlPVRydWUsIHNlcnZlcl9kZWZhdWx0PScwJyksCiAgICAgICAgc2EuQ29sdW1uKCd2ZXJzaW9uJywgc2EuSW50ZWdlcigpLCBudWxsYWJsZT1UcnVlLCBzZXJ2ZXJfZGVmYXVsdD0nMScpLAogICAgICAgIHNhLkNvbHVtbigncHJvbXB0X3R5cGUnLCBzYS5TdHJpbmcobGVuZ3RoPTEwMCksIG51bGxhYmxlPVRydWUpLAogICAgICAgIHNhLkNvbHVtbigndmFyaWFibGVzJywgc2EuVGV4dCgpLCBudWxsYWJsZT1UcnVlKSwKICAgICAgICBzYS5Db2x1bW4oJ2NyZWF0ZWRfYXQnLCBzYS5EYXRlVGltZSgpLCBzZXJ2ZXJfZGVmYXVsdD1zYS5mdW5jLmN1cnJlbnRfdGltZXN0YW1wKCkpLAogICAgICAgIHNhLkNvbHVtbigndXBkYXRlZF9hdCcsIHNhLkRhdGVUaW1lKCksIHNlcnZlcl9kZWZhdWx0PXNhLmZ1bmMuY3VycmVudF90aW1lc3RhbXAoKSwgb251cGRhdGU9c2EuZnVuYy5jdXJyZW50X3RpbWVzdGFtcCgpKSwKICAgICAgICBzYS5QcmltYXJ5S2V5Q29uc3RyYWludCgnaWQnKQogICAgKQogICAgCiAgICAjIFJlc3RhdXJhciBkYXRvcwogICAgb3AuZXhlY3V0ZSgiIiIKICAgICAgICBJTlNFUlQgSU5UTyBwcm9tcHRzIChpZCwgdGl0bGUsIGNvbnRlbnQsIGRlc2NyaXB0aW9uLCBjYXRlZ29yeSwgcmF0aW5nLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVzYWdlX2NvdW50LCB2ZXJzaW9uLCBwcm9tcHRfdHlwZSwgdmFyaWFibGVzLCBjcmVhdGVkX2F0LCB1cGRhdGVkX2F0KQogICAgICAgIFNFTEVDVCBpZCwgdGl0bGUsIGNvbnRlbnQsIGRlc2NyaXB0aW9uLCBjYXRlZ29yeSwgcmF0aW5nLAogICAgICAgICAgICAgICB1c2FnZV9jb3VudCwgdmVyc2lvbiwgcHJvbXB0X3R5cGUsIHZhcmlhYmxlcywgY3JlYXRlZF9hdCwgdXBkYXRlZF9hdAogICAgICAgIEZST00gcHJvbXB0c19iYWNrdXAKICAgICIiIikKICAgIG9wLmRyb3BfdGFibGUoJ3Byb21wdHNfYmFja3VwJykKICAgIAogICAgIyAjIyMgZW5kIEFsZW1iaWMgY29tbWFuZHMgIyMjCgoKZGVmIGRvd25ncmFkZSgpIC0+IE5vbmU6CiAgICAiIiJEb3duZ3JhZGUgc2NoZW1hLiIiIgogICAgIyAjIyMgY29tbWFuZHMgYXV0byBnZW5lcmF0ZWQgYnkgQWxlbWJpYyAtIHBsZWFzZSBhZGp1c3QhICMjIwogICAgIyBSZWNyZWFyIHByb21wdHMgY29uIHByb21wdF90eXBlIE5PVCBOVUxMCiAgICBvcC5leGVjdXRlKCJDUkVBVEUgVEFCTEUgcHJvbXB0c19iYWNrdXAgQVMgU0VMRUNUICogRlJPTSBwcm9tcHRzIikKICAgIG9wLmRyb3BfdGFibGUoJ3Byb21wdHMnKQogICAgCiAgICBvcC5jcmVhdGVfdGFibGUoJ3Byb21wdHMnLAogICAgICAgIHNhLkNvbHVtbignaWQnLCBzYS5JbnRlZ2VyKCksIG51bGxhYmxlPUZhbHNlKSwKICAgICAgICBzYS5Db2x1bW4oJ3RpdGxlJywgc2EuU3RyaW5nKGxlbmd0aD0yNTUpLCBudWxsYWJsZT1GYWxzZSksCiAgICAgICAgc2EuQ29sdW1uKCdjb250ZW50Jywgc2EuVGV4dCgpLCBudWxsYWJsZT1GYWxzZSksCiAgICAgICAgc2EuQ29sdW1uKCdkZXNjcmlwdGlvbicsIHNhLlRleHQoKSwgbnVsbGFibGU9VHJ1ZSksCiAgICAgICAgc2EuQ29sdW1uKCdjYXRlZ29yeScsIHNhLlN0cmluZyhsZW5ndGg9MTAwKSwgbnVsbGFibGU9RmFsc2UpLAogICAgICAgIHNhLkNvbHVtbigncmF0aW5nJywgc2EuRmxvYXQoKSwgbnVsbGFibGU9VHJ1ZSksCiAgICAgICAgc2EuQ29sdW1uKCd1c2FnZV9jb3VudCcsIHNhLkludGVnZXIoKSwgbnVsbGFibGU9VHJ1ZSksCiAgICAgICAgc2EuQ29sdW1uKCd2ZXJzaW9uJywgc2EuSW50ZWdlcigpLCBudWxsYWJsZT1UcnVlKSwKICAgICAgICBzYS5Db2x1bW4oJ3Byb21wdF90eXBlJywgc2EuU3RyaW5nKGxlbmd0aD0xMDApLCBudWxsYWJsZT1GYWxzZSksCiAgICAgICAgc2EuQ29sdW1uKCd2YXJpYWJsZXMnLCBzYS5UZXh0KCksIG51bGxhYmxlPVRydWUpLAogICAgICAgIHNhLkNvbHVtbignY3JlYXRlZF9hdCcsIHNhLkRhdGVUaW1lKCksIG51bGxhYmxlPVRydWUpLAogICAgICAgIHNhLkNvbHVtbigndXBkYXRlZF9hdCcsIHNhLkRhdGVUaW1lKCksIG51bGxhYmxlPVRydWUpLAogICAgICAgIHNhLlByaW1hcnlLZXlDb25zdHJhaW50KCdpZCcpCiAgICApCiAgICAKICAgIG9wLmV4ZWN1dGUoIiIiCiAgICAgICAgSU5TRVJUIElOVE8gcHJvbXB0cyAoaWQsIHRpdGxlLCBjb250ZW50LCBkZXNjcmlwdGlvbiwgY2F0ZWdvcnksIHJhdGluZywKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVzYWdlX2NvdW50LCB2ZXJzaW9uLCBwcm9tcHRfdHlwZSwgdmFyaWFibGVzLCBjcmVhdGVkX2F0LCB1cGRhdGVkX2F0KQogICAgICAgIFNFTEVDVCBpZCwgdGl0bGUsIGNvbnRlbnQsIGRlc2NyaXB0aW9uLCBjYXRlZ29yeSwgcmF0aW5nLAogICAgICAgICAgICAgICB1c2FnZV9jb3VudCwgdmVyc2lvbiwgQ09BTEVTQ0UocHJvbXB0X3R5cGUsICdkZWZhdWx0JyksIHZhcmlhYmxlcywgY3JlYXRlZF9hdCwgdXBkYXRlZF9hdAogICAgICAgIEZST00gcHJvbXB0c19iYWNrdXAKICAgICIiIikKICAgIG9wLmRyb3BfdGFibGUoJ3Byb21wdHNfYmFja3VwJykKICAgIAogICAgb3AuYWRkX2NvbHVtbignY2hhbm5lbHMnLCBzYS5Db2x1bW4oJ2NoYW5uZWxfbmFtZScsIHNhLlN0cmluZygpLCBudWxsYWJsZT1UcnVlKSkKICAgIG9wLmFkZF9jb2x1bW4oJ2NoYW5uZWxzJywgc2EuQ29sdW1uKCdmZWNoYV9lamVjdWNpb24nLCBzYS5TdHJpbmcoKSwgbnVsbGFibGU9VHJ1ZSkpCiAgICBvcC5jcmVhdGVfdGFibGUoJ2Fwc2NoZWR1bGVyX2pvYnMnLAogICAgICAgIHNhLkNvbHVtbignaWQnLCBzYS5TdHJpbmcobGVuZ3RoPTE5MSksIG51bGxhYmxlPUZhbHNlKSwKICAgICAgICBzYS5Db2x1bW4oJ25leHRfcnVuX3RpbWUnLCBzYS5GbG9hdCgpLCBudWxsYWJsZT1UcnVlKSwKICAgICAgICBzYS5Db2x1bW4oJ2pvYl9zdGF0ZScsIHNhLkJMT0IoKSwgbnVsbGFibGU9RmFsc2UpLAogICAgICAgIHNhLlByaW1hcnlLZXlDb25zdHJhaW50KCdpZCcpCiAgICApCiAgICBvcC5jcmVhdGVfaW5kZXgob3AuZignaXhfYXBzY2hlZHVsZXJfam9ic19uZXh0X3J1bl90aW1lJyksICdhcHNjaGVkdWxlcl9qb2JzJywgWyduZXh0X3J1bl90aW1lJ10sIHVuaXF1ZT1GYWxzZSkKICAgICMgIyMjIGVuZCBBbGVtYmljIGNvbW1hbmRzICMjIwo=
+"""Inicializar esquema de base de datos
+
+Revision ID: 7d8d99161fe9
+Revises: 
+Create Date: 2026-06-11 05:47:48.047716
+
+"""
+from typing import Sequence, Union
+
+from alembic import op
+import sqlalchemy as sa
+
+
+# revision identifiers, used by Alembic.
+revision: str = '7d8d99161fe9'
+down_revision: Union[str, Sequence[str], None] = None
+branch_labels: Union[str, Sequence[str], None] = None
+depends_on: Union[str, Sequence[str], None] = None
+
+
+def upgrade() -> None:
+    """Upgrade schema."""
+    # ### commands auto generated by Alembic - please adjust! ###
+    # SQLite no soporta DROP INDEX directamente, así que usamos IF EXISTS
+    try:
+        op.execute("DROP INDEX IF EXISTS ix_apscheduler_jobs_next_run_time")
+    except Exception:
+        pass
+    try:
+        op.drop_table('apscheduler_jobs')
+    except Exception:
+        pass
+    try:
+        op.drop_column('channels', 'fecha_ejecucion')
+    except Exception:
+        pass
+    try:
+        op.drop_column('channels', 'channel_name')
+    except Exception:
+        pass
+    
+    # SQLite no soporta ALTER COLUMN, necesitamos recrear la tabla prompts
+    # Guardar datos existentes
+    op.execute("CREATE TABLE prompts_backup AS SELECT * FROM prompts")
+    op.drop_table('prompts')
+    
+    # Crear la nueva tabla sin NOT NULL en prompt_type
+    op.create_table('prompts',
+        sa.Column('id', sa.Integer(), nullable=False),
+        sa.Column('title', sa.String(length=255), nullable=False),
+        sa.Column('content', sa.Text(), nullable=False),
+        sa.Column('description', sa.Text(), nullable=True),
+        sa.Column('category', sa.String(length=100), nullable=False, server_default='otro'),
+        sa.Column('rating', sa.Float(), nullable=True, server_default='0.0'),
+        sa.Column('usage_count', sa.Integer(), nullable=True, server_default='0'),
+        sa.Column('version', sa.Integer(), nullable=True, server_default='1'),
+        sa.Column('prompt_type', sa.String(length=100), nullable=True),
+        sa.Column('variables', sa.Text(), nullable=True),
+        sa.Column('created_at', sa.DateTime(), server_default=sa.func.current_timestamp()),
+        sa.Column('updated_at', sa.DateTime(), server_default=sa.func.current_timestamp(), onupdate=sa.func.current_timestamp()),
+        sa.PrimaryKeyConstraint('id')
+    )
+    
+    # Restaurar datos
+    op.execute("""
+        INSERT INTO prompts (id, title, content, description, category, rating, 
+                            usage_count, version, prompt_type, variables, created_at, updated_at)
+        SELECT id, title, content, description, category, rating,
+               usage_count, version, prompt_type, variables, created_at, updated_at
+        FROM prompts_backup
+    """)
+    op.drop_table('prompts_backup')
+    
+    # ### end Alembic commands ###
+
+
+def downgrade() -> None:
+    """Downgrade schema."""
+    # ### commands auto generated by Alembic - please adjust! ###
+    # Recrear prompts con prompt_type NOT NULL
+    op.execute("CREATE TABLE prompts_backup AS SELECT * FROM prompts")
+    op.drop_table('prompts')
+    
+    op.create_table('prompts',
+        sa.Column('id', sa.Integer(), nullable=False),
+        sa.Column('title', sa.String(length=255), nullable=False),
+        sa.Column('content', sa.Text(), nullable=False),
+        sa.Column('description', sa.Text(), nullable=True),
+        sa.Column('category', sa.String(length=100), nullable=False),
+        sa.Column('rating', sa.Float(), nullable=True),
+        sa.Column('usage_count', sa.Integer(), nullable=True),
+        sa.Column('version', sa.Integer(), nullable=True),
+        sa.Column('prompt_type', sa.String(length=100), nullable=False),
+        sa.Column('variables', sa.Text(), nullable=True),
+        sa.Column('created_at', sa.DateTime(), nullable=True),
+        sa.Column('updated_at', sa.DateTime(), nullable=True),
+        sa.PrimaryKeyConstraint('id')
+    )
+    
+    op.execute("""
+        INSERT INTO prompts (id, title, content, description, category, rating,
+                            usage_count, version, prompt_type, variables, created_at, updated_at)
+        SELECT id, title, content, description, category, rating,
+               usage_count, version, COALESCE(prompt_type, 'default'), variables, created_at, updated_at
+        FROM prompts_backup
+    """)
+    op.drop_table('prompts_backup')
+    
+    op.add_column('channels', sa.Column('channel_name', sa.String(), nullable=True))
+    op.add_column('channels', sa.Column('fecha_ejecucion', sa.String(), nullable=True))
+    op.create_table('apscheduler_jobs',
+        sa.Column('id', sa.String(length=191), nullable=False),
+        sa.Column('next_run_time', sa.Float(), nullable=True),
+        sa.Column('job_state', sa.BLOB(), nullable=False),
+        sa.PrimaryKeyConstraint('id')
+    )
+    op.create_index(op.f('ix_apscheduler_jobs_next_run_time'), 'apscheduler_jobs', ['next_run_time'], unique=False)
+    # ### end Alembic commands ###

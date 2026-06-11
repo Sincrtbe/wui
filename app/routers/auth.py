@@ -1,1 +1,47 @@
-IiIiUm91dGVyIGRlIGF1dGVudGljYWNpw7NuLiIiIgpmcm9tIGZhc3RhcGkgaW1wb3J0IEFQSVJvdXRlciwgRGVwZW5kcywgSFRUUEV4Y2VwdGlvbiwgUmVxdWVzdApmcm9tIGZhc3RhcGkucmVzcG9uc2VzIGltcG9ydCBKU09OUmVzcG9uc2UKZnJvbSBmYXN0YXBpLnNlY3VyaXR5IGltcG9ydCBIVFRQQmFzaWMsIEhUVFBCYXNpY0NyZWRlbnRpYWxzCmZyb20gYXBwLmNvcmUuY29uZmlnIGltcG9ydCBzZXR0aW5ncwpmcm9tIGFwcC5jb3JlLnJhdGVsaW1pdCBpbXBvcnQgbGltaXRlcgoKcm91dGVyID0gQVBJUm91dGVyKHByZWZpeD0iL2FwaS9hdXRoIiwgdGFncz1bImF1dGgiXSkKc2VjdXJpdHkgPSBIVFRQQmFzaWMoKQoKCkBsaW1pdGVyLmxpbWl0KCI1L21pbnV0ZSIpCkByb3V0ZXIucG9zdCgiL2xvZ2luIikKYXN5bmMgZGVmIGxvZ2luKHJlcXVlc3Q6IFJlcXVlc3QsIGNyZWRlbnRpYWxzOiBIVFRQQmFzaWNDcmVkZW50aWFscyA9IERlcGVuZHMoc2VjdXJpdHkpKToKICAgICIiIlZhbGlkYSBjcmVkZW5jaWFsZXMgZGUgYWRtaW4uIiIiCiAgICB1c2VyX29rID0gY3JlZGVudGlhbHMudXNlcm5hbWUuZW5jb2RlKCJ1dGYtOCIpID09IHNldHRpbmdzLkFETUlOX1VTRVIuZW5jb2RlKCJ1dGYtOCIpCiAgICBwYXNzX29rID0gY3JlZGVudGlhbHMucGFzc3dvcmQuZW5jb2RlKCJ1dGYtOCIpID09IHNldHRpbmdzLkFETUlOX1BBU1MuZW5jb2RlKCJ1dGYtOCIpCiAgICAKICAgIGlmIG5vdCAodXNlcl9vayBhbmQgcGFzc19vayk6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbigKICAgICAgICAgICAgc3RhdHVzX2NvZGU9NDAxLAogICAgICAgICAgICBkZXRhaWw9IkNyZWRlbmNpYWxlcyBpbmNvcnJlY3RhcyIsCiAgICAgICAgICAgIGhlYWRlcnM9eyJXV1ctQXV0aGVudGljYXRlIjogIkJhc2ljIn0sCiAgICAgICAgKQogICAgCiAgICByZXR1cm4gewogICAgICAgICJ1c2VyIjogY3JlZGVudGlhbHMudXNlcm5hbWUsCiAgICAgICAgIm1lc3NhZ2UiOiAiTG9naW4gZXhpdG9zbyIKICAgIH0KCgpAcm91dGVyLmdldCgiL2NoZWNrIikKYXN5bmMgZGVmIGNoZWNrX2F1dGgoY3JlZGVudGlhbHM6IEhUVFBCYXNpY0NyZWRlbnRpYWxzID0gRGVwZW5kcyhzZWN1cml0eSkpOgogICAgIiIiVmVyaWZpY2Egc2kgbGFzIGNyZWRlbmNpYWxlcyBzb24gdsOhbGlkYXMuIiIiCiAgICB1c2VyX29rID0gY3JlZGVudGlhbHMudXNlcm5hbWUuZW5jb2RlKCJ1dGYtOCIpID09IHNldHRpbmdzLkFETUlOX1VTRVIuZW5jb2RlKCJ1dGYtOCIpCiAgICBwYXNzX29rID0gY3JlZGVudGlhbHMucGFzc3dvcmQuZW5jb2RlKCJ1dGYtOCIpID09IHNldHRpbmdzLkFETUlOX1BBU1MuZW5jb2RlKCJ1dGYtOCIpCiAgICAKICAgIGlmIG5vdCAodXNlcl9vayBhbmQgcGFzc19vayk6CiAgICAgICAgcmV0dXJuIHsiYXV0aGVudGljYXRlZCI6IEZhbHNlfQogICAgCiAgICByZXR1cm4geyJhdXRoZW50aWNhdGVkIjogVHJ1ZX0KCgpAcm91dGVyLnBvc3QoIi9sb2dvdXQiKQphc3luYyBkZWYgbG9nb3V0KCk6CiAgICAiIiJDaWVycmEgbGEgc2VzacOzbi4iIiIKICAgIHJldHVybiB7Im1lc3NhZ2UiOiAiU2VzacOzbiBjZXJyYWRhIn0K
+"""Router de autenticación."""
+from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi.responses import JSONResponse
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+from app.core.config import settings
+from app.core.ratelimit import limiter
+
+router = APIRouter(prefix="/api/auth", tags=["auth"])
+security = HTTPBasic()
+
+
+@limiter.limit("5/minute")
+@router.post("/login")
+async def login(request: Request, credentials: HTTPBasicCredentials = Depends(security)):
+    """Valida credenciales de admin."""
+    user_ok = credentials.username.encode("utf-8") == settings.ADMIN_USER.encode("utf-8")
+    pass_ok = credentials.password.encode("utf-8") == settings.ADMIN_PASS.encode("utf-8")
+    
+    if not (user_ok and pass_ok):
+        raise HTTPException(
+            status_code=401,
+            detail="Credenciales incorrectas",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    
+    return {
+        "user": credentials.username,
+        "message": "Login exitoso"
+    }
+
+
+@router.get("/check")
+async def check_auth(credentials: HTTPBasicCredentials = Depends(security)):
+    """Verifica si las credenciales son válidas."""
+    user_ok = credentials.username.encode("utf-8") == settings.ADMIN_USER.encode("utf-8")
+    pass_ok = credentials.password.encode("utf-8") == settings.ADMIN_PASS.encode("utf-8")
+    
+    if not (user_ok and pass_ok):
+        return {"authenticated": False}
+    
+    return {"authenticated": True}
+
+
+@router.post("/logout")
+async def logout():
+    """Cierra la sesión."""
+    return {"message": "Sesión cerrada"}

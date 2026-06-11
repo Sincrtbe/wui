@@ -1,1 +1,30 @@
-IiIiTW9kZWxvIGRlIGNhbmFsLiIiIgpmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRldGltZQpmcm9tIHNxbGFsY2hlbXkgaW1wb3J0IENvbHVtbiwgSW50ZWdlciwgU3RyaW5nLCBEYXRlVGltZSwgSlNPTiwgRGF0ZQpmcm9tIGFwcC5jb3JlLmRhdGFiYXNlIGltcG9ydCBCYXNlCgoKY2xhc3MgQ2hhbm5lbChCYXNlKToKICAgICIiIk1vZGVsbyBkZSBjYW5hbCBkZSBZb3VUdWJlLiIiIgoKICAgIF9fdGFibGVuYW1lX18gPSAiY2hhbm5lbHMiCgogICAgaWQgPSBDb2x1bW4oSW50ZWdlciwgcHJpbWFyeV9rZXk9VHJ1ZSwgaW5kZXg9VHJ1ZSkKICAgICMgQ2FtcG9zIGRlbCBKU09OIGRlbCBzY3JpcHQKICAgIHRpdGxlID0gQ29sdW1uKFN0cmluZywgbnVsbGFibGU9RmFsc2UpCiAgICBkZXNjcmlwdGlvbiA9IENvbHVtbihTdHJpbmcsIG51bGxhYmxlPVRydWUpCiAgICBjdXN0b21fdXJsID0gQ29sdW1uKFN0cmluZywgbnVsbGFibGU9VHJ1ZSwgdW5pcXVlPVRydWUpCiAgICBwdWJsaXNoZWRfYXQgPSBDb2x1bW4oRGF0ZVRpbWUsIG51bGxhYmxlPVRydWUpCiAgICB0b3BpY19pZHMgPSBDb2x1bW4oSlNPTiwgZGVmYXVsdD1saXN0KQogICAgdG9waWNfY2F0ZWdvcmllcyA9IENvbHVtbihKU09OLCBkZWZhdWx0PWxpc3QpCiAgICAjIEFyY2hpdm8gZGUgbWluaWF0dXJhIChub21icmUgZGVsIGFyY2hpdm8gLmpwZyBlbiBjaGFubmVsc19kYXRhLykKICAgIHRodW1ibmFpbF9maWxlID0gQ29sdW1uKFN0cmluZywgbnVsbGFibGU9VHJ1ZSkKICAgIGNvbG9yID0gQ29sdW1uKFN0cmluZywgbnVsbGFibGU9VHJ1ZSwgZGVmYXVsdD0iIzNiODJmNiIpCiAgICBjcmVhdGVkX2F0ID0gQ29sdW1uKERhdGVUaW1lLCBkZWZhdWx0PWRhdGV0aW1lLnV0Y25vdykKICAgICMgQ2FtcG9zIGV4dGVuZGlkb3MKICAgIGVtYWlsID0gQ29sdW1uKFN0cmluZywgbnVsbGFibGU9VHJ1ZSkKICAgIHNvY2lhbF9saW5rcyA9IENvbHVtbihKU09OLCBkZWZhdWx0PWRpY3QpCiAgICBjaGVja3BvaW50cyA9IENvbHVtbihKU09OLCBkZWZhdWx0PWRpY3QpCiAgICBsYXN0X3NjcmFwZWRfYXQgPSBDb2x1bW4oRGF0ZVRpbWUsIG51bGxhYmxlPVRydWUpCiAgICBsYXN0X3NjcmFwZV9zdGF0dXMgPSBDb2x1bW4oU3RyaW5nLCBudWxsYWJsZT1UcnVlKQogICAgc2NyYXBlX2RhdGEgPSBDb2x1bW4oSlNPTiwgZGVmYXVsdD1kaWN0KQo=
+"""Modelo de canal."""
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, DateTime, JSON, Date
+from app.core.database import Base
+
+
+class Channel(Base):
+    """Modelo de canal de YouTube."""
+
+    __tablename__ = "channels"
+
+    id = Column(Integer, primary_key=True, index=True)
+    # Campos del JSON del script
+    title = Column(String, nullable=False)
+    description = Column(String, nullable=True)
+    custom_url = Column(String, nullable=True, unique=True)
+    published_at = Column(DateTime, nullable=True)
+    topic_ids = Column(JSON, default=list)
+    topic_categories = Column(JSON, default=list)
+    # Archivo de miniatura (nombre del archivo .jpg en channels_data/)
+    thumbnail_file = Column(String, nullable=True)
+    color = Column(String, nullable=True, default="#3b82f6")
+    created_at = Column(DateTime, default=datetime.utcnow)
+    # Campos extendidos
+    email = Column(String, nullable=True)
+    social_links = Column(JSON, default=dict)
+    checkpoints = Column(JSON, default=dict)
+    last_scraped_at = Column(DateTime, nullable=True)
+    last_scrape_status = Column(String, nullable=True)
+    scrape_data = Column(JSON, default=dict)

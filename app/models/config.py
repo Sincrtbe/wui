@@ -1,1 +1,13 @@
-IiIiTW9kZWxvIGRlIGNvbmZpZ3VyYWNpw7NuIGdsb2JhbC4iIiIKZnJvbSBzcWxhbGNoZW15IGltcG9ydCBDb2x1bW4sIFN0cmluZywgVGV4dApmcm9tIGFwcC5jb3JlLmRhdGFiYXNlIGltcG9ydCBCYXNlCgoKY2xhc3MgR2xvYmFsQ29uZmlnKEJhc2UpOgogICAgIiIiTW9kZWxvIHBhcmEgZ3VhcmRhciBwYXJlcyBjbGF2ZS12YWxvciBkZSBjb25maWd1cmFjacOzbi4iIiIKCiAgICBfX3RhYmxlbmFtZV9fID0gImdsb2JhbF9jb25maWdzIgoKICAgIGtleSA9IENvbHVtbihTdHJpbmcsIHByaW1hcnlfa2V5PVRydWUsIGluZGV4PVRydWUpCiAgICB2YWx1ZSA9IENvbHVtbihUZXh0LCBudWxsYWJsZT1UcnVlKQogICAgZGVzY3JpcHRpb24gPSBDb2x1bW4oU3RyaW5nLCBudWxsYWJsZT1UcnVlKQo=
+"""Modelo de configuración global."""
+from sqlalchemy import Column, String, Text
+from app.core.database import Base
+
+
+class GlobalConfig(Base):
+    """Modelo para guardar pares clave-valor de configuración."""
+
+    __tablename__ = "global_configs"
+
+    key = Column(String, primary_key=True, index=True)
+    value = Column(Text, nullable=True)
+    description = Column(String, nullable=True)

@@ -1,1 +1,6 @@
-QGVjaG8gb2ZmClJFTSBBcnJhbmNhIGVsIHNlcnZpZG9yIEZhc3RBUEkgZW4gbG9jYWxob3N0OjkwODAgY29uIHN5c3RlbSB0cmF5CmNkIC9kICV+ZHAwCmNhbGwgLnZlbnZcU2NyaXB0c1xhY3RpdmF0ZS5iYXQKdXZpY29ybiBhcHAubWFpbjphcHAgLS1yZWxvYWQgLS1ob3N0IDEyNy4wLjAuMSAtLXBvcnQgOTA4MApwYXVzZQ==
+@echo off
+REM Arranca el servidor FastAPI en localhost:9080 con system tray
+cd /d %~dp0
+call .venv\Scripts\activate.bat
+uvicorn app.main:app --reload --host 127.0.0.1 --port 9080
+pause

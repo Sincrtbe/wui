@@ -1,1 +1,46 @@
-IiIiTW9kZWxvIGRlIHByb21wdHMgcGFyYSBsYSBiaWJsaW90ZWNhLiIiIgpmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRldGltZQpmcm9tIHNxbGFsY2hlbXkgaW1wb3J0IENvbHVtbiwgSW50ZWdlciwgU3RyaW5nLCBEYXRlVGltZSwgVGV4dCwgRmxvYXQsIEpTT04KZnJvbSBhcHAuY29yZS5kYXRhYmFzZSBpbXBvcnQgQmFzZQoKCmNsYXNzIFByb21wdChCYXNlKToKICAgICIiIk1vZGVsbyBwYXJhIGd1YXJkYXIgcHJvbXB0cyByZXV0aWxpemFibGVzIGNvbiB2YXJpYWJsZXMuIiIiCgogICAgX190YWJsZW5hbWVfXyA9ICJwcm9tcHRzIgoKICAgIGlkID0gQ29sdW1uKEludGVnZXIsIHByaW1hcnlfa2V5PVRydWUsIGluZGV4PVRydWUpCiAgICAKICAgICMgSW5mb3JtYWNpw7NuIGLDoXNpY2EKICAgIHRpdGxlID0gQ29sdW1uKFN0cmluZywgbnVsbGFibGU9RmFsc2UpCiAgICBkZXNjcmlwdGlvbiA9IENvbHVtbihUZXh0LCBudWxsYWJsZT1UcnVlKQogICAgCiAgICAjIENhdGVnb3LDrWEgZGVsIHByb21wdCAoc3ViY2FycGV0YSk6IHNlbywgZ3Vpb24sIGxsdXZpYV9pZGVhcywgYXVkaW8sIHZpZGVvLCBvdHJvCiAgICBjYXRlZ29yeSA9IENvbHVtbihTdHJpbmcsIG51bGxhYmxlPUZhbHNlLCBkZWZhdWx0PSJvdHJvIikKICAgIAogICAgIyBUaXBvIGRlIHByb21wdCAoZGVwcmVjYXRlZCwgdXNhciBjYXRlZ29yeSkKICAgIHByb21wdF90eXBlID0gQ29sdW1uKFN0cmluZywgbnVsbGFibGU9VHJ1ZSkKICAgIAogICAgIyBDb250ZW5pZG8gZGVsIHByb21wdCBjb24gdmFyaWFibGVzIGVudHJlIHt7fX0KICAgIGNvbnRlbnQgPSBDb2x1bW4oVGV4dCwgbnVsbGFibGU9RmFsc2UpCiAgICAKICAgICMgVmFyaWFibGVzIHJlcXVlcmlkYXMgKGV4dHJhw61kYXMgYXV0b23DoXRpY2FtZW50ZSkKICAgIHZhcmlhYmxlcyA9IENvbHVtbihKU09OLCBkZWZhdWx0PWxpc3QpICAjIFsidGVtYSIsICJkdXJhY2lvbiIsICJlc3RpbG8iXQogICAgCiAgICAjIFB1bnR1YWNpw7NuIGRlIHV0aWxpZGFkICgwLTUpCiAgICByYXRpbmcgPSBDb2x1bW4oRmxvYXQsIGRlZmF1bHQ9MC4wKQogICAgCiAgICAjIE7Dum1lcm8gZGUgdmVjZXMgdXNhZG8KICAgIHVzYWdlX2NvdW50ID0gQ29sdW1uKEludGVnZXIsIGRlZmF1bHQ9MCkKICAgIAogICAgIyBWZXJzacOzbiBkZWwgcHJvbXB0CiAgICB2ZXJzaW9uID0gQ29sdW1uKEludGVnZXIsIGRlZmF1bHQ9MSkKICAgIAogICAgIyBBY3Rpdm8vSW5hY3Rpdm8KICAgIGlzX2FjdGl2ZSA9IENvbHVtbihTdHJpbmcsIGRlZmF1bHQ9ImFjdGl2ZSIpCiAgICAKICAgICMgTWV0YWRhdG9zIGFkaWNpb25hbGVzCiAgICBtZXRhX2RhdGEgPSBDb2x1bW4oSlNPTiwgbnVsbGFibGU9VHJ1ZSkKICAgIAogICAgY3JlYXRlZF9hdCA9IENvbHVtbihEYXRlVGltZSwgZGVmYXVsdD1kYXRldGltZS51dGNub3cpCiAgICB1cGRhdGVkX2F0ID0gQ29sdW1uKERhdGVUaW1lLCBkZWZhdWx0PWRhdGV0aW1lLnV0Y25vdywgb251cGRhdGU9ZGF0ZXRpbWUudXRjbm93KQo=
+"""Modelo de prompts para la biblioteca."""
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, DateTime, Text, Float, JSON
+from app.core.database import Base
+
+
+class Prompt(Base):
+    """Modelo para guardar prompts reutilizables con variables."""
+
+    __tablename__ = "prompts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    
+    # Información básica
+    title = Column(String, nullable=False)
+    description = Column(Text, nullable=True)
+    
+    # Categoría del prompt (subcarpeta): seo, guion, lluvia_ideas, audio, video, otro
+    category = Column(String, nullable=False, default="otro")
+    
+    # Tipo de prompt (deprecated, usar category)
+    prompt_type = Column(String, nullable=True)
+    
+    # Contenido del prompt con variables entre {{}}
+    content = Column(Text, nullable=False)
+    
+    # Variables requeridas (extraídas automáticamente)
+    variables = Column(JSON, default=list)  # ["tema", "duracion", "estilo"]
+    
+    # Puntuación de utilidad (0-5)
+    rating = Column(Float, default=0.0)
+    
+    # Número de veces usado
+    usage_count = Column(Integer, default=0)
+    
+    # Versión del prompt
+    version = Column(Integer, default=1)
+    
+    # Activo/Inactivo
+    is_active = Column(String, default="active")
+    
+    # Metadatos adicionales
+    meta_data = Column(JSON, nullable=True)
+    
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

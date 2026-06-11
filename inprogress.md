@@ -1,1 +1,330 @@
-IyBXdWkgLSBQbGF0YWZvcm1hIGRlIEF1dG9tYXRpemFjacOzbiBkZSBZb3VUdWJlCgojIyBFc3RhZG8gZGVsIFByb3llY3RvCioqRmVjaGEgw7psdGltYSBhY3R1YWxpemFjacOzbjoqKiAyMDI2LTA5LTA2ICAKKipFc3RhZG86KiogRW4gZGVzYXJyb2xsbyBhY3Rpdm8gIAoqKlZlcnNpw7NuOioqIDEuMC4wCgotLS0KCiMjIERlc2NyaXBjacOzbgoKV3VpIGVzIHVuYSBwbGF0YWZvcm1hIGxvY2FsIGRlIGF1dG9tYXRpemFjacOzbiBwYXJhIGxhIGdlc3Rpw7NuIGRlIG3Dumx0aXBsZXMgY2FuYWxlcyBkZSBZb3VUdWJlLiBQZXJtaXRlIGdlc3Rpb25hciBjYW5hbGVzLCBjcmVhciBjb250ZW5pZG8sIHByb2dyYW1hciBwdWJsaWNhY2lvbmVzLCBhbmFsaXphciBtw6l0cmljYXMsIGF1dG9tYXRpemFyIGZsdWpvcyBkZSB0cmFiYWpvIHkgZ2VzdGlvbmFyIHVuYSBiaWJsaW90ZWNhIGRlIHByb21wdHMgY29uIElBLgoKLS0tCgojIyBTdGFjayBUZWNub2zDs2dpY28KCiMjIyBMZW5ndWFqZXMKLSAqKlB5dGhvbioqIDMueCAoYmFja2VuZCBwcmluY2lwYWwpCi0gKipKYXZhU2NyaXB0KiogKGZyb250ZW5kKQotICoqSFRNTDUvQ1NTMyoqIChmcm9udGVuZCkKCiMjIyBGcmFtZXdvcmtzIHkgTGlicmVyw61hcwotICoqRmFzdEFQSSoqIDAuMTA0LjEgKGJhY2tlbmQgQVBJIFJFU1QpCi0gKipTUUxBbGNoZW15KiogMi4wLjIzIChPUk0pCi0gKipVdmljb3JuKiogMC4yNC4wIChzZXJ2aWRvciBBU0dJKQotICoqQVBTY2hlZHVsZXIqKiAzLjEwLjQgKHRhcmVhcyBwcm9ncmFtYWRhcy9jcm9uKQotICoqcHlkYW50aWMqKiAyLjUuMCAodmFsaWRhY2nDs24gZGUgZGF0b3MpCi0gKipnb29nbGUtYXBpLXB5dGhvbi1jbGllbnQqKiAyLjE5Ny4wIChBUEkgZGUgWW91VHViZSkKLSAqKnB5c3RyYXkqKiAwLjE5LjUgKHN5c3RlbSB0cmF5IGljb24pCi0gKipQaWxsb3cqKiAxMC4xLjAgKG1hbmlwdWxhY2nDs24gZGUgaW3DoWdlbmVzKQotICoqcHl0aG9uLWRvdGVudioqIDEuMC4wICh2YXJpYWJsZXMgZGUgZW50b3JubykKLSAqKmFsZW1iaWMqKiAxLjEzLjEgKG1pZ3JhY2lvbmVzIGRlIGJhc2UgZGUgZGF0b3MpCgojIyMgQmFzZSBkZSBEYXRvcwotICoqU1FMaXRlKiogKGFwcC5kYikKCi0tLQoKIyMgRXN0cnVjdHVyYSBkZWwgUHJveWVjdG8KCmBgYApXdWkvCuKUnOKUgOKUgCAuZW52ICAgICAgICAgICAgICAgICAgICAgICAgICAjIFZhcmlhYmxlcyBkZSBlbnRvcm5vIChBUEkga2V5cywgZXRjLikK4pSc4pSA4pSAIC5naXRpZ25vcmUgICAgICAgICAgICAgICAgICAgICMgQXJjaGl2b3MgYSBpZ25vcmFyIHBvciBnaXQK4pSc4pSA4pSAIGFwcC5kYiAgICAgICAgICAgICAgICAgICAgICAgICMgQmFzZSBkZSBkYXRvcyBTUUxpdGUK4pSc4pSA4pSAIHJlcXVpcmVtZW50cy50eHQgICAgICAgICAgICAgICMgRGVwZW5kZW5jaWFzIFB5dGhvbgrilJzilIDilIAgcnVuX3NlcnZlci5iYXQgICAgICAgICAgICAgICAgIyBMYXVuY2hlciBkZWwgc2Vydmlkb3IK4pSc4pSA4pSAIGluaWNpYXIuYmF0ICAgICAgICAgICAgICAgICAgICMgTGF1bmNoZXIgV2luZG93cwrilJzilIDilIAgc3lzdGVtdHJheS5weSAgICAgICAgICAgICAgICAgIyBTeXN0ZW0gdHJheSBpY29uCuKUnOKUgOKUgCBSRUFETUUubWQgICAgICAgICAgICAgICAgICAgICAjIERvY3VtZW50YWNpw7NuIHByaW5jaXBhbArilIIK4pSc4pSA4pSAIGFwcC8K4pSCICAg4pSc4pSA4pSAIF9faW5pdF9fLnB5CuKUgiAgIOKUnOKUgOKUgCBtYWluLnB5ICAgICAgICAgICAgICAgICAgICMgQXBsaWNhY2nDs24gRmFzdEFQSSBwcmluY2lwYWwK4pSCICAg4pSc4pSA4pSAIGNvcmUvCuKUgiAgIOKUgiAgIOKUnOKUgOKUgCBjb25maWcucHkgICAgICAgICAgICAgIyBDb25maWd1cmFjacOzbiBkZSBsYSBhcHAK4pSCICAg4pSCICAg4pSU4pSA4pSAIGRhdGFiYXNlLnB5ICAgICAgICAgICAjIENvbmZpZ3VyYWNpw7NuIGRlIGJhc2UgZGUgZGF0b3MK4pSCICAg4pSc4pSA4pSAIG1vZGVscy8gICAgICAgICAgICAgICAgICAgIyBNb2RlbG9zIFNRTEFsY2hlbXkK4pSCICAg4pSCICAg4pSc4pSA4pSAIF9faW5pdF9fLnB5CuKUgiAgIOKUgiAgIOKUnOKUgOKUgCBjaGFubmVsLnB5CuKUgiAgIOKUgiAgIOKUnOKUgOKUgCBjaGFubmVsX3NjaGVkdWxlLnB5CuKUgiAgIOKUgiAgIOKUnOKUgOKUgCBkYWlseV9zdGF0LnB5CuKUgiAgIOKUgiAgIOKUnOKUgOKUgCBwcm9tcHQucHkK4pSCICAg4pSCICAg4pSc4pSA4pSAIHB1YmxpY2F0aW9uX3NjaGVkdWxlLnB5CuKUgiAgIOKUgiAgIOKUnOKUgOKUgCBzY3JpcHQucHkK4pSCICAg4pSCICAg4pSc4pSA4pSAIHZpZGVvLnB5CuKUgiAgIOKUgiAgIOKUlOKUgOKUgCAuLi4K4pSCICAg4pSc4pSA4pSAIHJvdXRlcnMvICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludHMgZGUgbGEgQVBJIFJFU1QK4pSCICAg4pSCICAg4pSc4pSA4pSAIGNoYW5uZWxzLnB5ICAgICAgICAgICAjIENSVUQgY2FuYWxlcwrilIIgICDilIIgICDilJzilIDilIAgc2NoZWR1bGUucHkgICAgICAgICAgICMgR2VzdGnDs24gZGUgaG9yYXJpb3MK4pSCICAg4pSCICAg4pSc4pSA4pSAIGRhc2hib2FyZC5weSAgICAgICAgICAjIERhc2hib2FyZCBBUEkK4pSCICAg4pSCICAg4pSc4pSA4pSAIGFuYWx5dGljcy5weSAgICAgICAgICAjIEFuYWx5dGljcwrilIIgICDilIIgICDilJzilIDilIAgcHJvbXB0cy5weSAgICAgICAgICAgICMgR2VzdGnDs24gcHJvbXB0cwrilIIgICDilIIgICDilJTilIDilIAgLi4uCuKUgiAgIOKUnOKUgOKUgCBzY2hlbWFzLyAgICAgICAgICAgICAgICAgICMgRXNxdWVtYXMgUHlkYW50aWMK4pSCICAg4pSc4pSA4pSAIHNlcnZpY2VzLyAgICAgICAgICAgICAgICAgIyBMw7NnaWNhIGRlIG5lZ29jaW8K4pSCICAg4pSCICAg4pSc4pSA4pSAIGNoYW5uZWxfc2VydmljZS5weQrilIIgICDilIIgICDilJzilIDilIAgc2NoZWR1bGVfc2VydmljZS5weQrilIIgICDilIIgICDilJzilIDilIAgYW5hbHl0aWNzX3NlcnZpY2UucHkK4pSCICAg4pSCICAg4pSU4pSA4pSAIHByb21wdF9zZXJ2aWNlLnB5CuKUgiAgIOKUnOKUgOKUgCBzdGF0aWMvICAgICAgICAgICAgICAgICAgICMgQXJjaGl2b3MgZnJvbnRlbmQK4pSCICAg4pSCICAg4pSc4pSA4pSAIGluZGV4Lmh0bWwgICAgICAgICAgICAjIFVJIHByaW5jaXBhbArilIIgICDilIIgICDilJzilIDilIAgYXBwLmpzICAgICAgICAgICAgICAgICMgSmF2YVNjcmlwdCBmcm9udGVuZArilIIgICDilIIgICDilJTilIDilIAgc3R5bGVzLmNzcyAgICAgICAgICAgICMgRXN0aWxvcyBDU1MK4pSCICAg4pSU4pSA4pSAIHRhc2tzLyAgICAgICAgICAgICAgICAgICAgIyBUYXJlYXMgcHJvZ3JhbWFkYXMK4pSCICAgICAgIOKUlOKUgOKUgCBzY2hlZHVsZXIucHkgICAgICAgICAgIyBBUFNjaGVkdWxlciBpbml0aWFsaXphdGlvbgrilIIK4pSc4pSA4pSAIGNoYW5uZWxzX2RhdGEvICAgICAgICAgICAgICAgICMgRGF0b3MgZGUgY2FuYWxlcyAoaW3DoWdlbmVzLCBKU09OKQrilJzilIDilIAgcHJvbXB0cy8gICAgICAgICAgICAgICAgICAgICAgIyBQbGFudGlsbGFzIGRlIHByb21wdHMgcG9yIGNhdGVnb3LDrWEK4pSCICAg4pSc4pSA4pSAIGF1ZGlvLwrilIIgICDilJzilIDilIAgZ3Vpb24vCuKUgiAgIOKUnOKUgOKUgCBsbHV2aWFfaWRlYXMvCuKUgiAgIOKUnOKUgOKUgCBvdHJvLwrilIIgICDilJzilIDilIAgc2VvLwrilIIgICDilJTilIDilIAgdmlkZW8vCuKUnOKUgOKUgCBza2lsbHMvICAgICAgICAgICAgICAgICAgICAgICAjIFNraWxscyBkZSBkZXNhcnJvbGxvCuKUgiAgIOKUlOKUgOKUgCBkZXNhcnJvbGxvc29mdHdhcmUvCuKUlOKUgOKUgCB0b29scy8gICAgICAgICAgICAgICAgICAgICAgICAjIEhlcnJhbWllbnRhcyB1dGlsaXRhcmlhcwogICAg4pSc4pSA4pSAIGNyZWFjaW9uRGNhbmFsLnB5CiAgICDilJzilIDilIAgRGF0b3NEaWFyaW9zLnB5CiAgICDilJzilIDilIAgcXdlbjN0dHMucHkKICAgIOKUlOKUgOKUgCBzY3JpcHRfcnVubmVyLnB5CmBgYAoKLS0tCgojIyBGdW5jaW9uYWxpZGFkZXMgSW1wbGVtZW50YWRhcwoKIyMjIDEuIEdlc3Rpw7NuIGRlIENhbmFsZXMKLSBDUlVEIGNvbXBsZXRvIGRlIGNhbmFsZXMgZGUgWW91VHViZQotIERhdG9zIGV4dGVuZGlkb3M6IGVtYWlsLCBzb2NpYWxfbGlua3MsIGNoZWNrcG9pbnRzLCBjb2xvciBwZXJzb25hbGl6YWRvCi0gVGh1bWJuYWlsL2ltYWdlbiBkZWwgY2FuYWwKLSBVUkwgcGVyc29uYWxpemFkYQotIEVzdGFkbyBkZSBzY3JhcGluZyAow6l4aXRvL2Vycm9yKQotIEZlY2hhIGRlIMO6bHRpbWEgYWN0dWFsaXphY2nDs24KLSBHZW5lcmFjacOzbiBkZSBmaWNoZXJvcyBwb3IgY2FuYWwKCiMjIyAyLiBQcm9ncmFtYWNpw7NuIGRlIFB1YmxpY2FjaW9uZXMKLSBDb25maWd1cmFjacOzbiBkZSBwZXJpb2RpY2lkYWQgcG9yIGNhbmFsOgogIC0gVmlkZW9zIGxhcmdvcyAoZnJlY3VlbmNpYSBjb25maWd1cmFibGUgZW4gZMOtYXMpCiAgLSBTaG9ydHMgKGZyZWN1ZW5jaWEgY29uZmlndXJhYmxlIGVuIGTDrWFzKQogIC0gQXJ0w61jdWxvcyAoZnJlY3VlbmNpYSBjb25maWd1cmFibGUgZW4gZMOtYXMpCi0gRmVjaGEgZGUgaW5pY2lvIGNvbmZpZ3VyYWJsZQotIEVzdGFkbyBhY3Rpdm8vaW5hY3Rpdm8gcG9yIGNhbmFsCi0gQ2FsZW5kYXJpbyBiaW1lbnN1YWwgKG1lcyBhY3R1YWwgKyBzaWd1aWVudGUpCi0gR2VuZXJhY2nDs24gYXV0b23DoXRpY2EgZGUgcHVibGljYWNpb25lcwotIFByw7N4aW1hcyBwdWJsaWNhY2lvbmVzIGNvbiBpbmRpY2Fkb3IgZGUgZ3Vpw7NuCgojIyMgMy4gR2VzdGnDs24gZGUgQ29udGVuaWRvCi0gRmx1am8gZGUgdHJhYmFqbzogSWRlYSDihpIgR3Vpw7NuIOKGkiBEZXNhcnJvbGxvIOKGkiBWaWRlbwotIExsdXZpYSBkZSBpZGVhcyBjb24gbm90YXMKLSBHZW5lcmFjacOzbiBkZSBndWlvbmVzIGNvbiBJQQotIEdlc3Rpw7NuIGRlIGFydMOtY3Vsb3MKLSBBdmFuY2UgZGUgZXRhcGFzCgojIyMgNC4gQW7DoWxpc2lzIHkgTcOpdHJpY2FzCi0gU3VzY3JpcHRvcmVzLCB2aXN0YXMsIHZpZGVvcwotIEV2b2x1Y2nDs24gZGUgdmlzdGFzIGVuIGdyw6FmaWNvCi0gSGlzdG9yaWFsIGRlIHB1YmxpY2FjaW9uZXMKLSBJbXBvcnRhY2nDs24gZGUgZGF0b3MgZGlhcmlvcwotIEJvdMOzbiAiQ29tcHJvYmFyIERhdG9zIGRlIEhveSIKCiMjIyA1LiBCaWJsaW90ZWNhIGRlIFByb21wdHMKLSBDcmVhY2nDs24geSBnZXN0acOzbiBkZSBwcm9tcHRzCi0gVGlwb3M6IGxsdXZpYV9pZGVhcywgZ3Vpb24sIGF1ZGlvLCB2aWRlbywgc2VvCi0gVmFyaWFibGVzIGRldGVjdGFkYXMgYXV0b23DoXRpY2FtZW50ZSAoYHt7dmFyaWFibGV9fWApCi0gU2lzdGVtYSBkZSByYXRpbmcgKDAtNSkKLSBDb250ZW8gZGUgdXNvcwotIELDunNxdWVkYSB5IGZpbHRyYWRvIHBvciB0aXBvCgojIyMgNi4gQXV0b21hdGl6YWNpw7NuCi0gVGFyZWFzIHByb2dyYW1hZGFzIGNvbiBjcm9uCi0gRWplY3VjacOzbiBkZSB3b3JrZmxvd3MKLSBIaXN0b3JpYWwgZGUgZWplY3VjaW9uZXMKLSBTaW5jcm9uaXphY2nDs24gY29uIEFQU2NoZWR1bGVyCgojIyMgNy4gRGFzaGJvYXJkCi0gUmVzdW1lbiBnZW5lcmFsIGNvbiBtw6l0cmljYXMKLSBGaWx0cm9zIHBvciBjYW5hbAotIENhbGVuZGFyaW8gZGUgcHVibGljYWNpb25lcyBjb24gZMOtYSBhY3R1YWwgbWFyY2FkbwotIENvbG9yZXMgcG9yIGNhbmFsCi0gUmVzdW1lbiBkZSBndWlvbmVzIHkgdsOtZGVvcyBwb3IgZXN0YWRvCgojIyMgOC4gQ29uZmlndXJhY2nDs24KLSBTZXJ2aWNpb3MgZXh0ZXJub3MgKEFQSSBrZXlzLCBVUkxzKQotIFlvdVR1YmUgQVBJIEtleSBzZWd1cmEgKGFsbWFjZW5hbWllbnRvIGVuIC5lbnYpCi0gUHJvZ3JhbWFjacOzbiBkZSBhbmFsw610aWNhcyAoY3JvbikKLSBDb25maWd1cmFjacOzbiBkZSB2aWRlbyAodHJhbnNpY2lvbmVzLCBzdWJ0w610dWxvcykKCiMjIyA5LiBTeXN0ZW0gVHJheQotIEljb25vIGVuIGJhbmRlamEgZGVsIHNpc3RlbWEKLSBDb250cm9sIGRlbCBzZXJ2aWRvciBkZXNkZSBsYSBiYW5kZWphCgotLS0KCiMjIEJhc2UgZGUgRGF0b3MgKFNRTGl0ZSkKCiMjIyBUYWJsYXMgcHJpbmNpcGFsZXMKCnwgVGFibGEgfCBEZXNjcmlwY2nDs24gfAp8LS0tLS0tLXwtLS0tLS0tLS0tLS0tfAp8ICoqY2hhbm5lbHMqKiB8IENhbmFsZXMgZGUgWW91VHViZSAoaWQsIHRpdGxlLCBjdXN0b21VcmwsIHRodW1ibmFpbCwgY2hhbm5lbF9jb2xvciwgZW1haWwsIHNvY2lhbF9saW5rcywgY2hlY2twb2ludHMsIGxhc3Rfc2NyYXBlZF9hdCwgbGFzdF9zY3JhcGVfc3RhdHVzLCBjcmVhdGVkX2F0LCB1cGRhdGVkX2F0KSB8CnwgKipjaGFubmVsX3NjaGVkdWxlcyoqIHwgUHJvZ3JhbWFjacOzbiBwb3IgY2FuYWwgKGlkLCBjaGFubmVsX2lkLCBsb25nX3ZpZGVvX2VuYWJsZWQvZnJlcXVlbmN5LCBzaG9ydF92aWRlb19lbmFibGVkL2ZyZXF1ZW5jeSwgYXJ0aWNsZV9lbmFibGVkL2ZyZXF1ZW5jeSwgc3RhcnRfZGF0ZSwgdGltZXpvbmUsIGlzX2FjdGl2ZSwgY3JlYXRlZF9hdCwgdXBkYXRlZF9hdCkgfAp8ICoqcHVibGljYXRpb25fc2NoZWR1bGVzKiogfCBQdWJsaWNhY2lvbmVzIHByb2dyYW1hZGFzIChpZCwgY2hhbm5lbF9pZCwgc2NyaXB0X2lkLCBjb250ZW50X3R5cGUsIHNjaGVkdWxlZF9kYXRldGltZSwgc3RhdHVzLCBub3RlcywgY3JlYXRlZF9hdCwgdXBkYXRlZF9hdCkgfAp8ICoqc2NyaXB0cyoqIHwgR3Vpb25lcyAoaWQsIGNoYW5uZWxfaWQsIHRpdGxlLCBkZXNjcmlwdGlvbiwgc2NyaXB0X2NvbnRlbnQsIGFydGljbGVfY29udGVudCwgdm9pY2Vfc2NyaXB0LCBncmFwaGljX3NjcmlwdCwgdGFncywgc3RhdHVzLCBjcmVhdGVkX2F0LCB1cGRhdGVkX2F0KSB8CnwgKipwcm9tcHRzKiogfCBCaWJsaW90ZWNhIGRlIHByb21wdHMgKGlkLCB0aXRsZSwgZGVzY3JpcHRpb24sIGNvbnRlbnQsIHByb21wdF90eXBlLCB2YXJpYWJsZXMsIHJhdGluZywgdXNhZ2VfY291bnQsIHZlcnNpb24sIGNyZWF0ZWRfYXQsIHVwZGF0ZWRfYXQpIHwKfCAqKmRhaWx5X3N0YXRzKiogfCBFc3RhZMOtc3RpY2FzIGRpYXJpYXMgKGlkLCBjaGFubmVsX2lkLCBzdGF0X2RhdGUsIHN1YnNjcmliZXJfY291bnQsIHZpZXdfY291bnQsIHZpZGVvX2NvdW50LCBjcmVhdGVkX2F0LCB1cGRhdGVkX2F0KSB8CnwgKipjb25maWcqKiB8IENvbmZpZ3VyYWNpw7NuIGRlbCBzaXN0ZW1hIChpZCwga2V5LCB2YWx1ZSwgdXBkYXRlZF9hdCkgfAoKLS0tCgojIyBBUEkgRW5kcG9pbnRzCgojIyMgQ2FuYWxlcwotIGBHRVQgL2FwaS9jaGFubmVsc2AgLSBMaXN0YXIgdG9kb3MgbG9zIGNhbmFsZXMKLSBgUE9TVCAvYXBpL2NoYW5uZWxzYCAtIENyZWFyIGNhbmFsCi0gYEdFVCAvYXBpL2NoYW5uZWxzL3tpZH1gIC0gT2J0ZW5lciBjYW5hbAotIGBQQVRDSCAvYXBpL2NoYW5uZWxzL3tpZH1gIC0gQWN0dWFsaXphciBjYW5hbAotIGBERUxFVEUgL2FwaS9jaGFubmVscy97aWR9YCAtIEVsaW1pbmFyIGNhbmFsCi0gYEdFVCAvYXBpL2NoYW5uZWxzL3tpZH0vdGh1bWJuYWlsYCAtIE9idGVuZXIgdGh1bWJuYWlsCi0gYFBPU1QgL2FwaS9jaGFubmVscy90b29scy9jcmVhdGUtZmlsZXNgIC0gQ3JlYXIgZmljaGVyb3MgZGVsIGNhbmFsCgojIyMgUHJvZ3JhbWFjacOzbgotIGBHRVQgL2FwaS9zY2hlZHVsZXMvY2hhbm5lbC97Y2hhbm5lbF9pZH1gIC0gT2J0ZW5lciBwcm9ncmFtYWNpw7NuCi0gYFBPU1QgL2FwaS9zY2hlZHVsZXMvY2hhbm5lbC97Y2hhbm5lbF9pZH1gIC0gQ3JlYXIgcHJvZ3JhbWFjacOzbgotIGBQVVQgL2FwaS9zY2hlZHVsZXMvY2hhbm5lbC97Y2hhbm5lbF9pZH1gIC0gQWN0dWFsaXphciBwcm9ncmFtYWNpw7NuCi0gYEdFVCAvYXBpL3NjaGVkdWxlcy9jaGFubmVsL3tjaGFubmVsX2lkfS9jYWxlbmRhci9tb250aHNgIC0gQ2FsZW5kYXJpbyBiaW1lbnN1YWwKLSBgUE9TVCAvYXBpL3NjaGVkdWxlcy9jaGFubmVsL3tjaGFubmVsX2lkfS9nZW5lcmF0ZWAgLSBHZW5lcmFyIHB1YmxpY2FjaW9uZXMKLSBgR0VUIC9hcGkvc2NoZWR1bGVzL2NoYW5uZWwve2NoYW5uZWxfaWR9L3VwY29taW5nYCAtIFByw7N4aW1hcyBwdWJsaWNhY2lvbmVzCi0gYFBPU1QgL2FwaS9zY2hlZHVsZXMvcHVibGljYXRpb24ve2lkfS9hc3NpZ24tc2NyaXB0YCAtIEFzaWduYXIgZ3Vpw7NuCi0gYFBVVCAvYXBpL3NjaGVkdWxlcy9wdWJsaWNhdGlvbi97aWR9YCAtIEFjdHVhbGl6YXIgcHVibGljYWNpw7NuCi0gYERFTEVURSAvYXBpL3NjaGVkdWxlcy9wdWJsaWNhdGlvbi97aWR9YCAtIEVsaW1pbmFyIHB1YmxpY2FjacOzbgoKIyMjIFByb21wdHMKLSBgR0VUIC9hcGkvcHJvbXB0c2AgLSBMaXN0YXIgcHJvbXB0cwotIGBQT1NUIC9hcGkvcHJvbXB0c2AgLSBDcmVhciBwcm9tcHQKLSBgR0VUIC9hcGkvcHJvbXB0cy97aWR9YCAtIE9idGVuZXIgcHJvbXB0Ci0gYFBBVENIIC9hcGkvcHJvbXB0cy97aWR9YCAtIEFjdHVhbGl6YXIgcHJvbXB0Ci0gYERFTEVURSAvYXBpL3Byb21wdHMve2lkfWAgLSBFbGltaW5hciBwcm9tcHQKLSBgUE9TVCAvYXBpL3Byb21wdHMve2lkfS9yYXRlP3JhdGluZz1YYCAtIENhbGlmaWNhciBwcm9tcHQKCiMjIyBBbsOhbGlzaXMKLSBgR0VUIC9hcGkvYW5hbHl0aWNzL2RhaWx5LXN0YXRzL3tjaGFubmVsX2lkfWAgLSBFc3RhZMOtc3RpY2FzIGRpYXJpYXMKLSBgR0VUIC9hcGkvYW5hbHl0aWNzL3B1YmxpY2F0aW9ucy1oaXN0b3J5L3tjaGFubmVsX2lkfWAgLSBIaXN0b3JpYWwKLSBgUE9TVCAvYXBpL2FuYWx5dGljcy9pbXBvcnQve2NoYW5uZWxfaWR9YCAtIEltcG9ydGFyIGRhdG9zCgojIyMgRGFzaGJvYXJkCi0gYEdFVCAvYXBpL2Rhc2hib2FyZC9zdW1tYXJ5P2NoYW5uZWxfaWQ9WGAgLSBSZXN1bWVuIGdlbmVyYWwKCiMjIyBDb25maWd1cmFjacOzbgotIGBHRVQgL2FwaS9jb25maWdgIC0gTGlzdGFyIGNvbmZpZ3VyYWNpw7NuCi0gYFBPU1QgL2FwaS9jb25maWdgIC0gR3VhcmRhciBjb25maWd1cmFjacOzbgotIGBHRVQgL2FwaS9jb25maWcveW91dHViZS1rZXlgIC0gRXN0YWRvIGRlIGxhIEFQSSBLZXkgKGVubWFzY2FyYWRhKQotIGBQT1NUIC9hcGkvY29uZmlnL3lvdXR1YmUta2V5YCAtIEd1YXJkYXIgQVBJIEtleQoKIyMjIE90cm9zCi0gYEdFVCAvaGVhbHRoYCAtIEhlYWx0aCBjaGVjawotIGAvYCAtIFJlZGlyaWdlIGEgYC91aWAKLSBgUE9TVCAvYWRtaW4vc2h1dGRvd25gIC0gQXBhZ2FyIHNlcnZpZG9yCi0gYFBPU1QgL2FkbWluL3Jlc3RhcnRgIC0gUmVpbmljaWFyIHNlcnZpZG9yCgotLS0KCiMjIENvcnJlY2Npb25lcyB5IEJ1Z3MgUmVwYXJhZG9zCgojIyMgWW91VHViZSBBUEkgS2V5IHNlZ3VyYQotICoqUHJvYmxlbWE6KiogQVBJIEtleSBoYXJkY29kZWFkYSBlbiBsb3Mgc2NyaXB0cwotICoqU29sdWNpw7NuOioqIFNpc3RlbWEgY29tcGxldG8gY29uIGAuZW52YCwgY29uZmlndXJhY2nDs24gZW4gYGNvbmZpZy5weWAsIGVuZHBvaW50cyBzZWd1cm9zLCBVSSBjb24ga2V5IGVubWFzY2FyYWRhCi0gKipTZWd1cmlkYWQ6KiogTGEga2V5IG51bmNhIHNlIGFsbWFjZW5hIGVuIEJELCBudW5jYSBzZSBtdWVzdHJhIGVuIGNsYXJvLCBudW5jYSBzZSBzdWJlIGEgZ2l0CgojIyMgQ2FsZW5kYXJpbyBkZXNjdWFkcmFkbwotICoqUHJvYmxlbWE6KiogSGVhZGVycyBpbnNlcnRhZG9zIGRlbnRybyBkZWwgQ1NTIGdyaWQKLSAqKlNvbHVjacOzbjoqKiBSZW9yZGVuYXIgZXN0cnVjdHVyYSBIVE1MIChoZWFkZXJzIGZ1ZXJhIGRlbCBncmlkKSwgZWxpbWluYXIgYGFzcGVjdC1yYXRpbzogMWAKCiMjIyBDYWxlbmRhcmlvIG5vIG1vc3RyYWJhIGV2ZW50b3MKLSAqKlByb2JsZW1hOioqIFpvbmEgaG9yYXJpYSBjYXVzYWJhIGVycm9yZXMgZW4gZmlsdHJhZG8gZGUgZmVjaGFzCi0gKipTb2x1Y2nDs246KiogUGFyc2luZyBkaXJlY3RvIGRlIGNhZGVuYSBJU08gZW4gbHVnYXIgZGUgYG5ldyBEYXRlKClgCgojIyMgU2VyaWFsaXphY2nDs24gZGUgdGFncwotICoqUHJvYmxlbWE6KiogYEdFVCAvYXBpL3NjcmlwdHNgIGRldm9sdsOtYSBlcnJvciA1MDAgcG9yIFRhZyBvYmplY3RzCi0gKipTb2x1Y2nDs246KiogQcOxYWRpZG8gYGZpZWxkX3NlcmlhbGl6ZXJgIGVuIGBTY3JpcHRSZXNwb25zZWAKCiMjIyBSb3V0ZXIgYC9hcGkvc2NyaXB0c2AgZmFsdGFudGUKLSAqKlByb2JsZW1hOioqIE5vIGV4aXN0w61hIGVsIHJvdXRlciBkZSBzY3JpcHRzCi0gKipTb2x1Y2nDs246KiogQ3JlYWRvIGBhcHAvcm91dGVycy9zY3JpcHRzLnB5YCBjb24gQ1JVRCBjb21wbGV0bwoKIyMjIFNjaGVkdWxlciBzaW5jcm9uaXphY2nDs24KLSAqKlByb2JsZW1hOioqIERlc2luY3Jvbml6YWNpw7NuIGVudHJlIEFQU2NoZWR1bGVyIHkgdGFyZWFzCi0gKipTb2x1Y2nDs246KiogU2luY3Jvbml6YWNpw7NuIGVuIGBjcmVhdGUoKWAsIGB1cGRhdGUoKWAgeSBgZGVsZXRlKClgCgojIyMgUGFyc2VyIGRlIGNyb24KLSAqKlByb2JsZW1hOioqIFNpbiB2YWxpZGFjacOzbiBkZSBleHByZXNpb25lcyBjcm9uCi0gKipTb2x1Y2nDs246KiogVmFsaWRhY2nDs24gZGUgNSBjYW1wb3MgeSBtYW5lam8gZGUgZXJyb3JlcwoKLS0tCgojIyBJbnN0cnVjY2lvbmVzIGRlIFVzbwoKIyMjIEluc3RhbGFjacOzbgpgYGBiYXNoCnBpcCBpbnN0YWxsIC1yIHJlcXVpcmVtZW50cy50eHQKYGBgCgojIyMgSW5pY2lhciBlbCBzZXJ2aWRvcgpgYGBiYXNoCiMgT3BjacOzbiAxOiBCYXRjaCBmaWxlCi5ccnVuX3NlcnZlci5iYXQKCiMgT3BjacOzbiAyOiBNYW51YWwKdXZpY29ybiBhcHAubWFpbjphcHAgLS1yZWxvYWQgLS1wb3J0IDkwODAKYGBgCgojIyMgQWNjZWRlcgotICoqVUkgV2ViOioqIGh0dHA6Ly8xMjcuMC4wLjE6OTA4MC91aQotICoqQVBJIEJhc2U6KiogaHR0cDovLzEyNy4wLjAuMTo5MDgwCi0gKipIZWFsdGggQ2hlY2s6KiogaHR0cDovLzEyNy4wLjAuMTo5MDgwL2hlYWx0aAoKIyMjIEZsdWpvIGRlIHRyYWJham8gcmVjb21lbmRhZG8KMS4gKipDb25maWd1cmFyIEFQSSBLZXk6KiogQ29uZmlndXJhY2nDs24g4oaSIFNlcnZpY2lvcyDihpIgWW91VHViZSBBUEkgS2V5CjIuICoqQ3JlYXIgY2FuYWw6KiogQ2FuYWxlcyDihpIgSW50cm9kdWNpciBub21icmUg4oaSIEd1YXJkYXIKMy4gKipDb25maWd1cmFyIHByb2dyYW1hY2nDs246KiogU2VsZWNjaW9uYXIgY2FuYWwg4oaSIEFjdGl2YXIgdGlwb3Mg4oaSIENvbmZpZ3VyYXIgZnJlY3VlbmNpYQo0LiAqKkdlbmVyYXIgY2FsZW5kYXJpbzoqKiAiR2VuZXJhciBNZXMgQWN0dWFsIiB5ICJHZW5lcmFyIE1lcyBTaWd1aWVudGUiCjUuICoqR2VzdGlvbmFyIGNvbnRlbmlkbzoqKiBDcmVhciBpZGVhcyDihpIgR2VuZXJhciBndWlvbmVzIOKGkiBBc29jaWFyIGEgcHVibGljYWNpb25lcwoKLS0tCgojIyBQcsOzeGltYXMgTWVqb3JhcwoKLSBbIF0gSW50ZWdyYWNpw7NuIGNvbiBJQSBwYXJhIGdlbmVyYWNpw7NuIGRlIGNvbnRlbmlkbwotIFsgXSBTb3BvcnRlIHBhcmEgbcOhcyBwbGF0YWZvcm1hcyAoVGlrVG9rLCBUd2l0dGVyLCBldGMuKQotIFsgXSBFeHBvcnRhY2nDs24gZGUgY29udGVuaWRvIGEgdmlkZW8KLSBbIF0gTm90aWZpY2FjaW9uZXMgZGUgcHVibGljYWNpb25lcyBwcm9ncmFtYWRhcwotIFsgXSBTaXN0ZW1hIGRlIGF1dGVudGljYWNpw7NuIGRlIHVzdWFyaW9zCi0gWyBdIEV4cG9ydGFyL0ltcG9ydGFyIGJhc2UgZGUgZGF0b3MKLSBbIF0gU2lzdGVtYSBkZSBiYWNrdXBzIGF1dG9tw6F0aWNvCi0gWyBdIE1lam9yYXIgcmVzcG9uc2l2ZSBkZWwgY2FsZW5kYXJpbwoKLS0tCgojIyBSZXBvc2l0b3JpbwoKLSAqKlJlbW90ZToqKiBodHRwczovL2dpdGh1Yi5jb20vU2luY3J0YmUvd3VpLmdpdAotICoqUmFtYToqKiBtYXN0ZXIKLSAqKkVzdGFkbzoqKiBBY3Rpdm8KCi0tLQoKIyMgTGljZW5jaWEKUHJveWVjdG8gaW50ZXJubyBkZSBhdXRvbWF0aXphY2nDs24u
+# Wui - Plataforma de Automatización de YouTube
+
+## Estado del Proyecto
+**Fecha última actualización:** 2026-09-06  
+**Estado:** En desarrollo activo  
+**Versión:** 1.0.0
+
+---
+
+## Descripción
+
+Wui es una plataforma local de automatización para la gestión de múltiples canales de YouTube. Permite gestionar canales, crear contenido, programar publicaciones, analizar métricas, automatizar flujos de trabajo y gestionar una biblioteca de prompts con IA.
+
+---
+
+## Stack Tecnológico
+
+### Lenguajes
+- **Python** 3.x (backend principal)
+- **JavaScript** (frontend)
+- **HTML5/CSS3** (frontend)
+
+### Frameworks y Librerías
+- **FastAPI** 0.104.1 (backend API REST)
+- **SQLAlchemy** 2.0.23 (ORM)
+- **Uvicorn** 0.24.0 (servidor ASGI)
+- **APScheduler** 3.10.4 (tareas programadas/cron)
+- **pydantic** 2.5.0 (validación de datos)
+- **google-api-python-client** 2.197.0 (API de YouTube)
+- **pystray** 0.19.5 (system tray icon)
+- **Pillow** 10.1.0 (manipulación de imágenes)
+- **python-dotenv** 1.0.0 (variables de entorno)
+- **alembic** 1.13.1 (migraciones de base de datos)
+
+### Base de Datos
+- **SQLite** (app.db)
+
+---
+
+## Estructura del Proyecto
+
+```
+Wui/
+├── .env                          # Variables de entorno (API keys, etc.)
+├── .gitignore                    # Archivos a ignorar por git
+├── app.db                        # Base de datos SQLite
+├── requirements.txt              # Dependencias Python
+├── run_server.bat                # Launcher del servidor
+├── iniciar.bat                   # Launcher Windows
+├── systemtray.py                 # System tray icon
+├── README.md                     # Documentación principal
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py                   # Aplicación FastAPI principal
+│   ├── core/
+│   │   ├── config.py             # Configuración de la app
+│   │   └── database.py           # Configuración de base de datos
+│   ├── models/                   # Modelos SQLAlchemy
+│   │   ├── __init__.py
+│   │   ├── channel.py
+│   │   ├── channel_schedule.py
+│   │   ├── daily_stat.py
+│   │   ├── prompt.py
+│   │   ├── publication_schedule.py
+│   │   ├── script.py
+│   │   ├── video.py
+│   │   └── ...
+│   ├── routers/                  # Endpoints de la API REST
+│   │   ├── channels.py           # CRUD canales
+│   │   ├── schedule.py           # Gestión de horarios
+│   │   ├── dashboard.py          # Dashboard API
+│   │   ├── analytics.py          # Analytics
+│   │   ├── prompts.py            # Gestión prompts
+│   │   └── ...
+│   ├── schemas/                  # Esquemas Pydantic
+│   ├── services/                 # Lógica de negocio
+│   │   ├── channel_service.py
+│   │   ├── schedule_service.py
+│   │   ├── analytics_service.py
+│   │   └── prompt_service.py
+│   ├── static/                   # Archivos frontend
+│   │   ├── index.html            # UI principal
+│   │   ├── app.js                # JavaScript frontend
+│   │   └── styles.css            # Estilos CSS
+│   └── tasks/                    # Tareas programadas
+│       └── scheduler.py          # APScheduler initialization
+│
+├── channels_data/                # Datos de canales (imágenes, JSON)
+├── prompts/                      # Plantillas de prompts por categoría
+│   ├── audio/
+│   ├── guion/
+│   ├── lluvia_ideas/
+│   ├── otro/
+│   ├── seo/
+│   └── video/
+├── skills/                       # Skills de desarrollo
+│   └── desarrollosoftware/
+└── tools/                        # Herramientas utilitarias
+    ├── creacionDcanal.py
+    ├── DatosDiarios.py
+    ├── qwen3tts.py
+    └── script_runner.py
+```
+
+---
+
+## Funcionalidades Implementadas
+
+### 1. Gestión de Canales
+- CRUD completo de canales de YouTube
+- Datos extendidos: email, social_links, checkpoints, color personalizado
+- Thumbnail/imagen del canal
+- URL personalizada
+- Estado de scraping (éxito/error)
+- Fecha de última actualización
+- Generación de ficheros por canal
+
+### 2. Programación de Publicaciones
+- Configuración de periodicidad por canal:
+  - Videos largos (frecuencia configurable en días)
+  - Shorts (frecuencia configurable en días)
+  - Artículos (frecuencia configurable en días)
+- Fecha de inicio configurable
+- Estado activo/inactivo por canal
+- Calendario bimensual (mes actual + siguiente)
+- Generación automática de publicaciones
+- Próximas publicaciones con indicador de guión
+
+### 3. Gestión de Contenido
+- Flujo de trabajo: Idea → Guión → Desarrollo → Video
+- Lluvia de ideas con notas
+- Generación de guiones con IA
+- Gestión de artículos
+- Avance de etapas
+
+### 4. Análisis y Métricas
+- Suscriptores, vistas, videos
+- Evolución de vistas en gráfico
+- Historial de publicaciones
+- Importación de datos diarios
+- Botón "Comprobar Datos de Hoy"
+
+### 5. Biblioteca de Prompts
+- Creación y gestión de prompts
+- Tipos: lluvia_ideas, guion, audio, video, seo
+- Variables detectadas automáticamente (`{{variable}}`)
+- Sistema de rating (0-5)
+- Conteo de usos
+- Búsqueda y filtrado por tipo
+
+### 6. Automatización
+- Tareas programadas con cron
+- Ejecución de workflows
+- Historial de ejecuciones
+- Sincronización con APScheduler
+
+### 7. Dashboard
+- Resumen general con métricas
+- Filtros por canal
+- Calendario de publicaciones con día actual marcado
+- Colores por canal
+- Resumen de guiones y vídeos por estado
+
+### 8. Configuración
+- Servicios externos (API keys, URLs)
+- YouTube API Key segura (almacenamiento en .env)
+- Programación de analíticas (cron)
+- Configuración de video (transiciones, subtítulos)
+
+### 9. System Tray
+- Icono en bandeja del sistema
+- Control del servidor desde la bandeja
+
+---
+
+## Base de Datos (SQLite)
+
+### Tablas principales
+
+| Tabla | Descripción |
+|-------|-------------|
+| **channels** | Canales de YouTube (id, title, customUrl, thumbnail, channel_color, email, social_links, checkpoints, last_scraped_at, last_scrape_status, created_at, updated_at) |
+| **channel_schedules** | Programación por canal (id, channel_id, long_video_enabled/frequency, short_video_enabled/frequency, article_enabled/frequency, start_date, timezone, is_active, created_at, updated_at) |
+| **publication_schedules** | Publicaciones programadas (id, channel_id, script_id, content_type, scheduled_datetime, status, notes, created_at, updated_at) |
+| **scripts** | Guiones (id, channel_id, title, description, script_content, article_content, voice_script, graphic_script, tags, status, created_at, updated_at) |
+| **prompts** | Biblioteca de prompts (id, title, description, content, prompt_type, variables, rating, usage_count, version, created_at, updated_at) |
+| **daily_stats** | Estadísticas diarias (id, channel_id, stat_date, subscriber_count, view_count, video_count, created_at, updated_at) |
+| **config** | Configuración del sistema (id, key, value, updated_at) |
+
+---
+
+## API Endpoints
+
+### Canales
+- `GET /api/channels` - Listar todos los canales
+- `POST /api/channels` - Crear canal
+- `GET /api/channels/{id}` - Obtener canal
+- `PATCH /api/channels/{id}` - Actualizar canal
+- `DELETE /api/channels/{id}` - Eliminar canal
+- `GET /api/channels/{id}/thumbnail` - Obtener thumbnail
+- `POST /api/channels/tools/create-files` - Crear ficheros del canal
+
+### Programación
+- `GET /api/schedules/channel/{channel_id}` - Obtener programación
+- `POST /api/schedules/channel/{channel_id}` - Crear programación
+- `PUT /api/schedules/channel/{channel_id}` - Actualizar programación
+- `GET /api/schedules/channel/{channel_id}/calendar/months` - Calendario bimensual
+- `POST /api/schedules/channel/{channel_id}/generate` - Generar publicaciones
+- `GET /api/schedules/channel/{channel_id}/upcoming` - Próximas publicaciones
+- `POST /api/schedules/publication/{id}/assign-script` - Asignar guión
+- `PUT /api/schedules/publication/{id}` - Actualizar publicación
+- `DELETE /api/schedules/publication/{id}` - Eliminar publicación
+
+### Prompts
+- `GET /api/prompts` - Listar prompts
+- `POST /api/prompts` - Crear prompt
+- `GET /api/prompts/{id}` - Obtener prompt
+- `PATCH /api/prompts/{id}` - Actualizar prompt
+- `DELETE /api/prompts/{id}` - Eliminar prompt
+- `POST /api/prompts/{id}/rate?rating=X` - Calificar prompt
+
+### Análisis
+- `GET /api/analytics/daily-stats/{channel_id}` - Estadísticas diarias
+- `GET /api/analytics/publications-history/{channel_id}` - Historial
+- `POST /api/analytics/import/{channel_id}` - Importar datos
+
+### Dashboard
+- `GET /api/dashboard/summary?channel_id=X` - Resumen general
+
+### Configuración
+- `GET /api/config` - Listar configuración
+- `POST /api/config` - Guardar configuración
+- `GET /api/config/youtube-key` - Estado de la API Key (enmascarada)
+- `POST /api/config/youtube-key` - Guardar API Key
+
+### Otros
+- `GET /health` - Health check
+- `/` - Redirige a `/ui`
+- `POST /admin/shutdown` - Apagar servidor
+- `POST /admin/restart` - Reiniciar servidor
+
+---
+
+## Correcciones y Bugs Reparados
+
+### YouTube API Key segura
+- **Problema:** API Key hardcodeada en los scripts
+- **Solución:** Sistema completo con `.env`, configuración en `config.py`, endpoints seguros, UI con key enmascarada
+- **Seguridad:** La key nunca se almacena en BD, nunca se muestra en claro, nunca se sube a git
+
+### Calendario descuadrado
+- **Problema:** Headers insertados dentro del CSS grid
+- **Solución:** Reordenar estructura HTML (headers fuera del grid), eliminar `aspect-ratio: 1`
+
+### Calendario no mostraba eventos
+- **Problema:** Zona horaria causaba errores en filtrado de fechas
+- **Solución:** Parsing directo de cadena ISO en lugar de `new Date()`
+
+### Serialización de tags
+- **Problema:** `GET /api/scripts` devolvía error 500 por Tag objects
+- **Solución:** Añadido `field_serializer` en `ScriptResponse`
+
+### Router `/api/scripts` faltante
+- **Problema:** No existía el router de scripts
+- **Solución:** Creado `app/routers/scripts.py` con CRUD completo
+
+### Scheduler sincronización
+- **Problema:** Desincronización entre APScheduler y tareas
+- **Solución:** Sincronización en `create()`, `update()` y `delete()`
+
+### Parser de cron
+- **Problema:** Sin validación de expresiones cron
+- **Solución:** Validación de 5 campos y manejo de errores
+
+---
+
+## Instrucciones de Uso
+
+### Instalación
+```bash
+pip install -r requirements.txt
+```
+
+### Iniciar el servidor
+```bash
+# Opción 1: Batch file
+.\run_server.bat
+
+# Opción 2: Manual
+uvicorn app.main:app --reload --port 9080
+```
+
+### Acceder
+- **UI Web:** http://127.0.0.1:9080/ui
+- **API Base:** http://127.0.0.1:9080
+- **Health Check:** http://127.0.0.1:9080/health
+
+### Flujo de trabajo recomendado
+1. **Configurar API Key:** Configuración → Servicios → YouTube API Key
+2. **Crear canal:** Canales → Introducir nombre → Guardar
+3. **Configurar programación:** Seleccionar canal → Activar tipos → Configurar frecuencia
+4. **Generar calendario:** "Generar Mes Actual" y "Generar Mes Siguiente"
+5. **Gestionar contenido:** Crear ideas → Generar guiones → Asociar a publicaciones
+
+---
+
+## Próximas Mejoras
+
+- [ ] Integración con IA para generación de contenido
+- [ ] Soporte para más plataformas (TikTok, Twitter, etc.)
+- [ ] Exportación de contenido a video
+- [ ] Notificaciones de publicaciones programadas
+- [ ] Sistema de autenticación de usuarios
+- [ ] Exportar/Importar base de datos
+- [ ] Sistema de backups automático
+- [ ] Mejorar responsive del calendario
+
+---
+
+## Repositorio
+
+- **Remote:** https://github.com/Sincrtbe/wui.git
+- **Rama:** master
+- **Estado:** Activo
+
+---
+
+## Licencia
+Proyecto interno de automatización.

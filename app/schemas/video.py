@@ -1,1 +1,29 @@
-IiIiU2NoZW1hcyBkZSB2w61kZW8uIiIiCmZyb20gcHlkYW50aWMgaW1wb3J0IEJhc2VNb2RlbApmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRldGltZQoKCmNsYXNzIFZpZGVvQ3JlYXRlKEJhc2VNb2RlbCk6CiAgICBjaGFubmVsX2lkOiBpbnQKICAgIHNjcmlwdF9pZDogaW50IHwgTm9uZSA9IE5vbmUKICAgIHRpdGxlOiBzdHIKICAgIGR1cmF0aW9uOiBpbnQgfCBOb25lID0gTm9uZQoKCmNsYXNzIFZpZGVvVXBkYXRlKEJhc2VNb2RlbCk6CiAgICB0aXRsZTogc3RyIHwgTm9uZSA9IE5vbmUKICAgIHN0YXR1czogc3RyIHwgTm9uZSA9IE5vbmUKICAgIGR1cmF0aW9uOiBpbnQgfCBOb25lID0gTm9uZQoKCmNsYXNzIFZpZGVvUmVzcG9uc2UoQmFzZU1vZGVsKToKICAgIGlkOiBpbnQKICAgIGNoYW5uZWxfaWQ6IGludAogICAgc2NyaXB0X2lkOiBpbnQgfCBOb25lCiAgICB0aXRsZTogc3RyCiAgICBkdXJhdGlvbjogaW50IHwgTm9uZQogICAgc3RhdHVzOiBzdHIKICAgIGNyZWF0ZWRfYXQ6IGRhdGV0aW1lCgogICAgY2xhc3MgQ29uZmlnOgogICAgICAgIGZyb21fYXR0cmlidXRlcyA9IFRydWUK
+"""Schemas de vídeo."""
+from pydantic import BaseModel
+from datetime import datetime
+
+
+class VideoCreate(BaseModel):
+    channel_id: int
+    script_id: int | None = None
+    title: str
+    duration: int | None = None
+
+
+class VideoUpdate(BaseModel):
+    title: str | None = None
+    status: str | None = None
+    duration: int | None = None
+
+
+class VideoResponse(BaseModel):
+    id: int
+    channel_id: int
+    script_id: int | None
+    title: str
+    duration: int | None
+    status: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True

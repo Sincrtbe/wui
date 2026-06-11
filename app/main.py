@@ -1,1 +1,346 @@
-IiIiQXBsaWNhY2nDs24gcHJpbmNpcGFsIEZhc3RBUEkuIiIiCmZyb20gY29udGV4dGxpYiBpbXBvcnQgYXN5bmNjb250ZXh0bWFuYWdlcgppbXBvcnQgbXVsdGlwcm9jZXNzaW5nCmltcG9ydCBzeXMKaW1wb3J0IG9zCmZyb20gZmFzdGFwaSBpbXBvcnQgRmFzdEFQSSwgUmVxdWVzdCwgSFRUUEV4Y2VwdGlvbgpmcm9tIGZhc3RhcGkubWlkZGxld2FyZS5jb3JzIGltcG9ydCBDT1JTTWlkZGxld2FyZQpmcm9tIGZhc3RhcGkucmVzcG9uc2VzIGltcG9ydCBSZWRpcmVjdFJlc3BvbnNlLCBKU09OUmVzcG9uc2UKZnJvbSBmYXN0YXBpLnN0YXRpY2ZpbGVzIGltcG9ydCBTdGF0aWNGaWxlcwpmcm9tIHNsb3dhcGkgaW1wb3J0IExpbWl0ZXIKZnJvbSBzbG93YXBpLmVycm9ycyBpbXBvcnQgUmF0ZUxpbWl0RXhjZWVkZWQKZnJvbSBzcWxhbGNoZW15IGltcG9ydCB0ZXh0CmZyb20gZnVuY3Rvb2xzIGltcG9ydCB3cmFwcwpmcm9tIGFwcC5jb3JlLmRhdGFiYXNlIGltcG9ydCBCYXNlLCBlbmdpbmUsIFNlc3Npb25Mb2NhbApmcm9tIGFwcC5jb3JlLnJhdGVsaW1pdCBpbXBvcnQgbGltaXRlcgpmcm9tIGFwcC5yb3V0ZXJzIGltcG9ydCBjaGFubmVscywgc2NyaXB0cywgdmlkZW9zLCBwdWJsaWNhdGlvbnMsIGF1dG9tYXRpb24sIGRhc2hib2FyZCwgY29uZmlnLCBhbmFseXRpY3MsIGNvbnRlbnQsIGxvZ3MsIHByb21wdHMsIHNjcmlwdHNfdG9vbHMsIHNjaGVkdWxlLCBhdXRoCmZyb20gYXBwLnRhc2tzLnNjaGVkdWxlciBpbXBvcnQgaW5pdF9zY2hlZHVsZXIsIHNodXRkb3duX3NjaGVkdWxlcgpmcm9tIGFwcC5jb3JlLmNvbmZpZyBpbXBvcnQgc2V0dGluZ3MKCiMgVmFyaWFibGUgZ2xvYmFsIHBhcmEgZWwgcHJvY2VzbyBkZWwgc2Vydmlkb3IKX3NlcnZlcl9wcm9jZXNzID0gTm9uZQoKIyBSdXRhcyBww7pibGljYXMgKHNpbiBhdXRlbnRpY2FjacOzbikKUFVCTElDX1JPVVRFUyA9IFsKICAgICIvYXBpL2F1dGgvbG9naW4iLAogICAgIi9hcGkvYXV0aC9jaGVjayIsCiAgICAiL2FwaS9hdXRoL2xvZ291dCIsCiAgICAiL2hlYWx0aCIsCl0KCmRlZiByZXF1aXJlX2F1dGgocmVxdWVzdDogUmVxdWVzdCk6CiAgICAiIiJNaWRkbGV3YXJlIHBhcmEgdmVyaWZpY2FyIGF1dGVudGljYWNpw7NuLiIiIgogICAgIyBPYnRlbmVyIGNyZWRlbmNpYWxlcyBkZWwgaGVhZGVyIEF1dGhvcml6YXRpb24KICAgIGF1dGhfaGVhZGVyID0gcmVxdWVzdC5oZWFkZXJzLmdldCgiQXV0aG9yaXphdGlvbiIsICIiKQogICAgCiAgICBpZiBub3QgYXV0aF9oZWFkZXIuc3RhcnRzd2l0aCgiQmFzaWMgIik6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDEsIGRldGFpbD0iTm8gYXV0ZW50aWNhZG8iKQogICAgCiAgICBpbXBvcnQgYmFzZTY0CiAgICB0cnk6CiAgICAgICAgZW5jb2RlZF9jcmVkZW50aWFscyA9IGF1dGhfaGVhZGVyWzY6XSAgIyBRdWl0YXIgIkJhc2ljICIKICAgICAgICBkZWNvZGVkID0gYmFzZTY0LmI2NGRlY29kZShlbmNvZGVkX2NyZWRlbnRpYWxzKS5kZWNvZGUoInV0Zi04IikKICAgICAgICB1c2VybmFtZSwgcGFzc3dvcmQgPSBkZWNvZGVkLnNwbGl0KCI6IiwgMSkKICAgIGV4Y2VwdCBFeGNlcHRpb246CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDEsIGRldGFpbD0iQ3JlZGVuY2lhbGVzIGludsOhbGlkYXMiKQogICAgCiAgICAjIFZlcmlmaWNhciBjcmVkZW5jaWFsZXMKICAgIGlmIHVzZXJuYW1lICE9IHNldHRpbmdzLkFETUlOX1VTRVIgb3IgcGFzc3dvcmQgIT0gc2V0dGluZ3MuQURNSU5fUEFTUzoKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwMSwgZGV0YWlsPSJDcmVkZW5jaWFsZXMgaW5jb3JyZWN0YXMiKQogICAgCiAgICByZXR1cm4gVHJ1ZQoKCgpAYXN5bmNjb250ZXh0bWFuYWdlcgphc3luYyBkZWYgbGlmZXNwYW4oYXBwOiBGYXN0QVBJKToKICAgICIiIkNvbnRleHRvIGRlIGNpY2xvIGRlIHZpZGEgZGUgbGEgYXBsaWNhY2nDs24uIiIiCiAgICBCYXNlLm1ldGFkYXRhLmNyZWF0ZV9hbGwoYmluZD1lbmdpbmUpCgogICAgd2l0aCBlbmdpbmUuY29ubmVjdCgpIGFzIGNvbm46CiAgICAgICAgZXhpc3RpbmdfY29sdW1ucyA9IFtyb3dbIm5hbWUiXSBmb3Igcm93IGluIGNvbm4uZXhlY3V0ZSh0ZXh0KCJQUkFHTUEgdGFibGVfaW5mbyhjaGFubmVscykiKSkubWFwcGluZ3MoKV0KICAgICAgICBpZiAiZW1haWwiIG5vdCBpbiBleGlzdGluZ19jb2x1bW5zOgogICAgICAgICAgICBjb25uLmV4ZWN1dGUodGV4dCgiQUxURVIgVEFCTEUgY2hhbm5lbHMgQUREIENPTFVNTiBlbWFpbCBWQVJDSEFSIikpCiAgICAgICAgaWYgInNvY2lhbF9saW5rcyIgbm90IGluIGV4aXN0aW5nX2NvbHVtbnM6CiAgICAgICAgICAgIGNvbm4uZXhlY3V0ZSh0ZXh0KCJBTFRFUiBUQUJMRSBjaGFubmVscyBBREQgQ09MVU1OIHNvY2lhbF9saW5rcyBKU09OIikpCiAgICAgICAgaWYgImNoZWNrcG9pbnRzIiBub3QgaW4gZXhpc3RpbmdfY29sdW1uczoKICAgICAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkFMVEVSIFRBQkxFIGNoYW5uZWxzIEFERCBDT0xVTU4gY2hlY2twb2ludHMgSlNPTiIpKQogICAgICAgIGlmICJsYXN0X3NjcmFwZWRfYXQiIG5vdCBpbiBleGlzdGluZ19jb2x1bW5zOgogICAgICAgICAgICBjb25uLmV4ZWN1dGUodGV4dCgiQUxURVIgVEFCTEUgY2hhbm5lbHMgQUREIENPTFVNTiBsYXN0X3NjcmFwZWRfYXQgREFURVRJTUUiKSkKICAgICAgICBpZiAibGFzdF9zY3JhcGVfc3RhdHVzIiBub3QgaW4gZXhpc3RpbmdfY29sdW1uczoKICAgICAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkFMVEVSIFRBQkxFIGNoYW5uZWxzIEFERCBDT0xVTU4gbGFzdF9zY3JhcGVfc3RhdHVzIFZBUkNIQVIiKSkKICAgICAgICBpZiAic2NyYXBlX2RhdGEiIG5vdCBpbiBleGlzdGluZ19jb2x1bW5zOgogICAgICAgICAgICBjb25uLmV4ZWN1dGUodGV4dCgiQUxURVIgVEFCTEUgY2hhbm5lbHMgQUREIENPTFVNTiBzY3JhcGVfZGF0YSBKU09OIikpCiAgICAgICAgaWYgImNvbG9yIiBub3QgaW4gZXhpc3RpbmdfY29sdW1uczoKICAgICAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkFMVEVSIFRBQkxFIGNoYW5uZWxzIEFERCBDT0xVTU4gY29sb3IgVkFSQ0hBUiBERUZBVUxUICcjM2I4MmY2JyIpKQogICAgICAgIAogICAgICAgICMgQ3JlYXIgbnVldmFzIHRhYmxhcyBzaSBubyBleGlzdGVuCiAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkNSRUFURSBUQUJMRSBJRiBOT1QgRVhJU1RTIGdsb2JhbF9jb25maWdzIChrZXkgVkFSQ0hBUiBQUklNQVJZIEtFWSwgdmFsdWUgVEVYVCwgZGVzY3JpcHRpb24gVkFSQ0hBUikiKSkKICAgICAgICBpZiAiY2hhbm5lbF9uYW1lIiBub3QgaW4gZXhpc3RpbmdfY29sdW1uczoKICAgICAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkFMVEVSIFRBQkxFIGNoYW5uZWxzIEFERCBDT0xVTU4gY2hhbm5lbF9uYW1lIFZBUkNIQVIiKSkKICAgICAgICBpZiAiZmVjaGFfZWplY3VjaW9uIiBub3QgaW4gZXhpc3RpbmdfY29sdW1uczoKICAgICAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkFMVEVSIFRBQkxFIGNoYW5uZWxzIEFERCBDT0xVTU4gZmVjaGFfZWplY3VjaW9uIFZBUkNIQVIiKSkKICAgICAgICBjb25uLmV4ZWN1dGUodGV4dCgiQ1JFQVRFIFRBQkxFIElGIE5PVCBFWElTVFMgZGFpbHlfc3RhdHMgKGlkIElOVEVHRVIgUFJJTUFSWSBLRVkgQVVUT0lOQ1JFTUVOVCwgY2hhbm5lbF9pZCBJTlRFR0VSLCBjaGFubmVsX25hbWUgVkFSQ0hBUiwgdmlld19jb3VudCBJTlRFR0VSLCBzdWJzY3JpYmVyX2NvdW50IElOVEVHRVIsIHZpZGVvX2NvdW50IElOVEVHRVIsIHN0YXRfZGF0ZSBEQVRFLCBmZWNoYV9lamVjdWNpb24gVkFSQ0hBUiwgRk9SRUlHTiBLRVkoY2hhbm5lbF9pZCkgUkVGRVJFTkNFUyBjaGFubmVscyhpZCkpIikpCiAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIiIiCiAgICAgICAgICAgIENSRUFURSBUQUJMRSBJRiBOT1QgRVhJU1RTIGNvbnRlbnRfaXRlbXMgKAogICAgICAgICAgICAgICAgaWQgSU5URUdFUiBQUklNQVJZIEtFWSBBVVRPSU5DUkVNRU5ULAogICAgICAgICAgICAgICAgY2hhbm5lbF9pZCBJTlRFR0VSLAogICAgICAgICAgICAgICAgc3RhZ2UgVkFSQ0hBUiBERUZBVUxUICdpZGVhJywKICAgICAgICAgICAgICAgIHRpdGxlIFZBUkNIQVIgTk9UIE5VTEwsCiAgICAgICAgICAgICAgICBpZGVhX25vdGVzIFRFWFQsCiAgICAgICAgICAgICAgICBzY3JpcHRfY29udGVudCBURVhULAogICAgICAgICAgICAgICAgYXJ0aWNsZV9jb250ZW50IFRFWFQsCiAgICAgICAgICAgICAgICBkZXZlbG9wZWRfZGF0YSBKU09OLAogICAgICAgICAgICAgICAgdmlkZW9fcGF0aCBWQVJDSEFSLAogICAgICAgICAgICAgICAgdmlkZW9fbWV0YWRhdGEgSlNPTiwKICAgICAgICAgICAgICAgIHN0YXR1cyBWQVJDSEFSIERFRkFVTFQgJ3BlbmRpbmcnLAogICAgICAgICAgICAgICAgY3JlYXRlZF9hdCBEQVRFVElNRSwKICAgICAgICAgICAgICAgIHVwZGF0ZWRfYXQgREFURVRJTUUsCiAgICAgICAgICAgICAgICBGT1JFSUdOIEtFWShjaGFubmVsX2lkKSBSRUZFUkVOQ0VTIGNoYW5uZWxzKGlkKQogICAgICAgICAgICApCiAgICAgICAgIiIiKSkKICAgICAgICBjb25uLmV4ZWN1dGUodGV4dCgiIiIKICAgICAgICAgICAgQ1JFQVRFIFRBQkxFIElGIE5PVCBFWElTVFMgcHJvbXB0cyAoCiAgICAgICAgICAgICAgICBpZCBJTlRFR0VSIFBSSU1BUlkgS0VZIEFVVE9JTkNSRU1FTlQsCiAgICAgICAgICAgICAgICB0aXRsZSBWQVJDSEFSIE5PVCBOVUxMLAogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gVEVYVCwKICAgICAgICAgICAgICAgIHByb21wdF90eXBlIFZBUkNIQVIgTk9UIE5VTEwsCiAgICAgICAgICAgICAgICBjb250ZW50IFRFWFQgTk9UIE5VTEwsCiAgICAgICAgICAgICAgICB2YXJpYWJsZXMgSlNPTiwKICAgICAgICAgICAgICAgIHJhdGluZyBGTE9BVCBERUZBVUxUIDAuMCwKICAgICAgICAgICAgICAgIHVzYWdlX2NvdW50IElOVEVHRVIgREVGQVVMVCAwLAogICAgICAgICAgICAgICAgdmVyc2lvbiBJTlRFR0VSIERFRkFVTFQgMSwKICAgICAgICAgICAgICAgIGlzX2FjdGl2ZSBWQVJDSEFSIERFRkFVTFQgJ2FjdGl2ZScsCiAgICAgICAgICAgICAgICBtZXRhX2RhdGEgSlNPTiwKICAgICAgICAgICAgICAgIGNyZWF0ZWRfYXQgREFURVRJTUUsCiAgICAgICAgICAgICAgICB1cGRhdGVkX2F0IERBVEVUSU1FCiAgICAgICAgICAgICkKICAgICAgICAiIiIpKQogICAgICAgIGNvbm4uZXhlY3V0ZSh0ZXh0KCIiIgogICAgICAgICAgICBDUkVBVEUgVEFCTEUgSUYgTk9UIEVYSVNUUyB0YXNrX2xvZ3MgKAogICAgICAgICAgICAgICAgaWQgSU5URUdFUiBQUklNQVJZIEtFWSBBVVRPSU5DUkVNRU5ULAogICAgICAgICAgICAgICAgdGFza19pZCBJTlRFR0VSLAogICAgICAgICAgICAgICAgY2hhbm5lbF9pZCBJTlRFR0VSLAogICAgICAgICAgICAgICAgZXZlbnRfdHlwZSBWQVJDSEFSIE5PVCBOVUxMLAogICAgICAgICAgICAgICAgc2V2ZXJpdHkgVkFSQ0hBUiBERUZBVUxUICdpbmZvJywKICAgICAgICAgICAgICAgIG1lc3NhZ2UgVEVYVCBOT1QgTlVMTCwKICAgICAgICAgICAgICAgIGRldGFpbHMgVEVYVCwKICAgICAgICAgICAgICAgIGNyZWF0ZWRfYXQgREFURVRJTUUsCiAgICAgICAgICAgICAgICBGT1JFSUdOIEtFWSh0YXNrX2lkKSBSRUZFUkVOQ0VTIGF1dG9tYXRpb25fdGFza3MoaWQpLAogICAgICAgICAgICAgICAgRk9SRUlHTiBLRVkoY2hhbm5lbF9pZCkgUkVGRVJFTkNFUyBjaGFubmVscyhpZCkKICAgICAgICAgICAgKQogICAgICAgICIiIikpCiAgICAgICAgCiAgICAgICAgIyBDcmVhciB0YWJsYSBjaGFubmVsX3NjaGVkdWxlcyBzaSBubyBleGlzdGUKICAgICAgICBjb25uLmV4ZWN1dGUodGV4dCgiIiIKICAgICAgICAgICAgQ1JFQVRFIFRBQkxFIElGIE5PVCBFWElTVFMgY2hhbm5lbF9zY2hlZHVsZXMgKAogICAgICAgICAgICAgICAgaWQgSU5URUdFUiBQUklNQVJZIEtFWSBBVVRPSU5DUkVNRU5ULAogICAgICAgICAgICAgICAgY2hhbm5lbF9pZCBJTlRFR0VSIFVOSVFVRSwKICAgICAgICAgICAgICAgIGxvbmdfdmlkZW9fZW5hYmxlZCBCT09MRUFOIERFRkFVTFQgMCwKICAgICAgICAgICAgICAgIGxvbmdfdmlkZW9fZnJlcXVlbmN5IElOVEVHRVIsCiAgICAgICAgICAgICAgICBzaG9ydF92aWRlb19lbmFibGVkIEJPT0xFQU4gREVGQVVMVCAwLAogICAgICAgICAgICAgICAgc2hvcnRfdmlkZW9fZnJlcXVlbmN5IElOVEVHRVIsCiAgICAgICAgICAgICAgICBhcnRpY2xlX2VuYWJsZWQgQk9PTEVBTiBERUZBVUxUIDAsCiAgICAgICAgICAgICAgICBhcnRpY2xlX2ZyZXF1ZW5jeSBJTlRFR0VSLAogICAgICAgICAgICAgICAgc3RhcnRfZGF0ZSBEQVRFLAogICAgICAgICAgICAgICAgdGltZXpvbmUgVkFSQ0hBUiBERUZBVUxUICdFdXJvcGUvTWFkcmlkJywKICAgICAgICAgICAgICAgIGlzX2FjdGl2ZSBCT09MRUFOIERFRkFVTFQgMCwKICAgICAgICAgICAgICAgIGNyZWF0ZWRfYXQgREFURVRJTUUsCiAgICAgICAgICAgICAgICB1cGRhdGVkX2F0IERBVEVUSU1FLAogICAgICAgICAgICAgICAgRk9SRUlHTiBLRVkoY2hhbm5lbF9pZCkgUkVGRVJFTkNFUyBjaGFubmVscyhpZCkKICAgICAgICAgICAgKQogICAgICAgICIiIikpCiAgICAgICAgCiAgICAgICAgIyBDcmVhciB0YWJsYSBwdWJsaWNhdGlvbl9zY2hlZHVsZXMgc2kgbm8gZXhpc3RlCiAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIiIiCiAgICAgICAgICAgIENSRUFURSBUQUJMRSBJRiBOT1QgRVhJU1RTIHB1YmxpY2F0aW9uX3NjaGVkdWxlcyAoCiAgICAgICAgICAgICAgICBpZCBJTlRFR0VSIFBSSU1BUlkgS0VZIEFVVE9JTkNSRU1FTlQsCiAgICAgICAgICAgICAgICBjaGFubmVsX2lkIElOVEVHRVIsCiAgICAgICAgICAgICAgICBzY3JpcHRfaWQgSU5URUdFUiwKICAgICAgICAgICAgICAgIGNvbnRlbnRfdHlwZSBWQVJDSEFSLAogICAgICAgICAgICAgICAgc2NoZWR1bGVkX2RhdGV0aW1lIERBVEVUSU1FLAogICAgICAgICAgICAgICAgc3RhdHVzIFZBUkNIQVIgREVGQVVMVCAncGxhbm5lZCcsCiAgICAgICAgICAgICAgICBub3RlcyBURVhULAogICAgICAgICAgICAgICAgY3JlYXRlZF9hdCBEQVRFVElNRSwKICAgICAgICAgICAgICAgIEZPUkVJR04gS0VZKGNoYW5uZWxfaWQpIFJFRkVSRU5DRVMgY2hhbm5lbHMoaWQpLAogICAgICAgICAgICAgICAgRk9SRUlHTiBLRVkoc2NyaXB0X2lkKSBSRUZFUkVOQ0VTIHNjcmlwdHMoaWQpCiAgICAgICAgICAgICkKICAgICAgICAiIiIpKQogICAgICAgIAogICAgICAgICMgVmVyaWZpY2FyIHkgYcOxYWRpciBjb2x1bW5hcyBmYWx0YW50ZXMgZW4gcHVibGljYXRpb25fc2NoZWR1bGVzCiAgICAgICAgcHViX2NvbHVtbnMgPSBbcm93WyJuYW1lIl0gZm9yIHJvdyBpbiBjb25uLmV4ZWN1dGUodGV4dCgiUFJBR01BIHRhYmxlX2luZm8ocHVibGljYXRpb25fc2NoZWR1bGVzKSIpKS5tYXBwaW5ncygpXQogICAgICAgIGlmICJjb250ZW50X3R5cGUiIG5vdCBpbiBwdWJfY29sdW1uczoKICAgICAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkFMVEVSIFRBQkxFIHB1YmxpY2F0aW9uX3NjaGVkdWxlcyBBREQgQ09MVU1OIGNvbnRlbnRfdHlwZSBWQVJDSEFSIikpCiAgICAgICAgaWYgInNjcmlwdF9pZCIgbm90IGluIHB1Yl9jb2x1bW5zOgogICAgICAgICAgICBjb25uLmV4ZWN1dGUodGV4dCgiQUxURVIgVEFCTEUgcHVibGljYXRpb25fc2NoZWR1bGVzIEFERCBDT0xVTU4gc2NyaXB0X2lkIElOVEVHRVIiKSkKICAgICAgICBpZiAiY3JlYXRlZF9hdCIgbm90IGluIHB1Yl9jb2x1bW5zOgogICAgICAgICAgICBjb25uLmV4ZWN1dGUodGV4dCgiQUxURVIgVEFCTEUgcHVibGljYXRpb25fc2NoZWR1bGVzIEFERCBDT0xVTU4gY3JlYXRlZF9hdCBEQVRFVElNRSIpKQogICAgICAgIAogICAgICAgICMgVmVyaWZpY2FyIHkgYcOxYWRpciBjb2x1bW5hcyBmYWx0YW50ZXMgZW4gY2hhbm5lbF9zY2hlZHVsZXMKICAgICAgICBjaGFuX2NvbHVtbnMgPSBbcm93WyJuYW1lIl0gZm9yIHJvdyBpbiBjb25uLmV4ZWN1dGUodGV4dCgiUFJBR01BIHRhYmxlX2luZm8oY2hhbm5lbF9zY2hlZHVsZXMpIikpLm1hcHBpbmdzKCldCiAgICAgICAgaWYgImlzX2FjdGl2ZSIgbm90IGluIGNoYW5fY29sdW1uczoKICAgICAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkFMVEVSIFRBQkxFIGNoYW5uZWxfc2NoZWR1bGVzIEFERCBDT0xVTU4gaXNfYWN0aXZlIEJPT0xFQU4gREVGQVVMVCAwIikpCiAgICAgICAgaWYgImNyZWF0ZWRfYXQiIG5vdCBpbiBjaGFuX2NvbHVtbnM6CiAgICAgICAgICAgIGNvbm4uZXhlY3V0ZSh0ZXh0KCJBTFRFUiBUQUJMRSBjaGFubmVsX3NjaGVkdWxlcyBBREQgQ09MVU1OIGNyZWF0ZWRfYXQgREFURVRJTUUiKSkKICAgICAgICBpZiAidXBkYXRlZF9hdCIgbm90IGluIGNoYW5fY29sdW1uczoKICAgICAgICAgICAgY29ubi5leGVjdXRlKHRleHQoIkFMVEVSIFRBQkxFIGNoYW5uZWxfc2NoZWR1bGVzIEFERCBDT0xVTU4gdXBkYXRlZF9hdCBEQVRFVElNRSIpKQoKICAgIGluaXRfc2NoZWR1bGVyKCkKICAgIAogICAgIyBJbmljaWFyIHN5c3RlbSB0cmF5IGVuIHVuIHByb2Nlc28gc2VwYXJhZG8gKGRlc2FjdGl2YWRvIGVuIGhlYWRsZXNzKQogICAgdHJ5OgogICAgICAgIGZyb20gYXBwLmNvcmUuc3lzdGVtX3RyYXkgaW1wb3J0IHN0YXJ0X3RyYXlfZnJvbV9saWZlc3BhbgogICAgICAgIGltcG9ydCBvcwogICAgICAgIGlmIG9zLmVudmlyb24uZ2V0KCdESVNQTEFZJykgb3Igb3MuZW52aXJvbi5nZXQoJ1dBWUxBTkRfRElTUExBWScpOgogICAgICAgICAgICBzdGFydF90cmF5X2Zyb21fbGlmZXNwYW4oKQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHByaW50KCJTeXN0ZW0gdHJheSBkZXNhY3RpdmFkbyAoaGVhZGxlc3MpIikKICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICBwcmludChmIlN5c3RlbSB0cmF5IGRlc2FjdGl2YWRvOiB7ZX0iKQogICAgCiAgICB5aWVsZAogICAgc2h1dGRvd25fc2NoZWR1bGVyKCkKCgphcHAgPSBGYXN0QVBJKAogICAgdGl0bGU9IlBsYXRhZm9ybWEgZGUgQXV0b21hdGl6YWNpw7NuIE11bHRpbWVkaWEiLAogICAgZGVzY3JpcHRpb249IkFQSSBwYXJhIGdlc3Rpb25hciB5IGF1dG9tYXRpemFyIGNyZWFjacOzbiBkZSB2aWRlb3MgZSBpbcOhZ2VuZXMiLAogICAgdmVyc2lvbj0iMS4wLjAiLAogICAgbGlmZXNwYW49bGlmZXNwYW4sCikKCiMgQ29uZmlndXJhciByYXRlIGxpbWl0ZXIKYXBwLnN0YXRlLmxpbWl0ZXIgPSBsaW1pdGVyCgoKQGFwcC5leGNlcHRpb25faGFuZGxlcihSYXRlTGltaXRFeGNlZWRlZCkKYXN5bmMgZGVmIHJhdGVfbGltaXRfaGFuZGxlcihyZXF1ZXN0OiBSZXF1ZXN0LCBleGM6IFJhdGVMaW1pdEV4Y2VlZGVkKToKICAgICIiIk1hbmVqYWRvciBkZSBlcnJvcmVzIGRlIGzDrW1pdGUgZGUgdGFzYS4iIiIKICAgIHJldHVybiBKU09OUmVzcG9uc2UoCiAgICAgICAgc3RhdHVzX2NvZGU9NDI5LAogICAgICAgIGNvbnRlbnQ9eyJkZXRhaWwiOiAiRGVtYXNpYWRvcyBpbnRlbnRvcy4gRXNwZXJhIHVuIG1vbWVudG8gYW50ZXMgZGUgcmVpbnRlbnRhci4ifSwKICAgICkKCkBhcHAubWlkZGxld2FyZSgiaHR0cCIpCmFzeW5jIGRlZiBhdXRoX21pZGRsZXdhcmUocmVxdWVzdDogUmVxdWVzdCwgY2FsbF9uZXh0KToKICAgICIiIk1pZGRsZXdhcmUgcGFyYSB2ZXJpZmljYXIgYXV0ZW50aWNhY2nDs24gZW4gdG9kYXMgbGFzIHJ1dGFzLiIiIgogICAgIyBQZXJtaXRpciBhY2Nlc28gYSBydXRhcyBww7pibGljYXMKICAgIGlmIHJlcXVlc3QudXJsLnBhdGggaW4gUFVCTElDX1JPVVRFUyBvciByZXF1ZXN0LnVybC5wYXRoLnN0YXJ0c3dpdGgoIi91aS8iKSBvciByZXF1ZXN0LnVybC5wYXRoID09ICIvIjoKICAgICAgICByZXNwb25zZSA9IGF3YWl0IGNhbGxfbmV4dChyZXF1ZXN0KQogICAgICAgIHJldHVybiByZXNwb25zZQogICAgCiAgICAjIFZlcmlmaWNhciBhdXRlbnRpY2FjacOzbiBwYXJhIHRvZGFzIGxhcyBkZW3DoXMgcnV0YXMKICAgIHRyeToKICAgICAgICByZXF1aXJlX2F1dGgocmVxdWVzdCkKICAgIGV4Y2VwdCBIVFRQRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgcmV0dXJuIEpTT05SZXNwb25zZSgKICAgICAgICAgICAgc3RhdHVzX2NvZGU9ZS5zdGF0dXNfY29kZSwKICAgICAgICAgICAgY29udGVudD17ImRldGFpbCI6IGUuZGV0YWlsfSwKICAgICAgICAgICAgaGVhZGVycz17IldXVy1BdXRoZW50aWNhdGUiOiAnQmFzaWMgcmVhbG09IkxvZ2luIHJlcXVpcmVkIid9LAogICAgICAgICkKICAgIAogICAgcmVzcG9uc2UgPSBhd2FpdCBjYWxsX25leHQocmVxdWVzdCkKICAgIHJldHVybiByZXNwb25zZQoKIyBDT1JTOiBzb2xvIHBlcm1pdGlyIG9yw61nZW5lcyBlc3BlY8OtZmljb3MsIG3DqXRvZG9zIHNlZ3Vyb3MgeSBoZWFkZXJzIG3DrW5pbW9zCiMgRW4gcHJvZHVjY2nDs24sIGFqdXN0YXIgQUxMT1dFRF9PUklHSU5TIGNvbiBsb3MgZG9taW5pb3MgcmVhbGVzCkFMTE9XRURfT1JJR0lOUyA9IG9zLmdldGVudigiV1VJX0FMTE9XRURfT1JJR0lOUyIsICJodHRwOi8vbG9jYWxob3N0OjkwODAsaHR0cDovLzEyNy4wLjAuMTo5MDgwIikuc3BsaXQoIiwiKQoKYXBwLmFkZF9taWRkbGV3YXJlKAogICAgQ09SU01pZGRsZXdhcmUsCiAgICBhbGxvd19vcmlnaW5zPUFMTE9XRURfT1JJR0lOUywKICAgIGFsbG93X2NyZWRlbnRpYWxzPVRydWUsCiAgICBhbGxvd19tZXRob2RzPVsiR0VUIiwgIlBPU1QiLCAiUFVUIiwgIlBBVENIIiwgIkRFTEVURSIsICJPUFRJT05TIl0sCiAgICBhbGxvd19oZWFkZXJzPVsiQXV0aG9yaXphdGlvbiIsICJDb250ZW50LVR5cGUiLCAiQWNjZXB0Il0sCiAgICBleHBvc2VfaGVhZGVycz1bIldXVy1BdXRoZW50aWNhdGUiXSwKKQoKIyBJbmNsdWlyIHJvdXRlciBkZSBhdXRlbnRpY2FjacOzbiBQUklNRVJPIChhbnRlcyBxdWUgbGFzIHJ1dGFzIHByb3RlZ2lkYXMpCmFwcC5pbmNsdWRlX3JvdXRlcihhdXRoLnJvdXRlcikKCmFwcC5pbmNsdWRlX3JvdXRlcihjaGFubmVscy5yb3V0ZXIpCmFwcC5pbmNsdWRlX3JvdXRlcihzY3JpcHRzLnJvdXRlcikKCmFwcC5pbmNsdWRlX3JvdXRlcih2aWRlb3Mucm91dGVyKQphcHAuaW5jbHVkZV9yb3V0ZXIocHVibGljYXRpb25zLnJvdXRlcikKYXBwLmluY2x1ZGVfcm91dGVyKGF1dG9tYXRpb24ucm91dGVyKQphcHAuaW5jbHVkZV9yb3V0ZXIoZGFzaGJvYXJkLnJvdXRlcikKYXBwLmluY2x1ZGVfcm91dGVyKHNjcmlwdHNfdG9vbHMucm91dGVyKQphcHAuaW5jbHVkZV9yb3V0ZXIoY29uZmlnLnJvdXRlcikKYXBwLmluY2x1ZGVfcm91dGVyKGFuYWx5dGljcy5yb3V0ZXIpCmFwcC5pbmNsdWRlX3JvdXRlcihjb250ZW50LnJvdXRlcikKYXBwLmluY2x1ZGVfcm91dGVyKGxvZ3Mucm91dGVyKQphcHAuaW5jbHVkZV9yb3V0ZXIocHJvbXB0cy5yb3V0ZXIpCmFwcC5pbmNsdWRlX3JvdXRlcihzY2hlZHVsZS5yb3V0ZXIpCgphcHAubW91bnQoIi91aSIsIFN0YXRpY0ZpbGVzKGRpcmVjdG9yeT0iYXBwL3N0YXRpYyIsIGh0bWw9VHJ1ZSksIG5hbWU9InVpIikKCgpAYXBwLmdldCgiLyIpCmRlZiByb290KCk6CiAgICAiIiJSZWRpcmlnZSBhIGxhIHDDoWdpbmEgZGUgbG9naW4uIiIiCiAgICByZXR1cm4gUmVkaXJlY3RSZXNwb25zZSh1cmw9Ii91aS9sb2dpbi5odG1sIikKCgpAYXBwLmdldCgiL2hlYWx0aCIpCmRlZiBoZWFsdGgoKToKICAgICIiIkhlYWx0aCBjaGVjay4iIiIKICAgIHJldHVybiB7InN0YXR1cyI6ICJvayJ9CgoKQGFwcC5wb3N0KCIvYWRtaW4vc2h1dGRvd24iKQpkZWYgYWRtaW5fc2h1dGRvd24oKToKICAgICIiIkFwYWdhIGVsIHNlcnZpZG9yLiIiIgogICAgZ2xvYmFsIF9zZXJ2ZXJfcHJvY2VzcwogICAgCiAgICBkZWYgc3RvcF9zZWxmKCk6CiAgICAgICAgaW1wb3J0IG9zCiAgICAgICAgb3MuX2V4aXQoMCkKICAgIAogICAgIyBQcm9ncmFtYXIgbGEgcGFyYWRhCiAgICBpbXBvcnQgdGhyZWFkaW5nCiAgICB0aHJlYWRpbmcuVGltZXIoMSwgc3RvcF9zZWxmKS5zdGFydCgpCiAgICAKICAgIHJldHVybiB7ImRldGFpbCI6ICJTZXJ2aWRvciBhcGFnw6FuZG9zZS4uLiJ9CgoKQGFwcC5wb3N0KCIvYWRtaW4vcmVzdGFydCIpCmRlZiBhZG1pbl9yZXN0YXJ0KCk6CiAgICAiIiJSZWluaWNpYSBlbCBzZXJ2aWRvci4iIiIKICAgIGdsb2JhbCBfc2VydmVyX3Byb2Nlc3MKICAgIAogICAgZGVmIHJlc3RhcnQoKToKICAgICAgICBpbXBvcnQgc3VicHJvY2VzcwogICAgICAgIGltcG9ydCB0aW1lCiAgICAgICAgdGltZS5zbGVlcCgyKQogICAgICAgICMgUmVpbmljaWFyIGVsIHByb2Nlc28KICAgICAgICBweXRob24gPSBzeXMuZXhlY3V0YWJsZQogICAgICAgIG1haW5fZmlsZSA9IG9zLnBhdGguam9pbihvcy5wYXRoLmRpcm5hbWUoX19maWxlX18pLCAibWFpbi5weSIpCiAgICAgICAgb3MuZXhlY3YocHl0aG9uLCBbcHl0aG9uLCBtYWluX2ZpbGVdKQogICAgCiAgICAjIFByb2dyYW1hciBlbCByZWluaWNpbwogICAgaW1wb3J0IHRocmVhZGluZwogICAgdGhyZWFkaW5nLlRpbWVyKDIsIHJlc3RhcnQpLnN0YXJ0KCkKICAgIAogICAgcmV0dXJuIHsiZGV0YWlsIjogIlNlcnZpZG9yIHJlaW5pY2nDoW5kb3NlLi4uIn0KCgpkZWYgcnVuX3NlcnZlcihob3N0PSIxMjcuMC4wLjEiLCBwb3J0PTkwODAsIHJlbG9hZD1GYWxzZSk6CiAgICAiIiJFamVjdXRhIGVsIHNlcnZpZG9yIGNvbiBzb3BvcnRlIHBhcmEgc3lzdGVtIHRyYXkuIiIiCiAgICBnbG9iYWwgX3NlcnZlcl9wcm9jZXNzCiAgICAKICAgICMgSW5pY2lhciBlbCBzeXN0ZW0gdHJheSBlbiB1biBoaWxvIHNlcGFyYWRvCiAgICBkZWYgc3RhcnRfdHJheSgpOgogICAgICAgIHRyeToKICAgICAgICAgICAgZnJvbSBhcHAuY29yZS5zeXN0ZW1fdHJheSBpbXBvcnQgY3JlYXRlX3RyYXlfaWNvbgogICAgICAgICAgICBjcmVhdGVfdHJheV9pY29uKCkKICAgICAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgICAgIHBhc3MKICAgIAogICAgaW1wb3J0IHRocmVhZGluZwogICAgdHJheV90aHJlYWQgPSB0aHJlYWRpbmcuVGhyZWFkKHRhcmdldD1zdGFydF90cmF5LCBkYWVtb249VHJ1ZSkKICAgIHRyYXlfdGhyZWFkLnN0YXJ0KCkKICAgIAogICAgIyBFamVjdXRhciB1dmljb3JuIGRpcmVjdGFtZW50ZQogICAgaW1wb3J0IHV2aWNvcm4KICAgIHV2aWNvcm4ucnVuKGFwcCwgaG9zdD1ob3N0LCBwb3J0PXBvcnQsIHJlbG9hZD1yZWxvYWQpCg==
+"""Aplicación principal FastAPI."""
+from contextlib import asynccontextmanager
+import multiprocessing
+import sys
+import os
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+from slowapi import Limiter
+from slowapi.errors import RateLimitExceeded
+from sqlalchemy import text
+from functools import wraps
+from app.core.database import Base, engine, SessionLocal
+from app.core.ratelimit import limiter
+from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content, logs, prompts, scripts_tools, schedule, auth
+from app.tasks.scheduler import init_scheduler, shutdown_scheduler
+from app.core.config import settings
+
+# Variable global para el proceso del servidor
+_server_process = None
+
+# Rutas públicas (sin autenticación)
+PUBLIC_ROUTES = [
+    "/api/auth/login",
+    "/api/auth/check",
+    "/api/auth/logout",
+    "/health",
+]
+
+def require_auth(request: Request):
+    """Middleware para verificar autenticación."""
+    # Obtener credenciales del header Authorization
+    auth_header = request.headers.get("Authorization", "")
+    
+    if not auth_header.startswith("Basic "):
+        raise HTTPException(status_code=401, detail="No autenticado")
+    
+    import base64
+    try:
+        encoded_credentials = auth_header[6:]  # Quitar "Basic "
+        decoded = base64.b64decode(encoded_credentials).decode("utf-8")
+        username, password = decoded.split(":", 1)
+    except Exception:
+        raise HTTPException(status_code=401, detail="Credenciales inválidas")
+    
+    # Verificar credenciales
+    if username != settings.ADMIN_USER or password != settings.ADMIN_PASS:
+        raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+    
+    return True
+
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Contexto de ciclo de vida de la aplicación."""
+    Base.metadata.create_all(bind=engine)
+
+    with engine.connect() as conn:
+        existing_columns = [row["name"] for row in conn.execute(text("PRAGMA table_info(channels)")).mappings()]
+        if "email" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN email VARCHAR"))
+        if "social_links" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN social_links JSON"))
+        if "checkpoints" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN checkpoints JSON"))
+        if "last_scraped_at" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN last_scraped_at DATETIME"))
+        if "last_scrape_status" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN last_scrape_status VARCHAR"))
+        if "scrape_data" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN scrape_data JSON"))
+        if "color" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN color VARCHAR DEFAULT '#3b82f6'"))
+        
+        # Crear nuevas tablas si no existen
+        conn.execute(text("CREATE TABLE IF NOT EXISTS global_configs (key VARCHAR PRIMARY KEY, value TEXT, description VARCHAR)"))
+        if "channel_name" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN channel_name VARCHAR"))
+        if "fecha_ejecucion" not in existing_columns:
+            conn.execute(text("ALTER TABLE channels ADD COLUMN fecha_ejecucion VARCHAR"))
+        conn.execute(text("CREATE TABLE IF NOT EXISTS daily_stats (id INTEGER PRIMARY KEY AUTOINCREMENT, channel_id INTEGER, channel_name VARCHAR, view_count INTEGER, subscriber_count INTEGER, video_count INTEGER, stat_date DATE, fecha_ejecucion VARCHAR, FOREIGN KEY(channel_id) REFERENCES channels(id))"))
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS content_items (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                channel_id INTEGER,
+                stage VARCHAR DEFAULT 'idea',
+                title VARCHAR NOT NULL,
+                idea_notes TEXT,
+                script_content TEXT,
+                article_content TEXT,
+                developed_data JSON,
+                video_path VARCHAR,
+                video_metadata JSON,
+                status VARCHAR DEFAULT 'pending',
+                created_at DATETIME,
+                updated_at DATETIME,
+                FOREIGN KEY(channel_id) REFERENCES channels(id)
+            )
+        """))
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS prompts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title VARCHAR NOT NULL,
+                description TEXT,
+                prompt_type VARCHAR NOT NULL,
+                content TEXT NOT NULL,
+                variables JSON,
+                rating FLOAT DEFAULT 0.0,
+                usage_count INTEGER DEFAULT 0,
+                version INTEGER DEFAULT 1,
+                is_active VARCHAR DEFAULT 'active',
+                meta_data JSON,
+                created_at DATETIME,
+                updated_at DATETIME
+            )
+        """))
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS task_logs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                task_id INTEGER,
+                channel_id INTEGER,
+                event_type VARCHAR NOT NULL,
+                severity VARCHAR DEFAULT 'info',
+                message TEXT NOT NULL,
+                details TEXT,
+                created_at DATETIME,
+                FOREIGN KEY(task_id) REFERENCES automation_tasks(id),
+                FOREIGN KEY(channel_id) REFERENCES channels(id)
+            )
+        """))
+        
+        # Crear tabla channel_schedules si no existe
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS channel_schedules (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                channel_id INTEGER UNIQUE,
+                long_video_enabled BOOLEAN DEFAULT 0,
+                long_video_frequency INTEGER,
+                short_video_enabled BOOLEAN DEFAULT 0,
+                short_video_frequency INTEGER,
+                article_enabled BOOLEAN DEFAULT 0,
+                article_frequency INTEGER,
+                start_date DATE,
+                timezone VARCHAR DEFAULT 'Europe/Madrid',
+                is_active BOOLEAN DEFAULT 0,
+                created_at DATETIME,
+                updated_at DATETIME,
+                FOREIGN KEY(channel_id) REFERENCES channels(id)
+            )
+        """))
+        
+        # Crear tabla publication_schedules si no existe
+        conn.execute(text("""
+            CREATE TABLE IF NOT EXISTS publication_schedules (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                channel_id INTEGER,
+                script_id INTEGER,
+                content_type VARCHAR,
+                scheduled_datetime DATETIME,
+                status VARCHAR DEFAULT 'planned',
+                notes TEXT,
+                created_at DATETIME,
+                FOREIGN KEY(channel_id) REFERENCES channels(id),
+                FOREIGN KEY(script_id) REFERENCES scripts(id)
+            )
+        """))
+        
+        # Verificar y añadir columnas faltantes en publication_schedules
+        pub_columns = [row["name"] for row in conn.execute(text("PRAGMA table_info(publication_schedules)")).mappings()]
+        if "content_type" not in pub_columns:
+            conn.execute(text("ALTER TABLE publication_schedules ADD COLUMN content_type VARCHAR"))
+        if "script_id" not in pub_columns:
+            conn.execute(text("ALTER TABLE publication_schedules ADD COLUMN script_id INTEGER"))
+        if "created_at" not in pub_columns:
+            conn.execute(text("ALTER TABLE publication_schedules ADD COLUMN created_at DATETIME"))
+        
+        # Verificar y añadir columnas faltantes en channel_schedules
+        chan_columns = [row["name"] for row in conn.execute(text("PRAGMA table_info(channel_schedules)")).mappings()]
+        if "is_active" not in chan_columns:
+            conn.execute(text("ALTER TABLE channel_schedules ADD COLUMN is_active BOOLEAN DEFAULT 0"))
+        if "created_at" not in chan_columns:
+            conn.execute(text("ALTER TABLE channel_schedules ADD COLUMN created_at DATETIME"))
+        if "updated_at" not in chan_columns:
+            conn.execute(text("ALTER TABLE channel_schedules ADD COLUMN updated_at DATETIME"))
+
+    init_scheduler()
+    
+    # Iniciar system tray en un proceso separado (desactivado en headless)
+    try:
+        from app.core.system_tray import start_tray_from_lifespan
+        import os
+        if os.environ.get('DISPLAY') or os.environ.get('WAYLAND_DISPLAY'):
+            start_tray_from_lifespan()
+        else:
+            print("System tray desactivado (headless)")
+    except Exception as e:
+        print(f"System tray desactivado: {e}")
+    
+    yield
+    shutdown_scheduler()
+
+
+app = FastAPI(
+    title="Plataforma de Automatización Multimedia",
+    description="API para gestionar y automatizar creación de videos e imágenes",
+    version="1.0.0",
+    lifespan=lifespan,
+)
+
+# Configurar rate limiter
+app.state.limiter = limiter
+
+
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
+    """Manejador de errores de límite de tasa."""
+    return JSONResponse(
+        status_code=429,
+        content={"detail": "Demasiados intentos. Espera un momento antes de reintentar."},
+    )
+
+@app.middleware("http")
+async def auth_middleware(request: Request, call_next):
+    """Middleware para verificar autenticación en todas las rutas."""
+    # Permitir acceso a rutas públicas
+    if request.url.path in PUBLIC_ROUTES or request.url.path.startswith("/ui/") or request.url.path == "/":
+        response = await call_next(request)
+        return response
+    
+    # Verificar autenticación para todas las demás rutas
+    try:
+        require_auth(request)
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"detail": e.detail},
+            headers={"WWW-Authenticate": 'Basic realm="Login required"'},
+        )
+    
+    response = await call_next(request)
+    return response
+
+# CORS: solo permitir orígenes específicos, métodos seguros y headers mínimos
+# En producción, ajustar ALLOWED_ORIGINS con los dominios reales
+ALLOWED_ORIGINS = os.getenv("WUI_ALLOWED_ORIGINS", "http://localhost:9080,http://127.0.0.1:9080").split(",")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type", "Accept"],
+    expose_headers=["WWW-Authenticate"],
+)
+
+# Incluir router de autenticación PRIMERO (antes que las rutas protegidas)
+app.include_router(auth.router)
+
+app.include_router(channels.router)
+app.include_router(scripts.router)
+
+app.include_router(videos.router)
+app.include_router(publications.router)
+app.include_router(automation.router)
+app.include_router(dashboard.router)
+app.include_router(scripts_tools.router)
+app.include_router(config.router)
+app.include_router(analytics.router)
+app.include_router(content.router)
+app.include_router(logs.router)
+app.include_router(prompts.router)
+app.include_router(schedule.router)
+
+app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")
+
+
+@app.get("/")
+def root():
+    """Redirige a la página de login."""
+    return RedirectResponse(url="/ui/login.html")
+
+
+@app.get("/health")
+def health():
+    """Health check."""
+    return {"status": "ok"}
+
+
+@app.post("/admin/shutdown")
+def admin_shutdown():
+    """Apaga el servidor."""
+    global _server_process
+    
+    def stop_self():
+        import os
+        os._exit(0)
+    
+    # Programar la parada
+    import threading
+    threading.Timer(1, stop_self).start()
+    
+    return {"detail": "Servidor apagándose..."}
+
+
+@app.post("/admin/restart")
+def admin_restart():
+    """Reinicia el servidor."""
+    global _server_process
+    
+    def restart():
+        import subprocess
+        import time
+        time.sleep(2)
+        # Reiniciar el proceso
+        python = sys.executable
+        main_file = os.path.join(os.path.dirname(__file__), "main.py")
+        os.execv(python, [python, main_file])
+    
+    # Programar el reinicio
+    import threading
+    threading.Timer(2, restart).start()
+    
+    return {"detail": "Servidor reiniciándose..."}
+
+
+def run_server(host="127.0.0.1", port=9080, reload=False):
+    """Ejecuta el servidor con soporte para system tray."""
+    global _server_process
+    
+    # Iniciar el system tray en un hilo separado
+    def start_tray():
+        try:
+            from app.core.system_tray import create_tray_icon
+            create_tray_icon()
+        except Exception as e:
+            pass
+    
+    import threading
+    tray_thread = threading.Thread(target=start_tray, daemon=True)
+    tray_thread.start()
+    
+    # Ejecutar uvicorn directamente
+    import uvicorn
+    uvicorn.run(app, host=host, port=port, reload=reload)

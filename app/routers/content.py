@@ -1,1 +1,115 @@
-IiIiUm91dGVyIHBhcmEgbGEgZ2VzdGnDs24gZGUgY29udGVuaWRvLiIiIgpmcm9tIGZhc3RhcGkgaW1wb3J0IEFQSVJvdXRlciwgRGVwZW5kcywgSFRUUEV4Y2VwdGlvbgpmcm9tIHNxbGFsY2hlbXkub3JtIGltcG9ydCBTZXNzaW9uCmZyb20gYXBwLmNvcmUuZGF0YWJhc2UgaW1wb3J0IGdldF9kYgpmcm9tIGFwcC5tb2RlbHMuY29udGVudCBpbXBvcnQgQ29udGVudEl0ZW0KZnJvbSBweWRhbnRpYyBpbXBvcnQgQmFzZU1vZGVsCmZyb20gdHlwaW5nIGltcG9ydCBPcHRpb25hbCwgQW55CmZyb20gYXBwLnNlcnZpY2VzLmZpbGVfc2VydmljZSBpbXBvcnQgRmlsZVNlcnZpY2UKZnJvbSBhcHAuc2VydmljZXMubG9nX3NlcnZpY2UgaW1wb3J0IExvZ1NlcnZpY2UKZnJvbSBhcHAuc2VydmljZXMubGxtX3NlcnZpY2UgaW1wb3J0IExMTVNlcnZpY2UKCnJvdXRlciA9IEFQSVJvdXRlcihwcmVmaXg9Ii9hcGkvY29udGVudCIsIHRhZ3M9WyJjb250ZW50Il0pCgpjbGFzcyBDb250ZW50Q3JlYXRlKEJhc2VNb2RlbCk6CiAgICBjaGFubmVsX2lkOiBpbnQKICAgIHRpdGxlOiBzdHIKICAgIHN0YWdlOiBzdHIgPSAiaWRlYSIKICAgIGlkZWFfbm90ZXM6IE9wdGlvbmFsW3N0cl0gPSBOb25lCgpjbGFzcyBDb250ZW50VXBkYXRlKEJhc2VNb2RlbCk6CiAgICB0aXRsZTogT3B0aW9uYWxbc3RyXSA9IE5vbmUKICAgIHN0YWdlOiBPcHRpb25hbFtzdHJdID0gTm9uZQogICAgaWRlYV9ub3RlczogT3B0aW9uYWxbc3RyXSA9IE5vbmUKICAgIHNjcmlwdF9jb250ZW50OiBPcHRpb25hbFtzdHJdID0gTm9uZQogICAgYXJ0aWNsZV9jb250ZW50OiBPcHRpb25hbFtzdHJdID0gTm9uZQogICAgZGV2ZWxvcGVkX2RhdGE6IE9wdGlvbmFsW0FueV0gPSBOb25lCiAgICBzdGF0dXM6IE9wdGlvbmFsW3N0cl0gPSBOb25lCgpAcm91dGVyLnBvc3QoIi8iKQpkZWYgY3JlYXRlX2NvbnRlbnQoY29udGVudDogQ29udGVudENyZWF0ZSwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgZGJfaXRlbSA9IENvbnRlbnRJdGVtKCoqY29udGVudC5tb2RlbF9kdW1wKCkpCiAgICBkYi5hZGQoZGJfaXRlbSkKICAgIGRiLmNvbW1pdCgpCiAgICBkYi5yZWZyZXNoKGRiX2l0ZW0pCiAgICAKICAgICMgR3VhcmRhciBhcmNoaXZvIGluaWNpYWwKICAgIGlmIGRiX2l0ZW0uc3RhZ2UgPT0gImlkZWEiIGFuZCBkYl9pdGVtLmlkZWFfbm90ZXM6CiAgICAgICAgRmlsZVNlcnZpY2Uuc2F2ZV9pZGVhKGRiX2l0ZW0uY2hhbm5lbF9pZCwgZGJfaXRlbS5pZCwgZGJfaXRlbS50aXRsZSwgZGJfaXRlbS5pZGVhX25vdGVzKQogICAgCiAgICBMb2dTZXJ2aWNlLmxvZ19jb250ZW50X2NyZWF0ZWQoZGIsIGRiX2l0ZW0uY2hhbm5lbF9pZCwgZGJfaXRlbS5zdGFnZSwgZGJfaXRlbS50aXRsZSkKICAgIAogICAgcmV0dXJuIGRiX2l0ZW0KCkByb3V0ZXIuZ2V0KCIve2NoYW5uZWxfaWR9IikKZGVmIGdldF9jaGFubmVsX2NvbnRlbnQoY2hhbm5lbF9pZDogaW50LCBzdGFnZTogT3B0aW9uYWxbc3RyXSA9IE5vbmUsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgIHF1ZXJ5ID0gZGIucXVlcnkoQ29udGVudEl0ZW0pLmZpbHRlcihDb250ZW50SXRlbS5jaGFubmVsX2lkID09IGNoYW5uZWxfaWQpCiAgICBpZiBzdGFnZToKICAgICAgICBxdWVyeSA9IHF1ZXJ5LmZpbHRlcihDb250ZW50SXRlbS5zdGFnZSA9PSBzdGFnZSkKICAgIHJldHVybiBxdWVyeS5hbGwoKQoKQHJvdXRlci5wYXRjaCgiL3tpdGVtX2lkfSIpCmRlZiB1cGRhdGVfY29udGVudChpdGVtX2lkOiBpbnQsIGNvbnRlbnQ6IENvbnRlbnRVcGRhdGUsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgIGRiX2l0ZW0gPSBkYi5xdWVyeShDb250ZW50SXRlbSkuZmlsdGVyKENvbnRlbnRJdGVtLmlkID09IGl0ZW1faWQpLmZpcnN0KCkKICAgIGlmIG5vdCBkYl9pdGVtOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9Ikl0ZW0gbm8gZW5jb250cmFkbyIpCiAgICAKICAgIG9sZF9zdGFnZSA9IGRiX2l0ZW0uc3RhZ2UKICAgIAogICAgZm9yIGtleSwgdmFsdWUgaW4gY29udGVudC5tb2RlbF9kdW1wKGV4Y2x1ZGVfdW5zZXQ9VHJ1ZSkuaXRlbXMoKToKICAgICAgICBzZXRhdHRyKGRiX2l0ZW0sIGtleSwgdmFsdWUpCiAgICAKICAgICMgR3VhcmRhciBhcmNoaXZvcyBmw61zaWNvcyBzZWfDum4gbGEgZXRhcGEKICAgIGlmIGRiX2l0ZW0uc3RhZ2UgPT0gImlkZWEiIGFuZCBkYl9pdGVtLmlkZWFfbm90ZXM6CiAgICAgICAgRmlsZVNlcnZpY2Uuc2F2ZV9pZGVhKGRiX2l0ZW0uY2hhbm5lbF9pZCwgZGJfaXRlbS5pZCwgZGJfaXRlbS50aXRsZSwgZGJfaXRlbS5pZGVhX25vdGVzKQogICAgZWxpZiBkYl9pdGVtLnN0YWdlID09ICJzY3JpcHQiIGFuZCBkYl9pdGVtLnNjcmlwdF9jb250ZW50OgogICAgICAgIEZpbGVTZXJ2aWNlLnNhdmVfc2NyaXB0KGRiX2l0ZW0uY2hhbm5lbF9pZCwgZGJfaXRlbS5pZCwgZGJfaXRlbS50aXRsZSwgZGJfaXRlbS5zY3JpcHRfY29udGVudCwgZGJfaXRlbS5hcnRpY2xlX2NvbnRlbnQpCiAgICBlbGlmIGRiX2l0ZW0uc3RhZ2UgPT0gImRldmVsb3BlZCIgYW5kIGRiX2l0ZW0uZGV2ZWxvcGVkX2RhdGE6CiAgICAgICAgRmlsZVNlcnZpY2Uuc2F2ZV9kZXZlbG9wZWQoZGJfaXRlbS5jaGFubmVsX2lkLCBkYl9pdGVtLmlkLCBkYl9pdGVtLnRpdGxlLCBkYl9pdGVtLmRldmVsb3BlZF9kYXRhKQogICAgCiAgICAjIFJlZ2lzdHJhciBhdmFuY2UgZGUgZXRhcGEKICAgIGlmIG9sZF9zdGFnZSAhPSBkYl9pdGVtLnN0YWdlOgogICAgICAgIExvZ1NlcnZpY2UubG9nX2NvbnRlbnRfYWR2YW5jZWQoZGIsIGRiX2l0ZW0uY2hhbm5lbF9pZCwgZGJfaXRlbS50aXRsZSwgb2xkX3N0YWdlLCBkYl9pdGVtLnN0YWdlKQogICAgCiAgICBkYi5jb21taXQoKQogICAgZGIucmVmcmVzaChkYl9pdGVtKQogICAgcmV0dXJuIGRiX2l0ZW0KCkByb3V0ZXIucG9zdCgiL3tpdGVtX2lkfS9nZW5lcmF0ZS1zY3JpcHQiKQpkZWYgZ2VuZXJhdGVfc2NyaXB0X2Zyb21faWRlYShpdGVtX2lkOiBpbnQsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgICIiIkdlbmVyYSBhdXRvbcOhdGljYW1lbnRlIHVuIGd1acOzbiBhIHBhcnRpciBkZSB1bmEgaWRlYSB1c2FuZG8gTExNLiIiIgogICAgZGJfaXRlbSA9IGRiLnF1ZXJ5KENvbnRlbnRJdGVtKS5maWx0ZXIoQ29udGVudEl0ZW0uaWQgPT0gaXRlbV9pZCkuZmlyc3QoKQogICAgaWYgbm90IGRiX2l0ZW06CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDQsIGRldGFpbD0iSXRlbSBubyBlbmNvbnRyYWRvIikKICAgIAogICAgaWYgZGJfaXRlbS5zdGFnZSAhPSAiaWRlYSI6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDAsIGRldGFpbD0iU29sbyBzZSBwdWVkZW4gZ2VuZXJhciBndWlvbmVzIGRlc2RlIGlkZWFzIikKICAgIAogICAgcmVzdWx0ID0gTExNU2VydmljZS5nZW5lcmF0ZV9zY3JpcHRfZnJvbV9pZGVhKGRiLCBkYl9pdGVtLnRpdGxlLCBkYl9pdGVtLmlkZWFfbm90ZXMgb3IgIiIpCiAgICAKICAgIGlmIG5vdCByZXN1bHRbInN1Y2Nlc3MiXToKICAgICAgICBMb2dTZXJ2aWNlLmxvZ19ldmVudChkYiwgImxsbV9lcnJvciIsIGYiRXJyb3IgYWwgZ2VuZXJhciBndWnDs246IHtyZXN1bHRbJ2Vycm9yJ119IiwgImVycm9yIiwgY2hhbm5lbF9pZD1kYl9pdGVtLmNoYW5uZWxfaWQpCiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT01MDAsIGRldGFpbD1mIkVycm9yIExMTToge3Jlc3VsdFsnZXJyb3InXX0iKQogICAgCiAgICAjIEFjdHVhbGl6YXIgY29udGVuaWRvCiAgICBkYl9pdGVtLnN0YWdlID0gInNjcmlwdCIKICAgIGRiX2l0ZW0uc2NyaXB0X2NvbnRlbnQgPSByZXN1bHRbImRhdGEiXS5nZXQoInNjcmlwdF9jb250ZW50IiwgIiIpCiAgICBkYl9pdGVtLmFydGljbGVfY29udGVudCA9IHJlc3VsdFsiZGF0YSJdLmdldCgiYXJ0aWNsZV9jb250ZW50IiwgIiIpCiAgICAKICAgICMgR3VhcmRhciBhcmNoaXZvcwogICAgRmlsZVNlcnZpY2Uuc2F2ZV9zY3JpcHQoZGJfaXRlbS5jaGFubmVsX2lkLCBkYl9pdGVtLmlkLCBkYl9pdGVtLnRpdGxlLCBkYl9pdGVtLnNjcmlwdF9jb250ZW50LCBkYl9pdGVtLmFydGljbGVfY29udGVudCkKICAgIAogICAgTG9nU2VydmljZS5sb2dfY29udGVudF9hZHZhbmNlZChkYiwgZGJfaXRlbS5jaGFubmVsX2lkLCBkYl9pdGVtLnRpdGxlLCAiaWRlYSIsICJzY3JpcHQiKQogICAgCiAgICBkYi5jb21taXQoKQogICAgZGIucmVmcmVzaChkYl9pdGVtKQogICAgcmV0dXJuIGRiX2l0ZW0KCkByb3V0ZXIuZ2V0KCIve2NoYW5uZWxfaWR9L2ZpbGVzL3tzdGFnZX0iKQpkZWYgbGlzdF9zdGFnZV9maWxlcyhjaGFubmVsX2lkOiBpbnQsIHN0YWdlOiBzdHIsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgICIiIkxpc3RhIGxvcyBhcmNoaXZvcyBmw61zaWNvcyBlbiB1bmEgZXRhcGEgZGVsIGNhbmFsLiIiIgogICAgaWYgc3RhZ2Ugbm90IGluIFsiaWRlYSIsICJzY3JpcHQiLCAiZGV2ZWxvcGVkIiwgInZpZGVvIl06CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDAsIGRldGFpbD0iRXRhcGEgaW52w6FsaWRhIikKICAgIAogICAgZmlsZXMgPSBGaWxlU2VydmljZS5saXN0X2ZpbGVzX2luX3N0YWdlKGNoYW5uZWxfaWQsIHN0YWdlKQogICAgcmV0dXJuIHsic3RhZ2UiOiBzdGFnZSwgImZpbGVzIjogZmlsZXN9Cg==
+"""Router para la gestión de contenido."""
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.models.content import ContentItem
+from pydantic import BaseModel
+from typing import Optional, Any
+from app.services.file_service import FileService
+from app.services.log_service import LogService
+from app.services.llm_service import LLMService
+
+router = APIRouter(prefix="/api/content", tags=["content"])
+
+class ContentCreate(BaseModel):
+    channel_id: int
+    title: str
+    stage: str = "idea"
+    idea_notes: Optional[str] = None
+
+class ContentUpdate(BaseModel):
+    title: Optional[str] = None
+    stage: Optional[str] = None
+    idea_notes: Optional[str] = None
+    script_content: Optional[str] = None
+    article_content: Optional[str] = None
+    developed_data: Optional[Any] = None
+    status: Optional[str] = None
+
+@router.post("/")
+def create_content(content: ContentCreate, db: Session = Depends(get_db)):
+    db_item = ContentItem(**content.model_dump())
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    
+    # Guardar archivo inicial
+    if db_item.stage == "idea" and db_item.idea_notes:
+        FileService.save_idea(db_item.channel_id, db_item.id, db_item.title, db_item.idea_notes)
+    
+    LogService.log_content_created(db, db_item.channel_id, db_item.stage, db_item.title)
+    
+    return db_item
+
+@router.get("/{channel_id}")
+def get_channel_content(channel_id: int, stage: Optional[str] = None, db: Session = Depends(get_db)):
+    query = db.query(ContentItem).filter(ContentItem.channel_id == channel_id)
+    if stage:
+        query = query.filter(ContentItem.stage == stage)
+    return query.all()
+
+@router.patch("/{item_id}")
+def update_content(item_id: int, content: ContentUpdate, db: Session = Depends(get_db)):
+    db_item = db.query(ContentItem).filter(ContentItem.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item no encontrado")
+    
+    old_stage = db_item.stage
+    
+    for key, value in content.model_dump(exclude_unset=True).items():
+        setattr(db_item, key, value)
+    
+    # Guardar archivos físicos según la etapa
+    if db_item.stage == "idea" and db_item.idea_notes:
+        FileService.save_idea(db_item.channel_id, db_item.id, db_item.title, db_item.idea_notes)
+    elif db_item.stage == "script" and db_item.script_content:
+        FileService.save_script(db_item.channel_id, db_item.id, db_item.title, db_item.script_content, db_item.article_content)
+    elif db_item.stage == "developed" and db_item.developed_data:
+        FileService.save_developed(db_item.channel_id, db_item.id, db_item.title, db_item.developed_data)
+    
+    # Registrar avance de etapa
+    if old_stage != db_item.stage:
+        LogService.log_content_advanced(db, db_item.channel_id, db_item.title, old_stage, db_item.stage)
+    
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+@router.post("/{item_id}/generate-script")
+def generate_script_from_idea(item_id: int, db: Session = Depends(get_db)):
+    """Genera automáticamente un guión a partir de una idea usando LLM."""
+    db_item = db.query(ContentItem).filter(ContentItem.id == item_id).first()
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item no encontrado")
+    
+    if db_item.stage != "idea":
+        raise HTTPException(status_code=400, detail="Solo se pueden generar guiones desde ideas")
+    
+    result = LLMService.generate_script_from_idea(db, db_item.title, db_item.idea_notes or "")
+    
+    if not result["success"]:
+        LogService.log_event(db, "llm_error", f"Error al generar guión: {result['error']}", "error", channel_id=db_item.channel_id)
+        raise HTTPException(status_code=500, detail=f"Error LLM: {result['error']}")
+    
+    # Actualizar contenido
+    db_item.stage = "script"
+    db_item.script_content = result["data"].get("script_content", "")
+    db_item.article_content = result["data"].get("article_content", "")
+    
+    # Guardar archivos
+    FileService.save_script(db_item.channel_id, db_item.id, db_item.title, db_item.script_content, db_item.article_content)
+    
+    LogService.log_content_advanced(db, db_item.channel_id, db_item.title, "idea", "script")
+    
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+@router.get("/{channel_id}/files/{stage}")
+def list_stage_files(channel_id: int, stage: str, db: Session = Depends(get_db)):
+    """Lista los archivos físicos en una etapa del canal."""
+    if stage not in ["idea", "script", "developed", "video"]:
+        raise HTTPException(status_code=400, detail="Etapa inválida")
+    
+    files = FileService.list_files_in_stage(channel_id, stage)
+    return {"stage": stage, "files": files}

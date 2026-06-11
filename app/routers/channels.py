@@ -1,1 +1,94 @@
-IiIiUm91dGVyIGRlIGNhbmFsZXMuIiIiCmltcG9ydCBvcwpmcm9tIGZhc3RhcGkgaW1wb3J0IEFQSVJvdXRlciwgRGVwZW5kcywgSFRUUEV4Y2VwdGlvbgpmcm9tIGZhc3RhcGkucmVzcG9uc2VzIGltcG9ydCBGaWxlUmVzcG9uc2UKZnJvbSBzcWxhbGNoZW15Lm9ybSBpbXBvcnQgU2Vzc2lvbgpmcm9tIGFwcC5jb3JlLmRhdGFiYXNlIGltcG9ydCBnZXRfZGIKZnJvbSBhcHAuc2NoZW1hcy5jaGFubmVsIGltcG9ydCBDaGFubmVsQ3JlYXRlLCBDaGFubmVsVXBkYXRlLCBDaGFubmVsUmVzcG9uc2UKZnJvbSBhcHAuc2VydmljZXMuY2hhbm5lbF9zZXJ2aWNlIGltcG9ydCBDaGFubmVsU2VydmljZQoKcm91dGVyID0gQVBJUm91dGVyKHByZWZpeD0iL2FwaS9jaGFubmVscyIsIHRhZ3M9WyJjaGFubmVscyJdKQoKCkByb3V0ZXIucG9zdCgiIiwgcmVzcG9uc2VfbW9kZWw9Q2hhbm5lbFJlc3BvbnNlKQpkZWYgY3JlYXRlX2NoYW5uZWwoY2hhbm5lbDogQ2hhbm5lbENyZWF0ZSwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiQ3JlYSB1biBudWV2byBjYW5hbC4iIiIKICAgIHJldHVybiBDaGFubmVsU2VydmljZS5jcmVhdGUoZGIsIGNoYW5uZWwpCgoKQHJvdXRlci5nZXQoIiIsIHJlc3BvbnNlX21vZGVsPWxpc3RbQ2hhbm5lbFJlc3BvbnNlXSkKZGVmIGdldF9jaGFubmVscyhkYjogU2Vzc2lvbiA9IERlcGVuZHMoZ2V0X2RiKSk6CiAgICAiIiJPYnRpZW5lIHRvZG9zIGxvcyBjYW5hbGVzLiIiIgogICAgcmV0dXJuIENoYW5uZWxTZXJ2aWNlLmdldF9hbGwoZGIpCgoKQHJvdXRlci5nZXQoIi97Y2hhbm5lbF9pZH0iLCByZXNwb25zZV9tb2RlbD1DaGFubmVsUmVzcG9uc2UpCmRlZiBnZXRfY2hhbm5lbChjaGFubmVsX2lkOiBpbnQsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgICIiIk9idGllbmUgdW4gY2FuYWwgcG9yIElELiIiIgogICAgY2hhbm5lbCA9IENoYW5uZWxTZXJ2aWNlLmdldF9ieV9pZChkYiwgY2hhbm5lbF9pZCkKICAgIGlmIG5vdCBjaGFubmVsOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IkNhbmFsIG5vIGVuY29udHJhZG8iKQogICAgcmV0dXJuIGNoYW5uZWwKCgpAcm91dGVyLnB1dCgiL3tjaGFubmVsX2lkfSIsIHJlc3BvbnNlX21vZGVsPUNoYW5uZWxSZXNwb25zZSkKZGVmIHVwZGF0ZV9jaGFubmVsKGNoYW5uZWxfaWQ6IGludCwgY2hhbm5lbF91cGRhdGU6IENoYW5uZWxVcGRhdGUsIGRiOiBTZXNzaW9uID0gRGVwZW5kcyhnZXRfZGIpKToKICAgICIiIkFjdHVhbGl6YSB1biBjYW5hbC4iIiIKICAgIGNoYW5uZWwgPSBDaGFubmVsU2VydmljZS51cGRhdGUoZGIsIGNoYW5uZWxfaWQsIGNoYW5uZWxfdXBkYXRlKQogICAgaWYgbm90IGNoYW5uZWw6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDQsIGRldGFpbD0iQ2FuYWwgbm8gZW5jb250cmFkbyIpCiAgICByZXR1cm4gY2hhbm5lbAoKCkByb3V0ZXIuZGVsZXRlKCIve2NoYW5uZWxfaWR9IikKZGVmIGRlbGV0ZV9jaGFubmVsKGNoYW5uZWxfaWQ6IGludCwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiRWxpbWluYSB1biBjYW5hbC4iIiIKICAgIHN1Y2Nlc3MgPSBDaGFubmVsU2VydmljZS5kZWxldGUoZGIsIGNoYW5uZWxfaWQpCiAgICBpZiBub3Qgc3VjY2VzczoKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwNCwgZGV0YWlsPSJDYW5hbCBubyBlbmNvbnRyYWRvIikKICAgIHJldHVybiB7ImRldGFpbCI6ICJDYW5hbCBlbGltaW5hZG8ifQoKCkByb3V0ZXIucG9zdCgiL3Rvb2xzL2NyZWF0ZS1maWxlcyIpCmRlZiBjcmVhdGVfY2hhbm5lbF9maWxlcyhuYW1lOiBzdHIpOgogICAgIiIiRWplY3V0YSBlbCBzY3JpcHQgZGUgdG9vbHMgcGFyYSBjcmVhciBsb3MgYXJjaGl2b3MgZGVsIGNhbmFsLiIiIgogICAgZnJvbSB0b29scy5zY3JpcHRfcnVubmVyIGltcG9ydCBydW5fc2NyaXB0CiAgICBpbXBvcnQganNvbgogICAgCiAgICAjIEVsIHNjcmlwdCBlc3BlcmEgZWwgbm9tYnJlIGRlbCBjYW5hbCBjb21vIHByaW1lciBhcmd1bWVudG8KICAgIHJlc3VsdCA9IHJ1bl9zY3JpcHQoImNyZWFjaW9uRGNhbmFsLnB5IiwgYXJncz1bbmFtZV0pCiAgICAKICAgIGlmIHJlc3VsdC5zdWNjZXNzOgogICAgICAgIHJldHVybiB7ImRldGFpbCI6ICJBcmNoaXZvcyBjcmVhZG9zIGNvcnJlY3RhbWVudGUiLCAic3Rkb3V0IjogcmVzdWx0LnN0ZG91dH0KICAgIGVsc2U6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT01MDAsIGRldGFpbD1mIkVycm9yIGFsIGVqZWN1dGFyIHNjcmlwdDoge3Jlc3VsdC5lcnJvciBvciByZXN1bHQuc3RkZXJyfSIpCgoKQHJvdXRlci5nZXQoIi97Y2hhbm5lbF9pZH0vdGh1bWJuYWlsIiwgcmVzcG9uc2VfY2xhc3M9RmlsZVJlc3BvbnNlKQpkZWYgZ2V0X2NoYW5uZWxfdGh1bWJuYWlsKGNoYW5uZWxfaWQ6IGludCwgZGI6IFNlc3Npb24gPSBEZXBlbmRzKGdldF9kYikpOgogICAgIiIiT2J0aWVuZSBsYSBpbWFnZW4gZGUgbWluaWF0dXJhIGRlIHVuIGNhbmFsLiIiIgogICAgY2hhbm5lbCA9IENoYW5uZWxTZXJ2aWNlLmdldF9ieV9pZChkYiwgY2hhbm5lbF9pZCkKICAgIGlmIG5vdCBjaGFubmVsOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IkNhbmFsIG5vIGVuY29udHJhZG8iKQogICAgaWYgbm90IGNoYW5uZWwudGh1bWJuYWlsX2ZpbGU6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDQsIGRldGFpbD0iTm8gaGF5IGltYWdlbiBkZSBtaW5pYXR1cmEiKQogICAgCiAgICAjIExhIHJ1dGEgdGh1bWJuYWlsX2ZpbGUgZXMgcmVsYXRpdmEgYWwgZGlyZWN0b3JpbyBjaGFubmVsc19kYXRhIChzaW4gc3ViY2FycGV0YSkKICAgIGNoYW5uZWxzX2RhdGFfZGlyID0gb3MucGF0aC5qb2luKG9zLnBhdGguZGlybmFtZShvcy5wYXRoLmRpcm5hbWUob3MucGF0aC5kaXJuYW1lKF9fZmlsZV9fKSkpLCAiY2hhbm5lbHNfZGF0YSIpCiAgICBmdWxsX3BhdGggPSBvcy5wYXRoLmpvaW4oY2hhbm5lbHNfZGF0YV9kaXIsIGNoYW5uZWwudGh1bWJuYWlsX2ZpbGUpCiAgICAKICAgIGlmIG5vdCBvcy5wYXRoLmV4aXN0cyhmdWxsX3BhdGgpOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IkFyY2hpdm8gZGUgaW1hZ2VuIG5vIGVuY29udHJhZG8iKQogICAgCiAgICAjIERldGVybWluYXIgZWwgdGlwbyBkZSBjb250ZW5pZG8gc2Vnw7puIGxhIGV4dGVuc2nDs24KICAgIGV4dCA9IG9zLnBhdGguc3BsaXRleHQoZnVsbF9wYXRoKVsxXS5sb3dlcigpCiAgICBjb250ZW50X3R5cGVzID0gewogICAgICAgICIuanBnIjogImltYWdlL2pwZWciLAogICAgICAgICIuanBlZyI6ICJpbWFnZS9qcGVnIiwKICAgICAgICAiLnBuZyI6ICJpbWFnZS9wbmciLAogICAgICAgICIuZ2lmIjogImltYWdlL2dpZiIsCiAgICAgICAgIi53ZWJwIjogImltYWdlL3dlYnAiLAogICAgfQogICAgY29udGVudF90eXBlID0gY29udGVudF90eXBlcy5nZXQoZXh0LCAiYXBwbGljYXRpb24vb2N0ZXQtc3RyZWFtIikKICAgIAogICAgcmV0dXJuIEZpbGVSZXNwb25zZShmdWxsX3BhdGgsIG1lZGlhX3R5cGU9Y29udGVudF90eXBlKQo=
+"""Router de canales."""
+import os
+from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import FileResponse
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.schemas.channel import ChannelCreate, ChannelUpdate, ChannelResponse
+from app.services.channel_service import ChannelService
+
+router = APIRouter(prefix="/api/channels", tags=["channels"])
+
+
+@router.post("", response_model=ChannelResponse)
+def create_channel(channel: ChannelCreate, db: Session = Depends(get_db)):
+    """Crea un nuevo canal."""
+    return ChannelService.create(db, channel)
+
+
+@router.get("", response_model=list[ChannelResponse])
+def get_channels(db: Session = Depends(get_db)):
+    """Obtiene todos los canales."""
+    return ChannelService.get_all(db)
+
+
+@router.get("/{channel_id}", response_model=ChannelResponse)
+def get_channel(channel_id: int, db: Session = Depends(get_db)):
+    """Obtiene un canal por ID."""
+    channel = ChannelService.get_by_id(db, channel_id)
+    if not channel:
+        raise HTTPException(status_code=404, detail="Canal no encontrado")
+    return channel
+
+
+@router.put("/{channel_id}", response_model=ChannelResponse)
+def update_channel(channel_id: int, channel_update: ChannelUpdate, db: Session = Depends(get_db)):
+    """Actualiza un canal."""
+    channel = ChannelService.update(db, channel_id, channel_update)
+    if not channel:
+        raise HTTPException(status_code=404, detail="Canal no encontrado")
+    return channel
+
+
+@router.delete("/{channel_id}")
+def delete_channel(channel_id: int, db: Session = Depends(get_db)):
+    """Elimina un canal."""
+    success = ChannelService.delete(db, channel_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Canal no encontrado")
+    return {"detail": "Canal eliminado"}
+
+
+@router.post("/tools/create-files")
+def create_channel_files(name: str):
+    """Ejecuta el script de tools para crear los archivos del canal."""
+    from tools.script_runner import run_script
+    import json
+    
+    # El script espera el nombre del canal como primer argumento
+    result = run_script("creacionDcanal.py", args=[name])
+    
+    if result.success:
+        return {"detail": "Archivos creados correctamente", "stdout": result.stdout}
+    else:
+        raise HTTPException(status_code=500, detail=f"Error al ejecutar script: {result.error or result.stderr}")
+
+
+@router.get("/{channel_id}/thumbnail", response_class=FileResponse)
+def get_channel_thumbnail(channel_id: int, db: Session = Depends(get_db)):
+    """Obtiene la imagen de miniatura de un canal."""
+    channel = ChannelService.get_by_id(db, channel_id)
+    if not channel:
+        raise HTTPException(status_code=404, detail="Canal no encontrado")
+    if not channel.thumbnail_file:
+        raise HTTPException(status_code=404, detail="No hay imagen de miniatura")
+    
+    # La ruta thumbnail_file es relativa al directorio channels_data (sin subcarpeta)
+    channels_data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "channels_data")
+    full_path = os.path.join(channels_data_dir, channel.thumbnail_file)
+    
+    if not os.path.exists(full_path):
+        raise HTTPException(status_code=404, detail="Archivo de imagen no encontrado")
+    
+    # Determinar el tipo de contenido según la extensión
+    ext = os.path.splitext(full_path)[1].lower()
+    content_types = {
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".png": "image/png",
+        ".gif": "image/gif",
+        ".webp": "image/webp",
+    }
+    content_type = content_types.get(ext, "application/octet-stream")
+    
+    return FileResponse(full_path, media_type=content_type)

@@ -1,1 +1,30 @@
-IyBBcmNoaXZvcyB0ZW1wb3JhbGVzIGRlIFB5dGhvbgpfX3B5Y2FjaGVfXy8KKi5weVtjb2RdCioucHlvCioucHlkCi5QeXRob24KCiMgRW50b3Jub3MgdmlydHVhbGVzCi52ZW52Lwp2ZW52LwpFTlYvCgojIFNjcmlwdHMgY29tcGlsYWRvcwoqLnB5YwoqLnB5bwoKIyBBcmNoaXZvcyBkZSBsb2dzCioubG9nCgojIEFyY2hpdm9zIGRlIGRhdG9zIGdlbmVyYWRvcwoqLmpzb24uYmFrCiouY3N2LmJhawoKIyBJREUKLnZzY29kZS8KLmlkZWEvCgojIE9TCi5EU19TdG9yZQpUaHVtYnMuZGI=
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+
+# Scripts compilados
+*.pyc
+*.pyo
+
+# Archivos de logs
+*.log
+
+# Archivos de datos generados
+*.json.bak
+*.csv.bak
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

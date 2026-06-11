@@ -1,1 +1,5 @@
-IiIiUmF0ZSBsaW1pdGVyIGNvbmZpZ3VyYXRpb24uIiIiCmZyb20gc2xvd2FwaSBpbXBvcnQgTGltaXRlcgpmcm9tIHNsb3dhcGkudXRpbCBpbXBvcnQgZ2V0X3JlbW90ZV9hZGRyZXNzCgpsaW1pdGVyID0gTGltaXRlcihrZXlfZnVuYz1nZXRfcmVtb3RlX2FkZHJlc3MsIGRlZmF1bHRfbGltaXRzPVsiNS9taW51dGUiXSkK
+"""Rate limiter configuration."""
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+
+limiter = Limiter(key_func=get_remote_address, default_limits=["5/minute"])

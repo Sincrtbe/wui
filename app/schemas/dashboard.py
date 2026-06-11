@@ -1,1 +1,57 @@
-IiIiU2NoZW1hcyBkZSBkYXNoYm9hcmQuIiIiCmZyb20gcHlkYW50aWMgaW1wb3J0IEJhc2VNb2RlbApmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRldGltZQoKCmNsYXNzIFVwY29taW5nUHVibGljYXRpb25TdW1tYXJ5KEJhc2VNb2RlbCk6CiAgICBpZDogaW50CiAgICBjaGFubmVsX25hbWU6IHN0cgogICAgY2hhbm5lbF9jb2xvcjogc3RyCiAgICBzY3JpcHRfdGl0bGU6IHN0ciB8IE5vbmUKICAgIHNjaGVkdWxlZF9kYXRldGltZTogZGF0ZXRpbWUKICAgIHN0YXR1czogc3RyCgoKY2xhc3MgQWN0aXZlQXV0b21hdGlvblJ1blN1bW1hcnkoQmFzZU1vZGVsKToKICAgIHJ1bl9pZDogaW50CiAgICB0YXNrX25hbWU6IHN0cgogICAgc3RhdHVzOiBzdHIKICAgIHN0YXJ0ZWRfYXQ6IGRhdGV0aW1lIHwgTm9uZQoKCmNsYXNzIERhc2hib2FyZENoYW5uZWxTdW1tYXJ5KEJhc2VNb2RlbCk6CiAgICBjaGFubmVsX2lkOiBpbnQKICAgIGNoYW5uZWxfbmFtZTogc3RyCiAgICBjaGFubmVsX2NvbG9yOiBzdHIgfCBOb25lID0gTm9uZQogICAgZGVzY3JpcHRpb246IHN0ciB8IE5vbmUKICAgIGN1c3RvbVVybDogc3RyIHwgTm9uZQogICAgcHVibGlzaGVkQXQ6IGRhdGV0aW1lIHwgTm9uZQogICAgdG9waWNJZHM6IGxpc3Rbc3RyXSB8IE5vbmUKICAgIHRvcGljQ2F0ZWdvcmllczogbGlzdFtzdHJdIHwgTm9uZQogICAgdGh1bWJuYWlsX2ZpbGU6IHN0ciB8IE5vbmUKICAgIHRodW1ibmFpbF91cmw6IHN0ciB8IE5vbmUKICAgIHRvdGFsX3NjcmlwdHM6IGludAogICAgdG90YWxfdmlkZW9zOiBpbnQKICAgIHVwY29taW5nX3B1YmxpY2F0aW9uczogaW50CiAgICBwZW5kaW5nX3B1YmxpY2F0aW9uczogaW50CgoKY2xhc3MgUHVibGljYXRpb25DYWxlbmRhckV2ZW50KEJhc2VNb2RlbCk6CiAgICBpZDogaW50CiAgICBjaGFubmVsX2lkOiBpbnQKICAgIGNoYW5uZWxfbmFtZTogc3RyCiAgICBjaGFubmVsX2NvbG9yOiBzdHIKICAgIHRpdGxlOiBzdHIKICAgIGRhdGU6IGRhdGV0aW1lCiAgICBzdGF0dXM6IHN0cgoKCmNsYXNzIERhc2hib2FyZFN1bW1hcnkoQmFzZU1vZGVsKToKICAgIHNjcmlwdHNfYnlfc3RhdHVzOiBkaWN0W3N0ciwgaW50XQogICAgdmlkZW9zX2J5X3N0YXR1czogZGljdFtzdHIsIGludF0KICAgIGNoYW5uZWxzX292ZXJ2aWV3OiBsaXN0W0Rhc2hib2FyZENoYW5uZWxTdW1tYXJ5XQogICAgcHVibGljYXRpb25fY2FsZW5kYXI6IGxpc3RbUHVibGljYXRpb25DYWxlbmRhckV2ZW50XQogICAgYWN0aXZlX2F1dG9tYXRpb25fcnVuczogbGlzdFtBY3RpdmVBdXRvbWF0aW9uUnVuU3VtbWFyeV0KCiAgICBjbGFzcyBDb25maWc6CiAgICAgICAgZnJvbV9hdHRyaWJ1dGVzID0gVHJ1ZQo=
+"""Schemas de dashboard."""
+from pydantic import BaseModel
+from datetime import datetime
+
+
+class UpcomingPublicationSummary(BaseModel):
+    id: int
+    channel_name: str
+    channel_color: str
+    script_title: str | None
+    scheduled_datetime: datetime
+    status: str
+
+
+class ActiveAutomationRunSummary(BaseModel):
+    run_id: int
+    task_name: str
+    status: str
+    started_at: datetime | None
+
+
+class DashboardChannelSummary(BaseModel):
+    channel_id: int
+    channel_name: str
+    channel_color: str | None = None
+    description: str | None
+    customUrl: str | None
+    publishedAt: datetime | None
+    topicIds: list[str] | None
+    topicCategories: list[str] | None
+    thumbnail_file: str | None
+    thumbnail_url: str | None
+    total_scripts: int
+    total_videos: int
+    upcoming_publications: int
+    pending_publications: int
+
+
+class PublicationCalendarEvent(BaseModel):
+    id: int
+    channel_id: int
+    channel_name: str
+    channel_color: str
+    title: str
+    date: datetime
+    status: str
+
+
+class DashboardSummary(BaseModel):
+    scripts_by_status: dict[str, int]
+    videos_by_status: dict[str, int]
+    channels_overview: list[DashboardChannelSummary]
+    publication_calendar: list[PublicationCalendarEvent]
+    active_automation_runs: list[ActiveAutomationRunSummary]
+
+    class Config:
+        from_attributes = True

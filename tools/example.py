@@ -1,1 +1,34 @@
-IiIiU2NyaXB0IGRlIGVqZW1wbG8gcGFyYSBkZW1vc3RyYXIgbGEgZWplY3VjacOzbiBkZXNkZSBsYSBhcHAuIiIiCmltcG9ydCBhcmdwYXJzZQppbXBvcnQganNvbgppbXBvcnQgc3lzCmZyb20gZGF0ZXRpbWUgaW1wb3J0IGRhdGV0aW1lCgoKZGVmIG1haW4oKToKICAgIHBhcnNlciA9IGFyZ3BhcnNlLkFyZ3VtZW50UGFyc2VyKGRlc2NyaXB0aW9uPSJTY3JpcHQgZGUgZWplbXBsbyIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW5hbWUiLCBkZWZhdWx0PSJNdW5kbyIsIGhlbHA9Ik5vbWJyZSBhIHNhbHVkYXIiKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1jb3VudCIsIHR5cGU9aW50LCBkZWZhdWx0PTEsIGhlbHA9Ik7Dum1lcm8gZGUgc2FsdWRvcyIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW91dHB1dCIsIGNob2ljZXM9WyJ0ZXh0IiwgImpzb24iXSwgZGVmYXVsdD0idGV4dCIsIGhlbHA9IkZvcm1hdG8gZGUgc2FsaWRhIikKICAgIAogICAgYXJncyA9IHBhcnNlci5wYXJzZV9hcmdzKCkKICAgIAogICAgcHJpbnQoZiI9PT0gU2NyaXB0IGRlIGVqZW1wbG8gPT09IikKICAgIHByaW50KGYiRWplY3V0YWRvOiB7ZGF0ZXRpbWUudXRjbm93KCkuaXNvZm9ybWF0KCl9IikKICAgIHByaW50KGYiUHl0aG9uOiB7c3lzLnZlcnNpb259IikKICAgIHByaW50KCkKICAgIAogICAgZm9yIGkgaW4gcmFuZ2UoYXJncy5jb3VudCk6CiAgICAgICAgZ3JlZXRpbmcgPSBmIkhvbGEsIHthcmdzLm5hbWV9ISIKICAgICAgICBpZiBhcmdzLm91dHB1dCA9PSAianNvbiI6CiAgICAgICAgICAgIHByaW50KGpzb24uZHVtcHMoeyJtZXNzYWdlIjogZ3JlZXRpbmcsICJpbmRleCI6IGl9KSkKICAgICAgICBlbHNlOgogICAgICAgICAgICBwcmludChncmVldGluZykKICAgIAogICAgcHJpbnQoKQogICAgcHJpbnQoIlNjcmlwdCBjb21wbGV0YWRvIGNvbiDDqXhpdG8uIikKICAgIHJldHVybiAwCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIHN5cy5leGl0KG1haW4oKSk=
+"""Script de ejemplo para demostrar la ejecución desde la app."""
+import argparse
+import json
+import sys
+from datetime import datetime
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Script de ejemplo")
+    parser.add_argument("--name", default="Mundo", help="Nombre a saludar")
+    parser.add_argument("--count", type=int, default=1, help="Número de saludos")
+    parser.add_argument("--output", choices=["text", "json"], default="text", help="Formato de salida")
+    
+    args = parser.parse_args()
+    
+    print(f"=== Script de ejemplo ===")
+    print(f"Ejecutado: {datetime.utcnow().isoformat()}")
+    print(f"Python: {sys.version}")
+    print()
+    
+    for i in range(args.count):
+        greeting = f"Hola, {args.name}!"
+        if args.output == "json":
+            print(json.dumps({"message": greeting, "index": i}))
+        else:
+            print(greeting)
+    
+    print()
+    print("Script completado con éxito.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,1 +1,164 @@
-IiIiQ3JlYSB1biBjYW5hbCBlbiBsYSBwbGF0YWZvcm1hIFd1aSB5IGd1YXJkYSBzdXMgZGF0b3MuIiIiCmltcG9ydCBzeXMKaW1wb3J0IG9zCmltcG9ydCBqc29uCmltcG9ydCByZXF1ZXN0cwpmcm9tIGdvb2dsZWFwaWNsaWVudC5kaXNjb3ZlcnkgaW1wb3J0IGJ1aWxkCmZyb20gZ29vZ2xlYXBpY2xpZW50LmVycm9ycyBpbXBvcnQgSHR0cEVycm9yCgojIC0tLSBDT05GSUdVUkFDScOTTiAtLS0KQVBJX0tFWSA9IG9zLmdldGVudigiWU9VVFVCRV9BUElfS0VZIiwgIiIpClNFUlZFUl9VUkwgPSBvcy5nZXRlbnYoIldVSV9TRVJWRVJfVVJMIiwgImh0dHA6Ly8xMjcuMC4wLjE6OTA4MCIpCkRFRkFVTFRfT1VUUFVUX0RJUiA9IG9zLnBhdGguam9pbigiLi4iLCAiY2hhbm5lbHNfZGF0YSIpCgojIFZhbGlkYXIgQVBJX0tFWQppZiBub3QgQVBJX0tFWToKICAgIHByaW50KCJFUlJPUjogWU9VVFVCRV9BUElfS0VZIG5vIGVzdMOhIGNvbmZpZ3VyYWRhIGVuIGxhcyB2YXJpYWJsZXMgZGUgZW50b3Juby4iKQogICAgcHJpbnQoIkNyZWEgdW4gYXJjaGl2byAuZW52IGNvbiBsYSBjbGF2ZSBvIGVqZWN1dGE6IGV4cG9ydCBZT1VUVUJFX0FQSV9LRVk9J3R1X2NsYXZlJyIpCiAgICBzeXMuZXhpdCgxKQoKIyBWYWxpZGFjacOzbjogQWwgbWVub3MgbmVjZXNpdGFtb3MgZWwgbm9tYnJlIGRlbCBjYW5hbAppZiBsZW4oc3lzLmFyZ3YpIDwgMjoKICAgIHByaW50KCJFcnJvcjogRmFsdGEgZWwgbm9tYnJlIGRlbCBjYW5hbC4iKQogICAgcHJpbnQoIlVzbyBiw6FzaWNvOiAgcHl0aG9uIGNyZWFjaW9uRGNhbmFsLnB5ICdOb21icmUgRGVsIENhbmFsJyIpCiAgICBwcmludCgiVXNvIGF2YW56YWRvOiBweXRob24gY3JlYWNpb25EY2FuYWwucHkgJ05vbWJyZSBEZWwgQ2FuYWwnICdudWV2YV9ydXRhX2NhcnBldGEnIikKICAgIHN5cy5leGl0KDEpCgpub21icmVfY2FuYWwgPSBzeXMuYXJndlsxXQoKIyBMw7NnaWNhIGRlIGxhIHJ1dGE6IFNpIHBhc2FuIHVuIDLCuiBwYXLDoW1ldHJvLCBzb2JyZXNjcmliZSBsYSBydXRhIHBvciBkZWZlY3RvCmlmIGxlbihzeXMuYXJndikgPj0gMzoKICAgIE9VVFBVVF9ESVIgPSBzeXMuYXJndlsyXQplbHNlOgogICAgT1VUUFVUX0RJUiA9IERFRkFVTFRfT1VUUFVUX0RJUgoKIyBDcmVhciBsYSBjYXJwZXRhIGF1dG9tw6F0aWNhbWVudGUKb3MubWFrZWRpcnMoT1VUUFVUX0RJUiwgZXhpc3Rfb2s9VHJ1ZSkKCnlvdXR1YmUgPSBidWlsZCgneW91dHViZScsICd2MycsIGRldmVsb3BlcktleT1BUElfS0VZKQoKdHJ5OgogICAgIyAxLiBCdXNjYXIgZWwgY2FuYWwgcG9yIG5vbWJyZSBwYXJhIG9idGVuZXIgc3UgSUQgcmVhbCBkZSBZb3VUdWJlCiAgICBwcmludChmIkJ1c2NhbmRvIGNhbmFsOiB7bm9tYnJlX2NhbmFsfS4uLiIpCiAgICBzZWFyY2hfcmVzcG9uc2UgPSB5b3V0dWJlLnNlYXJjaCgpLmxpc3QoCiAgICAgICAgcT1ub21icmVfY2FuYWwsCiAgICAgICAgdHlwZT0iY2hhbm5lbCIsCiAgICAgICAgcGFydD0iaWQiLAogICAgICAgIG1heFJlc3VsdHM9MQogICAgKS5leGVjdXRlKCkKCiAgICBpZiBub3Qgc2VhcmNoX3Jlc3BvbnNlLmdldCgiaXRlbXMiKToKICAgICAgICBwcmludChmIk5vIHNlIGVuY29udHLDsyBuaW5nw7puIGNhbmFsIGNvbiBlbCBub21icmU6IHtub21icmVfY2FuYWx9IikKICAgICAgICBzeXMuZXhpdCgxKQoKICAgIGNoYW5uZWxfaWRfeW91dHViZSA9IHNlYXJjaF9yZXNwb25zZVsiaXRlbXMiXVswXVsiaWQiXVsiY2hhbm5lbElkIl0KICAgIHByaW50KGYiSUQgZGUgWW91VHViZSBlbmNvbnRyYWRvOiB7Y2hhbm5lbF9pZF95b3V0dWJlfSIpCgogICAgIyAyLiBPYnRlbmVyIGxvcyBkZXRhbGxlcyBlc3BlY8OtZmljb3MgZGVsIGNhbmFsCiAgICBjaGFubmVsX3Jlc3BvbnNlID0geW91dHViZS5jaGFubmVscygpLmxpc3QoCiAgICAgICAgcGFydD0ic25pcHBldCx0b3BpY0RldGFpbHMiLAogICAgICAgIGlkPWNoYW5uZWxfaWRfeW91dHViZQogICAgKS5leGVjdXRlKCkKCiAgICBjYW5hbF9kYXRhID0gY2hhbm5lbF9yZXNwb25zZVsiaXRlbXMiXVswXQogICAgc25pcHBldCA9IGNhbmFsX2RhdGEuZ2V0KCJzbmlwcGV0Iiwge30pCiAgICB0b3BpY19kZXRhaWxzID0gY2FuYWxfZGF0YS5nZXQoInRvcGljRGV0YWlscyIsIHt9KQoKICAgICMgMy4gRXN0cnVjdHVyYXIgbGEgaW5mb3JtYWNpw7NuIHNvbGljaXRhZGEKICAgIGluZm9fanNvbiA9IHsKICAgICAgICAiaWQiOiBjaGFubmVsX2lkX3lvdXR1YmUsCiAgICAgICAgInRpdGxlIjogc25pcHBldC5nZXQoInRpdGxlIiksCiAgICAgICAgImRlc2NyaXB0aW9uIjogc25pcHBldC5nZXQoImRlc2NyaXB0aW9uIiksCiAgICAgICAgImN1c3RvbVVybCI6IHNuaXBwZXQuZ2V0KCJjdXN0b21VcmwiKSwKICAgICAgICAicHVibGlzaGVkQXQiOiBzbmlwcGV0LmdldCgicHVibGlzaGVkQXQiKSwKICAgICAgICAidG9waWNJZHMiOiB0b3BpY19kZXRhaWxzLmdldCgidG9waWNJZHMiLCBbXSksCiAgICAgICAgInRvcGljQ2F0ZWdvcmllcyI6IHRvcGljX2RldGFpbHMuZ2V0KCJ0b3BpY0NhdGVnb3JpZXMiLCBbXSkKICAgIH0KCiAgICAjIE5vcm1hbGl6YXIgZWwgbm9tYnJlIHBhcmEgZWwgYXJjaGl2bwogICAgbm9tYnJlX2ZpY2hlcm8gPSAiIi5qb2luKGMgZm9yIGMgaW4gbm9tYnJlX2NhbmFsIGlmIGMuaXNhbG51bSgpIG9yIGMgaW4gKCcgJywgJ18nLCAnLScpKS5zdHJpcCgpCiAgICBub21icmVfZmljaGVybyA9IG5vbWJyZV9maWNoZXJvLnJlcGxhY2UoIiAiLCAiXyIpCgogICAgIyBEZWZpbmlyIHJ1dGFzIGNvbXBsZXRhcyBkZW50cm8gZGUgbGEgY2FycGV0YSBmaW5hbAogICAgcnV0YV9qc29uID0gb3MucGF0aC5qb2luKE9VVFBVVF9ESVIsIGYie25vbWJyZV9maWNoZXJvfS5qc29uIikKICAgIHJ1dGFfanBnID0gb3MucGF0aC5qb2luKE9VVFBVVF9ESVIsIGYie25vbWJyZV9maWNoZXJvfS5qcGciKQoKICAgICMgR3VhcmRhciBlbCBhcmNoaXZvIC5qc29uIGNvbiBkYXRvcyBkZSBZb3VUdWJlCiAgICB3aXRoIG9wZW4ocnV0YV9qc29uLCAidyIsIGVuY29kaW5nPSJ1dGYtOCIpIGFzIGY6CiAgICAgICAganNvbi5kdW1wKGluZm9fanNvbiwgZiwgZW5zdXJlX2FzY2lpPUZhbHNlLCBpbmRlbnQ9NCkKICAgIHByaW50KGYiRGF0b3MgZGUgWW91VHViZSBndWFyZGFkb3MgZW46IHtydXRhX2pzb259IikKCiAgICAjIDQuIERlc2NhcmdhciBlbCBUaHVtYm5haWwKICAgIHRodW1ibmFpbHMgPSBzbmlwcGV0LmdldCgidGh1bWJuYWlscyIsIHt9KQogICAgdXJsX2ZvdG8gPSB0aHVtYm5haWxzLmdldCgiaGlnaCIsIHRodW1ibmFpbHMuZ2V0KCJkZWZhdWx0Iiwge30pKS5nZXQoInVybCIpCgogICAgaWYgdXJsX2ZvdG86CiAgICAgICAgaW1hZ2VuX2J5dGVzID0gcmVxdWVzdHMuZ2V0KHVybF9mb3RvKS5jb250ZW50CiAgICAgICAgd2l0aCBvcGVuKHJ1dGFfanBnLCAid2IiKSBhcyBmX2ltZzoKICAgICAgICAgICAgZl9pbWcud3JpdGUoaW1hZ2VuX2J5dGVzKQogICAgICAgIHByaW50KGYiVGh1bWJuYWlsIGd1YXJkYWRvIGVuOiB7cnV0YV9qcGd9IikKICAgIGVsc2U6CiAgICAgICAgcHJpbnQoIkFkdmVydGVuY2lhOiBObyBzZSBlbmNvbnRyw7MgdGh1bWJuYWlsIHBhcmEgZWwgY2FuYWwiKQoKICAgICMgNS4gQ3JlYXIgZWwgY2FuYWwgZW4gbGEgcGxhdGFmb3JtYSBXdWkgbWVkaWFudGUgbGEgQVBJCiAgICBwcmludChmIlxuQ3JlYW5kbyBjYW5hbCBlbiBsYSBwbGF0YWZvcm1hIFd1aS4uLiIpCiAgICAKICAgICMgVmVyaWZpY2FyIHNpIGVsIHNlcnZpZG9yIGVzdMOhIGRpc3BvbmlibGUKICAgIHRyeToKICAgICAgICBoZWFsdGggPSByZXF1ZXN0cy5nZXQoZiJ7U0VSVkVSX1VSTH0vaGVhbHRoIiwgdGltZW91dD01KQogICAgICAgIGlmIGhlYWx0aC5zdGF0dXNfY29kZSAhPSAyMDA6CiAgICAgICAgICAgIHJhaXNlIEV4Y2VwdGlvbigiRWwgc2Vydmlkb3Igbm8gZXN0w6EgcmVzcG9uZGllbmRvIGNvcnJlY3RhbWVudGUiKQogICAgZXhjZXB0IHJlcXVlc3RzLmV4Y2VwdGlvbnMuQ29ubmVjdGlvbkVycm9yOgogICAgICAgIHByaW50KGYiRVJST1I6IE5vIHNlIHB1ZG8gY29uZWN0YXIgY29uIGVsIHNlcnZpZG9yIGVuIHtTRVJWRVJfVVJMfSIpCiAgICAgICAgcHJpbnQoIkFzZWfDunJhdGUgZGUgcXVlIGVsIHNlcnZpZG9yIGVzdMOpIGVqZWN1dMOhbmRvc2UgYW50ZXMgZGUgY3JlYXIgZWwgY2FuYWwuIikKICAgICAgICBzeXMuZXhpdCgxKQogICAgCiAgICAjIENyZWFyIGVsIGNhbmFsIGVuIGxhIGJhc2UgZGUgZGF0b3MKICAgIGNoYW5uZWxfZGF0YV9hcGkgPSB7CiAgICAgICAgIm5hbWUiOiBpbmZvX2pzb25bInRpdGxlIl0sCiAgICAgICAgImNvbG9yIjogIiNGRjY2MDAiLCAgIyBDb2xvciBwb3IgZGVmZWN0bwogICAgICAgICJlbWFpbCI6ICIiLAogICAgICAgICJzb2NpYWxfbGlua3MiOiB7CiAgICAgICAgICAgICJ5b3V0dWJlIjogZiJodHRwczovL3d3dy55b3V0dWJlLmNvbS9jaGFubmVsL3tjaGFubmVsX2lkX3lvdXR1YmV9IgogICAgICAgIH0sCiAgICAgICAgImNoZWNrcG9pbnRzIjoge30KICAgIH0KICAgIAogICAgcmVzcG9uc2UgPSByZXF1ZXN0cy5wb3N0KAogICAgICAgIGYie1NFUlZFUl9VUkx9L2FwaS9jaGFubmVscyIsCiAgICAgICAganNvbj1jaGFubmVsX2RhdGFfYXBpLAogICAgICAgIHRpbWVvdXQ9MTAKICAgICkKICAgIAogICAgaWYgcmVzcG9uc2Uuc3RhdHVzX2NvZGUgPT0gMjAwOgogICAgICAgIGNoYW5uZWxfY3JlYXRlZCA9IHJlc3BvbnNlLmpzb24oKQogICAgICAgIGNoYW5uZWxfZGJfaWQgPSBjaGFubmVsX2NyZWF0ZWRbImlkIl0KICAgICAgICBwcmludChmIkNhbmFsIGNyZWFkbyBjb3JyZWN0YW1lbnRlIGVuIGxhIHBsYXRhZm9ybWEgY29uIElEOiB7Y2hhbm5lbF9kYl9pZH0iKQogICAgICAgIAogICAgICAgICMgQWN0dWFsaXphciBlbCBhcmNoaXZvIEpTT04gY29uIGVsIElEIGRlIGxhIGJhc2UgZGUgZGF0b3MKICAgICAgICBpbmZvX2pzb25bImRiX2lkIl0gPSBjaGFubmVsX2RiX2lkCiAgICAgICAgd2l0aCBvcGVuKHJ1dGFfanNvbiwgInciLCBlbmNvZGluZz0idXRmLTgiKSBhcyBmOgogICAgICAgICAgICBqc29uLmR1bXAoaW5mb19qc29uLCBmLCBlbnN1cmVfYXNjaWk9RmFsc2UsIGluZGVudD00KQogICAgICAgIHByaW50KGYiQXJjaGl2byBKU09OIGFjdHVhbGl6YWRvIGNvbiBlbCBJRCBkZSBiYXNlIGRlIGRhdG9zOiB7Y2hhbm5lbF9kYl9pZH0iKQogICAgZWxzZToKICAgICAgICBwcmludChmIkVSUk9SIGFsIGNyZWFyIGVsIGNhbmFsIGVuIGxhIHBsYXRhZm9ybWE6IHtyZXNwb25zZS5zdGF0dXNfY29kZX0iKQogICAgICAgIHByaW50KGYiUmVzcHVlc3RhOiB7cmVzcG9uc2UudGV4dH0iKQogICAgICAgIHN5cy5leGl0KDEpCgogICAgcHJpbnQoZiJcbsKhw4l4aXRvISBDYW5hbCAne25vbWJyZV9jYW5hbH0nIGNyZWFkbyBjb3JyZWN0YW1lbnRlLiIpCiAgICBwcmludChmIiAgLSBEYXRvcyBkZSBZb3VUdWJlOiB7cnV0YV9qc29ufSIpCiAgICBwcmludChmIiAgLSBUaHVtYm5haWw6IHtydXRhX2pwZ30iKQogICAgcHJpbnQoZiIgIC0gQ2FuYWwgZW4gcGxhdGFmb3JtYTogSUQge2NoYW5uZWxfY3JlYXRlZC5nZXQoJ2lkJywgJ04vQScpfSIpCgpleGNlcHQgSHR0cEVycm9yIGFzIGU6CiAgICBwcmludChmIkVycm9yIGRlIFlvdVR1YmUgQVBJOiB7ZX0iKQogICAgc3lzLmV4aXQoMSkKZXhjZXB0IHJlcXVlc3RzLmV4Y2VwdGlvbnMuQ29ubmVjdGlvbkVycm9yOgogICAgcHJpbnQoZiJFUlJPUjogTm8gc2UgcHVkbyBjb25lY3RhciBjb24gZWwgc2Vydmlkb3IgZW4ge1NFUlZFUl9VUkx9IikKICAgIHByaW50KCJBc2Vnw7pyYXRlIGRlIHF1ZSBlbCBzZXJ2aWRvciBlc3TDqSBlamVjdXTDoW5kb3NlIGFudGVzIGRlIGNyZWFyIGVsIGNhbmFsLiIpCiAgICBzeXMuZXhpdCgxKQpleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICBwcmludChmIk9jdXJyacOzIHVuIGVycm9yOiB7ZX0iKQogICAgaW1wb3J0IHRyYWNlYmFjawogICAgdHJhY2ViYWNrLnByaW50X2V4YygpCiAgICBzeXMuZXhpdCgxKQ==
+"""Crea un canal en la plataforma Wui y guarda sus datos."""
+import sys
+import os
+import json
+import requests
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+# --- CONFIGURACIÓN ---
+API_KEY = os.getenv("YOUTUBE_API_KEY", "")
+SERVER_URL = os.getenv("WUI_SERVER_URL", "http://127.0.0.1:9080")
+DEFAULT_OUTPUT_DIR = os.path.join("..", "channels_data")
+
+# Validar API_KEY
+if not API_KEY:
+    print("ERROR: YOUTUBE_API_KEY no está configurada en las variables de entorno.")
+    print("Crea un archivo .env con la clave o ejecuta: export YOUTUBE_API_KEY='tu_clave'")
+    sys.exit(1)
+
+# Validación: Al menos necesitamos el nombre del canal
+if len(sys.argv) < 2:
+    print("Error: Falta el nombre del canal.")
+    print("Uso básico:  python creacionDcanal.py 'Nombre Del Canal'")
+    print("Uso avanzado: python creacionDcanal.py 'Nombre Del Canal' 'nueva_ruta_carpeta'")
+    sys.exit(1)
+
+nombre_canal = sys.argv[1]
+
+# Lógica de la ruta: Si pasan un 2º parámetro, sobrescribe la ruta por defecto
+if len(sys.argv) >= 3:
+    OUTPUT_DIR = sys.argv[2]
+else:
+    OUTPUT_DIR = DEFAULT_OUTPUT_DIR
+
+# Crear la carpeta automáticamente
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+youtube = build('youtube', 'v3', developerKey=API_KEY)
+
+try:
+    # 1. Buscar el canal por nombre para obtener su ID real de YouTube
+    print(f"Buscando canal: {nombre_canal}...")
+    search_response = youtube.search().list(
+        q=nombre_canal,
+        type="channel",
+        part="id",
+        maxResults=1
+    ).execute()
+
+    if not search_response.get("items"):
+        print(f"No se encontró ningún canal con el nombre: {nombre_canal}")
+        sys.exit(1)
+
+    channel_id_youtube = search_response["items"][0]["id"]["channelId"]
+    print(f"ID de YouTube encontrado: {channel_id_youtube}")
+
+    # 2. Obtener los detalles específicos del canal
+    channel_response = youtube.channels().list(
+        part="snippet,topicDetails",
+        id=channel_id_youtube
+    ).execute()
+
+    canal_data = channel_response["items"][0]
+    snippet = canal_data.get("snippet", {})
+    topic_details = canal_data.get("topicDetails", {})
+
+    # 3. Estructurar la información solicitada
+    info_json = {
+        "id": channel_id_youtube,
+        "title": snippet.get("title"),
+        "description": snippet.get("description"),
+        "customUrl": snippet.get("customUrl"),
+        "publishedAt": snippet.get("publishedAt"),
+        "topicIds": topic_details.get("topicIds", []),
+        "topicCategories": topic_details.get("topicCategories", [])
+    }
+
+    # Normalizar el nombre para el archivo
+    nombre_fichero = "".join(c for c in nombre_canal if c.isalnum() or c in (' ', '_', '-')).strip()
+    nombre_fichero = nombre_fichero.replace(" ", "_")
+
+    # Definir rutas completas dentro de la carpeta final
+    ruta_json = os.path.join(OUTPUT_DIR, f"{nombre_fichero}.json")
+    ruta_jpg = os.path.join(OUTPUT_DIR, f"{nombre_fichero}.jpg")
+
+    # Guardar el archivo .json con datos de YouTube
+    with open(ruta_json, "w", encoding="utf-8") as f:
+        json.dump(info_json, f, ensure_ascii=False, indent=4)
+    print(f"Datos de YouTube guardados en: {ruta_json}")
+
+    # 4. Descargar el Thumbnail
+    thumbnails = snippet.get("thumbnails", {})
+    url_foto = thumbnails.get("high", thumbnails.get("default", {})).get("url")
+
+    if url_foto:
+        imagen_bytes = requests.get(url_foto).content
+        with open(ruta_jpg, "wb") as f_img:
+            f_img.write(imagen_bytes)
+        print(f"Thumbnail guardado en: {ruta_jpg}")
+    else:
+        print("Advertencia: No se encontró thumbnail para el canal")
+
+    # 5. Crear el canal en la plataforma Wui mediante la API
+    print(f"\nCreando canal en la plataforma Wui...")
+    
+    # Verificar si el servidor está disponible
+    try:
+        health = requests.get(f"{SERVER_URL}/health", timeout=5)
+        if health.status_code != 200:
+            raise Exception("El servidor no está respondiendo correctamente")
+    except requests.exceptions.ConnectionError:
+        print(f"ERROR: No se pudo conectar con el servidor en {SERVER_URL}")
+        print("Asegúrate de que el servidor esté ejecutándose antes de crear el canal.")
+        sys.exit(1)
+    
+    # Crear el canal en la base de datos
+    channel_data_api = {
+        "name": info_json["title"],
+        "color": "#FF6600",  # Color por defecto
+        "email": "",
+        "social_links": {
+            "youtube": f"https://www.youtube.com/channel/{channel_id_youtube}"
+        },
+        "checkpoints": {}
+    }
+    
+    response = requests.post(
+        f"{SERVER_URL}/api/channels",
+        json=channel_data_api,
+        timeout=10
+    )
+    
+    if response.status_code == 200:
+        channel_created = response.json()
+        channel_db_id = channel_created["id"]
+        print(f"Canal creado correctamente en la plataforma con ID: {channel_db_id}")
+        
+        # Actualizar el archivo JSON con el ID de la base de datos
+        info_json["db_id"] = channel_db_id
+        with open(ruta_json, "w", encoding="utf-8") as f:
+            json.dump(info_json, f, ensure_ascii=False, indent=4)
+        print(f"Archivo JSON actualizado con el ID de base de datos: {channel_db_id}")
+    else:
+        print(f"ERROR al crear el canal en la plataforma: {response.status_code}")
+        print(f"Respuesta: {response.text}")
+        sys.exit(1)
+
+    print(f"\n¡Éxito! Canal '{nombre_canal}' creado correctamente.")
+    print(f"  - Datos de YouTube: {ruta_json}")
+    print(f"  - Thumbnail: {ruta_jpg}")
+    print(f"  - Canal en plataforma: ID {channel_created.get('id', 'N/A')}")
+
+except HttpError as e:
+    print(f"Error de YouTube API: {e}")
+    sys.exit(1)
+except requests.exceptions.ConnectionError:
+    print(f"ERROR: No se pudo conectar con el servidor en {SERVER_URL}")
+    print("Asegúrate de que el servidor esté ejecutándose antes de crear el canal.")
+    sys.exit(1)
+except Exception as e:
+    print(f"Ocurrió un error: {e}")
+    import traceback
+    traceback.print_exc()
+    sys.exit(1)

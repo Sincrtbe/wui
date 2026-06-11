@@ -1,1 +1,326 @@
-IiIiUm91dGVyIHBhcmEgbGEgZ2VzdGnDs24gZGUgYmlibGlvdGVjYSBkZSBwcm9tcHRzIGJhc2FkYSBlbiBhcmNoaXZvcyBKU09OLiIiIgpmcm9tIGZhc3RhcGkgaW1wb3J0IEFQSVJvdXRlciwgSFRUUEV4Y2VwdGlvbiwgUXVlcnkKZnJvbSB0eXBpbmcgaW1wb3J0IE9wdGlvbmFsCmZyb20gcHlkYW50aWMgaW1wb3J0IEJhc2VNb2RlbAoKZnJvbSBhcHAuc2VydmljZXMucHJvbXB0X3NlcnZpY2UgaW1wb3J0IFByb21wdFNlcnZpY2UKCnJvdXRlciA9IEFQSVJvdXRlcihwcmVmaXg9Ii9hcGkvcHJvbXB0cyIsIHRhZ3M9WyJwcm9tcHRzIl0pCgoKIyA9PT09PT09PT09IFB5ZGFudGljIE1vZGVscyA9PT09PT09PT09CgpjbGFzcyBQcm9tcHRDcmVhdGUoQmFzZU1vZGVsKToKICAgIHRpdGxlOiBzdHIKICAgIGNvbnRlbnQ6IHN0cgogICAgY2F0ZWdvcnk6IHN0ciA9ICJvdHJvIgogICAgZGVzY3JpcHRpb246IE9wdGlvbmFsW3N0cl0gPSBOb25lCiAgICBwcm9tcHRfdHlwZTogT3B0aW9uYWxbc3RyXSA9IE5vbmUKCgpjbGFzcyBQcm9tcHRVcGRhdGUoQmFzZU1vZGVsKToKICAgIHRpdGxlOiBPcHRpb25hbFtzdHJdID0gTm9uZQogICAgY29udGVudDogT3B0aW9uYWxbc3RyXSA9IE5vbmUKICAgIGRlc2NyaXB0aW9uOiBPcHRpb25hbFtzdHJdID0gTm9uZQogICAgY2F0ZWdvcnk6IE9wdGlvbmFsW3N0cl0gPSBOb25lCgoKY2xhc3MgQ2F0ZWdvcnlDcmVhdGUoQmFzZU1vZGVsKToKICAgIG5hbWU6IHN0cgoKCmNsYXNzIENhdGVnb3J5RGVsZXRlKEJhc2VNb2RlbCk6CiAgICBuYW1lOiBzdHIKCgpjbGFzcyBSYXRlUHJvbXB0UmVxdWVzdChCYXNlTW9kZWwpOgogICAgcmF0aW5nOiBmbG9hdAoKCmNsYXNzIFVzZVByb21wdFJlcXVlc3QoQmFzZU1vZGVsKToKICAgIHZhcmlhYmxlczogZGljdAoKCmNsYXNzIFByb21wdFNlYXJjaFJlcXVlc3QoQmFzZU1vZGVsKToKICAgIHF1ZXJ5OiBzdHIKICAgIGNhdGVnb3J5OiBPcHRpb25hbFtzdHJdID0gTm9uZQoKCiMgPT09PT09PT09PSBSZXNwb25zZXMgPT09PT09PT09PQoKY2xhc3MgUHJvbXB0UmVzcG9uc2UoQmFzZU1vZGVsKToKICAgIGlkOiBmbG9hdAogICAgdGl0bGU6IHN0cgogICAgY29udGVudDogc3RyCiAgICBjYXRlZ29yeTogc3RyCiAgICBwcm9tcHRfdHlwZTogT3B0aW9uYWxbc3RyXQogICAgZGVzY3JpcHRpb246IE9wdGlvbmFsW3N0cl0KICAgIHZhcmlhYmxlczogbGlzdFtzdHJdCiAgICByYXRpbmc6IGZsb2F0CiAgICB1c2FnZV9jb3VudDogaW50CiAgICB2ZXJzaW9uOiBpbnQKICAgIGlzX2FjdGl2ZTogc3RyCiAgICBjcmVhdGVkX2F0OiBzdHIKICAgIHVwZGF0ZWRfYXQ6IHN0cgoKICAgIGNsYXNzIENvbmZpZzoKICAgICAgICBmcm9tX2F0dHJpYnV0ZXMgPSBUcnVlCgoKY2xhc3MgQ2F0ZWdvcnlSZXNwb25zZShCYXNlTW9kZWwpOgogICAgbmFtZTogc3RyCiAgICBwcm9tcHRfY291bnQ6IGludAoKCmNsYXNzIENhdGVnb3JpZXNMaXN0UmVzcG9uc2UoQmFzZU1vZGVsKToKICAgIGNhdGVnb3JpZXM6IGxpc3RbZGljdF0KCgpjbGFzcyBEZWxldGVSZXNwb25zZShCYXNlTW9kZWwpOgogICAgc3VjY2VzczogYm9vbAogICAgbWVzc2FnZTogc3RyCgoKIyA9PT09PT09PT09IFJvdXRlczogQ2F0ZWdvcmllcyA9PT09PT09PT09CgpAcm91dGVyLmdldCgiL2NhdGVnb3JpZXMiLCByZXNwb25zZV9tb2RlbD1DYXRlZ29yaWVzTGlzdFJlc3BvbnNlKQpkZWYgbGlzdF9jYXRlZ29yaWVzKCk6CiAgICAiIiJPYnRpZW5lIHRvZGFzIGxhcyBjYXRlZ29yw61hcyBjb24gZWwgY29udGVvIGRlIHByb21wdHMuIiIiCiAgICBjYXRlZ29yaWVzID0gUHJvbXB0U2VydmljZS5nZXRfY2F0ZWdvcmllcygpCiAgICByZXN1bHQgPSBbXQogICAgZm9yIGNhdCBpbiBjYXRlZ29yaWVzOgogICAgICAgIHByb21wdHMgPSBQcm9tcHRTZXJ2aWNlLmdldF9hbGxfcHJvbXB0cyhjYXRlZ29yeT1jYXQpCiAgICAgICAgcmVzdWx0LmFwcGVuZCh7CiAgICAgICAgICAgICJuYW1lIjogY2F0LAogICAgICAgICAgICAicHJvbXB0X2NvdW50IjogbGVuKHByb21wdHMpCiAgICAgICAgfSkKICAgIHJldHVybiB7ImNhdGVnb3JpZXMiOiByZXN1bHR9CgoKQHJvdXRlci5wb3N0KCIvY2F0ZWdvcmllcyIsIHJlc3BvbnNlX21vZGVsPUNhdGVnb3J5UmVzcG9uc2UpCmRlZiBjcmVhdGVfY2F0ZWdvcnkoY2F0ZWdvcnk6IENhdGVnb3J5Q3JlYXRlKToKICAgICIiIkNyZWEgdW5hIG51ZXZhIGNhdGVnb3LDrWEgKHN1YmNhcnBldGEpLiIiIgogICAgY2F0X25hbWUgPSBjYXRlZ29yeS5uYW1lLnN0cmlwKCkubG93ZXIoKS5yZXBsYWNlKCIgIiwgIl8iKS5yZXBsYWNlKCItIiwgIl8iKQogICAgaWYgbm90IGNhdF9uYW1lOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDAwLCBkZXRhaWw9IkVsIG5vbWJyZSBkZSBsYSBjYXRlZ29yw61hIG5vIHB1ZWRlIGVzdGFyIHZhY8OtbyIpCgogICAgUHJvbXB0U2VydmljZS5lbnN1cmVfY2F0ZWdvcnkoY2F0X25hbWUpCiAgICBwcm9tcHRzID0gUHJvbXB0U2VydmljZS5nZXRfYWxsX3Byb21wdHMoY2F0ZWdvcnk9Y2F0X25hbWUpCiAgICByZXR1cm4geyJuYW1lIjogY2F0X25hbWUsICJwcm9tcHRfY291bnQiOiBsZW4ocHJvbXB0cyl9CgoKQHJvdXRlci5kZWxldGUoIi9jYXRlZ29yaWVzIiwgcmVzcG9uc2VfbW9kZWw9RGVsZXRlUmVzcG9uc2UpCmRlZiBkZWxldGVfY2F0ZWdvcnkoY2F0ZWdvcnk6IENhdGVnb3J5RGVsZXRlKToKICAgICIiIkVsaW1pbmEgdW5hIGNhdGVnb3LDrWEgeSB0b2RvcyBzdXMgcHJvbXB0cy4iIiIKICAgIGNhdF9uYW1lID0gY2F0ZWdvcnkubmFtZS5zdHJpcCgpLmxvd2VyKCkucmVwbGFjZSgiICIsICJfIikucmVwbGFjZSgiLSIsICJfIikKICAgIGlmIG5vdCBjYXRfbmFtZToKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwMCwgZGV0YWlsPSJFbCBub21icmUgZGUgbGEgY2F0ZWdvcsOtYSBubyBwdWVkZSBlc3RhciB2YWPDrW8iKQoKICAgIHN1Y2Nlc3MgPSBQcm9tcHRTZXJ2aWNlLmRlbGV0ZV9jYXRlZ29yeShjYXRfbmFtZSkKICAgIGlmIG5vdCBzdWNjZXNzOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9ZiJDYXRlZ29yw61hIG5vIGVuY29udHJhZGE6IHtjYXRfbmFtZX0iKQoKICAgIHJldHVybiB7InN1Y2Nlc3MiOiBUcnVlLCAibWVzc2FnZSI6IGYiQ2F0ZWdvcsOtYSAne2NhdF9uYW1lfScgZWxpbWluYWRhIn0KCgojID09PT09PT09PT0gUm91dGVzOiBQcm9tcHRzID09PT09PT09PT0KCkByb3V0ZXIucG9zdCgiLyIsIHJlc3BvbnNlX21vZGVsPVByb21wdFJlc3BvbnNlKQpkZWYgY3JlYXRlX3Byb21wdChwcm9tcHQ6IFByb21wdENyZWF0ZSk6CiAgICAiIiJDcmVhIHVuIG51ZXZvIHByb21wdC4iIiIKICAgIGlmIG5vdCBwcm9tcHQudGl0bGUgb3Igbm90IHByb21wdC5jb250ZW50OgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDAwLCBkZXRhaWw9InRpdGxlIHkgY29udGVudCBzb24gb2JsaWdhdG9yaW9zIikKCiAgICB0cnk6CiAgICAgICAgcmVzdWx0ID0gUHJvbXB0U2VydmljZS5jcmVhdGVfcHJvbXB0KAogICAgICAgICAgICB0aXRsZT1wcm9tcHQudGl0bGUsCiAgICAgICAgICAgIGNvbnRlbnQ9cHJvbXB0LmNvbnRlbnQsCiAgICAgICAgICAgIGNhdGVnb3J5PXByb21wdC5jYXRlZ29yeSwKICAgICAgICAgICAgZGVzY3JpcHRpb249cHJvbXB0LmRlc2NyaXB0aW9uLAogICAgICAgICAgICBwcm9tcHRfdHlwZT1wcm9tcHQucHJvbXB0X3R5cGUKICAgICAgICApCiAgICAgICAgcmV0dXJuIHJlc3VsdAogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NTAwLCBkZXRhaWw9ZiJFcnJvciBhbCBjcmVhciBwcm9tcHQ6IHtzdHIoZSl9IikKCgpAcm91dGVyLmdldCgiLyIpCmRlZiBsaXN0X3Byb21wdHMoCiAgICBjYXRlZ29yeTogT3B0aW9uYWxbc3RyXSA9IFF1ZXJ5KE5vbmUsIGRlc2NyaXB0aW9uPSJGaWx0cmFyIHBvciBjYXRlZ29yw61hIiksCiAgICBzZWFyY2g6IE9wdGlvbmFsW3N0cl0gPSBRdWVyeShOb25lLCBkZXNjcmlwdGlvbj0iQnVzY2FyIGVuIHTDrXR1bG8sIGRlc2NyaXBjacOzbiB5IGNvbnRlbmlkbyIpLAopOgogICAgIiIiTGlzdGEgdG9kb3MgbG9zIHByb21wdHMsIG9wY2lvbmFsbWVudGUgZmlsdHJhZG9zIHBvciBjYXRlZ29yw61hLiIiIgogICAgcHJvbXB0cyA9IFByb21wdFNlcnZpY2UuZ2V0X2FsbF9wcm9tcHRzKGNhdGVnb3J5PWNhdGVnb3J5KQoKICAgIGlmIHNlYXJjaDoKICAgICAgICBwcm9tcHRzID0gUHJvbXB0U2VydmljZS5zZWFyY2hfcHJvbXB0cyhxdWVyeT1zZWFyY2gsIGNhdGVnb3J5PWNhdGVnb3J5KQoKICAgIHJldHVybiBwcm9tcHRzCgoKQHJvdXRlci5nZXQoIi9zZWFyY2giKQpkZWYgc2VhcmNoX3Byb21wdHMocXVlcnk6IHN0ciA9IFF1ZXJ5KC4uLiwgbWluX2xlbmd0aD0xKSwgY2F0ZWdvcnk6IE9wdGlvbmFsW3N0cl0gPSBOb25lKToKICAgICIiIkJ1c2NhIHByb21wdHMgcG9yIHTDrXR1bG8sIGRlc2NyaXBjacOzbiBvIGNvbnRlbmlkby4iIiIKICAgIHJlc3VsdHMgPSBQcm9tcHRTZXJ2aWNlLnNlYXJjaF9wcm9tcHRzKHF1ZXJ5PXF1ZXJ5LCBjYXRlZ29yeT1jYXRlZ29yeSkKICAgIHJldHVybiByZXN1bHRzCgoKQHJvdXRlci5nZXQoIi9jYXRlZ29yaWVzL3tjYXRlZ29yeX0vZmlsZXMiKQpkZWYgbGlzdF9jYXRlZ29yeV9maWxlcyhjYXRlZ29yeTogc3RyKToKICAgICIiIkxpc3RhIGxvcyBhcmNoaXZvcyBKU09OIGRlIHVuYSBjYXRlZ29yw61hLiIiIgogICAgYWxsX3Byb21wdHMgPSBQcm9tcHRTZXJ2aWNlLmdldF9hbGxfcHJvbXB0cyhjYXRlZ29yeT1jYXRlZ29yeSkKICAgIHJldHVybiBbCiAgICAgICAgewogICAgICAgICAgICAiZmlsZW5hbWUiOiBwLmdldCgiaWQiLCAiIiksCiAgICAgICAgICAgICJ0aXRsZSI6IHAuZ2V0KCJ0aXRsZSIsICIiKSwKICAgICAgICAgICAgImNyZWF0ZWRfYXQiOiBwLmdldCgiY3JlYXRlZF9hdCIsICIiKQogICAgICAgIH0KICAgICAgICBmb3IgcCBpbiBhbGxfcHJvbXB0cwogICAgXQoKCkByb3V0ZXIuZ2V0KCIve3Byb21wdF9pZH0iLCByZXNwb25zZV9tb2RlbD1Qcm9tcHRSZXNwb25zZSkKZGVmIGdldF9wcm9tcHQocHJvbXB0X2lkOiBzdHIpOgogICAgIiIiT2J0aWVuZSB1biBwcm9tcHQgZXNwZWPDrWZpY28gcG9yIHN1IElELiIiIgogICAgcHJvbXB0ID0gUHJvbXB0U2VydmljZS5nZXRfcHJvbXB0X2J5X2lkKHByb21wdF9pZCkKICAgIGlmIG5vdCBwcm9tcHQ6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDQsIGRldGFpbD0iUHJvbXB0IG5vIGVuY29udHJhZG8iKQogICAgcmV0dXJuIHByb21wdAoKCkByb3V0ZXIucGF0Y2goIi97Y2F0ZWdvcnl9L3tmaWxlbmFtZX0iLCByZXNwb25zZV9tb2RlbD1Qcm9tcHRSZXNwb25zZSkKZGVmIHVwZGF0ZV9wcm9tcHQoCiAgICBjYXRlZ29yeTogc3RyLAogICAgZmlsZW5hbWU6IHN0ciwKICAgIHByb21wdDogUHJvbXB0VXBkYXRlCik6CiAgICAiIiJBY3R1YWxpemEgdW4gcHJvbXB0IGV4aXN0ZW50ZSAocG9yIGNhdGVnb3LDrWEgeSBmaWxlbmFtZSkuIiIiCiAgICBjdXJyZW50ID0gUHJvbXB0U2VydmljZS5nZXRfcHJvbXB0X2J5X2ZpbGVuYW1lKGNhdGVnb3J5LCBmaWxlbmFtZSkKICAgIGlmIG5vdCBjdXJyZW50OgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IlByb21wdCBubyBlbmNvbnRyYWRvIikKCiAgICB0cnk6CiAgICAgICAgcmVzdWx0ID0gUHJvbXB0U2VydmljZS51cGRhdGVfcHJvbXB0KAogICAgICAgICAgICBjYXRlZ29yeT1jYXRlZ29yeSwKICAgICAgICAgICAgZmlsZW5hbWU9ZmlsZW5hbWUsCiAgICAgICAgICAgIHRpdGxlPXByb21wdC50aXRsZSwKICAgICAgICAgICAgY29udGVudD1wcm9tcHQuY29udGVudCwKICAgICAgICAgICAgZGVzY3JpcHRpb249cHJvbXB0LmRlc2NyaXB0aW9uLAogICAgICAgICAgICBuZXdfY2F0ZWdvcnk9cHJvbXB0LmNhdGVnb3J5CiAgICAgICAgKQogICAgICAgIGlmIG5vdCByZXN1bHQ6CiAgICAgICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IlByb21wdCBubyBlbmNvbnRyYWRvIikKICAgICAgICByZXR1cm4gcmVzdWx0CiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT01MDAsIGRldGFpbD1mIkVycm9yIGFsIGFjdHVhbGl6YXIgcHJvbXB0OiB7c3RyKGUpfSIpCgoKQHJvdXRlci5wYXRjaCgiL2J5LWlkL3twcm9tcHRfaWR9IiwgcmVzcG9uc2VfbW9kZWw9UHJvbXB0UmVzcG9uc2UpCmRlZiB1cGRhdGVfcHJvbXB0X2J5X2lkKAogICAgcHJvbXB0X2lkOiBzdHIsCiAgICBwcm9tcHQ6IFByb21wdFVwZGF0ZQopOgogICAgIiIiQWN0dWFsaXphIHVuIHByb21wdCBleGlzdGVudGUgcG9yIHN1IElEICh0aW1lc3RhbXApLiIiIgogICAgY3VycmVudCA9IFByb21wdFNlcnZpY2UuZ2V0X3Byb21wdF9ieV9pZChwcm9tcHRfaWQpCiAgICBpZiBub3QgY3VycmVudDoKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwNCwgZGV0YWlsPSJQcm9tcHQgbm8gZW5jb250cmFkbyIpCgogICAgY2F0ZWdvcnkgPSBjdXJyZW50LmdldCgiY2F0ZWdvcnkiLCAib3RybyIpCiAgICAjIEdlbmVyYXIgZmlsZW5hbWUgYSBwYXJ0aXIgZGVsIHTDrXR1bG8KICAgIGZpbGVuYW1lID0gUHJvbXB0U2VydmljZS5nZW5lcmF0ZV9maWxlbmFtZShwcm9tcHQudGl0bGUgaWYgcHJvbXB0LnRpdGxlIGVsc2UgY3VycmVudFsidGl0bGUiXSkKCiAgICB0cnk6CiAgICAgICAgcmVzdWx0ID0gUHJvbXB0U2VydmljZS51cGRhdGVfcHJvbXB0KAogICAgICAgICAgICBjYXRlZ29yeT1jYXRlZ29yeSwKICAgICAgICAgICAgZmlsZW5hbWU9ZmlsZW5hbWUsCiAgICAgICAgICAgIHRpdGxlPXByb21wdC50aXRsZSwKICAgICAgICAgICAgY29udGVudD1wcm9tcHQuY29udGVudCwKICAgICAgICAgICAgZGVzY3JpcHRpb249cHJvbXB0LmRlc2NyaXB0aW9uLAogICAgICAgICAgICBuZXdfY2F0ZWdvcnk9cHJvbXB0LmNhdGVnb3J5CiAgICAgICAgKQogICAgICAgIGlmIG5vdCByZXN1bHQ6CiAgICAgICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IlByb21wdCBubyBlbmNvbnRyYWRvIikKICAgICAgICByZXR1cm4gcmVzdWx0CiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT01MDAsIGRldGFpbD1mIkVycm9yIGFsIGFjdHVhbGl6YXIgcHJvbXB0OiB7c3RyKGUpfSIpCgoKQHJvdXRlci5wb3N0KCIve3Byb21wdF9pZH0vcmF0ZSIpCmRlZiByYXRlX3Byb21wdChwcm9tcHRfaWQ6IHN0ciwgcmF0aW5nX2RhdGE6IFJhdGVQcm9tcHRSZXF1ZXN0KToKICAgICIiIkNhbGlmaWNhIHVuIHByb21wdCAoMC01KS4iIiIKICAgIGlmIHJhdGluZ19kYXRhLnJhdGluZyA8IDAgb3IgcmF0aW5nX2RhdGEucmF0aW5nID4gNToKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwMCwgZGV0YWlsPSJMYSBjYWxpZmljYWNpw7NuIGRlYmUgZXN0YXIgZW50cmUgMCB5IDUiKQoKICAgIHJlc3VsdCA9IFByb21wdFNlcnZpY2UucmF0ZV9wcm9tcHQocHJvbXB0X2lkLCByYXRpbmdfZGF0YS5yYXRpbmcpCiAgICBpZiBub3QgcmVzdWx0OgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IlByb21wdCBubyBlbmNvbnRyYWRvIikKICAgIHJldHVybiByZXN1bHQKCgpAcm91dGVyLnBvc3QoIi97cHJvbXB0X2lkfS91c2UiLCByZXNwb25zZV9tb2RlbD1kaWN0KQpkZWYgdXNlX3Byb21wdChwcm9tcHRfaWQ6IHN0ciwgcmVxOiBVc2VQcm9tcHRSZXF1ZXN0KToKICAgICIiIlVzYSB1biBwcm9tcHQgc3VzdGl0dXllbmRvIHN1cyB2YXJpYWJsZXMuIiIiCiAgICBwcm9tcHQgPSBQcm9tcHRTZXJ2aWNlLmdldF9wcm9tcHRfYnlfaWQocHJvbXB0X2lkKQogICAgaWYgbm90IHByb21wdDoKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwNCwgZGV0YWlsPSJQcm9tcHQgbm8gZW5jb250cmFkbyIpCgogICAgIyBWYWxpZGFyIHZhcmlhYmxlcwogICAgdmFsaWRhdGlvbiA9IFByb21wdFNlcnZpY2UudmFsaWRhdGVfdmFyaWFibGVzKHByb21wdFsiY29udGVudCJdLCByZXEudmFyaWFibGVzKQogICAgaWYgbm90IHZhbGlkYXRpb25bInZhbGlkIl06CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbigKICAgICAgICAgICAgc3RhdHVzX2NvZGU9NDAwLAogICAgICAgICAgICBkZXRhaWw9ZiJWYXJpYWJsZXMgZmFsdGFudGVzOiB7dmFsaWRhdGlvblsnbWlzc2luZyddfSIKICAgICAgICApCgogICAgIyBTdXN0aXR1aXIgdmFyaWFibGVzCiAgICBmaW5hbF9jb250ZW50ID0gUHJvbXB0U2VydmljZS5zdWJzdGl0dXRlX3ZhcmlhYmxlcyhwcm9tcHRbImNvbnRlbnQiXSwgcmVxLnZhcmlhYmxlcykKCiAgICAjIEluY3JlbWVudGFyIGNvbnRhZG9yIGRlIHVzbwogICAgUHJvbXB0U2VydmljZS5pbmNyZW1lbnRfdXNhZ2UocHJvbXB0X2lkKQoKICAgIHJldHVybiB7CiAgICAgICAgInByb21wdF9pZCI6IHByb21wdF9pZCwKICAgICAgICAidGl0bGUiOiBwcm9tcHRbInRpdGxlIl0sCiAgICAgICAgIm9yaWdpbmFsX2NvbnRlbnQiOiBwcm9tcHRbImNvbnRlbnQiXSwKICAgICAgICAiZmluYWxfY29udGVudCI6IGZpbmFsX2NvbnRlbnQsCiAgICAgICAgInZhcmlhYmxlc191c2VkIjogcmVxLnZhcmlhYmxlcwogICAgfQoKCkByb3V0ZXIuZGVsZXRlKCIve2NhdGVnb3J5fS97ZmlsZW5hbWV9IiwgcmVzcG9uc2VfbW9kZWw9RGVsZXRlUmVzcG9uc2UpCmRlZiBkZWxldGVfcHJvbXB0KGNhdGVnb3J5OiBzdHIsIGZpbGVuYW1lOiBzdHIpOgogICAgIiIiRWxpbWluYSB1biBwcm9tcHQgKHBvciBjYXRlZ29yw61hIHkgZmlsZW5hbWUpLiIiIgogICAgc3VjY2VzcyA9IFByb21wdFNlcnZpY2UuZGVsZXRlX3Byb21wdChjYXRlZ29yeSwgZmlsZW5hbWUpCiAgICBpZiBub3Qgc3VjY2VzczoKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwNCwgZGV0YWlsPSJQcm9tcHQgbm8gZW5jb250cmFkbyIpCiAgICByZXR1cm4geyJzdWNjZXNzIjogVHJ1ZSwgIm1lc3NhZ2UiOiAiUHJvbXB0IGVsaW1pbmFkbyJ9CgoKQHJvdXRlci5kZWxldGUoIi9ieS1pZC97cHJvbXB0X2lkfSIsIHJlc3BvbnNlX21vZGVsPURlbGV0ZVJlc3BvbnNlKQpkZWYgZGVsZXRlX3Byb21wdF9ieV9pZChwcm9tcHRfaWQ6IHN0cik6CiAgICAiIiJFbGltaW5hIHVuIHByb21wdCBwb3Igc3UgSUQgKHRpbWVzdGFtcCkuIiIiCiAgICBwcm9tcHQgPSBQcm9tcHRTZXJ2aWNlLmdldF9wcm9tcHRfYnlfaWQocHJvbXB0X2lkKQogICAgaWYgbm90IHByb21wdDoKICAgICAgICByYWlzZSBIVFRQRXhjZXB0aW9uKHN0YXR1c19jb2RlPTQwNCwgZGV0YWlsPSJQcm9tcHQgbm8gZW5jb250cmFkbyIpCgogICAgY2F0ZWdvcnkgPSBwcm9tcHQuZ2V0KCJjYXRlZ29yeSIsICJvdHJvIikKICAgICMgRWwgZmlsZW5hbWUgc2UgcHVlZGUgaW5mZXJpciBkZWwgdMOtdHVsbwogICAgZmlsZW5hbWUgPSBQcm9tcHRTZXJ2aWNlLmdlbmVyYXRlX2ZpbGVuYW1lKHByb21wdFsidGl0bGUiXSkKICAgIHN1Y2Nlc3MgPSBQcm9tcHRTZXJ2aWNlLmRlbGV0ZV9wcm9tcHQoY2F0ZWdvcnksIGZpbGVuYW1lKQogICAgaWYgbm90IHN1Y2Nlc3M6CiAgICAgICAgIyBJbnRlbnRhciB0YW1iacOpbiBjb24gZWwgSUQgY29tbyBmaWxlbmFtZSAoZm9ybWF0byB0aW1lc3RhbXApCiAgICAgICAgc3VjY2VzcyA9IFByb21wdFNlcnZpY2UuZGVsZXRlX3Byb21wdChjYXRlZ29yeSwgZiJ7cHJvbXB0X2lkfS5qc29uIikKICAgIGlmIG5vdCBzdWNjZXNzOgogICAgICAgIHJhaXNlIEhUVFBFeGNlcHRpb24oc3RhdHVzX2NvZGU9NDA0LCBkZXRhaWw9IlByb21wdCBubyBlbmNvbnRyYWRvIikKICAgIHJldHVybiB7InN1Y2Nlc3MiOiBUcnVlLCAibWVzc2FnZSI6ICJQcm9tcHQgZWxpbWluYWRvIn0KCgpAcm91dGVyLnBvc3QoIi97cHJvbXB0X2lkfS92YWxpZGF0ZSIpCmRlZiB2YWxpZGF0ZV9wcm9tcHRfdmFyaWFibGVzKHByb21wdF9pZDogc3RyLCB2YXJpYWJsZXM6IGRpY3QpOgogICAgIiIiVmFsaWRhIHF1ZSB0b2RhcyBsYXMgdmFyaWFibGVzIHJlcXVlcmlkYXMgZXN0w6luIHByb3BvcmNpb25hZGFzLiIiIgogICAgcHJvbXB0ID0gUHJvbXB0U2VydmljZS5nZXRfcHJvbXB0X2J5X2lkKHByb21wdF9pZCkKICAgIGlmIG5vdCBwcm9tcHQ6CiAgICAgICAgcmFpc2UgSFRUUEV4Y2VwdGlvbihzdGF0dXNfY29kZT00MDQsIGRldGFpbD0iUHJvbXB0IG5vIGVuY29udHJhZG8iKQoKICAgIHZhbGlkYXRpb24gPSBQcm9tcHRTZXJ2aWNlLnZhbGlkYXRlX3ZhcmlhYmxlcyhwcm9tcHRbImNvbnRlbnQiXSwgdmFyaWFibGVzKQogICAgcmV0dXJuIHZhbGlkYXRpb24=
+"""Router para la gestión de biblioteca de prompts basada en archivos JSON."""
+from fastapi import APIRouter, HTTPException, Query
+from typing import Optional
+from pydantic import BaseModel
+
+from app.services.prompt_service import PromptService
+
+router = APIRouter(prefix="/api/prompts", tags=["prompts"])
+
+
+# ========== Pydantic Models ==========
+
+class PromptCreate(BaseModel):
+    title: str
+    content: str
+    category: str = "otro"
+    description: Optional[str] = None
+    prompt_type: Optional[str] = None
+
+
+class PromptUpdate(BaseModel):
+    title: Optional[str] = None
+    content: Optional[str] = None
+    description: Optional[str] = None
+    category: Optional[str] = None
+
+
+class CategoryCreate(BaseModel):
+    name: str
+
+
+class CategoryDelete(BaseModel):
+    name: str
+
+
+class RatePromptRequest(BaseModel):
+    rating: float
+
+
+class UsePromptRequest(BaseModel):
+    variables: dict
+
+
+class PromptSearchRequest(BaseModel):
+    query: str
+    category: Optional[str] = None
+
+
+# ========== Responses ==========
+
+class PromptResponse(BaseModel):
+    id: float
+    title: str
+    content: str
+    category: str
+    prompt_type: Optional[str]
+    description: Optional[str]
+    variables: list[str]
+    rating: float
+    usage_count: int
+    version: int
+    is_active: str
+    created_at: str
+    updated_at: str
+
+    class Config:
+        from_attributes = True
+
+
+class CategoryResponse(BaseModel):
+    name: str
+    prompt_count: int
+
+
+class CategoriesListResponse(BaseModel):
+    categories: list[dict]
+
+
+class DeleteResponse(BaseModel):
+    success: bool
+    message: str
+
+
+# ========== Routes: Categories ==========
+
+@router.get("/categories", response_model=CategoriesListResponse)
+def list_categories():
+    """Obtiene todas las categorías con el conteo de prompts."""
+    categories = PromptService.get_categories()
+    result = []
+    for cat in categories:
+        prompts = PromptService.get_all_prompts(category=cat)
+        result.append({
+            "name": cat,
+            "prompt_count": len(prompts)
+        })
+    return {"categories": result}
+
+
+@router.post("/categories", response_model=CategoryResponse)
+def create_category(category: CategoryCreate):
+    """Crea una nueva categoría (subcarpeta)."""
+    cat_name = category.name.strip().lower().replace(" ", "_").replace("-", "_")
+    if not cat_name:
+        raise HTTPException(status_code=400, detail="El nombre de la categoría no puede estar vacío")
+
+    PromptService.ensure_category(cat_name)
+    prompts = PromptService.get_all_prompts(category=cat_name)
+    return {"name": cat_name, "prompt_count": len(prompts)}
+
+
+@router.delete("/categories", response_model=DeleteResponse)
+def delete_category(category: CategoryDelete):
+    """Elimina una categoría y todos sus prompts."""
+    cat_name = category.name.strip().lower().replace(" ", "_").replace("-", "_")
+    if not cat_name:
+        raise HTTPException(status_code=400, detail="El nombre de la categoría no puede estar vacío")
+
+    success = PromptService.delete_category(cat_name)
+    if not success:
+        raise HTTPException(status_code=404, detail=f"Categoría no encontrada: {cat_name}")
+
+    return {"success": True, "message": f"Categoría '{cat_name}' eliminada"}
+
+
+# ========== Routes: Prompts ==========
+
+@router.post("/", response_model=PromptResponse)
+def create_prompt(prompt: PromptCreate):
+    """Crea un nuevo prompt."""
+    if not prompt.title or not prompt.content:
+        raise HTTPException(status_code=400, detail="title y content son obligatorios")
+
+    try:
+        result = PromptService.create_prompt(
+            title=prompt.title,
+            content=prompt.content,
+            category=prompt.category,
+            description=prompt.description,
+            prompt_type=prompt.prompt_type
+        )
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al crear prompt: {str(e)}")
+
+
+@router.get("/")
+def list_prompts(
+    category: Optional[str] = Query(None, description="Filtrar por categoría"),
+    search: Optional[str] = Query(None, description="Buscar en título, descripción y contenido"),
+):
+    """Lista todos los prompts, opcionalmente filtrados por categoría."""
+    prompts = PromptService.get_all_prompts(category=category)
+
+    if search:
+        prompts = PromptService.search_prompts(query=search, category=category)
+
+    return prompts
+
+
+@router.get("/search")
+def search_prompts(query: str = Query(..., min_length=1), category: Optional[str] = None):
+    """Busca prompts por título, descripción o contenido."""
+    results = PromptService.search_prompts(query=query, category=category)
+    return results
+
+
+@router.get("/categories/{category}/files")
+def list_category_files(category: str):
+    """Lista los archivos JSON de una categoría."""
+    all_prompts = PromptService.get_all_prompts(category=category)
+    return [
+        {
+            "filename": p.get("id", ""),
+            "title": p.get("title", ""),
+            "created_at": p.get("created_at", "")
+        }
+        for p in all_prompts
+    ]
+
+
+@router.get("/{prompt_id}", response_model=PromptResponse)
+def get_prompt(prompt_id: str):
+    """Obtiene un prompt específico por su ID."""
+    prompt = PromptService.get_prompt_by_id(prompt_id)
+    if not prompt:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+    return prompt
+
+
+@router.patch("/{category}/{filename}", response_model=PromptResponse)
+def update_prompt(
+    category: str,
+    filename: str,
+    prompt: PromptUpdate
+):
+    """Actualiza un prompt existente (por categoría y filename)."""
+    current = PromptService.get_prompt_by_filename(category, filename)
+    if not current:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+
+    try:
+        result = PromptService.update_prompt(
+            category=category,
+            filename=filename,
+            title=prompt.title,
+            content=prompt.content,
+            description=prompt.description,
+            new_category=prompt.category
+        )
+        if not result:
+            raise HTTPException(status_code=404, detail="Prompt no encontrado")
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al actualizar prompt: {str(e)}")
+
+
+@router.patch("/by-id/{prompt_id}", response_model=PromptResponse)
+def update_prompt_by_id(
+    prompt_id: str,
+    prompt: PromptUpdate
+):
+    """Actualiza un prompt existente por su ID (timestamp)."""
+    current = PromptService.get_prompt_by_id(prompt_id)
+    if not current:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+
+    category = current.get("category", "otro")
+    # Generar filename a partir del título
+    filename = PromptService.generate_filename(prompt.title if prompt.title else current["title"])
+
+    try:
+        result = PromptService.update_prompt(
+            category=category,
+            filename=filename,
+            title=prompt.title,
+            content=prompt.content,
+            description=prompt.description,
+            new_category=prompt.category
+        )
+        if not result:
+            raise HTTPException(status_code=404, detail="Prompt no encontrado")
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al actualizar prompt: {str(e)}")
+
+
+@router.post("/{prompt_id}/rate")
+def rate_prompt(prompt_id: str, rating_data: RatePromptRequest):
+    """Califica un prompt (0-5)."""
+    if rating_data.rating < 0 or rating_data.rating > 5:
+        raise HTTPException(status_code=400, detail="La calificación debe estar entre 0 y 5")
+
+    result = PromptService.rate_prompt(prompt_id, rating_data.rating)
+    if not result:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+    return result
+
+
+@router.post("/{prompt_id}/use", response_model=dict)
+def use_prompt(prompt_id: str, req: UsePromptRequest):
+    """Usa un prompt sustituyendo sus variables."""
+    prompt = PromptService.get_prompt_by_id(prompt_id)
+    if not prompt:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+
+    # Validar variables
+    validation = PromptService.validate_variables(prompt["content"], req.variables)
+    if not validation["valid"]:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Variables faltantes: {validation['missing']}"
+        )
+
+    # Sustituir variables
+    final_content = PromptService.substitute_variables(prompt["content"], req.variables)
+
+    # Incrementar contador de uso
+    PromptService.increment_usage(prompt_id)
+
+    return {
+        "prompt_id": prompt_id,
+        "title": prompt["title"],
+        "original_content": prompt["content"],
+        "final_content": final_content,
+        "variables_used": req.variables
+    }
+
+
+@router.delete("/{category}/{filename}", response_model=DeleteResponse)
+def delete_prompt(category: str, filename: str):
+    """Elimina un prompt (por categoría y filename)."""
+    success = PromptService.delete_prompt(category, filename)
+    if not success:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+    return {"success": True, "message": "Prompt eliminado"}
+
+
+@router.delete("/by-id/{prompt_id}", response_model=DeleteResponse)
+def delete_prompt_by_id(prompt_id: str):
+    """Elimina un prompt por su ID (timestamp)."""
+    prompt = PromptService.get_prompt_by_id(prompt_id)
+    if not prompt:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+
+    category = prompt.get("category", "otro")
+    # El filename se puede inferir del título
+    filename = PromptService.generate_filename(prompt["title"])
+    success = PromptService.delete_prompt(category, filename)
+    if not success:
+        # Intentar también con el ID como filename (formato timestamp)
+        success = PromptService.delete_prompt(category, f"{prompt_id}.json")
+    if not success:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+    return {"success": True, "message": "Prompt eliminado"}
+
+
+@router.post("/{prompt_id}/validate")
+def validate_prompt_variables(prompt_id: str, variables: dict):
+    """Valida que todas las variables requeridas estén proporcionadas."""
+    prompt = PromptService.get_prompt_by_id(prompt_id)
+    if not prompt:
+        raise HTTPException(status_code=404, detail="Prompt no encontrado")
+
+    validation = PromptService.validate_variables(prompt["content"], variables)
+    return validation

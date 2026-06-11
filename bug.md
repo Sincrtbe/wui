@@ -1,1 +1,23 @@
-IyBIaXN0b3JpYWwgZGUgQnVncyB5IENvcnJlY2Npb25lcwoKIyMgQnVncyBSZXBhcmFkb3Mg4pyFCgp8ICMgfCBGZWNoYSB8IFByb2JsZW1hIHwgU29sdWNpw7NuIHwgRXN0YWRvIHwKfC0tLXwtLS0tLS0tfC0tLS0tLS0tLS18LS0tLS0tLS0tLXwtLS0tLS0tLXwKfCAxIHwgMjAyNi0wOS0wNiB8IEFQSSBLZXkgaGFyZGNvZGVhZGEgZW4gc2NyaXB0cyB8IFNpc3RlbWEgY29uIGAuZW52YCwgY29uZmlnIGVuIGBjb25maWcucHlgLCBlbmRwb2ludHMgc2VndXJvcywgVUkgY29uIGtleSBlbm1hc2NhcmFkYSB8IOKchSBSZXBhcmFkbyB8CnwgMiB8IDIwMjYtMDktMDYgfCBDYWxlbmRhcmlvIGRlc2N1YWRyYWRvIChoZWFkZXJzIGRlbnRybyBkZWwgZ3JpZCkgfCBIZWFkZXJzIGZ1ZXJhIGRlbCBncmlkLCBlbGltaW5hciBgYXNwZWN0LXJhdGlvOiAxYCB8IOKchSBSZXBhcmFkbyB8CnwgMyB8IDIwMjYtMDktMDYgfCBDYWxlbmRhcmlvIG5vIG1vc3RyYWJhIGV2ZW50b3MgfCBQYXJzaW5nIGRpcmVjdG8gZGUgY2FkZW5hIElTTyBlbiBsdWdhciBkZSBgbmV3IERhdGUoKWAgfCDinIUgUmVwYXJhZG8gfAp8IDQgfCAyMDI2LTA5LTA2IHwgYEdFVCAvYXBpL3NjcmlwdHNgIGVycm9yIDUwMCBwb3IgVGFnIG9iamVjdHMgfCBgZmllbGRfc2VyaWFsaXplcmAgZW4gYFNjcmlwdFJlc3BvbnNlYCB8IOKchSBSZXBhcmFkbyB8CnwgNSB8IDIwMjYtMDktMDYgfCBSb3V0ZXIgYC9hcGkvc2NyaXB0c2AgZmFsdGFudGUgfCBDcmVhZG8gYGFwcC9yb3V0ZXJzL3NjcmlwdHMucHlgIGNvbiBDUlVEIGNvbXBsZXRvIHwg4pyFIFJlcGFyYWRvIHwKfCA2IHwgMjAyNi0wOS0wNiB8IFNjaGVkdWxlciBkZXNpbmNyb25pemFkbyB8IFNpbmNyb25pemFjacOzbiBlbiBgY3JlYXRlKClgLCBgdXBkYXRlKClgIHkgYGRlbGV0ZSgpYCB8IOKchSBSZXBhcmFkbyB8CnwgNyB8IDIwMjYtMDktMDYgfCBTaW4gdmFsaWRhY2nDs24gZGUgZXhwcmVzaW9uZXMgY3JvbiB8IFZhbGlkYWNpw7NuIGRlIDUgY2FtcG9zIHkgbWFuZWpvIGRlIGVycm9yZXMgfCDinIUgUmVwYXJhZG8gfAoKIyMgQnVncyBDb25vY2lkb3Mg4pqg77iPCgp8ICMgfCBEZXNjcmlwY2nDs24gfCBUcmFiYWpvIGEgcmVhbGl6YXIgfCBFc3RhZG8gfAp8LS0tfC0tLS0tLS0tLS0tLS18LS0tLS0tLS0tLS0tLS0tLS0tLXwtLS0tLS0tLXwKfCAxIHwgUmVpbmljaW8gbmVjZXNhcmlvIGRlbCBzZXJ2aWRvciBwYXJhIGNhbWJpb3MgZGUgY8OzZGlnbyB8IENvbXBvcnRhbWllbnRvIGVzcGVyYWRvIGRlIFV2aWNvcm4gfCDimqDvuI8gUGVuZGllbnRlIHwKCi0tLQoKPiAqKk5vdGE6KiogUGFyYSBtw6FzIGRldGFsbGVzIHNvYnJlIGNvcnJlY2Npb25lcywgdmVyIGBpbnByb2dyZXNzLm1kYCDihpIgc2VjY2nDs24gIkNvcnJlY2Npb25lcyB5IEJ1Z3MgUmVwYXJhZG9zIi4=
+# Historial de Bugs y Correcciones
+
+## Bugs Reparados ✅
+
+| # | Fecha | Problema | Solución | Estado |
+|---|-------|----------|----------|--------|
+| 1 | 2026-09-06 | API Key hardcodeada en scripts | Sistema con `.env`, config en `config.py`, endpoints seguros, UI con key enmascarada | ✅ Reparado |
+| 2 | 2026-09-06 | Calendario descuadrado (headers dentro del grid) | Headers fuera del grid, eliminar `aspect-ratio: 1` | ✅ Reparado |
+| 3 | 2026-09-06 | Calendario no mostraba eventos | Parsing directo de cadena ISO en lugar de `new Date()` | ✅ Reparado |
+| 4 | 2026-09-06 | `GET /api/scripts` error 500 por Tag objects | `field_serializer` en `ScriptResponse` | ✅ Reparado |
+| 5 | 2026-09-06 | Router `/api/scripts` faltante | Creado `app/routers/scripts.py` con CRUD completo | ✅ Reparado |
+| 6 | 2026-09-06 | Scheduler desincronizado | Sincronización en `create()`, `update()` y `delete()` | ✅ Reparado |
+| 7 | 2026-09-06 | Sin validación de expresiones cron | Validación de 5 campos y manejo de errores | ✅ Reparado |
+
+## Bugs Conocidos ⚠️
+
+| # | Descripción | Trabajo a realizar | Estado |
+|---|-------------|-------------------|--------|
+| 1 | Reinicio necesario del servidor para cambios de código | Comportamiento esperado de Uvicorn | ⚠️ Pendiente |
+
+---
+
+> **Nota:** Para más detalles sobre correcciones, ver `inprogress.md` → sección "Correcciones y Bugs Reparados".

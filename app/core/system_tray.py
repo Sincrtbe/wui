@@ -1,1 +1,135 @@
-IiIiU3lzdGVtIHRyYXkgaWNvbiBwYXJhIGNvbnRyb2xhciBlbCBzZXJ2aWRvci4iIiIKaW1wb3J0IG9zCmltcG9ydCBzeXMKaW1wb3J0IHRpbWUKaW1wb3J0IHRocmVhZGluZwoKCmRlZiBfcnVuX3RyYXkoKToKICAgICIiIkZ1bmNpw7NuIHF1ZSBlamVjdXRhIGVsIGljb25vIGRlbCBzeXN0ZW0gdHJheSAoc2UgZWplY3V0YSBlbiBwcm9jZXNvIHNlcGFyYWRvKS4iIiIKICAgIHRyeToKICAgICAgICBpbXBvcnQgcHlzdHJheQogICAgICAgIGZyb20gUElMIGltcG9ydCBJbWFnZSwgSW1hZ2VEcmF3CiAgICAgICAgaW1wb3J0IHJlcXVlc3RzCiAgICAgICAgaW1wb3J0IHdlYmJyb3dzZXIKCiAgICAgICAgZGVmIGNyZWF0ZV9pY29uX2ltYWdlKCk6CiAgICAgICAgICAgICIiIkNyZWEgbGEgaW1hZ2VuIGRlbCBpY29uby4iIiIKICAgICAgICAgICAgYmFzZV9kaXIgPSBvcy5wYXRoLmRpcm5hbWUob3MucGF0aC5kaXJuYW1lKG9zLnBhdGguZGlybmFtZShvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKSkpCiAgICAgICAgICAgIGljb25fcGF0aHMgPSBbCiAgICAgICAgICAgICAgICBvcy5wYXRoLmpvaW4oYmFzZV9kaXIsICJzdGF0aWMiLCAiZmF2aWNvbi5pY28iKSwKICAgICAgICAgICAgICAgIG9zLnBhdGguam9pbihiYXNlX2RpciwgInN0YXRpYyIsICJpY29uLmljbyIpLAogICAgICAgICAgICAgICAgb3MucGF0aC5qb2luKGJhc2VfZGlyLCAic3RhdGljIiwgImxvZ28ucG5nIiksCiAgICAgICAgICAgIF0KICAgICAgICAgICAgCiAgICAgICAgICAgIGZvciBwYXRoIGluIGljb25fcGF0aHM6CiAgICAgICAgICAgICAgICBpZiBvcy5wYXRoLmV4aXN0cyhwYXRoKToKICAgICAgICAgICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBJbWFnZS5vcGVuKHBhdGgpCiAgICAgICAgICAgICAgICAgICAgZXhjZXB0OgogICAgICAgICAgICAgICAgICAgICAgICBwYXNzCiAgICAgICAgICAgIAogICAgICAgICAgICAjIENyZWFyIHVuIGljb25vIHBvciBkZWZlY3RvIChjw61yY3VsbyBhenVsIGNvbiBXKQogICAgICAgICAgICBzaXplID0gKDY0LCA2NCkKICAgICAgICAgICAgaW1hZ2UgPSBJbWFnZS5uZXcoIlJHQiIsIHNpemUsIGNvbG9yPSgwLCAxMDAsIDIwMCkpCiAgICAgICAgICAgIGRyYXcgPSBJbWFnZURyYXcuRHJhdyhpbWFnZSkKICAgICAgICAgICAgCiAgICAgICAgICAgICMgQ8OtcmN1bG8gZXh0ZXJpb3IKICAgICAgICAgICAgZHJhdy5lbGxpcHNlKFs0LCA0LCA2MCwgNjBdLCBvdXRsaW5lPSJ3aGl0ZSIsIHdpZHRoPTMpCiAgICAgICAgICAgIAogICAgICAgICAgICAjIExldHJhIFcKICAgICAgICAgICAgZHJhdy5saW5lKFsxNiwgNDQsIDE2LCAyMF0sIGZpbGw9IndoaXRlIiwgd2lkdGg9MykKICAgICAgICAgICAgZHJhdy5saW5lKFsxNiwgMjAsIDMyLCA0NF0sIGZpbGw9IndoaXRlIiwgd2lkdGg9MykKICAgICAgICAgICAgZHJhdy5saW5lKFszMiwgNDQsIDQ4LCAyMF0sIGZpbGw9IndoaXRlIiwgd2lkdGg9MykKICAgICAgICAgICAgZHJhdy5saW5lKFs0OCwgMjAsIDQ4LCA0NF0sIGZpbGw9IndoaXRlIiwgd2lkdGg9MykKICAgICAgICAgICAgCiAgICAgICAgICAgIHJldHVybiBpbWFnZQoKICAgICAgICBkZWYgb3Blbl9icm93c2VyKGljb249Tm9uZSwgaXRlbT1Ob25lKToKICAgICAgICAgICAgIiIiQWJyZSBsYSBpbnRlcmZheiBlbiBlbCBuYXZlZ2Fkb3IuIiIiCiAgICAgICAgICAgIHdlYmJyb3dzZXIub3BlbigiaHR0cDovLzEyNy4wLjAuMTo5MDgwL3VpIikKCiAgICAgICAgZGVmIGNoZWNrX3NlcnZlcl9zdGF0dXMoKToKICAgICAgICAgICAgIiIiVmVyaWZpY2Egc2kgZWwgc2Vydmlkb3IgZXN0w6EgYWN0aXZvLiIiIgogICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICByZXNwb25zZSA9IHJlcXVlc3RzLmdldCgiaHR0cDovLzEyNy4wLjAuMTo5MDgwL2hlYWx0aCIsIHRpbWVvdXQ9MikKICAgICAgICAgICAgICAgIHJldHVybiByZXNwb25zZS5zdGF0dXNfY29kZSA9PSAyMDAKICAgICAgICAgICAgZXhjZXB0OgogICAgICAgICAgICAgICAgcmV0dXJuIEZhbHNlCgogICAgICAgIGRlZiBzdG9wX3NlcnZlcihpY29uPU5vbmUsIGl0ZW09Tm9uZSk6CiAgICAgICAgICAgICIiIkRldGllbmUgZWwgc2Vydmlkb3IuIiIiCiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHJlcXVlc3RzLnBvc3QoImh0dHA6Ly8xMjcuMC4wLjE6OTA4MC9hZG1pbi9zaHV0ZG93biIsIHRpbWVvdXQ9MikKICAgICAgICAgICAgZXhjZXB0OgogICAgICAgICAgICAgICAgcGFzcwogICAgICAgICAgICBpY29uLnN0b3AoKQoKICAgICAgICBkZWYgcmVzdGFydF9zZXJ2ZXIoaWNvbj1Ob25lLCBpdGVtPU5vbmUpOgogICAgICAgICAgICAiIiJSZWluaWNpYSBlbCBzZXJ2aWRvci4iIiIKICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgcmVxdWVzdHMucG9zdCgiaHR0cDovLzEyNy4wLjAuMTo5MDgwL2FkbWluL3Jlc3RhcnQiLCB0aW1lb3V0PTIpCiAgICAgICAgICAgIGV4Y2VwdDoKICAgICAgICAgICAgICAgIHBhc3MKICAgICAgICAgICAgaWNvbi5zdG9wKCkKCiAgICAgICAgZGVmIHF1aXRfYXBwKGljb249Tm9uZSwgaXRlbT1Ob25lKToKICAgICAgICAgICAgIiIiU2FsZSBkZWwgc3lzdGVtIHRyYXkuIiIiCiAgICAgICAgICAgIGljb24uc3RvcCgpCgogICAgICAgICMgRXNwZXJhciB1biBtb21lbnRvIGEgcXVlIGVsIHNlcnZpZG9yIGFycmFucXVlCiAgICAgICAgdGltZS5zbGVlcCgyKQoKICAgICAgICAjIENyZWFyIGljb25vCiAgICAgICAgaWNvbl9pbWFnZSA9IGNyZWF0ZV9pY29uX2ltYWdlKCkKICAgICAgICAKICAgICAgICAjIFZlcmlmaWNhciBlc3RhZG8gZGVsIHNlcnZpZG9yCiAgICAgICAgc2VydmVyX3J1bm5pbmcgPSBjaGVja19zZXJ2ZXJfc3RhdHVzKCkKICAgICAgICAKICAgICAgICAjIENyZWFyIG1lbsO6CiAgICAgICAgaWYgc2VydmVyX3J1bm5pbmc6CiAgICAgICAgICAgIG1lbnUgPSBweXN0cmF5Lk1lbnUoCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCIgID4+PiAgSW50ZXJmYXogYWN0aXZhIiwgbGFtYmRhIGk6IE5vbmUsIGVuYWJsZWQ9RmFsc2UpLAogICAgICAgICAgICAgICAgcHlzdHJheS5NZW51SXRlbSgiLS0tIiwgbGFtYmRhIGk6IE5vbmUpLAogICAgICAgICAgICAgICAgcHlzdHJheS5NZW51SXRlbSgiQWJyaXIgaW50ZXJmYXoiLCBvcGVuX2Jyb3dzZXIsIGRlZmF1bHQ9VHJ1ZSksCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCItLS0iLCBsYW1iZGEgaTogTm9uZSksCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCJSZWluaWNpYXIgc2Vydmlkb3IiLCByZXN0YXJ0X3NlcnZlciksCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCJEZXRlbmVyIHNlcnZpZG9yIiwgc3RvcF9zZXJ2ZXIpLAogICAgICAgICAgICAgICAgcHlzdHJheS5NZW51SXRlbSgiLS0tIiwgbGFtYmRhIGk6IE5vbmUpLAogICAgICAgICAgICAgICAgcHlzdHJheS5NZW51SXRlbSgiU2FsaXIiLCBxdWl0X2FwcCkKICAgICAgICAgICAgKQogICAgICAgICAgICB0b29sdGlwID0gIld1aSAtIFBsYXRhZm9ybWEgZGUgQXV0b21hdGl6YWNpw7NuIChBY3Rpdm8pIgogICAgICAgIGVsc2U6CiAgICAgICAgICAgIG1lbnUgPSBweXN0cmF5Lk1lbnUoCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCIgID4+PiAgU2Vydmlkb3IgZGV0ZW5pZG8iLCBsYW1iZGEgaTogTm9uZSwgZW5hYmxlZD1GYWxzZSksCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCItLS0iLCBsYW1iZGEgaTogTm9uZSksCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCJBYnJpciBpbnRlcmZheiIsIG9wZW5fYnJvd3NlciksCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCItLS0iLCBsYW1iZGEgaTogTm9uZSksCiAgICAgICAgICAgICAgICBweXN0cmF5Lk1lbnVJdGVtKCJTYWxpciIsIHF1aXRfYXBwKQogICAgICAgICAgICApCiAgICAgICAgICAgIHRvb2x0aXAgPSAiV3VpIC0gUGxhdGFmb3JtYSBkZSBBdXRvbWF0aXphY2nDs24gKERldGVuaWRvKSIKCiAgICAgICAgIyBDcmVhciB5IGVqZWN1dGFyIGljb25vCiAgICAgICAgaWNvbiA9IHB5c3RyYXkuSWNvbigid3VpIiwgaWNvbl9pbWFnZSwgdG9vbHRpcCwgbWVudSkKICAgICAgICBpY29uLnJ1bigpCgogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIHByaW50KGYiRVJST1IgZW4gc3lzdGVtIHRyYXk6IHtlfSIsIGZpbGU9c3lzLnN0ZGVycikKICAgICAgICBpbXBvcnQgdHJhY2ViYWNrCiAgICAgICAgdHJhY2ViYWNrLnByaW50X2V4YyhmaWxlPXN5cy5zdGRlcnIpCgoKZGVmIGNyZWF0ZV90cmF5X2ljb24oKToKICAgICIiIkNyZWEgeSBtdWVzdHJhIGVsIGljb25vIGRlbCBzeXN0ZW0gdHJheSBlbiB1biBwcm9jZXNvIHNlcGFyYWRvLiIiIgogICAgaW1wb3J0IG11bHRpcHJvY2Vzc2luZwogICAgcCA9IG11bHRpcHJvY2Vzc2luZy5Qcm9jZXNzKHRhcmdldD1fcnVuX3RyYXksIGRhZW1vbj1UcnVlKQogICAgcC5zdGFydCgpCiAgICByZXR1cm4gcAoKCmRlZiBzdGFydF90cmF5X2Zyb21fbGlmZXNwYW4oKToKICAgICIiIlNlIGxsYW1hIGRlc2RlIGVsIGxpZmVzcGFuIGRlIEZhc3RBUEkuIiIiCiAgICB0cnk6CiAgICAgICAgY3JlYXRlX3RyYXlfaWNvbigpCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgcHJpbnQoZiJFcnJvciBpbmljaWFuZG8gc3lzdGVtIHRyYXk6IHtlfSIsIGZpbGU9c3lzLnN0ZGVycik=
+"""System tray icon para controlar el servidor."""
+import os
+import sys
+import time
+import threading
+
+
+def _run_tray():
+    """Función que ejecuta el icono del system tray (se ejecuta en proceso separado)."""
+    try:
+        import pystray
+        from PIL import Image, ImageDraw
+        import requests
+        import webbrowser
+
+        def create_icon_image():
+            """Crea la imagen del icono."""
+            base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            icon_paths = [
+                os.path.join(base_dir, "static", "favicon.ico"),
+                os.path.join(base_dir, "static", "icon.ico"),
+                os.path.join(base_dir, "static", "logo.png"),
+            ]
+            
+            for path in icon_paths:
+                if os.path.exists(path):
+                    try:
+                        return Image.open(path)
+                    except:
+                        pass
+            
+            # Crear un icono por defecto (círculo azul con W)
+            size = (64, 64)
+            image = Image.new("RGB", size, color=(0, 100, 200))
+            draw = ImageDraw.Draw(image)
+            
+            # Círculo exterior
+            draw.ellipse([4, 4, 60, 60], outline="white", width=3)
+            
+            # Letra W
+            draw.line([16, 44, 16, 20], fill="white", width=3)
+            draw.line([16, 20, 32, 44], fill="white", width=3)
+            draw.line([32, 44, 48, 20], fill="white", width=3)
+            draw.line([48, 20, 48, 44], fill="white", width=3)
+            
+            return image
+
+        def open_browser(icon=None, item=None):
+            """Abre la interfaz en el navegador."""
+            webbrowser.open("http://127.0.0.1:9080/ui")
+
+        def check_server_status():
+            """Verifica si el servidor está activo."""
+            try:
+                response = requests.get("http://127.0.0.1:9080/health", timeout=2)
+                return response.status_code == 200
+            except:
+                return False
+
+        def stop_server(icon=None, item=None):
+            """Detiene el servidor."""
+            try:
+                requests.post("http://127.0.0.1:9080/admin/shutdown", timeout=2)
+            except:
+                pass
+            icon.stop()
+
+        def restart_server(icon=None, item=None):
+            """Reinicia el servidor."""
+            try:
+                requests.post("http://127.0.0.1:9080/admin/restart", timeout=2)
+            except:
+                pass
+            icon.stop()
+
+        def quit_app(icon=None, item=None):
+            """Sale del system tray."""
+            icon.stop()
+
+        # Esperar un momento a que el servidor arranque
+        time.sleep(2)
+
+        # Crear icono
+        icon_image = create_icon_image()
+        
+        # Verificar estado del servidor
+        server_running = check_server_status()
+        
+        # Crear menú
+        if server_running:
+            menu = pystray.Menu(
+                pystray.MenuItem("  >>>  Interfaz activa", lambda i: None, enabled=False),
+                pystray.MenuItem("---", lambda i: None),
+                pystray.MenuItem("Abrir interfaz", open_browser, default=True),
+                pystray.MenuItem("---", lambda i: None),
+                pystray.MenuItem("Reiniciar servidor", restart_server),
+                pystray.MenuItem("Detener servidor", stop_server),
+                pystray.MenuItem("---", lambda i: None),
+                pystray.MenuItem("Salir", quit_app)
+            )
+            tooltip = "Wui - Plataforma de Automatización (Activo)"
+        else:
+            menu = pystray.Menu(
+                pystray.MenuItem("  >>>  Servidor detenido", lambda i: None, enabled=False),
+                pystray.MenuItem("---", lambda i: None),
+                pystray.MenuItem("Abrir interfaz", open_browser),
+                pystray.MenuItem("---", lambda i: None),
+                pystray.MenuItem("Salir", quit_app)
+            )
+            tooltip = "Wui - Plataforma de Automatización (Detenido)"
+
+        # Crear y ejecutar icono
+        icon = pystray.Icon("wui", icon_image, tooltip, menu)
+        icon.run()
+
+    except Exception as e:
+        print(f"ERROR en system tray: {e}", file=sys.stderr)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+
+
+def create_tray_icon():
+    """Crea y muestra el icono del system tray en un proceso separado."""
+    import multiprocessing
+    p = multiprocessing.Process(target=_run_tray, daemon=True)
+    p.start()
+    return p
+
+
+def start_tray_from_lifespan():
+    """Se llama desde el lifespan de FastAPI."""
+    try:
+        create_tray_icon()
+    except Exception as e:
+        print(f"Error iniciando system tray: {e}", file=sys.stderr)

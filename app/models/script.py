@@ -1,1 +1,31 @@
-IiIiTW9kZWxvIGRlIGd1acOzbi4iIiIKZnJvbSBkYXRldGltZSBpbXBvcnQgZGF0ZXRpbWUKZnJvbSBzcWxhbGNoZW15IGltcG9ydCBDb2x1bW4sIEludGVnZXIsIFN0cmluZywgVGV4dCwgRGF0ZVRpbWUsIEZvcmVpZ25LZXksIFRhYmxlCmZyb20gc3FsYWxjaGVteS5vcm0gaW1wb3J0IHJlbGF0aW9uc2hpcApmcm9tIGFwcC5jb3JlLmRhdGFiYXNlIGltcG9ydCBCYXNlCgoKU2NyaXB0VGFnID0gVGFibGUoCiAgICAic2NyaXB0X3RhZ3MiLAogICAgQmFzZS5tZXRhZGF0YSwKICAgIENvbHVtbigic2NyaXB0X2lkIiwgSW50ZWdlciwgRm9yZWlnbktleSgic2NyaXB0cy5pZCIpLCBwcmltYXJ5X2tleT1UcnVlKSwKICAgIENvbHVtbigidGFnX2lkIiwgSW50ZWdlciwgRm9yZWlnbktleSgidGFncy5pZCIpLCBwcmltYXJ5X2tleT1UcnVlKSwKKQoKCmNsYXNzIFNjcmlwdChCYXNlKToKICAgICIiIk1vZGVsbyBkZSBndWnDs24uIiIiCgogICAgX190YWJsZW5hbWVfXyA9ICJzY3JpcHRzIgoKICAgIGlkID0gQ29sdW1uKEludGVnZXIsIHByaW1hcnlfa2V5PVRydWUsIGluZGV4PVRydWUpCiAgICBjaGFubmVsX2lkID0gQ29sdW1uKEludGVnZXIsIEZvcmVpZ25LZXkoImNoYW5uZWxzLmlkIiksIG51bGxhYmxlPUZhbHNlKQogICAgdGl0bGUgPSBDb2x1bW4oU3RyaW5nLCBudWxsYWJsZT1GYWxzZSkKICAgIGRlc2NyaXB0aW9uID0gQ29sdW1uKFN0cmluZykKICAgIHZvaWNlX3NjcmlwdCA9IENvbHVtbihUZXh0KQogICAgZ3JhcGhpY19zY3JpcHQgPSBDb2x1bW4oVGV4dCkKICAgIHN0YXR1cyA9IENvbHVtbihTdHJpbmcsIGRlZmF1bHQ9ImRyYWZ0IikKICAgIGNyZWF0ZWRfYXQgPSBDb2x1bW4oRGF0ZVRpbWUsIGRlZmF1bHQ9ZGF0ZXRpbWUudXRjbm93KQogICAgdXBkYXRlZF9hdCA9IENvbHVtbihEYXRlVGltZSwgZGVmYXVsdD1kYXRldGltZS51dGNub3csIG9udXBkYXRlPWRhdGV0aW1lLnV0Y25vdykKCiAgICB0YWdzID0gcmVsYXRpb25zaGlwKCJUYWciLCBzZWNvbmRhcnk9U2NyaXB0VGFnLCBiYWNrcmVmPSJzY3JpcHRzIikK
+"""Modelo de guión."""
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Table
+from sqlalchemy.orm import relationship
+from app.core.database import Base
+
+
+ScriptTag = Table(
+    "script_tags",
+    Base.metadata,
+    Column("script_id", Integer, ForeignKey("scripts.id"), primary_key=True),
+    Column("tag_id", Integer, ForeignKey("tags.id"), primary_key=True),
+)
+
+
+class Script(Base):
+    """Modelo de guión."""
+
+    __tablename__ = "scripts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    channel_id = Column(Integer, ForeignKey("channels.id"), nullable=False)
+    title = Column(String, nullable=False)
+    description = Column(String)
+    voice_script = Column(Text)
+    graphic_script = Column(Text)
+    status = Column(String, default="draft")
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    tags = relationship("Tag", secondary=ScriptTag, backref="scripts")

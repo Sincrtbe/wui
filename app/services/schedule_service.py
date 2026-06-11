@@ -1,1 +1,224 @@
-IiIiU2VydmljaW8gZGUgZ2VzdGnDs24gZGUgcHJvZ3JhbWFjacOzbiBkZSBwdWJsaWNhY2lvbmVzLiIiIgpmcm9tIGRhdGV0aW1lIGltcG9ydCBkYXRldGltZSwgdGltZWRlbHRhCmZyb20gdHlwaW5nIGltcG9ydCBMaXN0LCBPcHRpb25hbCwgRGljdApmcm9tIHNxbGFsY2hlbXkub3JtIGltcG9ydCBTZXNzaW9uCgpmcm9tIGFwcC5tb2RlbHMuY2hhbm5lbF9zY2hlZHVsZSBpbXBvcnQgQ2hhbm5lbFNjaGVkdWxlCmZyb20gYXBwLm1vZGVscy5wdWJsaWNhdGlvbl9zY2hlZHVsZSBpbXBvcnQgUHVibGljYXRpb25TY2hlZHVsZQpmcm9tIGFwcC5tb2RlbHMuc2NyaXB0IGltcG9ydCBTY3JpcHQKZnJvbSBhcHAubW9kZWxzLmNoYW5uZWwgaW1wb3J0IENoYW5uZWwKCgpkZWYgZ2V0X29yX2NyZWF0ZV9jaGFubmVsX3NjaGVkdWxlKGRiOiBTZXNzaW9uLCBjaGFubmVsX2lkOiBpbnQpIC0+IENoYW5uZWxTY2hlZHVsZToKICAgICIiIk9idGllbmUgbyBjcmVhIGxhIHByb2dyYW1hY2nDs24gcGFyYSB1biBjYW5hbC4iIiIKICAgIHNjaGVkdWxlID0gZGIucXVlcnkoQ2hhbm5lbFNjaGVkdWxlKS5maWx0ZXIoCiAgICAgICAgQ2hhbm5lbFNjaGVkdWxlLmNoYW5uZWxfaWQgPT0gY2hhbm5lbF9pZAogICAgKS5maXJzdCgpCiAgICAKICAgIGlmIG5vdCBzY2hlZHVsZToKICAgICAgICBzY2hlZHVsZSA9IENoYW5uZWxTY2hlZHVsZSgKICAgICAgICAgICAgY2hhbm5lbF9pZD1jaGFubmVsX2lkLAogICAgICAgICAgICBsb25nX3ZpZGVvX2VuYWJsZWQ9RmFsc2UsCiAgICAgICAgICAgIHNob3J0X3ZpZGVvX2VuYWJsZWQ9RmFsc2UsCiAgICAgICAgICAgIGFydGljbGVfZW5hYmxlZD1GYWxzZSwKICAgICAgICAgICAgaXNfYWN0aXZlPUZhbHNlCiAgICAgICAgKQogICAgICAgIGRiLmFkZChzY2hlZHVsZSkKICAgICAgICBkYi5jb21taXQoKQogICAgICAgIGRiLnJlZnJlc2goc2NoZWR1bGUpCiAgICAKICAgIHJldHVybiBzY2hlZHVsZQoKCmRlZiB1cGRhdGVfY2hhbm5lbF9zY2hlZHVsZSgKICAgIGRiOiBTZXNzaW9uLAogICAgY2hhbm5lbF9pZDogaW50LAogICAgbG9uZ192aWRlb19lbmFibGVkOiBib29sID0gRmFsc2UsCiAgICBsb25nX3ZpZGVvX2ZyZXF1ZW5jeTogaW50ID0gMywKICAgIHNob3J0X3ZpZGVvX2VuYWJsZWQ6IGJvb2wgPSBGYWxzZSwKICAgIHNob3J0X3ZpZGVvX2ZyZXF1ZW5jeTogaW50ID0gMSwKICAgIGFydGljbGVfZW5hYmxlZDogYm9vbCA9IEZhbHNlLAogICAgYXJ0aWNsZV9mcmVxdWVuY3k6IGludCA9IDIsCiAgICBzdGFydF9kYXRlOiBkYXRldGltZSA9IE5vbmUsCiAgICBpc19hY3RpdmU6IGJvb2wgPSBGYWxzZQopIC0+IENoYW5uZWxTY2hlZHVsZToKICAgICIiIkFjdHVhbGl6YSBsYSBwcm9ncmFtYWNpw7NuIGRlIHVuIGNhbmFsLiIiIgogICAgc2NoZWR1bGUgPSBnZXRfb3JfY3JlYXRlX2NoYW5uZWxfc2NoZWR1bGUoZGIsIGNoYW5uZWxfaWQpCiAgICAKICAgIHNjaGVkdWxlLmxvbmdfdmlkZW9fZW5hYmxlZCA9IGxvbmdfdmlkZW9fZW5hYmxlZAogICAgc2NoZWR1bGUubG9uZ192aWRlb19mcmVxdWVuY3kgPSBsb25nX3ZpZGVvX2ZyZXF1ZW5jeQogICAgc2NoZWR1bGUuc2hvcnRfdmlkZW9fZW5hYmxlZCA9IHNob3J0X3ZpZGVvX2VuYWJsZWQKICAgIHNjaGVkdWxlLnNob3J0X3ZpZGVvX2ZyZXF1ZW5jeSA9IHNob3J0X3ZpZGVvX2ZyZXF1ZW5jeQogICAgc2NoZWR1bGUuYXJ0aWNsZV9lbmFibGVkID0gYXJ0aWNsZV9lbmFibGVkCiAgICBzY2hlZHVsZS5hcnRpY2xlX2ZyZXF1ZW5jeSA9IGFydGljbGVfZnJlcXVlbmN5CiAgICBzY2hlZHVsZS5zdGFydF9kYXRlID0gc3RhcnRfZGF0ZSBvciBkYXRldGltZS51dGNub3coKQogICAgc2NoZWR1bGUuaXNfYWN0aXZlID0gaXNfYWN0aXZlCiAgICAKICAgIGRiLmNvbW1pdCgpCiAgICBkYi5yZWZyZXNoKHNjaGVkdWxlKQogICAgCiAgICByZXR1cm4gc2NoZWR1bGUKCgpkZWYgZ2VuZXJhdGVfcHVibGljYXRpb25fZGF0ZXMoCiAgICBkYjogU2Vzc2lvbiwKICAgIGNoYW5uZWxfaWQ6IGludCwKICAgIHN0YXJ0X2RhdGU6IGRhdGV0aW1lLAogICAgZW5kX2RhdGU6IGRhdGV0aW1lCikgLT4gTGlzdFtkaWN0XToKICAgICIiIkdlbmVyYSBsYXMgZmVjaGFzIGRlIHB1YmxpY2FjacOzbiBiYXNhZGFzIGVuIGxhIHByb2dyYW1hY2nDs24gZGVsIGNhbmFsLiIiIgogICAgc2NoZWR1bGUgPSBkYi5xdWVyeShDaGFubmVsU2NoZWR1bGUpLmZpbHRlcigKICAgICAgICBDaGFubmVsU2NoZWR1bGUuY2hhbm5lbF9pZCA9PSBjaGFubmVsX2lkCiAgICApLmZpcnN0KCkKICAgIAogICAgaWYgbm90IHNjaGVkdWxlIG9yIG5vdCBzY2hlZHVsZS5pc19hY3RpdmU6CiAgICAgICAgcmV0dXJuIFtdCiAgICAKICAgIHB1YmxpY2F0aW9ucyA9IFtdCiAgICBjdXJyZW50X2RhdGUgPSBzdGFydF9kYXRlLmRhdGUoKQogICAgCiAgICB3aGlsZSBjdXJyZW50X2RhdGUgPD0gZW5kX2RhdGUuZGF0ZSgpOgogICAgICAgICMgVmlkZW9zIGxhcmdvcwogICAgICAgIGlmIHNjaGVkdWxlLmxvbmdfdmlkZW9fZW5hYmxlZCBhbmQgc2NoZWR1bGUubG9uZ192aWRlb19mcmVxdWVuY3kgPiAwOgogICAgICAgICAgICBkYXlzX3NpbmNlX3N0YXJ0ID0gKGN1cnJlbnRfZGF0ZSAtIHNjaGVkdWxlLnN0YXJ0X2RhdGUuZGF0ZSgpKS5kYXlzCiAgICAgICAgICAgIGlmIGRheXNfc2luY2Vfc3RhcnQgPj0gMCBhbmQgZGF5c19zaW5jZV9zdGFydCAlIHNjaGVkdWxlLmxvbmdfdmlkZW9fZnJlcXVlbmN5ID09IDA6CiAgICAgICAgICAgICAgICBwdWJsaWNhdGlvbnMuYXBwZW5kKHsKICAgICAgICAgICAgICAgICAgICAiZGF0ZSI6IGN1cnJlbnRfZGF0ZSwKICAgICAgICAgICAgICAgICAgICAiY29udGVudF90eXBlIjogImxvbmdfdmlkZW8iLAogICAgICAgICAgICAgICAgICAgICJzY2hlZHVsZWRfZGF0ZXRpbWUiOiBkYXRldGltZS5jb21iaW5lKGN1cnJlbnRfZGF0ZSwgZGF0ZXRpbWUubWluLnRpbWUoKSkgKyB0aW1lZGVsdGEoaG91cnM9MTApCiAgICAgICAgICAgICAgICB9KQogICAgICAgIAogICAgICAgICMgU2hvcnRzCiAgICAgICAgaWYgc2NoZWR1bGUuc2hvcnRfdmlkZW9fZW5hYmxlZCBhbmQgc2NoZWR1bGUuc2hvcnRfdmlkZW9fZnJlcXVlbmN5ID4gMDoKICAgICAgICAgICAgZGF5c19zaW5jZV9zdGFydCA9IChjdXJyZW50X2RhdGUgLSBzY2hlZHVsZS5zdGFydF9kYXRlLmRhdGUoKSkuZGF5cwogICAgICAgICAgICBpZiBkYXlzX3NpbmNlX3N0YXJ0ID49IDAgYW5kIGRheXNfc2luY2Vfc3RhcnQgJSBzY2hlZHVsZS5zaG9ydF92aWRlb19mcmVxdWVuY3kgPT0gMDoKICAgICAgICAgICAgICAgIHB1YmxpY2F0aW9ucy5hcHBlbmQoewogICAgICAgICAgICAgICAgICAgICJkYXRlIjogY3VycmVudF9kYXRlLAogICAgICAgICAgICAgICAgICAgICJjb250ZW50X3R5cGUiOiAic2hvcnQiLAogICAgICAgICAgICAgICAgICAgICJzY2hlZHVsZWRfZGF0ZXRpbWUiOiBkYXRldGltZS5jb21iaW5lKGN1cnJlbnRfZGF0ZSwgZGF0ZXRpbWUubWluLnRpbWUoKSkgKyB0aW1lZGVsdGEoaG91cnM9MTgpCiAgICAgICAgICAgICAgICB9KQogICAgICAgIAogICAgICAgICMgQXJ0w61jdWxvcwogICAgICAgIGlmIHNjaGVkdWxlLmFydGljbGVfZW5hYmxlZCBhbmQgc2NoZWR1bGUuYXJ0aWNsZV9mcmVxdWVuY3kgPiAwOgogICAgICAgICAgICBkYXlzX3NpbmNlX3N0YXJ0ID0gKGN1cnJlbnRfZGF0ZSAtIHNjaGVkdWxlLnN0YXJ0X2RhdGUuZGF0ZSgpKS5kYXlzCiAgICAgICAgICAgIGlmIGRheXNfc2luY2Vfc3RhcnQgPj0gMCBhbmQgZGF5c19zaW5jZV9zdGFydCAlIHNjaGVkdWxlLmFydGljbGVfZnJlcXVlbmN5ID09IDA6CiAgICAgICAgICAgICAgICBwdWJsaWNhdGlvbnMuYXBwZW5kKHsKICAgICAgICAgICAgICAgICAgICAiZGF0ZSI6IGN1cnJlbnRfZGF0ZSwKICAgICAgICAgICAgICAgICAgICAiY29udGVudF90eXBlIjogImFydGljbGUiLAogICAgICAgICAgICAgICAgICAgICJzY2hlZHVsZWRfZGF0ZXRpbWUiOiBkYXRldGltZS5jb21iaW5lKGN1cnJlbnRfZGF0ZSwgZGF0ZXRpbWUubWluLnRpbWUoKSkgKyB0aW1lZGVsdGEoaG91cnM9MTQpCiAgICAgICAgICAgICAgICB9KQogICAgICAgIAogICAgICAgIGN1cnJlbnRfZGF0ZSArPSB0aW1lZGVsdGEoZGF5cz0xKQogICAgCiAgICByZXR1cm4gcHVibGljYXRpb25zCgoKZGVmIGNyZWF0ZV9wdWJsaWNhdGlvbl9zY2hlZHVsZXMoCiAgICBkYjogU2Vzc2lvbiwKICAgIGNoYW5uZWxfaWQ6IGludCwKICAgIHN0YXJ0X2RhdGU6IGRhdGV0aW1lLAogICAgZW5kX2RhdGU6IGRhdGV0aW1lCikgLT4gTGlzdFtQdWJsaWNhdGlvblNjaGVkdWxlXToKICAgICIiIkNyZWEgbGFzIHByb2dyYW1hY2lvbmVzIGRlIHB1YmxpY2FjacOzbiBwYXJhIGVsIHBlcsOtb2RvIGVzcGVjaWZpY2Fkby4iIiIKICAgIHB1YmxpY2F0aW9ucyA9IGdlbmVyYXRlX3B1YmxpY2F0aW9uX2RhdGVzKGRiLCBjaGFubmVsX2lkLCBzdGFydF9kYXRlLCBlbmRfZGF0ZSkKICAgIAogICAgY3JlYXRlZF9zY2hlZHVsZXMgPSBbXQogICAgZm9yIHB1YiBpbiBwdWJsaWNhdGlvbnM6CiAgICAgICAgIyBWZXJpZmljYXIgc2kgeWEgZXhpc3RlIHVuYSBwcm9ncmFtYWNpw7NuIHBhcmEgZXNhIGZlY2hhIHkgdGlwbwogICAgICAgIGV4aXN0aW5nID0gZGIucXVlcnkoUHVibGljYXRpb25TY2hlZHVsZSkuZmlsdGVyKAogICAgICAgICAgICBQdWJsaWNhdGlvblNjaGVkdWxlLmNoYW5uZWxfaWQgPT0gY2hhbm5lbF9pZCwKICAgICAgICAgICAgUHVibGljYXRpb25TY2hlZHVsZS5zY2hlZHVsZWRfZGF0ZXRpbWUgPT0gcHViWyJzY2hlZHVsZWRfZGF0ZXRpbWUiXSwKICAgICAgICAgICAgUHVibGljYXRpb25TY2hlZHVsZS5jb250ZW50X3R5cGUgPT0gcHViWyJjb250ZW50X3R5cGUiXQogICAgICAgICkuZmlyc3QoKQogICAgICAgIAogICAgICAgIGlmIG5vdCBleGlzdGluZzoKICAgICAgICAgICAgc2NoZWR1bGUgPSBQdWJsaWNhdGlvblNjaGVkdWxlKAogICAgICAgICAgICAgICAgY2hhbm5lbF9pZD1jaGFubmVsX2lkLAogICAgICAgICAgICAgICAgY29udGVudF90eXBlPXB1YlsiY29udGVudF90eXBlIl0sCiAgICAgICAgICAgICAgICBzY2hlZHVsZWRfZGF0ZXRpbWU9cHViWyJzY2hlZHVsZWRfZGF0ZXRpbWUiXSwKICAgICAgICAgICAgICAgIHN0YXR1cz0icGxhbm5lZCIKICAgICAgICAgICAgKQogICAgICAgICAgICBkYi5hZGQoc2NoZWR1bGUpCiAgICAgICAgICAgIGNyZWF0ZWRfc2NoZWR1bGVzLmFwcGVuZChzY2hlZHVsZSkKICAgIAogICAgaWYgY3JlYXRlZF9zY2hlZHVsZXM6CiAgICAgICAgZGIuY29tbWl0KCkKICAgIAogICAgcmV0dXJuIGNyZWF0ZWRfc2NoZWR1bGVzCgoKZGVmIGdldF9jYWxlbmRhcl9ldmVudHMoCiAgICBkYjogU2Vzc2lvbiwKICAgIGNoYW5uZWxfaWQ6IGludCwKICAgIHllYXI6IGludCwKICAgIG1vbnRoOiBpbnQKKSAtPiBMaXN0W2RpY3RdOgogICAgIiIiT2J0aWVuZSBsb3MgZXZlbnRvcyBkZWwgY2FsZW5kYXJpbyBwYXJhIHVuIGNhbmFsIHkgbWVzLiIiIgogICAgc3RhcnRfZGF0ZSA9IGRhdGV0aW1lKHllYXIsIG1vbnRoLCAxKQogICAgaWYgbW9udGggPT0gMTI6CiAgICAgICAgZW5kX2RhdGUgPSBkYXRldGltZSh5ZWFyICsgMSwgMSwgMSkKICAgIGVsc2U6CiAgICAgICAgZW5kX2RhdGUgPSBkYXRldGltZSh5ZWFyLCBtb250aCArIDEsIDEpCiAgICAKICAgICMgT2J0ZW5lciBwdWJsaWNhY2lvbmVzIHBsYW5pZmljYWRhcwogICAgcHVibGljYXRpb25zID0gZGIucXVlcnkoUHVibGljYXRpb25TY2hlZHVsZSkuZmlsdGVyKAogICAgICAgIFB1YmxpY2F0aW9uU2NoZWR1bGUuY2hhbm5lbF9pZCA9PSBjaGFubmVsX2lkLAogICAgICAgIFB1YmxpY2F0aW9uU2NoZWR1bGUuc2NoZWR1bGVkX2RhdGV0aW1lID49IHN0YXJ0X2RhdGUsCiAgICAgICAgUHVibGljYXRpb25TY2hlZHVsZS5zY2hlZHVsZWRfZGF0ZXRpbWUgPCBlbmRfZGF0ZQogICAgKS5vcmRlcl9ieShQdWJsaWNhdGlvblNjaGVkdWxlLnNjaGVkdWxlZF9kYXRldGltZSkuYWxsKCkKICAgIAogICAgZXZlbnRzID0gW10KICAgIGZvciBwdWIgaW4gcHVibGljYXRpb25zOgogICAgICAgIGV2ZW50cy5hcHBlbmQoewogICAgICAgICAgICAiaWQiOiBwdWIuaWQsCiAgICAgICAgICAgICJkYXRlIjogcHViLnNjaGVkdWxlZF9kYXRldGltZS5kYXRlKCkuaXNvZm9ybWF0KCksCiAgICAgICAgICAgICJ0aW1lIjogcHViLnNjaGVkdWxlZF9kYXRldGltZS5zdHJmdGltZSgiJUg6JU0iKSwKICAgICAgICAgICAgImNvbnRlbnRfdHlwZSI6IHB1Yi5jb250ZW50X3R5cGUgb3IgInVua25vd24iLAogICAgICAgICAgICAic3RhdHVzIjogcHViLnN0YXR1cyBvciAicGxhbm5lZCIsCiAgICAgICAgICAgICJub3RlcyI6IHB1Yi5ub3RlcywKICAgICAgICAgICAgImhhc19zY3JpcHQiOiBwdWIuc2NyaXB0X2lkIGlzIG5vdCBOb25lCiAgICAgICAgfSkKICAgIAogICAgIyBPYnRlbmVyIHByb2dyYW1hY2nDs24gZGVsIGNhbmFsCiAgICBzY2hlZHVsZSA9IGRiLnF1ZXJ5KENoYW5uZWxTY2hlZHVsZSkuZmlsdGVyKAogICAgICAgIENoYW5uZWxTY2hlZHVsZS5jaGFubmVsX2lkID09IGNoYW5uZWxfaWQKICAgICkuZmlyc3QoKQogICAgCiAgICBpZiBzY2hlZHVsZToKICAgICAgICBldmVudHMuYXBwZW5kKHsKICAgICAgICAgICAgInR5cGUiOiAic2NoZWR1bGVfaW5mbyIsCiAgICAgICAgICAgICJpc19hY3RpdmUiOiBzY2hlZHVsZS5pc19hY3RpdmUsCiAgICAgICAgICAgICJsb25nX3ZpZGVvX2VuYWJsZWQiOiBzY2hlZHVsZS5sb25nX3ZpZGVvX2VuYWJsZWQsCiAgICAgICAgICAgICJsb25nX3ZpZGVvX2ZyZXF1ZW5jeSI6IHNjaGVkdWxlLmxvbmdfdmlkZW9fZnJlcXVlbmN5LAogICAgICAgICAgICAic2hvcnRfdmlkZW9fZW5hYmxlZCI6IHNjaGVkdWxlLnNob3J0X3ZpZGVvX2VuYWJsZWQsCiAgICAgICAgICAgICJzaG9ydF92aWRlb19mcmVxdWVuY3kiOiBzY2hlZHVsZS5zaG9ydF92aWRlb19mcmVxdWVuY3ksCiAgICAgICAgICAgICJhcnRpY2xlX2VuYWJsZWQiOiBzY2hlZHVsZS5hcnRpY2xlX2VuYWJsZWQsCiAgICAgICAgICAgICJhcnRpY2xlX2ZyZXF1ZW5jeSI6IHNjaGVkdWxlLmFydGljbGVfZnJlcXVlbmN5CiAgICAgICAgfSkKICAgIAogICAgcmV0dXJuIGV2ZW50cwoKCmRlZiBnZXRfdXBjb21pbmdfcHVibGljYXRpb25zKAogICAgZGI6IFNlc3Npb24sCiAgICBjaGFubmVsX2lkOiBpbnQsCiAgICBsaW1pdDogaW50ID0gMzAKKSAtPiBMaXN0W2RpY3RdOgogICAgIiIiT2J0aWVuZSBsYXMgcHLDs3hpbWFzIHB1YmxpY2FjaW9uZXMgZGUgdW4gY2FuYWwuIiIiCiAgICBwdWJsaWNhdGlvbnMgPSBkYi5xdWVyeShQdWJsaWNhdGlvblNjaGVkdWxlKS5maWx0ZXIoCiAgICAgICAgUHVibGljYXRpb25TY2hlZHVsZS5jaGFubmVsX2lkID09IGNoYW5uZWxfaWQsCiAgICAgICAgUHVibGljYXRpb25TY2hlZHVsZS5zY2hlZHVsZWRfZGF0ZXRpbWUgPj0gZGF0ZXRpbWUudXRjbm93KCksCiAgICAgICAgUHVibGljYXRpb25TY2hlZHVsZS5zdGF0dXMgPT0gInBsYW5uZWQiCiAgICApLm9yZGVyX2J5KFB1YmxpY2F0aW9uU2NoZWR1bGUuc2NoZWR1bGVkX2RhdGV0aW1lKS5saW1pdChsaW1pdCkuYWxsKCkKICAgIAogICAgcmV0dXJuIFsKICAgICAgICB7CiAgICAgICAgICAgICJpZCI6IHB1Yi5pZCwKICAgICAgICAgICAgImRhdGUiOiBwdWIuc2NoZWR1bGVkX2RhdGV0aW1lLmlzb2Zvcm1hdCgpLAogICAgICAgICAgICAiY29udGVudF90eXBlIjogcHViLmNvbnRlbnRfdHlwZSBvciAidW5rbm93biIsCiAgICAgICAgICAgICJzdGF0dXMiOiBwdWIuc3RhdHVzLAogICAgICAgICAgICAibm90ZXMiOiBwdWIubm90ZXMsCiAgICAgICAgICAgICJoYXNfc2NyaXB0IjogcHViLnNjcmlwdF9pZCBpcyBub3QgTm9uZQogICAgICAgIH0KICAgICAgICBmb3IgcHViIGluIHB1YmxpY2F0aW9ucwogICAgXQ==
+"""Servicio de gestión de programación de publicaciones."""
+from datetime import datetime, timedelta
+from typing import List, Optional, Dict
+from sqlalchemy.orm import Session
+
+from app.models.channel_schedule import ChannelSchedule
+from app.models.publication_schedule import PublicationSchedule
+from app.models.script import Script
+from app.models.channel import Channel
+
+
+def get_or_create_channel_schedule(db: Session, channel_id: int) -> ChannelSchedule:
+    """Obtiene o crea la programación para un canal."""
+    schedule = db.query(ChannelSchedule).filter(
+        ChannelSchedule.channel_id == channel_id
+    ).first()
+    
+    if not schedule:
+        schedule = ChannelSchedule(
+            channel_id=channel_id,
+            long_video_enabled=False,
+            short_video_enabled=False,
+            article_enabled=False,
+            is_active=False
+        )
+        db.add(schedule)
+        db.commit()
+        db.refresh(schedule)
+    
+    return schedule
+
+
+def update_channel_schedule(
+    db: Session,
+    channel_id: int,
+    long_video_enabled: bool = False,
+    long_video_frequency: int = 3,
+    short_video_enabled: bool = False,
+    short_video_frequency: int = 1,
+    article_enabled: bool = False,
+    article_frequency: int = 2,
+    start_date: datetime = None,
+    is_active: bool = False
+) -> ChannelSchedule:
+    """Actualiza la programación de un canal."""
+    schedule = get_or_create_channel_schedule(db, channel_id)
+    
+    schedule.long_video_enabled = long_video_enabled
+    schedule.long_video_frequency = long_video_frequency
+    schedule.short_video_enabled = short_video_enabled
+    schedule.short_video_frequency = short_video_frequency
+    schedule.article_enabled = article_enabled
+    schedule.article_frequency = article_frequency
+    schedule.start_date = start_date or datetime.utcnow()
+    schedule.is_active = is_active
+    
+    db.commit()
+    db.refresh(schedule)
+    
+    return schedule
+
+
+def generate_publication_dates(
+    db: Session,
+    channel_id: int,
+    start_date: datetime,
+    end_date: datetime
+) -> List[dict]:
+    """Genera las fechas de publicación basadas en la programación del canal."""
+    schedule = db.query(ChannelSchedule).filter(
+        ChannelSchedule.channel_id == channel_id
+    ).first()
+    
+    if not schedule or not schedule.is_active:
+        return []
+    
+    publications = []
+    current_date = start_date.date()
+    
+    while current_date <= end_date.date():
+        # Videos largos
+        if schedule.long_video_enabled and schedule.long_video_frequency > 0:
+            days_since_start = (current_date - schedule.start_date.date()).days
+            if days_since_start >= 0 and days_since_start % schedule.long_video_frequency == 0:
+                publications.append({
+                    "date": current_date,
+                    "content_type": "long_video",
+                    "scheduled_datetime": datetime.combine(current_date, datetime.min.time()) + timedelta(hours=10)
+                })
+        
+        # Shorts
+        if schedule.short_video_enabled and schedule.short_video_frequency > 0:
+            days_since_start = (current_date - schedule.start_date.date()).days
+            if days_since_start >= 0 and days_since_start % schedule.short_video_frequency == 0:
+                publications.append({
+                    "date": current_date,
+                    "content_type": "short",
+                    "scheduled_datetime": datetime.combine(current_date, datetime.min.time()) + timedelta(hours=18)
+                })
+        
+        # Artículos
+        if schedule.article_enabled and schedule.article_frequency > 0:
+            days_since_start = (current_date - schedule.start_date.date()).days
+            if days_since_start >= 0 and days_since_start % schedule.article_frequency == 0:
+                publications.append({
+                    "date": current_date,
+                    "content_type": "article",
+                    "scheduled_datetime": datetime.combine(current_date, datetime.min.time()) + timedelta(hours=14)
+                })
+        
+        current_date += timedelta(days=1)
+    
+    return publications
+
+
+def create_publication_schedules(
+    db: Session,
+    channel_id: int,
+    start_date: datetime,
+    end_date: datetime
+) -> List[PublicationSchedule]:
+    """Crea las programaciones de publicación para el período especificado."""
+    publications = generate_publication_dates(db, channel_id, start_date, end_date)
+    
+    created_schedules = []
+    for pub in publications:
+        # Verificar si ya existe una programación para esa fecha y tipo
+        existing = db.query(PublicationSchedule).filter(
+            PublicationSchedule.channel_id == channel_id,
+            PublicationSchedule.scheduled_datetime == pub["scheduled_datetime"],
+            PublicationSchedule.content_type == pub["content_type"]
+        ).first()
+        
+        if not existing:
+            schedule = PublicationSchedule(
+                channel_id=channel_id,
+                content_type=pub["content_type"],
+                scheduled_datetime=pub["scheduled_datetime"],
+                status="planned"
+            )
+            db.add(schedule)
+            created_schedules.append(schedule)
+    
+    if created_schedules:
+        db.commit()
+    
+    return created_schedules
+
+
+def get_calendar_events(
+    db: Session,
+    channel_id: int,
+    year: int,
+    month: int
+) -> List[dict]:
+    """Obtiene los eventos del calendario para un canal y mes."""
+    start_date = datetime(year, month, 1)
+    if month == 12:
+        end_date = datetime(year + 1, 1, 1)
+    else:
+        end_date = datetime(year, month + 1, 1)
+    
+    # Obtener publicaciones planificadas
+    publications = db.query(PublicationSchedule).filter(
+        PublicationSchedule.channel_id == channel_id,
+        PublicationSchedule.scheduled_datetime >= start_date,
+        PublicationSchedule.scheduled_datetime < end_date
+    ).order_by(PublicationSchedule.scheduled_datetime).all()
+    
+    events = []
+    for pub in publications:
+        events.append({
+            "id": pub.id,
+            "date": pub.scheduled_datetime.date().isoformat(),
+            "time": pub.scheduled_datetime.strftime("%H:%M"),
+            "content_type": pub.content_type or "unknown",
+            "status": pub.status or "planned",
+            "notes": pub.notes,
+            "has_script": pub.script_id is not None
+        })
+    
+    # Obtener programación del canal
+    schedule = db.query(ChannelSchedule).filter(
+        ChannelSchedule.channel_id == channel_id
+    ).first()
+    
+    if schedule:
+        events.append({
+            "type": "schedule_info",
+            "is_active": schedule.is_active,
+            "long_video_enabled": schedule.long_video_enabled,
+            "long_video_frequency": schedule.long_video_frequency,
+            "short_video_enabled": schedule.short_video_enabled,
+            "short_video_frequency": schedule.short_video_frequency,
+            "article_enabled": schedule.article_enabled,
+            "article_frequency": schedule.article_frequency
+        })
+    
+    return events
+
+
+def get_upcoming_publications(
+    db: Session,
+    channel_id: int,
+    limit: int = 30
+) -> List[dict]:
+    """Obtiene las próximas publicaciones de un canal."""
+    publications = db.query(PublicationSchedule).filter(
+        PublicationSchedule.channel_id == channel_id,
+        PublicationSchedule.scheduled_datetime >= datetime.utcnow(),
+        PublicationSchedule.status == "planned"
+    ).order_by(PublicationSchedule.scheduled_datetime).limit(limit).all()
+    
+    return [
+        {
+            "id": pub.id,
+            "date": pub.scheduled_datetime.isoformat(),
+            "content_type": pub.content_type or "unknown",
+            "status": pub.status,
+            "notes": pub.notes,
+            "has_script": pub.script_id is not None
+        }
+        for pub in publications
+    ]

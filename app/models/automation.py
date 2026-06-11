@@ -1,1 +1,47 @@
-IiIiTW9kZWxvcyBkZSBhdXRvbWF0aXphY2nDs24uIiIiCmZyb20gZGF0ZXRpbWUgaW1wb3J0IGRhdGV0aW1lCmZyb20gc3FsYWxjaGVteSBpbXBvcnQgQ29sdW1uLCBJbnRlZ2VyLCBTdHJpbmcsIEJvb2xlYW4sIERhdGVUaW1lLCBGb3JlaWduS2V5LCBKU09OLCBUZXh0CmZyb20gYXBwLmNvcmUuZGF0YWJhc2UgaW1wb3J0IEJhc2UKCgpjbGFzcyBBdXRvbWF0aW9uVGFzayhCYXNlKToKICAgICIiIk1vZGVsbyBkZSB0YXJlYSBkZSBhdXRvbWF0aXphY2nDs24uIiIiCgogICAgX190YWJsZW5hbWVfXyA9ICJhdXRvbWF0aW9uX3Rhc2tzIgoKICAgIGlkID0gQ29sdW1uKEludGVnZXIsIHByaW1hcnlfa2V5PVRydWUsIGluZGV4PVRydWUpCiAgICBjaGFubmVsX2lkID0gQ29sdW1uKEludGVnZXIsIEZvcmVpZ25LZXkoImNoYW5uZWxzLmlkIiksIG51bGxhYmxlPUZhbHNlKQogICAgbmFtZSA9IENvbHVtbihTdHJpbmcsIG51bGxhYmxlPUZhbHNlKQogICAgZGVzY3JpcHRpb24gPSBDb2x1bW4oU3RyaW5nKQogICAgc2NoZWR1bGVfZXhwcmVzc2lvbiA9IENvbHVtbihTdHJpbmcpCiAgICB3b3JrZmxvd19kZWZpbml0aW9uID0gQ29sdW1uKEpTT04sIG51bGxhYmxlPUZhbHNlKQogICAgaXNfYWN0aXZlID0gQ29sdW1uKEJvb2xlYW4sIGRlZmF1bHQ9VHJ1ZSkKICAgIGNyZWF0ZWRfYXQgPSBDb2x1bW4oRGF0ZVRpbWUsIGRlZmF1bHQ9ZGF0ZXRpbWUudXRjbm93KQoKCmNsYXNzIEF1dG9tYXRpb25SdW4oQmFzZSk6CiAgICAiIiJNb2RlbG8gZGUgZWplY3VjacOzbiBkZSBhdXRvbWF0aXphY2nDs24uIiIiCgogICAgX190YWJsZW5hbWVfXyA9ICJhdXRvbWF0aW9uX3J1bnMiCgogICAgaWQgPSBDb2x1bW4oSW50ZWdlciwgcHJpbWFyeV9rZXk9VHJ1ZSwgaW5kZXg9VHJ1ZSkKICAgIHRhc2tfaWQgPSBDb2x1bW4oSW50ZWdlciwgRm9yZWlnbktleSgiYXV0b21hdGlvbl90YXNrcy5pZCIpLCBudWxsYWJsZT1GYWxzZSkKICAgIHN0YXR1cyA9IENvbHVtbihTdHJpbmcsIGRlZmF1bHQ9InBlbmRpbmciKQogICAgc3RhcnRlZF9hdCA9IENvbHVtbihEYXRlVGltZSkKICAgIGZpbmlzaGVkX2F0ID0gQ29sdW1uKERhdGVUaW1lKQoKCmNsYXNzIEF1dG9tYXRpb25SdW5TdGVwKEJhc2UpOgogICAgIiIiTW9kZWxvIGRlIHBhc28gZW4gZWplY3VjacOzbiBkZSBhdXRvbWF0aXphY2nDs24uIiIiCgogICAgX190YWJsZW5hbWVfXyA9ICJhdXRvbWF0aW9uX3J1bl9zdGVwcyIKCiAgICBpZCA9IENvbHVtbihJbnRlZ2VyLCBwcmltYXJ5X2tleT1UcnVlLCBpbmRleD1UcnVlKQogICAgcnVuX2lkID0gQ29sdW1uKEludGVnZXIsIEZvcmVpZ25LZXkoImF1dG9tYXRpb25fcnVucy5pZCIpLCBudWxsYWJsZT1GYWxzZSkKICAgIHN0ZXBfaW5kZXggPSBDb2x1bW4oSW50ZWdlciwgbnVsbGFibGU9RmFsc2UpCiAgICBhY3Rpb24gPSBDb2x1bW4oU3RyaW5nLCBudWxsYWJsZT1GYWxzZSkKICAgIHBhcmFtcyA9IENvbHVtbihKU09OKQogICAgc3RhdHVzID0gQ29sdW1uKFN0cmluZywgZGVmYXVsdD0icGVuZGluZyIpCiAgICBzdGFydGVkX2F0ID0gQ29sdW1uKERhdGVUaW1lKQogICAgY29tcGxldGVkX2F0ID0gQ29sdW1uKERhdGVUaW1lKQogICAgbG9nID0gQ29sdW1uKFRleHQpCg==
+"""Modelos de automatización."""
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, JSON, Text
+from app.core.database import Base
+
+
+class AutomationTask(Base):
+    """Modelo de tarea de automatización."""
+
+    __tablename__ = "automation_tasks"
+
+    id = Column(Integer, primary_key=True, index=True)
+    channel_id = Column(Integer, ForeignKey("channels.id"), nullable=False)
+    name = Column(String, nullable=False)
+    description = Column(String)
+    schedule_expression = Column(String)
+    workflow_definition = Column(JSON, nullable=False)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+
+class AutomationRun(Base):
+    """Modelo de ejecución de automatización."""
+
+    __tablename__ = "automation_runs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    task_id = Column(Integer, ForeignKey("automation_tasks.id"), nullable=False)
+    status = Column(String, default="pending")
+    started_at = Column(DateTime)
+    finished_at = Column(DateTime)
+
+
+class AutomationRunStep(Base):
+    """Modelo de paso en ejecución de automatización."""
+
+    __tablename__ = "automation_run_steps"
+
+    id = Column(Integer, primary_key=True, index=True)
+    run_id = Column(Integer, ForeignKey("automation_runs.id"), nullable=False)
+    step_index = Column(Integer, nullable=False)
+    action = Column(String, nullable=False)
+    params = Column(JSON)
+    status = Column(String, default="pending")
+    started_at = Column(DateTime)
+    completed_at = Column(DateTime)
+    log = Column(Text)

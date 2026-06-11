@@ -1,1 +1,3 @@
-QGVjaG8gb2ZmCmNkIC9kICV+ZHAwCnN0YXJ0IHB5dGhvbncgY29udHJvbGFkb3IucHk=
+@echo off
+cd /d %~dp0
+start pythonw controlador.py
