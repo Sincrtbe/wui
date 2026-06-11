@@ -1,108 +1,150 @@
 """
-Centralized Data Access Layer (DAL) for JSON persistence.
-Provides generic functions to read, write, update and delete JSON records.
+app/core/json_data_manager.py
+Capa de acceso a datos (DAL) para persistencia en archivos JSON.
+Centraliza toda la interacción con el sistema de archivos para evitar
+corrupción o inconsistencias de datos.
 """
+
 import json
 import os
-from typing import Dict, Any, List, Optional
+import threading
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Type, TypeVar
 
-# Base directory for all data files (relative to project root)
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+T = TypeVar("T")
 
-def _get_entity_path(entity_name: str, item_id: Optional[str] = None) -> str:
-    """
-    Returns the path to the entity directory or specific item file.
-    """
-    path = os.path.join(DATA_DIR, entity_name)
-    os.makedirs(path, exist_ok=True)
+# Directorio base de datos
+DATA_DIR = Path(__file__).parent.parent.parent / "data"
+
+# Lock para concurrencia segura en escrituras
+_write_lock = threading.Lock()
+
+
+def _get_entity_path(entity_name: str, item_id: Optional[str] = None) -> Path:
+    """Obtiene la ruta completa para un entidad JSON."""
+    path = DATA_DIR / entity_name
+    path.mkdir(parents=True, exist_ok=True)
     if item_id:
-        return os.path.join(path, f"{item_id}.json")
+        return path / f"{item_id}.json"
     return path
 
-def read_json_file(entity_name: str, item_id: str) -> Optional[Dict[str, Any]]:
-    """
-    Reads a JSON file for a specific item.
-    Returns None if the file does not exist.
-    """
-    file_path = _get_entity_path(entity_name, item_id)
-    if not os.path.exists(file_path):
-        return None
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except (json.JSONDecodeError, IOError) as e:
-        print(f"Error reading {file_path}: {e}")
-        return None
 
-def write_json_file(entity_name: str, item_id: str, data: Dict[str, Any]) -> bool:
-    """
-    Writes data to a JSON file.
-    Returns True on success, False on failure.
-    """
+def _serialize_datetime(obj: Any) -> Any:
+    """Serializa objetos datetime a strings ISO."""
+    if isinstance(obj, datetime):
+        return obj.isoformat()
+    return obj
+
+
+def _deserialize_datetime(obj: Any) -> Any:
+    """Deserializa strings ISO a objetos datetime."""
+    if isinstance(obj, str) and "T" in obj:
+        try:
+            return datetime.fromisoformat(obj)
+        except ValueError:
+            pass
+    return obj
+
+
+def read_json_file(entity_name: str, item_id: str) -> Optional[Dict[str, Any]]:
+    """Lee un archivo JSON individual de una entidad."""
     file_path = _get_entity_path(entity_name, item_id)
-    try:
-        with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        return True
-    except IOError as e:
-        print(f"Error writing to {file_path}: {e}")
-        return False
+    if not file_path.exists():
+        return None
+    with open(file_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def write_json_file(
+    entity_name: str, item_id: str, data: Dict[str, Any]
+) -> None:
+    """Escribe un archivo JSON individual de forma segura."""
+    file_path = _get_entity_path(entity_name, item_id)
+    with _write_lock:
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2, default=_serialize_datetime)
+
 
 def list_json_files(entity_name: str) -> List[Dict[str, Any]]:
-    """
-    Lists all JSON files in an entity directory and returns their content.
-    """
+    """Lista todos los archivos JSON de una entidad."""
     path = _get_entity_path(entity_name)
     items = []
-    if not os.path.exists(path):
+    if not path.exists():
         return items
-    for filename in os.listdir(path):
-        if filename.endswith('.json'):
-            item_id = os.path.splitext(filename)[0]
+    for filename in sorted(path.iterdir()):
+        if filename.is_file() and filename.suffix == ".json":
+            item_id = filename.stem
             item_data = read_json_file(entity_name, item_id)
             if item_data:
                 items.append(item_data)
     return items
 
+
 def delete_json_file(entity_name: str, item_id: str) -> bool:
-    """
-    Deletes a JSON file.
-    Returns True if deleted, False if not found or on error.
-    """
+    """Elimina un archivo JSON de una entidad."""
     file_path = _get_entity_path(entity_name, item_id)
-    if os.path.exists(file_path):
-        try:
-            os.remove(file_path)
-            return True
-        except IOError as e:
-            print(f"Error deleting {file_path}: {e}")
+    if file_path.exists():
+        with _write_lock:
+            file_path.unlink()
+        return True
     return False
 
-def read_global_config() -> Dict[str, Any]:
-    """
-    Reads the global configuration file (data/config.json).
-    Returns an empty dictionary if the file does not exist.
-    """
-    config_path = os.path.join(DATA_DIR, "config.json")
-    if not os.path.exists(config_path):
-        return {}
-    try:
-        with open(config_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except (json.JSONDecodeError, IOError) as e:
-        print(f"Error reading global config: {e}")
-        return {}
 
-def write_global_config(config_data: Dict[str, Any]) -> bool:
-    """
-    Writes data to the global configuration file (data/config.json).
-    """
-    config_path = os.path.join(DATA_DIR, "config.json")
-    try:
-        with open(config_path, 'w', encoding='utf-8') as f:
-            json.dump(config_data, f, ensure_ascii=False, indent=2)
-        return True
-    except IOError as e:
-        print(f"Error writing global config: {e}")
-        return False
+def update_json_file(
+    entity_name: str, item_id: str, updates: Dict[str, Any]
+) -> Optional[Dict[str, Any]]:
+    """Actualiza un archivo JSON existente con los campos proporcionados."""
+    existing = read_json_file(entity_name, item_id)
+    if existing is None:
+        return None
+    existing.update(updates)
+    existing["updated_at"] = datetime.now(timezone.utc).isoformat()
+    write_json_file(entity_name, item_id, existing)
+    return existing
+
+
+def count_json_files(entity_name: str) -> int:
+    """Cuenta el número de archivos JSON en una entidad."""
+    path = _get_entity_path(entity_name)
+    if not path.exists():
+        return 0
+    return sum(1 for f in path.iterdir() if f.is_file() and f.suffix == ".json")
+
+
+# ── Configuración global (archivo único) ────────────────────────────────────
+
+
+def read_global_config() -> Dict[str, Any]:
+    """Lee la configuración global del sistema."""
+    config_path = DATA_DIR / "config.json"
+    if not config_path.exists():
+        return {}
+    with open(config_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def write_global_config(config_data: Dict[str, Any]) -> None:
+    """Escribe la configuración global del sistema."""
+    config_path = DATA_DIR / "config.json"
+    with _write_lock:
+        with open(config_path, "w", encoding="utf-8") as f:
+            json.dump(config_data, f, ensure_ascii=False, indent=2, default=_serialize_datetime)
+
+
+def init_default_config() -> Dict[str, Any]:
+    """Inicializa la configuración global con valores por defecto si no existe."""
+    config = read_global_config()
+    if not config:
+        config = {
+            "youtube_api_key": "",
+            "llm_api_key": "",
+            "llm_endpoint": "http://localhost:11434/api/generate",
+            "llm_model": "llama2",
+            "admin_user": "admin",
+            "admin_pass_hash": "",
+            "analytics_schedule": "0 2 * * *",
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+        write_global_config(config)
+    return config

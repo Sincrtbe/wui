@@ -1,52 +1,75 @@
-"""Wui v2 - Main Application Entry Point"""
+"""
+WUI v2 - Plataforma de Automatización Multimedia
+Punto de entrada principal de la aplicación FastAPI.
+"""
+
 import sys
-import os
-
-# Add the project root to the path so we can import app modules
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Request, HTTPException
+
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.core.config import settings
-from app.api.channels import router as channels_router
+from app.core.json_data_manager import init_default_config
+
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
-    # Inicialización (crear archivos JSON si no existen, cargar config, etc.)
-    print("Aplicación Wui v2 iniciada correctamente")
+async def lifespan(application: FastAPI):
+    # Inicialización: crear configuración por defecto si no existe
+    init_default_config()
+    print(f"[WUI v2] Aplicación iniciada en {settings.HOST}:{settings.PORT}")
     yield
-    # Limpieza al apagado
-    print("Aplicación Wui v2 apagada")
+    # Limpieza al cerrar
+    print("[WUI v2] Aplicación apagada")
+
 
 app = FastAPI(
-    title="Wui v2: Plataforma de Automatización Multimedia",
-    description="API para gestionar y automatizar creación de videos e imágenes (JSON-based)",
+    title=settings.APP_NAME,
+    description="API para gestionar y automatizar creación de videos e imágenes",
     version="2.0.0",
     lifespan=lifespan,
 )
 
-# Configuración CORS
+# ── CORS (ajustar en producción) ──────────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Ajustar en producción
+    allow_origins=["http://localhost:8000", "http://127.0.0.1:8000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-app.include_router(channels_router)
-
-# Montar archivos estáticos para el frontend
+# ── Archivos estáticos para el frontend ───────────────────────────────────────
 app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")
+
 
 @app.get("/")
 async def read_root():
     return RedirectResponse(url="/ui/index.html")
 
+
 @app.get("/health")
 async def health_check():
-    return {"status": "ok", "version": "2.0.0"}
+    return {"status": "ok", "version": app.version}
+
+
+@app.get("/api/ready")
+async def api_ready():
+    return {
+        "ready": True,
+        "version": app.version,
+        "debug": settings.DEBUG,
+    }
+
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": "Internal Server Error",
+            "message": str(exc) if settings.DEBUG else "Something went wrong",
+        },
+    )
