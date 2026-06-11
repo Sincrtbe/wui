@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from app.core.config import settings
-from app.main import limiter
+from app.core.ratelimit import limiter
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 security = HTTPBasic()
@@ -11,7 +11,7 @@ security = HTTPBasic()
 
 @limiter.limit("5/minute")
 @router.post("/login")
-async def login(credentials: HTTPBasicCredentials = Depends(security)):
+async def login(request: Request, credentials: HTTPBasicCredentials = Depends(security)):
     """Valida credenciales de admin."""
     user_ok = credentials.username.encode("utf-8") == settings.ADMIN_USER.encode("utf-8")
     pass_ok = credentials.password.encode("utf-8") == settings.ADMIN_PASS.encode("utf-8")

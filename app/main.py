@@ -8,17 +8,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from slowapi import Limiter
-from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from sqlalchemy import text
 from functools import wraps
 from app.core.database import Base, engine, SessionLocal
+from app.core.ratelimit import limiter
 from app.routers import channels, scripts, videos, publications, automation, dashboard, config, analytics, content, logs, prompts, scripts_tools, schedule, auth
 from app.tasks.scheduler import init_scheduler, shutdown_scheduler
 from app.core.config import settings
-
-# Limitador de tasa para prevenir brute force en login
-limiter = Limiter(key_func=get_remote_address, default_limits=["5/minute"])
 
 # Variable global para el proceso del servidor
 _server_process = None
