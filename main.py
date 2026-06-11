@@ -12,6 +12,7 @@ from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.core.config import settings
+from app.api.channels import router as channels_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -36,6 +37,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(channels_router)
 
 # Montar archivos estáticos para el frontend
 app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")

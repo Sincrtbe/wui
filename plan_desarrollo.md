@@ -1,27 +1,33 @@
 # Wui v2: Plan de Desarrollo
 
-## 📋 Visión General
-Wui v2 es una plataforma de automatización multimedia basada en un stack minimalista, sin dependencias pesadas de bases de datos relacionales, y con persistencia 100% en archivos JSON. El objetivo es una arquitectura modular, segura y fácil de mantener, optimizada para ejecución en entornos headless y para ser desarrollada/asistida por IAs de bajo nivel.
+> Archivo centralizado de planificación y tracking de fases.
 
 ---
 
-## Fase 1: Arquitectura Minimalista y Stack Tecnológico
+## Fase 1: Stack Tecnológico y Arquitectura Simplificada
 
-### 1.1. Stack Tecnológico
-- **Backend:** Python 3.x + FastAPI + Uvicorn
-- **Persistencia:** Archivos JSON (sin SQLite/PostgreSQL)
-- **Modelado:** Pydantic (validación y contratos)
-- **Frontend:** HTML5 + CSS3 + JavaScript Vanilla
-- **Autenticación:** JWT (JSON Web Tokens)
-- **Tareas en segundo plano:** `asyncio` y `concurrent.futures`
-- **Configuración:** `.env` + `pydantic-settings`
+### 1.1. Stack Tecnológico Propuesto
 
-### 1.2. Principios de Diseño
-- **Separación de Responsabilidades (SRP):** Capas estrictas (API, Servicios, DAL, Schemas).
-- **Modularidad estricta:** Cada módulo tiene una única razón para cambiar.
-- **Contratos explícitos:** Uso obligatorio de modelos Pydantic para entrada/salida de datos.
-- **DAL Centralizada:** Un único módulo (`app/core/json_data_manager.py`) maneja toda la interacción con el sistema de archivos para evitar corrupción o inconsistencias.
-- **Scheduler Único:** Un gestor de tareas global centralizado para automatizaciones.
+| Componente | Tecnología | Razón de Elección |
+|-----------|-----------|------------------|
+| **Backend** | Python 3.x | Lenguaje versátil, amplio ecosistema. |
+| **Framework Web** | FastAPI | Alto rendimiento, tipado estático con Pydantic, generación automática de documentación OpenAPI. Facilita la comprensión de la API para la IA. |
+| **Servidor Web** | Uvicorn | Servidor ASGI rápido y compatible con FastAPI. |
+| **Validación de Datos** | Pydantic | Define esquemas de datos claros y robustos para la entrada/salida de la API y la estructura de los JSON. Crucial para que la IA entienda los contratos de datos. |
+| **Persistencia** | Archivos JSON | Requisito del usuario. Se gestionará de forma estructurada para evitar la complejidad de una base de datos relacional. |
+| **Tareas en Segundo Plano** | asyncio / concurrent.futures | Para tareas asíncronas y no bloqueantes, evitando la complejidad de APScheduler y sus problemas de sincronización. |
+| **Autenticación** | JWT (JSON Web Tokens) | Más seguro y escalable que Basic Auth. Permite una gestión de sesiones más robusta. |
+| **Frontend** | HTML5, CSS3, JavaScript (Vanilla) | Mantener la simplicidad y evitar frameworks complejos, reduciendo la superficie de error para la IA. |
+
+### 1.2. Principios de Arquitectura Simplificada
+
+1. **Separación de Responsabilidades (SRP):** Cada módulo o servicio tiene una única responsabilidad bien definida (negocio, persistencia, APIs externas).
+2. **Modularidad:** Sistema dividido en módulos independientes, desarrollables y probables de forma aislada.
+3. **Contratos Explícitos:** Todos los datos fluyen entre módulos y API definidos por esquemas Pydantic claros. Elimina inconsistencias de contratos.
+4. **Gestión Centralizada de Datos JSON:** Capa DAL que abstrae lectura/escritura de archivos JSON, asegurando consistencia y evitando duplicación.
+5. **Un Único Scheduler:** Si se requiere, una única instancia bien definida y accesible globalmente, evitando duplicación y problemas de sincronización.
+6. **Manejo de Errores Robusto:** Mecanismos claros y consistentes en toda la API, con mensajes útiles para depuración y desarrollo por parte de la IA.
+7. **Configuración Externa:** Configuración sensible y específica del entorno mediante variables de entorno (`.env`), con archivos de ejemplo (`.env.example`) siguiendo buenas prácticas de seguridad.
 
 ---
 
@@ -193,52 +199,225 @@ def write_global_config(config_data: Dict[str, Any]):
 
 ---
 
-## Fase 3: Interfaz de Usuario y Gestión de Estado
-*(Nota: Fase 3 añadida para completitud del plan)*
-- Diseño de layouts HTML5/CSS3 responsivos y ligeros.
-- Gestión de estado del cliente con JS Vanilla y `fetch` API para llamadas a FastAPI.
-- Implementación de middleware de autenticación JWT en el frontend para proteger rutas.
-- Sistema de notificaciones y feedback visual para acciones asíncronas (scraping, generación de contenido).
+## Fase 3: Roadmap de Implementación Paso a Paso (Modular)
+
+Este roadmap desglosa el desarrollo de Wui v2 en módulos y pasos incrementales, diseñados para ser abordados por una IA de bajo nivel. Cada paso es autocontenido y tiene objetivos claros, minimizando la necesidad de comprender el sistema completo de una vez. La implementación seguirá un enfoque de abajo hacia arriba y de adentro hacia afuera, comenzando por la infraestructura básica y la persistencia, para luego construir la lógica de negocio y la interfaz de usuario.
+
+### 3.1. Módulos y Dependencias
+
+Se definen los siguientes módulos principales, con sus dependencias:
+
+| Módulo Principal | Dependencias | Descripción |
+|---|---|---|
+| **Infraestructura Base** | Ninguna | Configuración del entorno, main.py, json_data_manager.py. |
+| **Autenticación** | Infraestructura Base | Gestión de usuarios y sesiones. |
+| **Canales** | Infraestructura Base | CRUD de canales, integración con YouTube API. |
+| **Contenido** | Infraestructura Base, Canales | Gestión del ciclo de vida del contenido (ideas, scripts, videos). |
+| **Automatización** | Infraestructura Base, Canales, Contenido | Definición y ejecución de tareas programadas. |
+| **Analíticas** | Infraestructura Base, Canales | Recopilación y visualización de métricas. |
+| **Prompts** | Infraestructura Base | Gestión de plantillas de prompts para LLMs. |
+| **Configuración** | Infraestructura Base | Gestión de la configuración global del sistema. |
+| **Frontend (UI)** | Todos los módulos API | Interfaz de usuario para interactuar con el backend. |
+
+### 3.2. Pasos de Implementación Detallados
+
+**Paso 1: Configuración del Proyecto y Servicios Base**
+- 1.1. Inicialización del Proyecto: Crear la estructura de carpetas (app/, data/, tools/, etc.).
+- 1.2. main.py: Configurar la aplicación FastAPI, CORS, manejo de errores básicos y el lifespan para inicialización/cierre.
+- 1.3. app/core/config.py: Definir la configuración de la aplicación usando Pydantic Settings y dotenv para cargar variables de entorno.
+- 1.4. app/core/json_data_manager.py: Implementar la capa de acceso a datos para JSON (CRUD genérico y específico para config.json).
+- 1.5. app/schemas/base.py: Definir un esquema base para entidades con id, created_at, updated_at.
+
+**Paso 2: Módulo de Autenticación**
+- 2.1. app/schemas/auth.py: Definir esquemas para UserLogin y Token.
+- 2.2. app/services/auth_service.py: Implementar lógica de autenticación (validación de credenciales, generación/validación de JWT).
+- 2.3. app/routers/auth.py: Crear endpoints para /login, /logout, /check.
+- 2.4. Middleware de Autenticación: Integrar el middleware de JWT en main.py para proteger rutas.
+- 2.5. data/config.json: Almacenar admin_user y admin_pass_hash.
+
+**Paso 3: Módulo de Canales**
+- 3.1. app/schemas/channel.py: Definir esquemas ChannelCreate, ChannelUpdate, ChannelResponse.
+- 3.2. app/services/channel_service.py: Implementar lógica de negocio para canales (CRUD, interacción con YouTube API para obtener datos iniciales).
+- 3.3. app/routers/channels.py: Crear endpoints para CRUD de canales (/api/channels).
+- 3.4. Integración con YouTube API: Implementar la lógica para buscar y obtener detalles de canales de YouTube, guardando los datos en data/channels/{id}.json.
+
+**Paso 4: Módulo de Contenido**
+- 4.1. app/schemas/content.py: Definir esquemas para ContentItem en sus diferentes etapas.
+- 4.2. app/services/content_service.py: Implementar lógica de negocio para el ciclo de vida del contenido (creación, actualización, avance de etapa, generación de guiones con LLM).
+- 4.3. app/routers/content.py: Crear endpoints para CRUD de ContentItem y acciones de flujo de trabajo (/api/content).
+- 4.4. Integración con LLM: Implementar un servicio app/services/llm_service.py para interactuar con modelos de lenguaje, utilizando la configuración de data/config.json.
+
+**Paso 5: Módulo de Automatización (Scheduler)**
+- 5.1. app/schemas/automation.py: Definir esquemas para AutomationTask, AutomationRun, AutomationRunStep.
+- 5.2. app/core/scheduler.py: Implementar un único scheduler basado en apscheduler (o similar), que lea las tareas de data/automations/ y las ejecute. Debe ser robusto y manejar la persistencia de jobs.
+- 5.3. app/services/automation_service.py: Lógica de negocio para crear, actualizar, eliminar y ejecutar tareas de automatización. Debe interactuar con el scheduler centralizado.
+- 5.4. app/routers/automation.py: Endpoints para gestionar tareas de automatización y ver el historial de ejecuciones (/api/automations).
+
+**Paso 6: Módulo de Analíticas**
+- 6.1. app/schemas/analytics.py: Definir esquemas para DailyStat.
+- 6.2. app/services/analytics_service.py: Lógica para recopilar métricas diarias de canales (usando YouTube API o scripts externos controlados) y almacenarlas en data/daily_stats/{id}.json.
+- 6.3. app/routers/analytics.py: Endpoints para acceder a los datos analíticos (/api/analytics).
+
+**Paso 7: Módulo de Prompts**
+- 7.1. app/schemas/prompt.py: Definir esquemas para Prompt.
+- 7.2. app/services/prompt_service.py: Lógica para gestionar prompts (CRUD, búsqueda, versionado), almacenándolos en data/prompts/{id}.json.
+- 7.3. app/routers/prompts.py: Endpoints para gestionar prompts (/api/prompts).
+
+**Paso 8: Módulo de Configuración**
+- 8.1. app/schemas/config.py: Definir esquemas para GlobalConfig.
+- 8.2. app/services/config_service.py: Lógica para leer y escribir la configuración global en data/config.json.
+- 8.3. app/routers/config.py: Endpoints para acceder y modificar la configuración (/api/config).
+
+**Paso 9: Frontend (UI)**
+- 9.1. app/static/index.html: Estructura principal de la interfaz.
+- 9.2. app/static/styles.css: Estilos globales.
+- 9.3. app/static/app.js: Lógica JavaScript para interactuar con las APIs del backend, renderizar datos y gestionar la navegación. Implementar la autenticación JWT en el cliente.
+- 9.4. Vistas Específicas: Implementar las vistas para Dashboard, Canales, Contenido, Automatización, Analíticas y Configuración, consumiendo los endpoints de la API.
+
+Este roadmap proporciona una secuencia lógica y modular para el desarrollo, permitiendo que la IA aborde cada componente de forma independiente, con contratos claros y un sistema de persistencia simplificado.
 
 ---
 
-## Fase 4: Guías de Implementación para IAs de Bajo Nivel
+## Fase 4: Guías de Implementación
 
-Para que una IA de bajo nivel (4B) pueda desarrollar el código de Wui v2 de manera efectiva, es crucial proporcionarle instrucciones extremadamente claras, atómicas y sin ambigüedades. Cada tarea debe ser un paso discreto con un objetivo verificable, minimizando la necesidad de razonamiento complejo o de mantener un contexto amplio del sistema.
+Para que una IA de bajo nivel (4B) pueda desarrollar el código de Wui v2 de manera efectiva, es crucial proporcionarle instrucciones extremadamente claras, atómicas y sin ambigüedades. Cada tarea debe ser un paso discreto con un objetivo verificable, minimizando la necesidad de razonamiento complejo o de mantener un contexto amplio del sistema. La IA debe poder ejecutar cada instrucción y verificar su cumplimiento antes de pasar a la siguiente.
 
 ### 4.1. Principios para la Creación de Guías de Implementación
-- **Atomicidad de Tareas:** Cada instrucción corresponde a la creación/modificación de un único archivo o función.
-- **Especificidad Extrema:** Nombre exacto del archivo, ruta completa y contenido preciso.
-- **Uso de Schemas Pydantic:** Referencia obligatoria a `app/schemas/` para validación de datos.
-- **Interacción con json_data_manager:** Prohibido manipular archivos JSON directamente. Usar siempre la DAL.
-- **Verificación Explícita:** Pasos de validación (linters, tests unitarios, `curl` a endpoints).
-- **Contexto Mínimo:** Instrucciones autosuficientes para IAs con memoria de contexto limitada.
 
-### 4.2. Ejemplo de Guía: Módulo de Infraestructura Base
+Las siguientes directrices deben aplicarse al redactar las instrucciones para la IA:
 
-**Tarea:** Configuración Inicial del Proyecto
-**Objetivo:** Establecer la estructura de directorios básica y los archivos de configuración iniciales.
+- **Atomicidad de Tareas:** Cada instrucción debe corresponder a la creación o modificación de un único archivo, o a la adición de una función específica. Evitar instrucciones que impliquen cambios en múltiples lugares simultáneamente.
+- **Especificidad Extrema:** Indicar el nombre exacto del archivo, la ruta completa y el contenido preciso a insertar. Para modificaciones, especificar la línea o el patrón a buscar y el texto de reemplazo.
+- **Uso de Schemas Pydantic:** Siempre que se manejen datos, se debe hacer referencia a los esquemas Pydantic definidos en `app/schemas/`. Esto refuerza el contrato de datos y guía a la IA en la estructura esperada.
+- **Interacción con json_data_manager:** Todas las operaciones de persistencia (lectura, escritura, actualización, eliminación de JSON) deben realizarse a través de las funciones proporcionadas por `app/core/json_data_manager.py`. La IA no debe manipular directamente los archivos JSON.
+- **Verificación Explícita:** Incluir pasos de verificación simples, como ejecutar un linter, un test básico o un curl a un endpoint, para que la IA pueda confirmar el éxito de su tarea.
+- **Contexto Mínimo:** Asumir que la IA tiene una memoria limitada del contexto general del proyecto. Cada instrucción debe ser lo más autosuficiente posible.
 
-**Paso 1:** Crear la Estructura de Directorios Principal
-- **Instrucción:** Crear `app/`, `app/api/`, `app/core/`, `app/services/`, `app/schemas/`, `app/static/`, `data/`, `data/channels/`, `data/automations/`, `data/content_items/`, `data/prompts/`, `tools/`.
-- **Verificación:** `ls -R` confirma existencia de carpetas.
+### 4.2. Ejemplo de Guía de Implementación: Módulo de Infraestructura Base
 
-**Paso 2:** Crear el Archivo `main.py`
-- **Instrucción:** Crear `wui_v2/main.py` con configuración de FastAPI, CORS, montaje de `StaticFiles` en `/ui`, y endpoints `/` y `/health`.
-- **Verificación:** `uvicorn main:app --reload --port 8000` inicia correctamente y `/health` devuelve `{"status": "ok", "version": "2.0.0"}`.
+A continuación, se presenta un ejemplo detallado de cómo se estructurarían las instrucciones para la IA para el primer paso del roadmap, la configuración de la infraestructura base.
 
-**Paso 3:** Crear el Archivo `app/core/config.py`
-- **Instrucción:** Crear `app/core/config.py` usando `pydantic-settings` para cargar variables de entorno (`ADMIN_USER`, `SECRET_KEY`, `YOUTUBE_API_KEY`, `LLM_ENDPOINT`, etc.).
-- **Verificación:** Importación limpia sin errores.
+**Tarea: Configuración Inicial del Proyecto**
 
-**Paso 4:** Crear el Archivo `.env.example`
-- **Instrucción:** Definir las variables de entorno requeridas con valores placeholder.
-- **Verificación:** Existencia y formato correcto del archivo.
+**Objetivo:** Establecer la estructura de directorios básica y los archivos de configuración iniciales para el proyecto Wui v2.
 
-**Paso 5:** Crear el Archivo `app/core/json_data_manager.py`
-- **Instrucción:** Insertar el código de la DAL proporcionado en la Fase 2, Sección 2.3.
-- **Verificación:** Importación y llamadas a funciones sin errores de rutas.
+**Paso 1: Crear la Estructura de Directorios Principal**
+- **Instrucción:** Crear los siguientes directorios en la raíz del proyecto `wui_v2/`:
+  - `app/`
+  - `app/api/`
+  - `app/core/`
+  - `app/services/`
+  - `app/schemas/`
+  - `app/static/`
+  - `data/`
+  - `data/channels/`
+  - `data/automations/`
+  - `data/content_items/`
+  - `data/prompts/`
+  - `tools/`
+- **Verificación:** Ejecutar `ls -R wui_v2/` y confirmar que todos los directorios existen.
+
+**Paso 2: Crear el Archivo `main.py`**
+- **Instrucción:** Crear el archivo `wui_v2/main.py` con el siguiente contenido:
+```python
+# wui_v2/main.py
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+from app.core.config import settings
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Lógica de inicialización (ej: crear archivos JSON de configuración si no existen)
+    print("Aplicación iniciada")
+    yield
+    # Lógica de limpieza (ej: cerrar recursos)
+    print("Aplicación apagada")
+
+app = FastAPI(
+    title="Wui v2: Plataforma de Automatización Multimedia",
+    description="API para gestionar y automatizar creación de videos e imágenes (JSON-based)",
+    version="2.0.0",
+    lifespan=lifespan,
+)
+
+# Configuración CORS (ajustar en producción)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8000", "http://127.0.0.1:8000"], # Permitir solo orígenes específicos
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+ )
+
+# Montar archivos estáticos para el frontend
+app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")
+@app.get("/")
+async def read_root():
+    return RedirectResponse(url="/ui/index.html")
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok", "version": app.version}
+```
+- **Verificación:** Ejecutar `python -m uvicorn main:app --reload --port 8000` en el directorio `wui_v2/` y verificar que el servidor se inicia sin errores y que `http://localhost:8000/health` devuelve `{"status": "ok", "version": "2.0.0"}`.
+
+**Paso 3: Crear el Archivo `app/core/config.py`**
+- **Instrucción:** Crear el archivo `wui_v2/app/core/config.py` con el siguiente contenido:
+```python
+# wui_v2/app/core/config.py
+import os
+from pydantic_settings import BaseSettings
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class Settings(BaseSettings):
+    APP_NAME: str = "Wui v2"
+    ADMIN_USER: str = os.getenv("ADMIN_USER", "admin")
+    ADMIN_PASS_HASH: str = os.getenv("ADMIN_PASS_HASH", "$2b$12$EXAMPLEHASHFORADMINPASS") # Reemplazar con un hash real
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "super-secret-key") # Generar una clave segura en producción
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+
+    # YouTube API
+    YOUTUBE_API_KEY: str = os.getenv("YOUTUBE_API_KEY", "")
+
+    # LLM Config
+    LLM_ENDPOINT: str = os.getenv("LLM_ENDPOINT", "http://localhost:11434/api/generate" )
+    LLM_API_KEY: str = os.getenv("LLM_API_KEY", "")
+    LLM_MODEL: str = os.getenv("LLM_MODEL", "llama2")
+
+    class Config:
+        env_file = ".env"
+        extra = "ignore"
+
+settings = Settings()
+```
+- **Verificación:** No hay verificación directa en este paso, pero la IA debe asegurarse de que el archivo se haya creado correctamente.
+
+**Paso 4: Crear el Archivo `.env.example`**
+- **Instrucción:** Crear el archivo `wui_v2/.env.example` con el siguiente contenido:
+```text
+# .env.example
+ADMIN_USER="admin"
+ADMIN_PASS_HASH="$2b$12$EXAMPLEHASHFORADMINPASS" # Usar un hash de bcrypt real para la contraseña de admin
+SECRET_KEY="super-secret-key" # Cambiar por una clave aleatoria y segura
+YOUTUBE_API_KEY="TU_CLAVE_API_YOUTUBE"
+LLM_ENDPOINT="http://localhost:11434/api/generate"
+LLM_API_KEY="TU_CLAVE_API_LLM" # Opcional, si tu LLM lo requiere
+LLM_MODEL="llama2"
+```
+- **Verificación:** Confirmar la existencia del archivo.
+
+**Paso 5: Crear el Archivo `app/core/json_data_manager.py`**
+- **Instrucción:** Crear el archivo `wui_v2/app/core/json_data_manager.py` con el contenido exacto proporcionado en la Fase 2, sección 2.3.
+- **Verificación:** No hay verificación directa en este paso, pero la IA debe asegurarse de que el archivo se haya creado correctamente.
+
+Este nivel de detalle y granularidad permitirá a la IA de bajo nivel avanzar en el desarrollo del proyecto de forma controlada y con alta probabilidad de éxito, minimizando los errores y la necesidad de intervención humana.
 
 ---
 
-*Fin del plan de desarrollo inicial. Siguiente paso: Ejecución de la Fase 1 (Skeleton de la aplicación).*
+*Última actualización: 2026-06-11*
