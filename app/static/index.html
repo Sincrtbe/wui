@@ -6,170 +6,417 @@
     <title>WUI v2 - Creative Studio</title>
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a2e;
-            --bg-input: #16213e;
-            --accent: #00d4ff;
-            --accent-hover: #00b8d9;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0b0;
-            --border: #2a2a3e;
-            --success: #00ff88;
-            --warning: #ffaa00;
-            --danger: #ff4757;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-input: #f5f6f8;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
+            line-height: 1.6;
         }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* HEADER MODERNO */
+        /* ─────────────────────────────────────────────────────────────────── */
         .header {
-            background: var(--bg-secondary);
+            background: var(--bg-card);
             border-bottom: 1px solid var(--border);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 100;
         }
+        
         .header h1 {
             font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--accent), #7b2ff7);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
-        .user-info {
+        
+        .header-right {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
         }
-        .btn {
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* BOTÓN IDENTIFÍCATE CON DROPDOWN */
+        /* ─────────────────────────────────────────────────────────────────── */
+        .auth-container {
+            position: relative;
+        }
+        
+        .btn-identify {
             padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-identify:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            margin-top: 0.5rem;
+            min-width: 320px;
+            padding: 1.5rem;
+            display: none;
+            z-index: 1000;
+            animation: slideDown 0.2s ease;
+        }
+        
+        .dropdown-menu.active {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .dropdown-menu h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .dropdown-menu .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .dropdown-menu .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .dropdown-menu .form-group input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
             transition: all 0.2s;
         }
+        
+        .dropdown-menu .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        .dropdown-menu .btn {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .user-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .user-display.hidden {
+            display: none;
+        }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* BOTONES GENERALES */
+        /* ─────────────────────────────────────────────────────────────────── */
+        .btn {
+            padding: 0.7rem 1.4rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+        
         .btn-primary {
             background: var(--accent);
-            color: #000;
+            color: white;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
         }
-        .btn-primary:hover { background: var(--accent-hover); }
+        
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+        
         .btn-secondary {
-            background: var(--bg-card);
+            background: var(--bg-secondary);
             color: var(--text-primary);
             border: 1px solid var(--border);
         }
-        .btn-secondary:hover { border-color: var(--accent); }
+        
+        .btn-secondary:hover {
+            background: var(--bg-input);
+            border-color: var(--accent);
+        }
+        
         .btn-danger {
             background: var(--danger);
             color: white;
         }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* CONTENEDOR PRINCIPAL */
+        /* ─────────────────────────────────────────────────────────────────── */
         .container {
             display: flex;
             min-height: calc(100vh - 70px);
         }
+        
         .sidebar {
-            width: 280px;
+            width: 260px;
             background: var(--bg-secondary);
             border-right: 1px solid var(--border);
             padding: 1.5rem 0;
+            overflow-y: auto;
         }
+        
         .nav-item {
-            padding: 0.8rem 1.5rem;
+            padding: 0.9rem 1.5rem;
             cursor: pointer;
             transition: all 0.2s;
-            border-left: 3px solid transparent;
+            border-left: 4px solid transparent;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
-        .nav-item:hover { background: var(--bg-card); }
+        
+        .nav-item:hover {
+            background: var(--bg-input);
+            color: var(--text-primary);
+        }
+        
         .nav-item.active {
-            background: var(--bg-card);
+            background: rgba(99, 102, 241, 0.1);
             border-left-color: var(--accent);
+            color: var(--accent);
         }
-        .nav-item .icon { font-size: 1.2rem; margin-right: 0.5rem; }
+        
+        .nav-item .icon {
+            font-size: 1.3rem;
+        }
+        
         .main {
             flex: 1;
             padding: 2rem;
             overflow-y: auto;
+            background: var(--bg-primary);
         }
-        .panel { display: none; }
-        .panel.active { display: block; }
+        
+        .panel {
+            display: none;
+        }
+        
+        .panel.active {
+            display: block;
+        }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* TARJETAS Y CONTENIDO */
+        /* ─────────────────────────────────────────────────────────────────── */
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .card h4 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* FORMULARIOS */
+        /* ─────────────────────────────────────────────────────────────────── */
+        .form-group {
             margin-bottom: 1.5rem;
         }
-        .card h3 {
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
+        
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
         }
+        
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.9rem;
             background: var(--bg-input);
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 8px;
             color: var(--text-primary);
             font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s;
         }
+        
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
-        .form-group textarea { min-height: 120px; resize: vertical; }
+        
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* SALIDA Y RESULTADOS */
+        /* ─────────────────────────────────────────────────────────────────── */
         .output-box {
-            background: var(--bg-primary);
+            background: var(--bg-input);
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 1rem;
+            border-radius: 8px;
+            padding: 1.5rem;
             min-height: 200px;
-            font-family: 'Consolas', monospace;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 0.9rem;
             white-space: pre-wrap;
             word-wrap: break-word;
             overflow-x: auto;
             max-height: 500px;
             overflow-y: auto;
+            line-height: 1.5;
+            color: var(--text-primary);
         }
+        
         .output-box .copy-btn {
             float: right;
-            padding: 0.4rem 0.8rem;
-            margin-bottom: 0.5rem;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            margin-left: 1rem;
+            font-size: 0.85rem;
         }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* BADGES Y ETIQUETAS */
+        /* ─────────────────────────────────────────────────────────────────── */
         .badge {
             display: inline-block;
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: bold;
+            font-weight: 700;
         }
-        .badge-s { background: #ff4757; color: white; }
-        .badge-a { background: #ffa502; color: white; }
-        .badge-b { background: #70a1ff; color: white; }
-        .badge-c { background: #747d8c; color: white; }
+        
+        .badge-s { background: #fee2e2; color: #991b1b; }
+        .badge-a { background: #fef3c7; color: #92400e; }
+        .badge-b { background: #dbeafe; color: #1e40af; }
+        .badge-c { background: #f3f4f6; color: #374151; }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* GRID Y LAYOUT */
+        /* ─────────────────────────────────────────────────────────────────── */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
         }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* LOADING SPINNER */
+        /* ─────────────────────────────────────────────────────────────────── */
         .loading {
             display: inline-block;
             width: 20px;
@@ -179,149 +426,285 @@
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .hidden { display: none !important; }
-
-        /* ── Landing Page Styles ───────────────────────────────────────────── */
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* LANDING PAGE MODERNA */
+        /* ─────────────────────────────────────────────────────────────────── */
         .landing-page {
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: calc(100vh - 70px);
             padding: 3rem 2rem;
-            background: radial-gradient(ellipse at center, var(--bg-card) 0%, var(--bg-primary) 70%);
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
         }
+        
         .landing-content {
-            max-width: 1000px;
+            max-width: 1200px;
             width: 100%;
             text-align: center;
         }
+        
         .landing-content h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent), #7b2ff7);
+            color: var(--text-primary);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .landing-content h2 .gradient {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+        
         .landing-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
             margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
+        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
+        
         .feature-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 2rem;
             text-align: left;
-            transition: transform 0.2s, border-color 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
         }
+        
         .feature-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px);
             border-color: var(--accent);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.15);
         }
+        
         .feature-card h3 {
             color: var(--accent);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
         }
+        
         .feature-card p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
+        
         .login-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 400px;
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 420px;
             margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
+        
         .login-card h3 {
             margin-bottom: 1.5rem;
-            color: var(--accent);
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .login-card .form-group input {
+            margin-bottom: 1rem;
+        }
+        
+        .login-card .btn {
+            width: 100%;
+            padding: 0.9rem;
+            font-size: 1rem;
+        }
+        
+        #login-error {
+            color: var(--danger);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            display: none;
+        }
+        
+        /* ─────────────────────────────────────────────────────────────────── */
+        /* RESPONSIVE */
+        /* ─────────────────────────────────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 1rem 0;
+                display: flex;
+                overflow-x: auto;
+            }
+            
+            .nav-item {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            
+            .landing-content h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🎬 WUI Creative Studio</h1>
-        <div class="user-info">
-            <span id="user-display">Admin</span>
-            <button id="btn-logout" class="btn btn-secondary hidden" onclick="logout()">Logout</button>
+        <div class="header-right">
+            <div class="auth-container">
+                <button id="btn-identify" class="btn-identify" onclick="toggleAuthDropdown()">
+                    Identifícate
+                </button>
+                <div id="auth-dropdown" class="dropdown-menu">
+                    <h3>Inicia sesión</h3>
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" id="login-user" placeholder="Tu usuario">
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" id="login-pass" placeholder="Tu contraseña">
+                    </div>
+                    <button class="btn btn-primary" onclick="login()">Iniciar Sesión</button>
+                    <p id="login-error">Credenciales incorrectas</p>
+                </div>
+            </div>
+            <div class="user-display hidden" id="user-display">
+                <span>👤</span>
+                <span id="user-name">Admin</span>
+                <button id="btn-logout" class="btn btn-secondary hidden" onclick="logout()">Salir</button>
+            </div>
         </div>
     </div>
     
     <!-- ═══════════════════════════════════════════════════════════
-         LANDING PAGE — se elimina del DOM al hacer login
+         LANDING PAGE
          ═══════════════════════════════════════════════════════════ -->
     <div id="landing-page" class="landing-page">
         <div class="landing-content">
-            <h2>Automatiza tu flujo creativo para YouTube</h2>
+            <h2>Automatiza tu flujo creativo para <span class="gradient">YouTube</span></h2>
             <p class="landing-subtitle">
-                Genera ideas, guiones, prompts para imágenes (Flux 2.0) y video (Wan 2.2) — todo integrado en un solo flujo.
+                Genera ideas, guiones, prompts para imágenes (Flux 2.0) y video (Wan 2.2) — todo integrado en un solo flujo profesional.
             </p>
             
             <div class="features-grid">
                 <div class="feature-card">
                     <h3>💡 Lluvia de Ideas</h3>
-                    <p>Genera conceptos creativos basados en tu tema o nicho.</p>
+                    <p>Genera conceptos creativos innovadores basados en tu tema o nicho específico.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>📊 Clasificación</h3>
-                    <p>Evalúa y ordena las mejores ideas por potencial.</p>
+                    <h3>📊 Clasificación Inteligente</h3>
+                    <p>Evalúa y ordena las mejores ideas automáticamente por potencial de viralidad.</p>
                 </div>
                 <div class="feature-card">
                     <h3>📝 Desarrollo de Guion</h3>
-                    <p>Convierte ideas en guiones estructurados por duración.</p>
+                    <p>Convierte ideas en guiones estructurados y optimizados por duración.</p>
                 </div>
                 <div class="feature-card">
                     <h3>🎨 Escenas Gráficas</h3>
-                    <p>Genera prompts optimizados para imágenes con IA (Flux 2.0).</p>
+                    <p>Genera prompts optimizados para imágenes con IA de última generación (Flux 2.0).</p>
                 </div>
                 <div class="feature-card">
                     <h3>🎬 Escenas de Video</h3>
-                    <p>Crea prompts para generación de video a partir de imágenes base (Wan 2.2).</p>
+                    <p>Crea prompts profesionales para generación de video a partir de imágenes base (Wan 2.2).</p>
                 </div>
                 <div class="feature-card">
                     <h3>🔄 Texto a Visual</h3>
-                    <p>Traduce narración en prompts visuales listos para generar.</p>
+                    <p>Traduce narración en prompts visuales listos para generar de forma inmediata.</p>
                 </div>
             </div>
             
             <div class="login-card">
                 <h3>Accede a la plataforma</h3>
                 <div class="form-group">
-                    <input type="text" id="login-user" placeholder="Usuario">
+                    <input type="text" id="login-user-card" placeholder="Tu usuario">
                 </div>
                 <div class="form-group">
-                    <input type="password" id="login-pass" placeholder="Contraseña">
+                    <input type="password" id="login-pass-card" placeholder="Tu contraseña">
                 </div>
-                <button class="btn btn-primary" onclick="login()" style="width: 100%;">Iniciar Sesión</button>
-                <p id="login-error" style="color: var(--danger); margin-top: 0.5rem; display: none;">Credenciales incorrectas</p>
+                <button class="btn btn-primary" onclick="loginFromCard()" style="width: 100%;">Iniciar Sesión</button>
+                <p id="login-error-card" style="color: var(--danger); margin-top: 1rem; display: none;">Credenciales incorrectas</p>
             </div>
         </div>
     </div>
     
     <!-- ═══════════════════════════════════════════════════════════
-         APP CONTAINER — se inyecta en el DOM SOLO tras login exitoso
+         APP CONTAINER
          ═══════════════════════════════════════════════════════════ -->
     <script>
         let token = localStorage.getItem('wui_token');
         
         // ── Funciones de autenticación ────────────────────────────────
+        function toggleAuthDropdown() {
+            const dropdown = document.getElementById('auth-dropdown');
+            dropdown.classList.toggle('active');
+        }
+        
+        // Cerrar dropdown al hacer clic afuera
+        document.addEventListener('click', function(event) {
+            const authContainer = document.querySelector('.auth-container');
+            if (!authContainer.contains(event.target)) {
+                document.getElementById('auth-dropdown').classList.remove('active');
+            }
+        });
+        
         async function login() {
             const user = document.getElementById('login-user').value;
             const pass = document.getElementById('login-pass').value;
-            const errorMsg = document.getElementById('login-error');
-            
+            await performLogin(user, pass, 'login-error');
+        }
+        
+        async function loginFromCard() {
+            const user = document.getElementById('login-user-card').value;
+            const pass = document.getElementById('login-pass-card').value;
+            await performLogin(user, pass, 'login-error-card');
+        }
+        
+        async function performLogin(user, pass, errorId) {
+            const errorMsg = document.getElementById(errorId);
             errorMsg.style.display = 'none';
+            
+            if (!user || !pass) {
+                errorMsg.textContent = 'Completa usuario y contraseña';
+                errorMsg.style.display = 'block';
+                return;
+            }
             
             const res = await fetch('/api/auth/login', {
                 method: 'POST',
@@ -335,6 +718,7 @@
                 localStorage.setItem('wui_token', token);
                 showApp();
             } else {
+                errorMsg.textContent = 'Credenciales incorrectas';
                 errorMsg.style.display = 'block';
             }
         }
@@ -350,7 +734,13 @@
             const landing = document.getElementById('landing-page');
             if (landing) landing.remove();
             
+            document.getElementById('btn-identify').classList.add('hidden');
+            document.getElementById('user-display').classList.remove('hidden');
             document.getElementById('btn-logout').classList.remove('hidden');
+            
+            // Obtener nombre de usuario
+            const user = document.getElementById('login-user').value || document.getElementById('login-user-card').value || 'Usuario';
+            document.getElementById('user-name').textContent = user;
             
             // Inyectar el contenedor de la app (sidebar + paneles)
             const appContainer = document.createElement('div');
@@ -381,129 +771,151 @@
                     <div id="panel-storming" class="panel active">
                         <div class="card">
                             <h3>💡 Lluvia de Ideas</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Genera conceptos creativos innovadores para tu próximo video.</p>
                             <div class="form-group">
                                 <label>Tema del video</label>
-                                <input type="text" id="storming-tema" placeholder="Ej: Inteligencia Artificial aplicada a cocina">
+                                <input type="text" id="storming-tema" placeholder="Ej: Tutorial de fotografía, Viaje a Japón, etc.">
                             </div>
                             <button class="btn btn-primary" onclick="generateStorming()">
                                 Generar Ideas
                             </button>
                         </div>
                         <div class="card">
-                            <h3>Resultado</h3>
+                            <h4>Ideas Generadas</h4>
                             <div id="storming-output" class="output-box">Las ideas aparecerán aquí...</div>
                         </div>
                     </div>
                     
                     <div id="panel-classification" class="panel">
                         <div class="card">
-                            <h3>📊 Clasificación de Ideas</h3>
+                            <h3>📊 Clasificación Inteligente</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Evalúa y ordena tus ideas por potencial de éxito.</p>
                             <div class="form-group">
-                                <label>Pega las ideas generadas (JSON o texto)</label>
-                                <textarea id="classification-ideas" placeholder='[{"titulo":"Idea 1","score_potencial":8},{"titulo":"Idea 2","score_potencial":7}]'></textarea>
+                                <label>Pega tus ideas (una por línea)</label>
+                                <textarea id="classification-ideas" placeholder="Idea 1&#10;Idea 2&#10;Idea 3"></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="generateClassification()">
                                 Clasificar Ideas
                             </button>
                         </div>
                         <div class="card">
-                            <h3>Análisis</h3>
-                            <div id="classification-output" class="output-box">El análisis aparecerá aquí...</div>
+                            <h4>Clasificación</h4>
+                            <div id="classification-output" class="output-box">La clasificación aparecerá aquí...</div>
                         </div>
                     </div>
                     
                     <div id="panel-development" class="panel">
                         <div class="card">
                             <h3>📝 Desarrollo de Guion</h3>
-                            <div class="form-group">
-                                <label>Título del video</label>
-                                <input type="text" id="development-titulo" placeholder="Título gancho">
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Convierte tu idea en un guion estructurado.</p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Título del video</label>
+                                    <input type="text" id="development-titulo" placeholder="Ej: Cómo hacer café perfecto">
+                                </div>
+                                <div class="form-group">
+                                    <label>Duración (minutos)</label>
+                                    <select id="development-duracion">
+                                        <option value="1">1 minuto</option>
+                                        <option value="3" selected>3 minutos</option>
+                                        <option value="5">5 minutos</option>
+                                        <option value="10">10 minutos</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>Concepto</label>
-                                <textarea id="development-concepto" placeholder="Describe la idea central" style="min-height: 80px;"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Duración</label>
-                                <select id="development-duracion">
-                                    <option value="corto">Corto (&lt; 5 min)</option>
-                                    <option value="medio" selected>Medio (10-15 min)</option>
-                                    <option value="largo">Largo (&gt; 20 min)</option>
-                                </select>
+                                <label>Concepto o idea principal</label>
+                                <textarea id="development-concepto" placeholder="Describe el concepto principal del video..."></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="generateDevelopment()">
-                                Generar Guion
+                                Desarrollar Guion
                             </button>
                         </div>
                         <div class="card">
-                            <h3>Guion</h3>
+                            <h4>Guion Generado</h4>
                             <div id="development-output" class="output-box">El guion aparecerá aquí...</div>
                         </div>
                     </div>
                     
                     <div id="panel-graphic" class="panel">
                         <div class="card">
-                            <h3>🎨 Escena Gráfica (Flux 2.0)</h3>
-                            <div class="form-group">
-                                <label>Título del video</label>
-                                <input type="text" id="graphic-titulo" placeholder="Contexto del video">
+                            <h3>🎨 Escenas Gráficas</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Genera prompts optimizados para imágenes con IA (Flux 2.0).</p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Título del video</label>
+                                    <input type="text" id="graphic-titulo" placeholder="Ej: Cómo hacer café perfecto">
+                                </div>
+                                <div class="form-group">
+                                    <label>Momento/Escena</label>
+                                    <input type="text" id="graphic-momento" placeholder="Ej: Portada, Transición, Cierre">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Descripción de la escena</label>
-                                <textarea id="graphic-escena" placeholder="Describe qué se ve en esta escena"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Momento del guion</label>
-                                <input type="text" id="graphic-momento" placeholder="Ej: Hook, Beat 2, Clímax...">
+                                <textarea id="graphic-escena" placeholder="Describe la escena visual que deseas generar..."></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="generateGraphic()">
-                                Generar Prompt Flux 2.0
+                                Generar Prompts Flux
                             </button>
                         </div>
                         <div class="card">
-                            <h3>Prompt Flux 2.0</h3>
+                            <h4>Prompts para Flux 2.0</h4>
                             <div id="graphic-output" class="output-box">Los prompts aparecerán aquí...</div>
                         </div>
                     </div>
                     
                     <div id="panel-video" class="panel">
                         <div class="card">
-                            <h3>🎬 Escena de Video (Wan 2.2)</h3>
-                            <div class="form-group">
-                                <label>Título del video</label>
-                                <input type="text" id="video-titulo" placeholder="Contexto del video">
+                            <h3>🎬 Escenas de Video</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Crea prompts para generación de video a partir de imágenes base (Wan 2.2).</p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Título del video</label>
+                                    <input type="text" id="video-titulo" placeholder="Ej: Cómo hacer café perfecto">
+                                </div>
+                                <div class="form-group">
+                                    <label>Duración deseada (segundos)</label>
+                                    <select id="video-duracion">
+                                        <option value="5">5 segundos</option>
+                                        <option value="10" selected>10 segundos</option>
+                                        <option value="15">15 segundos</option>
+                                        <option value="30">30 segundos</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Descripción de la escena</label>
-                                <textarea id="video-escena" placeholder="Describe qué sucede en este clip"></textarea>
+                                <textarea id="video-escena" placeholder="Describe la acción y movimiento que deseas en el video..."></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Prompt imagen base (Flux)</label>
-                                <textarea id="video-prompt-imagen" placeholder="El prompt de Flux 2.0 para esta escena" style="min-height: 60px;"></textarea>
+                                <label>Prompt de imagen base (opcional)</label>
+                                <textarea id="video-prompt-imagen" placeholder="Describe la imagen de partida..."></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="generateVideo()">
-                                Generar Prompt Wan 2.2
+                                Generar Prompts Wan
                             </button>
                         </div>
                         <div class="card">
-                            <h3>Prompt Wan 2.2</h3>
-                            <div id="video-output" class="output-box">El prompt de video aparecerá aquí...</div>
+                            <h4>Prompts para Wan 2.2</h4>
+                            <div id="video-output" class="output-box">Los prompts aparecerán aquí...</div>
                         </div>
                     </div>
                     
                     <div id="panel-conversation" class="panel">
                         <div class="card">
-                            <h3>🔄 Texto a Imagen/Video</h3>
+                            <h3>🔄 Texto a Visual</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Traduce narración en prompts visuales listos para generar.</p>
                             <div class="form-group">
-                                <label>Texto hablado / Narración</label>
-                                <textarea id="conversation-texto" placeholder="Pega aquí el texto del guion que quieres visualizar" style="min-height: 150px;"></textarea>
+                                <label>Texto o narración</label>
+                                <textarea id="conversation-texto" placeholder="Pega el texto que deseas convertir en prompts visuales..."></textarea>
                             </div>
                             <button class="btn btn-primary" onclick="generateConversation()">
                                 Traducir a Visuales
                             </button>
                         </div>
                         <div class="card">
-                            <h3>Prompts Visuales</h3>
+                            <h4>Prompts Visuales</h4>
                             <div id="conversation-output" class="output-box">Los prompts visuales aparecerán aquí...</div>
                         </div>
                     </div>
@@ -517,12 +929,18 @@
             const app = document.getElementById('app-container');
             if (app) app.remove();
             
+            document.getElementById('btn-identify').classList.remove('hidden');
+            document.getElementById('user-display').classList.add('hidden');
             document.getElementById('btn-logout').classList.add('hidden');
             
-            // Reinsertar landing si fue eliminado
+            // Limpiar inputs
+            document.getElementById('login-user').value = '';
+            document.getElementById('login-pass').value = '';
+            document.getElementById('login-user-card').value = '';
+            document.getElementById('login-pass-card').value = '';
+            
             let landing = document.getElementById('landing-page');
             if (!landing) {
-                // No debería pasar, pero por seguridad
                 location.reload();
                 return;
             }
@@ -555,14 +973,14 @@
         
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text);
-            alert('¡Copiado!');
+            alert('¡Copiado al portapapeles!');
         }
         
         async function generateStorming() {
             const tema = document.getElementById('storming-tema').value;
             if (!tema) return alert('Ingresa un tema');
             
-            document.getElementById('storming-output').innerHTML = '<span class="loading"></span> Generando...';
+            document.getElementById('storming-output').innerHTML = '<span class="loading"></span> Generando ideas...';
             
             const data = await apiCall('/api/creative/generate', {
                 template_name: 'storming',
