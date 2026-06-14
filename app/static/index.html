@@ -181,6 +181,72 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .hidden { display: none !important; }
+
+        /* ── Landing Page Styles ───────────────────────────────────────────── */
+        .landing-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 70px);
+            padding: 3rem 2rem;
+            background: radial-gradient(ellipse at center, var(--bg-card) 0%, var(--bg-primary) 70%);
+        }
+        .landing-content {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+        .landing-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), #7b2ff7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .landing-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: left;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        .feature-card h3 {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .login-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .login-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -188,189 +254,74 @@
         <h1>🎬 WUI Creative Studio</h1>
         <div class="user-info">
             <span id="user-display">Admin</span>
-            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            <button id="btn-logout" class="btn btn-secondary hidden" onclick="logout()">Logout</button>
         </div>
     </div>
     
-    <div class="container">
-        <div class="sidebar">
-            <div class="nav-item active" onclick="showPanel('storming')">
-                <span class="icon">💡</span> Lluvia de Ideas
-            </div>
-            <div class="nav-item" onclick="showPanel('classification')">
-                <span class="icon">📊</span> Clasificación
-            </div>
-            <div class="nav-item" onclick="showPanel('development')">
-                <span class="icon">📝</span> Desarrollo Guion
-            </div>
-            <div class="nav-item" onclick="showPanel('graphic')">
-                <span class="icon">🎨</span> Escena Gráfica
-            </div>
-            <div class="nav-item" onclick="showPanel('video')">
-                <span class="icon">🎬</span> Escena Video
-            </div>
-            <div class="nav-item" onclick="showPanel('conversation')">
-                <span class="icon">🔄</span> Texto a Visual
-            </div>
-        </div>
-        
-        <div class="main">
-            <!-- Panel: Lluvia de Ideas -->
-            <div id="panel-storming" class="panel active">
-                <div class="card">
+    <!-- ═══════════════════════════════════════════════════════════
+         LANDING PAGE — se elimina del DOM al hacer login
+         ═══════════════════════════════════════════════════════════ -->
+    <div id="landing-page" class="landing-page">
+        <div class="landing-content">
+            <h2>Automatiza tu flujo creativo para YouTube</h2>
+            <p class="landing-subtitle">
+                Genera ideas, guiones, prompts para imágenes (Flux 2.0) y video (Wan 2.2) — todo integrado en un solo flujo.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
                     <h3>💡 Lluvia de Ideas</h3>
-                    <div class="form-group">
-                        <label>Tema del video</label>
-                        <input type="text" id="storming-tema" placeholder="Ej: Inteligencia Artificial aplicada a cocina">
-                    </div>
-                    <button class="btn btn-primary" onclick="generateStorming()">
-                        Generar Ideas
-                    </button>
+                    <p>Genera conceptos creativos basados en tu tema o nicho.</p>
                 </div>
-                <div class="card">
-                    <h3>Resultado</h3>
-                    <div id="storming-output" class="output-box">Las ideas aparecerán aquí...</div>
+                <div class="feature-card">
+                    <h3>📊 Clasificación</h3>
+                    <p>Evalúa y ordena las mejores ideas por potencial.</p>
                 </div>
-            </div>
-            
-            <!-- Panel: Clasificación -->
-            <div id="panel-classification" class="panel">
-                <div class="card">
-                    <h3>📊 Clasificación de Ideas</h3>
-                    <div class="form-group">
-                        <label>Pega las ideas generadas (JSON o texto)</label>
-                        <textarea id="classification-ideas" placeholder='[{"titulo":"Idea 1","score_potencial":8},{"titulo":"Idea 2","score_potencial":7}]'></textarea>
-                    </div>
-                    <button class="btn btn-primary" onclick="generateClassification()">
-                        Clasificar Ideas
-                    </button>
-                </div>
-                <div class="card">
-                    <h3>Análisis</h3>
-                    <div id="classification-output" class="output-box">El análisis aparecerá aquí...</div>
-                </div>
-            </div>
-            
-            <!-- Panel: Desarrollo Guion -->
-            <div id="panel-development" class="panel">
-                <div class="card">
+                <div class="feature-card">
                     <h3>📝 Desarrollo de Guion</h3>
-                    <div class="form-group">
-                        <label>Título del video</label>
-                        <input type="text" id="development-titulo" placeholder="Título gancho">
-                    </div>
-                    <div class="form-group">
-                        <label>Concepto</label>
-                        <textarea id="development-concepto" placeholder="Describe la idea central" style="min-height: 80px;"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Duración</label>
-                        <select id="development-duracion">
-                            <option value="corto">Corto (< 5 min)</option>
-                            <option value="medio" selected>Medio (10-15 min)</option>
-                            <option value="largo">Largo (> 20 min)</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary" onclick="generateDevelopment()">
-                        Generar Guion
-                    </button>
+                    <p>Convierte ideas en guiones estructurados por duración.</p>
                 </div>
-                <div class="card">
-                    <h3>Guion</h3>
-                    <div id="development-output" class="output-box">El guion aparecerá aquí...</div>
+                <div class="feature-card">
+                    <h3>🎨 Escenas Gráficas</h3>
+                    <p>Genera prompts optimizados para imágenes con IA (Flux 2.0).</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎬 Escenas de Video</h3>
+                    <p>Crea prompts para generación de video a partir de imágenes base (Wan 2.2).</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔄 Texto a Visual</h3>
+                    <p>Traduce narración en prompts visuales listos para generar.</p>
                 </div>
             </div>
             
-            <!-- Panel: Escena Gráfica -->
-            <div id="panel-graphic" class="panel">
-                <div class="card">
-                    <h3>🎨 Escena Gráfica (Flux 2.0)</h3>
-                    <div class="form-group">
-                        <label>Título del video</label>
-                        <input type="text" id="graphic-titulo" placeholder="Contexto del video">
-                    </div>
-                    <div class="form-group">
-                        <label>Descripción de la escena</label>
-                        <textarea id="graphic-escena" placeholder="Describe qué se ve en esta escena"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Momento del guion</label>
-                        <input type="text" id="graphic-momento" placeholder="Ej: Hook, Beat 2, Clímax...">
-                    </div>
-                    <button class="btn btn-primary" onclick="generateGraphic()">
-                        Generar Prompt Flux 2.0
-                    </button>
+            <div class="login-card">
+                <h3>Accede a la plataforma</h3>
+                <div class="form-group">
+                    <input type="text" id="login-user" placeholder="Usuario">
                 </div>
-                <div class="card">
-                    <h3>Prompt Flux 2.0</h3>
-                    <div id="graphic-output" class="output-box">Los prompts aparecerán aquí...</div>
+                <div class="form-group">
+                    <input type="password" id="login-pass" placeholder="Contraseña">
                 </div>
-            </div>
-            
-            <!-- Panel: Escena Video -->
-            <div id="panel-video" class="panel">
-                <div class="card">
-                    <h3>🎬 Escena de Video (Wan 2.2)</h3>
-                    <div class="form-group">
-                        <label>Título del video</label>
-                        <input type="text" id="video-titulo" placeholder="Contexto del video">
-                    </div>
-                    <div class="form-group">
-                        <label>Descripción de la escena</label>
-                        <textarea id="video-escena" placeholder="Describe qué sucede en este clip"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Prompt imagen base (Flux)</label>
-                        <textarea id="video-prompt-imagen" placeholder="El prompt de Flux 2.0 para esta escena" style="min-height: 60px;"></textarea>
-                    </div>
-                    <button class="btn btn-primary" onclick="generateVideo()">
-                        Generar Prompt Wan 2.2
-                    </button>
-                </div>
-                <div class="card">
-                    <h3>Prompt Wan 2.2</h3>
-                    <div id="video-output" class="output-box">El prompt de video aparecerá aquí...</div>
-                </div>
-            </div>
-            
-            <!-- Panel: Texto a Visual -->
-            <div id="panel-conversation" class="panel">
-                <div class="card">
-                    <h3>🔄 Texto a Imagen/Video</h3>
-                    <div class="form-group">
-                        <label>Texto hablado / Narración</label>
-                        <textarea id="conversation-texto" placeholder="Pega aquí el texto del guion que quieres visualizar" style="min-height: 150px;"></textarea>
-                    </div>
-                    <button class="btn btn-primary" onclick="generateConversation()">
-                        Traducir a Visuales
-                    </button>
-                </div>
-                <div class="card">
-                    <h3>Prompts Visuales</h3>
-                    <div id="conversation-output" class="output-box">Los prompts visuales aparecerán aquí...</div>
-                </div>
+                <button class="btn btn-primary" onclick="login()" style="width: 100%;">Iniciar Sesión</button>
+                <p id="login-error" style="color: var(--danger); margin-top: 0.5rem; display: none;">Credenciales incorrectas</p>
             </div>
         </div>
     </div>
     
+    <!-- ═══════════════════════════════════════════════════════════
+         APP CONTAINER — se inyecta en el DOM SOLO tras login exitoso
+         ═══════════════════════════════════════════════════════════ -->
     <script>
         let token = localStorage.getItem('wui_token');
         
-        if (!token) {
-            // Mostrar login
-            document.querySelector('.header').innerHTML = `
-                <h1>🎬 WUI Creative Studio</h1>
-                <div class="user-info">
-                    <input type="text" id="login-user" placeholder="Usuario" style="padding: 0.5rem;">
-                    <input type="password" id="login-pass" placeholder="Contraseña" style="padding: 0.5rem;">
-                    <button class="btn btn-primary" onclick="login()">Login</button>
-                </div>
-            `;
-        }
-        
+        // ── Funciones de autenticación ────────────────────────────────
         async function login() {
             const user = document.getElementById('login-user').value;
             const pass = document.getElementById('login-pass').value;
+            const errorMsg = document.getElementById('login-error');
+            
+            errorMsg.style.display = 'none';
             
             const res = await fetch('/api/auth/login', {
                 method: 'POST',
@@ -382,15 +333,205 @@
                 const data = await res.json();
                 token = data.access_token;
                 localStorage.setItem('wui_token', token);
-                location.reload();
+                showApp();
             } else {
-                alert('Credenciales incorrectas');
+                errorMsg.style.display = 'block';
             }
         }
         
         function logout() {
             localStorage.removeItem('wui_token');
-            location.reload();
+            token = null;
+            showLanding();
+        }
+        
+        // ── Mostrar app (inyecta los paneles en el DOM) ───────────────
+        function showApp() {
+            const landing = document.getElementById('landing-page');
+            if (landing) landing.remove();
+            
+            document.getElementById('btn-logout').classList.remove('hidden');
+            
+            // Inyectar el contenedor de la app (sidebar + paneles)
+            const appContainer = document.createElement('div');
+            appContainer.id = 'app-container';
+            appContainer.className = 'container';
+            appContainer.innerHTML = `
+                <div class="sidebar">
+                    <div class="nav-item active" onclick="showPanel('storming')">
+                        <span class="icon">💡</span> Lluvia de Ideas
+                    </div>
+                    <div class="nav-item" onclick="showPanel('classification')">
+                        <span class="icon">📊</span> Clasificación
+                    </div>
+                    <div class="nav-item" onclick="showPanel('development')">
+                        <span class="icon">📝</span> Desarrollo Guion
+                    </div>
+                    <div class="nav-item" onclick="showPanel('graphic')">
+                        <span class="icon">🎨</span> Escena Gráfica
+                    </div>
+                    <div class="nav-item" onclick="showPanel('video')">
+                        <span class="icon">🎬</span> Escena Video
+                    </div>
+                    <div class="nav-item" onclick="showPanel('conversation')">
+                        <span class="icon">🔄</span> Texto a Visual
+                    </div>
+                </div>
+                <div class="main">
+                    <div id="panel-storming" class="panel active">
+                        <div class="card">
+                            <h3>💡 Lluvia de Ideas</h3>
+                            <div class="form-group">
+                                <label>Tema del video</label>
+                                <input type="text" id="storming-tema" placeholder="Ej: Inteligencia Artificial aplicada a cocina">
+                            </div>
+                            <button class="btn btn-primary" onclick="generateStorming()">
+                                Generar Ideas
+                            </button>
+                        </div>
+                        <div class="card">
+                            <h3>Resultado</h3>
+                            <div id="storming-output" class="output-box">Las ideas aparecerán aquí...</div>
+                        </div>
+                    </div>
+                    
+                    <div id="panel-classification" class="panel">
+                        <div class="card">
+                            <h3>📊 Clasificación de Ideas</h3>
+                            <div class="form-group">
+                                <label>Pega las ideas generadas (JSON o texto)</label>
+                                <textarea id="classification-ideas" placeholder='[{"titulo":"Idea 1","score_potencial":8},{"titulo":"Idea 2","score_potencial":7}]'></textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="generateClassification()">
+                                Clasificar Ideas
+                            </button>
+                        </div>
+                        <div class="card">
+                            <h3>Análisis</h3>
+                            <div id="classification-output" class="output-box">El análisis aparecerá aquí...</div>
+                        </div>
+                    </div>
+                    
+                    <div id="panel-development" class="panel">
+                        <div class="card">
+                            <h3>📝 Desarrollo de Guion</h3>
+                            <div class="form-group">
+                                <label>Título del video</label>
+                                <input type="text" id="development-titulo" placeholder="Título gancho">
+                            </div>
+                            <div class="form-group">
+                                <label>Concepto</label>
+                                <textarea id="development-concepto" placeholder="Describe la idea central" style="min-height: 80px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Duración</label>
+                                <select id="development-duracion">
+                                    <option value="corto">Corto (&lt; 5 min)</option>
+                                    <option value="medio" selected>Medio (10-15 min)</option>
+                                    <option value="largo">Largo (&gt; 20 min)</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" onclick="generateDevelopment()">
+                                Generar Guion
+                            </button>
+                        </div>
+                        <div class="card">
+                            <h3>Guion</h3>
+                            <div id="development-output" class="output-box">El guion aparecerá aquí...</div>
+                        </div>
+                    </div>
+                    
+                    <div id="panel-graphic" class="panel">
+                        <div class="card">
+                            <h3>🎨 Escena Gráfica (Flux 2.0)</h3>
+                            <div class="form-group">
+                                <label>Título del video</label>
+                                <input type="text" id="graphic-titulo" placeholder="Contexto del video">
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción de la escena</label>
+                                <textarea id="graphic-escena" placeholder="Describe qué se ve en esta escena"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Momento del guion</label>
+                                <input type="text" id="graphic-momento" placeholder="Ej: Hook, Beat 2, Clímax...">
+                            </div>
+                            <button class="btn btn-primary" onclick="generateGraphic()">
+                                Generar Prompt Flux 2.0
+                            </button>
+                        </div>
+                        <div class="card">
+                            <h3>Prompt Flux 2.0</h3>
+                            <div id="graphic-output" class="output-box">Los prompts aparecerán aquí...</div>
+                        </div>
+                    </div>
+                    
+                    <div id="panel-video" class="panel">
+                        <div class="card">
+                            <h3>🎬 Escena de Video (Wan 2.2)</h3>
+                            <div class="form-group">
+                                <label>Título del video</label>
+                                <input type="text" id="video-titulo" placeholder="Contexto del video">
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción de la escena</label>
+                                <textarea id="video-escena" placeholder="Describe qué sucede en este clip"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Prompt imagen base (Flux)</label>
+                                <textarea id="video-prompt-imagen" placeholder="El prompt de Flux 2.0 para esta escena" style="min-height: 60px;"></textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="generateVideo()">
+                                Generar Prompt Wan 2.2
+                            </button>
+                        </div>
+                        <div class="card">
+                            <h3>Prompt Wan 2.2</h3>
+                            <div id="video-output" class="output-box">El prompt de video aparecerá aquí...</div>
+                        </div>
+                    </div>
+                    
+                    <div id="panel-conversation" class="panel">
+                        <div class="card">
+                            <h3>🔄 Texto a Imagen/Video</h3>
+                            <div class="form-group">
+                                <label>Texto hablado / Narración</label>
+                                <textarea id="conversation-texto" placeholder="Pega aquí el texto del guion que quieres visualizar" style="min-height: 150px;"></textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="generateConversation()">
+                                Traducir a Visuales
+                            </button>
+                        </div>
+                        <div class="card">
+                            <h3>Prompts Visuales</h3>
+                            <div id="conversation-output" class="output-box">Los prompts visuales aparecerán aquí...</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(appContainer);
+        }
+        
+        // ── Mostrar landing (elimina la app del DOM) ──────────────────
+        function showLanding() {
+            const app = document.getElementById('app-container');
+            if (app) app.remove();
+            
+            document.getElementById('btn-logout').classList.add('hidden');
+            
+            // Reinsertar landing si fue eliminado
+            let landing = document.getElementById('landing-page');
+            if (!landing) {
+                // No debería pasar, pero por seguridad
+                location.reload();
+                return;
+            }
+            landing.classList.remove('hidden');
+        }
+        
+        // ── Inicialización ────────────────────────────────────────────
+        if (token) {
+            showApp();
         }
         
         function showPanel(panelId) {
