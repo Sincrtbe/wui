@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WUI v2 - Creative Studio</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-input: #16213e;
+            --accent: #00d4ff;
+            --accent-hover: #00b8d9;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0b0;
+            --border: #2a2a3e;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            --danger: #ff4757;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--accent), #7b2ff7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover { border-color: var(--accent); }
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        .container {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+        .sidebar {
+            width: 280px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            padding: 1.5rem 0;
+        }
+        .nav-item {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .nav-item:hover { background: var(--bg-card); }
+        .nav-item.active {
+            background: var(--bg-card);
+            border-left-color: var(--accent);
+        }
+        .nav-item .icon { font-size: 1.2rem; margin-right: 0.5rem; }
+        .main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        .panel { display: none; }
+        .panel.active { display: block; }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .output-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            min-height: 200px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .output-box .copy-btn {
+            float: right;
+            padding: 0.4rem 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .badge-s { background: #ff4757; color: white; }
+        .badge-a { background: #ffa502; color: white; }
+        .badge-b { background: #70a1ff; color: white; }
+        .badge-c { background: #747d8c; color: white; }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎬 WUI Creative Studio</h1>
+        <div class="user-info">
+            <span id="user-display">Admin</span>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="nav-item active" onclick="showPanel('storming')">
+                <span class="icon">💡</span> Lluvia de Ideas
+            </div>
+            <div class="nav-item" onclick="showPanel('classification')">
+                <span class="icon">📊</span> Clasificación
+            </div>
+            <div class="nav-item" onclick="showPanel('development')">
+                <span class="icon">📝</span> Desarrollo Guion
+            </div>
+            <div class="nav-item" onclick="showPanel('graphic')">
+                <span class="icon">🎨</span> Escena Gráfica
+            </div>
+            <div class="nav-item" onclick="showPanel('video')">
+                <span class="icon">🎬</span> Escena Video
+            </div>
+            <div class="nav-item" onclick="showPanel('conversation')">
+                <span class="icon">🔄</span> Texto a Visual
+            </div>
+        </div>
+        
+        <div class="main">
+            <!-- Panel: Lluvia de Ideas -->
+            <div id="panel-storming" class="panel active">
+                <div class="card">
+                    <h3>💡 Lluvia de Ideas</h3>
+                    <div class="form-group">
+                        <label>Tema del video</label>
+                        <input type="text" id="storming-tema" placeholder="Ej: Inteligencia Artificial aplicada a cocina">
+                    </div>
+                    <button class="btn btn-primary" onclick="generateStorming()">
+                        Generar Ideas
+                    </button>
+                </div>
+                <div class="card">
+                    <h3>Resultado</h3>
+                    <div id="storming-output" class="output-box">Las ideas aparecerán aquí...</div>
+                </div>
+            </div>
+            
+            <!-- Panel: Clasificación -->
+            <div id="panel-classification" class="panel">
+                <div class="card">
+                    <h3>📊 Clasificación de Ideas</h3>
+                    <div class="form-group">
+                        <label>Pega las ideas generadas (JSON o texto)</label>
+                        <textarea id="classification-ideas" placeholder='[{"titulo":"Idea 1","score_potencial":8},{"titulo":"Idea 2","score_potencial":7}]'></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="generateClassification()">
+                        Clasificar Ideas
+                    </button>
+                </div>
+                <div class="card">
+                    <h3>Análisis</h3>
+                    <div id="classification-output" class="output-box">El análisis aparecerá aquí...</div>
+                </div>
+            </div>
+            
+            <!-- Panel: Desarrollo Guion -->
+            <div id="panel-development" class="panel">
+                <div class="card">
+                    <h3>📝 Desarrollo de Guion</h3>
+                    <div class="form-group">
+                        <label>Título del video</label>
+                        <input type="text" id="development-titulo" placeholder="Título gancho">
+                    </div>
+                    <div class="form-group">
+                        <label>Concepto</label>
+                        <textarea id="development-concepto" placeholder="Describe la idea central" style="min-height: 80px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Duración</label>
+                        <select id="development-duracion">
+                            <option value="corto">Corto (< 5 min)</option>
+                            <option value="medio" selected>Medio (10-15 min)</option>
+                            <option value="largo">Largo (> 20 min)</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="generateDevelopment()">
+                        Generar Guion
+                    </button>
+                </div>
+                <div class="card">
+                    <h3>Guion</h3>
+                    <div id="development-output" class="output-box">El guion aparecerá aquí...</div>
+                </div>
+            </div>
+            
+            <!-- Panel: Escena Gráfica -->
+            <div id="panel-graphic" class="panel">
+                <div class="card">
+                    <h3>🎨 Escena Gráfica (Flux 2.0)</h3>
+                    <div class="form-group">
+                        <label>Título del video</label>
+                        <input type="text" id="graphic-titulo" placeholder="Contexto del video">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción de la escena</label>
+                        <textarea id="graphic-escena" placeholder="Describe qué se ve en esta escena"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Momento del guion</label>
+                        <input type="text" id="graphic-momento" placeholder="Ej: Hook, Beat 2, Clímax...">
+                    </div>
+                    <button class="btn btn-primary" onclick="generateGraphic()">
+                        Generar Prompt Flux 2.0
+                    </button>
+                </div>
+                <div class="card">
+                    <h3>Prompt Flux 2.0</h3>
+                    <div id="graphic-output" class="output-box">Los prompts aparecerán aquí...</div>
+                </div>
+            </div>
+            
+            <!-- Panel: Escena Video -->
+            <div id="panel-video" class="panel">
+                <div class="card">
+                    <h3>🎬 Escena de Video (Wan 2.2)</h3>
+                    <div class="form-group">
+                        <label>Título del video</label>
+                        <input type="text" id="video-titulo" placeholder="Contexto del video">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción de la escena</label>
+                        <textarea id="video-escena" placeholder="Describe qué sucede en este clip"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Prompt imagen base (Flux)</label>
+                        <textarea id="video-prompt-imagen" placeholder="El prompt de Flux 2.0 para esta escena" style="min-height: 60px;"></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="generateVideo()">
+                        Generar Prompt Wan 2.2
+                    </button>
+                </div>
+                <div class="card">
+                    <h3>Prompt Wan 2.2</h3>
+                    <div id="video-output" class="output-box">El prompt de video aparecerá aquí...</div>
+                </div>
+            </div>
+            
+            <!-- Panel: Texto a Visual -->
+            <div id="panel-conversation" class="panel">
+                <div class="card">
+                    <h3>🔄 Texto a Imagen/Video</h3>
+                    <div class="form-group">
+                        <label>Texto hablado / Narración</label>
+                        <textarea id="conversation-texto" placeholder="Pega aquí el texto del guion que quieres visualizar" style="min-height: 150px;"></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="generateConversation()">
+                        Traducir a Visuales
+                    </button>
+                </div>
+                <div class="card">
+                    <h3>Prompts Visuales</h3>
+                    <div id="conversation-output" class="output-box">Los prompts visuales aparecerán aquí...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let token = localStorage.getItem('wui_token');
+        
+        if (!token) {
+            // Mostrar login
+            document.querySelector('.header').innerHTML = `
+                <h1>🎬 WUI Creative Studio</h1>
+                <div class="user-info">
+                    <input type="text" id="login-user" placeholder="Usuario" style="padding: 0.5rem;">
+                    <input type="password" id="login-pass" placeholder="Contraseña" style="padding: 0.5rem;">
+                    <button class="btn btn-primary" onclick="login()">Login</button>
+                </div>
+            `;
+        }
+        
+        async function login() {
+            const user = document.getElementById('login-user').value;
+            const pass = document.getElementById('login-pass').value;
+            
+            const res = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username: user, password: pass})
+            });
+            
+            if (res.ok) {
+                const data = await res.json();
+                token = data.access_token;
+                localStorage.setItem('wui_token', token);
+                location.reload();
+            } else {
+                alert('Credenciales incorrectas');
+            }
+        }
+        
+        function logout() {
+            localStorage.removeItem('wui_token');
+            location.reload();
+        }
+        
+        function showPanel(panelId) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('panel-' + panelId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        
+        async function apiCall(endpoint, data) {
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(data)
+            });
+            return res.json();
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('¡Copiado!');
+        }
+        
+        async function generateStorming() {
+            const tema = document.getElementById('storming-tema').value;
+            if (!tema) return alert('Ingresa un tema');
+            
+            document.getElementById('storming-output').innerHTML = '<span class="loading"></span> Generando...';
+            
+            const data = await apiCall('/api/creative/generate', {
+                template_name: 'storming',
+                variables: { tema: tema }
+            });
+            
+            document.getElementById('storming-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        }
+        
+        async function generateClassification() {
+            const ideas = document.getElementById('classification-ideas').value;
+            if (!ideas) return alert('Pega las ideas');
+            
+            document.getElementById('classification-output').innerHTML = '<span class="loading"></span> Clasificando...';
+            
+            const data = await apiCall('/api/creative/generate', {
+                template_name: 'classification',
+                variables: { lista_ideas: ideas }
+            });
+            
+            document.getElementById('classification-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        }
+        
+        async function generateDevelopment() {
+            const titulo = document.getElementById('development-titulo').value;
+            const concepto = document.getElementById('development-concepto').value;
+            const duracion = document.getElementById('development-duracion').value;
+            
+            if (!titulo || !concepto) return alert('Completa título y concepto');
+            
+            document.getElementById('development-output').innerHTML = '<span class="loading"></span> Desarrollando guion...';
+            
+            const data = await apiCall('/api/creative/generate', {
+                template_name: 'development',
+                variables: { titulo, concepto, duracion }
+            });
+            
+            document.getElementById('development-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        }
+        
+        async function generateGraphic() {
+            const titulo = document.getElementById('graphic-titulo').value;
+            const escena = document.getElementById('graphic-escena').value;
+            const momento = document.getElementById('graphic-momento').value;
+            
+            if (!escena) return alert('Describe la escena');
+            
+            document.getElementById('graphic-output').innerHTML = '<span class="loading"></span> Generando prompts Flux...';
+            
+            const data = await apiCall('/api/creative/generate', {
+                template_name: 'scene_graphic',
+                variables: { titulo, descripcion_escena: escena, momento }
+            });
+            
+            document.getElementById('graphic-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        }
+        
+        async function generateVideo() {
+            const titulo = document.getElementById('video-titulo').value;
+            const escena = document.getElementById('video-escena').value;
+            const prompt_imagen = document.getElementById('video-prompt-imagen').value;
+            
+            if (!escena) return alert('Describe la escena');
+            
+            document.getElementById('video-output').innerHTML = '<span class="loading"></span> Generando prompt Wan...';
+            
+            const data = await apiCall('/api/creative/generate', {
+                template_name: 'scene_video',
+                variables: { titulo, descripcion_escena: escena, prompt_imagen }
+            });
+            
+            document.getElementById('video-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        }
+        
+        async function generateConversation() {
+            const texto = document.getElementById('conversation-texto').value;
+            if (!texto) return alert('Pega el texto');
+            
+            document.getElementById('conversation-output').innerHTML = '<span class="loading"></span> Traduciendo...';
+            
+            const data = await apiCall('/api/creative/generate', {
+                template_name: 'conversation_to_visual',
+                variables: { texto_a_visualizar: texto }
+            });
+            
+            document.getElementById('conversation-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        }
+    </script>
+</body>
+</html>

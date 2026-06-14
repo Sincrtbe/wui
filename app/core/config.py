@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     APP_NAME: str = "Wui v2"
     ADMIN_USER: str = os.getenv("ADMIN_USER", "admin")
     ADMIN_PASS_HASH: str = os.getenv(
-        "ADMIN_PASS_HASH", "$2b$12$EXAMPLEHASHFORADMINPASS"
+        "ADMIN_PASS_HASH", "$2b$12$WApznUPhDubN0oeveSXHp.s7DS3MijWjj5KqZaMLi.ODqO8JOgmAi"
     )
     SECRET_KEY: str = os.getenv("SECRET_KEY", "super-secret-key")
     ALGORITHM: str = "HS256"
@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     # Server
     DEBUG: bool = os.getenv("DEBUG", "true").lower() == "true"
     HOST: str = os.getenv("HOST", "0.0.0.0")
-    PORT: int = int(os.getenv("PORT", "8000"))
+    PORT: int = int(os.getenv("PORT", "9080"))
 
     class Config:
         env_file = ".env"

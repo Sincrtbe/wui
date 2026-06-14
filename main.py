@@ -13,6 +13,9 @@ from fastapi.staticfiles import StaticFiles
 
 from app.core.config import settings
 from app.core.json_data_manager import init_default_config
+from app.api.auth import router as auth_router
+from app.api.channels import router as channels_router
+from app.api.creative import router as creative_router
 
 
 @asynccontextmanager
@@ -35,7 +38,7 @@ app = FastAPI(
 # ── CORS (ajustar en producción) ──────────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000", "http://127.0.0.1:8000"],
+    allow_origins=["http://localhost:9080", "http://127.0.0.1:9080"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -62,6 +65,12 @@ async def api_ready():
         "version": app.version,
         "debug": settings.DEBUG,
     }
+
+
+# ── Registro de routers ──────────────────────────────────────────────────────
+app.include_router(auth_router)
+app.include_router(channels_router)
+app.include_router(creative_router)
 
 
 @app.exception_handler(Exception)
