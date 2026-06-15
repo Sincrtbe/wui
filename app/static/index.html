@@ -766,6 +766,12 @@
                     <div class="nav-item" onclick="showPanel('conversation')">
                         <span class="icon">🔄</span> Texto a Visual
                     </div>
+                    <div class="nav-item" onclick="showPanel('characters')">
+                        <span class="icon">👥</span> Personajes
+                    </div>
+                    <div class="nav-item" onclick="showPanel('config')">
+                        <span class="icon">⚙️</span> Configuración
+                    </div>
                 </div>
                 <div class="main">
                     <div id="panel-storming" class="panel active">
@@ -918,10 +924,113 @@
                             <h4>Prompts Visuales</h4>
                             <div id="conversation-output" class="output-box">Los prompts visuales aparecerán aquí...</div>
                         </div>
+                    <div id="panel-characters" class="panel">
+                        <div class="card">
+                            <h3>👥 Crear Personaje</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Define personajes para usar en tus videos y combínalos con prompts.</p>
+                            <div class="form-group">
+                                <label>Nombre del personaje</label>
+                                <input type="text" id="char-name" placeholder="Ej: Juan, La Guía del Viajero">
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea id="char-description" placeholder="Describe quién es este personaje..."></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Personalidad</label>
+                                    <textarea id="char-personality" placeholder="Cómo es su personalidad..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Apariencia</label>
+                                    <textarea id="char-appearance" placeholder="Cómo se ve físicamente..."></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Trasfondo</label>
+                                <textarea id="char-background" placeholder="Su historia y contexto..."></textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="createCharacter()">Crear Personaje</button>
+                        </div>
+                        <div class="card">
+                            <h4>Personajes Guardados</h4>
+                            <div id="characters-list" style="display: grid; gap: 1rem;">Cargando personajes...</div>
+                        </div>
+                    </div>
+                    
+                    <div id="panel-config" class="panel">
+                        <div class="card">
+                            <h3>⚙️ Configuración de APIs</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Gestiona tus claves de API y endpoints.</p>
+                            <div class="form-group">
+                                <label>YouTube API Key</label>
+                                <input type="password" id="config-youtube-key" placeholder="Tu YouTube API Key">
+                            </div>
+                            <div class="form-group">
+                                <label>LLM API Key</label>
+                                <input type="password" id="config-llm-key" placeholder="Tu LLM API Key">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>LLM Endpoint</label>
+                                    <input type="text" id="config-llm-endpoint" placeholder="http://localhost:11434">
+                                </div>
+                                <div class="form-group">
+                                    <label>LLM Model</label>
+                                    <input type="text" id="config-llm-model" placeholder="llama2">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Flux Endpoint</label>
+                                    <input type="text" id="config-flux-endpoint" placeholder="http://localhost:7860">
+                                </div>
+                                <div class="form-group">
+                                    <label>Wan Endpoint</label>
+                                    <input type="text" id="config-wan-endpoint" placeholder="http://localhost:7861">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Qwen Endpoint</label>
+                                <input type="text" id="config-qwen-endpoint" placeholder="http://localhost:8080">
+                            </div>
+                            <button class="btn btn-primary" onclick="saveAPIConfig()">Guardar Configuración</button>
+                            <p id="config-message" style="margin-top: 1rem; display: none;"></p>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>📋 Gestionar Prompts Personalizados</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Crea y asigna prompts personalizados a tus pestañas.</p>
+                            <div class="form-group">
+                                <label>Nombre del Prompt</label>
+                                <input type="text" id="prompt-name" placeholder="Ej: Mi Prompt Especial">
+                            </div>
+                            <div class="form-group">
+                                <label>Contenido del Prompt</label>
+                                <textarea id="prompt-content" placeholder="Escribe el contenido del prompt con variables entre {{llaves}}"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Categoría</label>
+                                    <input type="text" id="prompt-category" placeholder="general">
+                                </div>
+                                <div class="form-group">
+                                    <label>Descripción</label>
+                                    <input type="text" id="prompt-description" placeholder="Breve descripción">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" onclick="createCustomPrompt()">Guardar Prompt</button>
+                        </div>
+                        
+                        <div class="card">
+                            <h4>Prompts Guardados</h4>
+                            <div id="prompts-list" style="display: grid; gap: 1rem;">Cargando prompts...</div>
+                        </div>
                     </div>
                 </div>
             `;
             document.body.appendChild(appContainer);
+            loadConfigData();
         }
         
         // ── Mostrar landing (elimina la app del DOM) ──────────────────
@@ -1060,6 +1169,238 @@
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
         }
         
+        // ── FUNCIONES PARA CONFIGURACIÓN ─────────────────────────────────
+        
+        async function loadAPIConfig() {
+            const res = await fetch('/api/config/api-config', {
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            if (res.ok) {
+                const config = await res.json();
+                document.getElementById('config-youtube-key').value = config.youtube_api_key || '';
+                document.getElementById('config-llm-key').value = config.llm_api_key || '';
+                document.getElementById('config-llm-endpoint').value = config.llm_endpoint || '';
+                document.getElementById('config-llm-model').value = config.llm_model || '';
+                document.getElementById('config-flux-endpoint').value = config.flux_endpoint || '';
+                document.getElementById('config-wan-endpoint').value = config.wan_endpoint || '';
+                document.getElementById('config-qwen-endpoint').value = config.qwen_endpoint || '';
+            }
+        }
+        
+        async function saveAPIConfig() {
+            const config = {
+                youtube_api_key: document.getElementById('config-youtube-key').value,
+                llm_api_key: document.getElementById('config-llm-key').value,
+                llm_endpoint: document.getElementById('config-llm-endpoint').value,
+                llm_model: document.getElementById('config-llm-model').value,
+                flux_endpoint: document.getElementById('config-flux-endpoint').value,
+                wan_endpoint: document.getElementById('config-wan-endpoint').value,
+                qwen_endpoint: document.getElementById('config-qwen-endpoint').value,
+            };
+            
+            const res = await fetch('/api/config/api-config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(config)
+            });
+            
+            const msgEl = document.getElementById('config-message');
+            if (res.ok) {
+                msgEl.textContent = '✓ Configuración guardada correctamente';
+                msgEl.style.color = 'var(--success)';
+                msgEl.style.display = 'block';
+                setTimeout(() => msgEl.style.display = 'none', 3000);
+            } else {
+                msgEl.textContent = '✗ Error al guardar la configuración';
+                msgEl.style.color = 'var(--danger)';
+                msgEl.style.display = 'block';
+            }
+        }
+        
+        // ── FUNCIONES PARA PROMPTS PERSONALIZADOS ─────────────────────────
+        
+        async function createCustomPrompt() {
+            const name = document.getElementById('prompt-name').value;
+            const content = document.getElementById('prompt-content').value;
+            const category = document.getElementById('prompt-category').value || 'general';
+            const description = document.getElementById('prompt-description').value;
+            
+            if (!name || !content) {
+                alert('Por favor completa nombre y contenido del prompt');
+                return;
+            }
+            
+            const res = await fetch('/api/config/prompts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({
+                    name,
+                    content,
+                    category,
+                    description,
+                    assigned_to: []
+                })
+            });
+            
+            if (res.ok) {
+                alert('✓ Prompt guardado correctamente');
+                document.getElementById('prompt-name').value = '';
+                document.getElementById('prompt-content').value = '';
+                document.getElementById('prompt-category').value = 'general';
+                document.getElementById('prompt-description').value = '';
+                loadCustomPrompts();
+            } else {
+                alert('✗ Error al guardar el prompt');
+            }
+        }
+        
+        async function loadCustomPrompts() {
+            const res = await fetch('/api/config/prompts', {
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            
+            if (res.ok) {
+                const prompts = await res.json();
+                const listEl = document.getElementById('prompts-list');
+                
+                if (prompts.length === 0) {
+                    listEl.innerHTML = '<p style="color: var(--text-secondary);">No hay prompts guardados aún</p>';
+                    return;
+                }
+                
+                listEl.innerHTML = prompts.map(p => `
+                    <div style="background: var(--bg-input); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                            <div>
+                                <h4 style="margin: 0; color: var(--accent);">${p.name}</h4>
+                                <p style="margin: 0.25rem 0; font-size: 0.85rem; color: var(--text-secondary);">${p.category}</p>
+                            </div>
+                            <button class="btn btn-danger" onclick="deleteCustomPrompt('${p.id}')" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Eliminar</button>
+                        </div>
+                        <p style="margin: 0.5rem 0; font-size: 0.9rem; color: var(--text-secondary);">${p.description}</p>
+                        <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem; max-height: 100px; overflow-y: auto; color: var(--text-primary);">${p.content.substring(0, 150)}...</div>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        async function deleteCustomPrompt(promptId) {
+            if (!confirm('¿Estás seguro de que deseas eliminar este prompt?')) return;
+            
+            const res = await fetch(`/api/config/prompts/${promptId}`, {
+                method: 'DELETE',
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            
+            if (res.ok) {
+                alert('✓ Prompt eliminado');
+                loadCustomPrompts();
+            } else {
+                alert('✗ Error al eliminar el prompt');
+            }
+        }
+        
+        // ── FUNCIONES PARA PERSONAJES ────────────────────────────────────
+        
+        async function createCharacter() {
+            const name = document.getElementById('char-name').value;
+            const description = document.getElementById('char-description').value;
+            const personality = document.getElementById('char-personality').value;
+            const appearance = document.getElementById('char-appearance').value;
+            const background = document.getElementById('char-background').value;
+            
+            if (!name || !description) {
+                alert('Por favor completa nombre y descripción');
+                return;
+            }
+            
+            const res = await fetch('/api/config/characters', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({
+                    name,
+                    description,
+                    personality,
+                    appearance,
+                    background,
+                    associated_prompts: []
+                })
+            });
+            
+            if (res.ok) {
+                alert('✓ Personaje creado correctamente');
+                document.getElementById('char-name').value = '';
+                document.getElementById('char-description').value = '';
+                document.getElementById('char-personality').value = '';
+                document.getElementById('char-appearance').value = '';
+                document.getElementById('char-background').value = '';
+                loadCharacters();
+            } else {
+                alert('✗ Error al crear el personaje');
+            }
+        }
+        
+        async function loadCharacters() {
+            const res = await fetch('/api/config/characters', {
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            
+            if (res.ok) {
+                const characters = await res.json();
+                const listEl = document.getElementById('characters-list');
+                
+                if (characters.length === 0) {
+                    listEl.innerHTML = '<p style="color: var(--text-secondary);">No hay personajes creados aún</p>';
+                    return;
+                }
+                
+                listEl.innerHTML = characters.map(c => `
+                    <div style="background: var(--bg-input); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                            <h4 style="margin: 0; color: var(--accent);">${c.name}</h4>
+                            <button class="btn btn-danger" onclick="deleteCharacter('${c.id}')" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Eliminar</button>
+                        </div>
+                        <p style="margin: 0.5rem 0; font-size: 0.9rem; color: var(--text-secondary);">${c.description}</p>
+                        ${c.personality ? `<p style="margin: 0.25rem 0; font-size: 0.85rem;"><strong>Personalidad:</strong> ${c.personality.substring(0, 100)}...</p>` : ''}
+                        ${c.appearance ? `<p style="margin: 0.25rem 0; font-size: 0.85rem;"><strong>Apariencia:</strong> ${c.appearance.substring(0, 100)}...</p>` : ''}
+                    </div>
+                `).join('');
+            }
+        }
+        
+        async function deleteCharacter(characterId) {
+            if (!confirm('¿Estás seguro de que deseas eliminar este personaje?')) return;
+            
+            const res = await fetch(`/api/config/characters/${characterId}`, {
+                method: 'DELETE',
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            
+            if (res.ok) {
+                alert('✓ Personaje eliminado');
+                loadCharacters();
+            } else {
+                alert('✗ Error al eliminar el personaje');
+            }
+        }
+        
+        // ── CARGAR DATOS AL MOSTRAR LA APP ───────────────────────────────
+        
+        function loadConfigData() {
+            loadAPIConfig();
+            loadCustomPrompts();
+            loadCharacters();
+        }
+
         async function generateConversation() {
             const texto = document.getElementById('conversation-texto').value;
             if (!texto) return alert('Pega el texto');

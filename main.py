@@ -16,6 +16,7 @@ from app.core.json_data_manager import init_default_config
 from app.api.auth import router as auth_router
 from app.api.channels import router as channels_router
 from app.api.creative import router as creative_router
+from app.api.config import router as config_router
 
 
 @asynccontextmanager
@@ -71,6 +72,7 @@ async def api_ready():
 app.include_router(auth_router)
 app.include_router(channels_router)
 app.include_router(creative_router)
+app.include_router(config_router)
 
 
 @app.exception_handler(Exception)
