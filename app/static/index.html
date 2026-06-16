@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WUI v2 - Creative Studio</title>
+    <link rel="icon" type="image/x-icon" href="/ui/favicon.ico">
+    <link rel="apple-touch-icon" href="/ui/logo.png">
     <style>
         :root {
             --bg-primary: #ffffff;
@@ -585,7 +587,10 @@
 </head>
 <body>
     <div class="header">
-        <h1>🎬 WUI Creative Studio</h1>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="/ui/logo.png" alt="WUI Logo" style="width: 40px; height: 40px; border-radius: 8px;">
+            <h1 style="margin: 0;">WUI Creative Studio</h1>
+        </div>
         <div class="header-right">
             <div class="auth-container">
                 <button id="btn-identify" class="btn-identify" onclick="toggleAuthDropdown()">
