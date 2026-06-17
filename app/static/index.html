@@ -701,6 +701,35 @@
             await performLogin(user, pass, 'login-error-card');
         }
         
+        // Agregar soporte para tecla Enter en los campos de login
+        function setupLoginKeyboardSupport() {
+            const loginUserField = document.getElementById('login-user');
+            const loginPassField = document.getElementById('login-pass');
+            const loginUserCardField = document.getElementById('login-user-card');
+            const loginPassCardField = document.getElementById('login-pass-card');
+            
+            if (loginUserField && loginPassField) {
+                loginUserField.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') login();
+                });
+                loginPassField.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') login();
+                });
+            }
+            
+            if (loginUserCardField && loginPassCardField) {
+                loginUserCardField.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') loginFromCard();
+                });
+                loginPassCardField.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') loginFromCard();
+                });
+            }
+        }
+        
+        // Ejecutar al cargar el DOM
+        setupLoginKeyboardSupport();
+        
         async function performLogin(user, pass, errorId) {
             const errorMsg = document.getElementById(errorId);
             errorMsg.style.display = 'none';
@@ -1036,6 +1065,13 @@
             `;
             document.body.appendChild(appContainer);
             loadConfigData();
+            
+            // Inicializar datos de configuración, personajes y prompts
+            setTimeout(() => {
+                if (typeof initConfigPanel === 'function') {
+                    initConfigPanel();
+                }
+            }, 300);
         }
         
         // ── Mostrar landing (elimina la app del DOM) ──────────────────
