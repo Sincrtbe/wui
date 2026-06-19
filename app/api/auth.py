@@ -8,6 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from app.schemas.auth import AuthRequest, TokenResponse
 from app.services.auth_service import verify_password, create_access_token, hash_password
 from app.core.json_data_manager import read_global_config, write_global_config
+from app.api.dependencies import get_current_user
 
 router = APIRouter(prefix="/api/auth", tags=["Autenticación"])
 
@@ -50,6 +51,12 @@ async def login(credentials: AuthRequest):
         token_type="bearer",
         expires_in=1800,  # 30 minutos
     )
+
+
+@router.get("/me")
+async def get_current_user_info(current_user: dict = Depends(get_current_user)):
+    """Obtener información del usuario actual (valida el token)."""
+    return current_user
 
 
 @router.post("/register")

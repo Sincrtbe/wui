@@ -669,14 +669,15 @@
          ═══════════════════════════════════════════════════════════ -->
     <script>
         let token = localStorage.getItem('wui_token');
+        let _savedUsername = null;
         
-        // ── Funciones de autenticación ────────────────────────────────
+        //  ── Funciones de autenticación ────────────────────────────────
         function toggleAuthDropdown() {
             const dropdown = document.getElementById('auth-dropdown');
             dropdown.classList.toggle('active');
         }
         
-        // Cerrar dropdown al hacer clic afuera
+        //  Cerrar dropdown al hacer clic afuera
         document.addEventListener('click', function(event) {
             const authContainer = document.querySelector('.auth-container');
             if (!authContainer.contains(event.target)) {
@@ -716,6 +717,7 @@
                 const data = await res.json();
                 token = data.access_token;
                 localStorage.setItem('wui_token', token);
+                _savedUsername = user;
                 showApp();
             } else {
                 errorMsg.textContent = 'Credenciales incorrectas';
@@ -723,26 +725,66 @@
             }
         }
         
+        //  ── Navegación con tecla Enter en formularios de login ──────────
+        document.addEventListener('keydown', function(e) {
+            const dropdown = document.getElementById('auth-dropdown');
+            if (dropdown && dropdown.classList.contains('active')) {
+                const dropdownUser = document.getElementById('login-user');
+                const dropdownPass = document.getElementById('login-pass');
+                if (e.target === dropdownUser) {
+                    if (e.key === 'Enter') { e.preventDefault(); dropdownPass.focus(); }
+                } else if (e.target === dropdownPass) {
+                    if (e.key === 'Enter') { e.preventDefault(); login(); }
+                }
+            }
+            // Login desde landing card
+            if (e.target.id === 'login-user-card' && e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('login-pass-card').focus();
+            } else if (e.target.id === 'login-pass-card' && e.key === 'Enter') {
+                e.preventDefault();
+                loginFromCard();
+            }
+        });
+        
         function logout() {
             localStorage.removeItem('wui_token');
+            _savedUsername = null;
             token = null;
             showLanding();
         }
         
-        // ── Mostrar app (inyecta los paneles en el DOM) ───────────────
-        function showApp() {
+         //  ── Mostrar app (inyecta los paneles en el DOM) ───────────────
+        async function showApp() {
+            //  Primero validar el token con el backend ANTES de modificar el DOM
+            let username = _savedUsername || 'Usuario';
+            try {
+                const res = await fetch('/api/auth/me', {
+                    headers: {'Authorization': 'Bearer ' + token}
+                });
+                if (!res.ok) {
+                    // Token inválido o expirado — logout
+                    logout();
+                    return;
+                }
+                const user = await res.json();
+                username = user.username || username;
+            } catch(e) {
+                // Error de red — logout
+                logout();
+                return;
+            }
+            
+            //  Token válido — ahora sí modificar el DOM
             const landing = document.getElementById('landing-page');
             if (landing) landing.remove();
             
             document.getElementById('btn-identify').classList.add('hidden');
             document.getElementById('user-display').classList.remove('hidden');
             document.getElementById('btn-logout').classList.remove('hidden');
+            document.getElementById('user-name').textContent = username;
             
-            // Obtener nombre de usuario
-            const user = document.getElementById('login-user').value || document.getElementById('login-user-card').value || 'Usuario';
-            document.getElementById('user-name').textContent = user;
-            
-            // Inyectar el contenedor de la app (sidebar + paneles)
+            //  Inyectar el contenedor de la app (sidebar + paneles)
             const appContainer = document.createElement('div');
             appContainer.id = 'app-container';
             appContainer.className = 'container';
@@ -1087,7 +1129,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>LLM Endpoint</label>
-                                    <input type="text" id="config-llm-endpoint" placeholder="http://localhost:11434">
+                                    <input type="text" id="config-llm-endpoint" placeholder="http:// localhost:11434">
                                 </div>
                                 <div class="form-group">
                                     <label>LLM Model</label>
@@ -1097,16 +1139,16 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Flux Endpoint</label>
-                                    <input type="text" id="config-flux-endpoint" placeholder="http://localhost:7860">
+                                    <input type="text" id="config-flux-endpoint" placeholder="http:// localhost:7860">
                                 </div>
                                 <div class="form-group">
                                     <label>Wan Endpoint</label>
-                                    <input type="text" id="config-wan-endpoint" placeholder="http://localhost:7861">
+                                    <input type="text" id="config-wan-endpoint" placeholder="http:// localhost:7861">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Qwen Endpoint</label>
-                                <input type="text" id="config-qwen-endpoint" placeholder="http://localhost:8080">
+                                <input type="text" id="config-qwen-endpoint" placeholder="http:// localhost:8080">
                             </div>
                             <button class="btn btn-primary" onclick="saveAPIConfig()">Guardar Configuración</button>
                             <p id="config-message" style="margin-top: 1rem; display: none;"></p>
@@ -1147,7 +1189,7 @@
             loadConfigData();
         }
         
-        // ── Mostrar landing (elimina la app del DOM) ──────────────────
+        //  ── Mostrar landing (elimina la app del DOM) ──────────────────
         function showLanding() {
             const app = document.getElementById('app-container');
             if (app) app.remove();
@@ -1156,7 +1198,7 @@
             document.getElementById('user-display').classList.add('hidden');
             document.getElementById('btn-logout').classList.add('hidden');
             
-            // Limpiar inputs
+            //  Limpiar inputs
             document.getElementById('login-user').value = '';
             document.getElementById('login-pass').value = '';
             document.getElementById('login-user-card').value = '';
@@ -1170,7 +1212,7 @@
             landing.classList.remove('hidden');
         }
         
-        // ── Inicialización ────────────────────────────────────────────
+        //  ── Inicialización ────────────────────────────────────────────
         if (token) {
             showApp();
         }
@@ -1217,12 +1259,8 @@
             
             document.getElementById('storming-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        });
-            
-            document.getElementById('storming-output').innerHTML = 
-                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        }
         
+        }
                 async function generateClassification() {
             const ideas = document.getElementById('classification-ideas').value;
             if (!ideas) return alert('Por favor completa los campos');
@@ -1241,12 +1279,8 @@
             
             document.getElementById('classification-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        });
-            
-            document.getElementById('classification-output').innerHTML = 
-                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        }
         
+        }
                 async function generateDevelopment() {
             const concepto = document.getElementById('development-concepto').value;
             if (!concepto) return alert('Por favor completa los campos');
@@ -1265,15 +1299,11 @@
             
             document.getElementById('development-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        });
-            
-            document.getElementById('development-output').innerHTML = 
-                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
         }
         
                 async function generateGraphic() {
             const titulo = document.getElementById('graphic-titulo').value;
-            const descripcion_escena = document.getElementById('graphic-descripcion-escena').value;
+            const descripcion_escena = document.getElementById('graphic-escena').value;
             const momento = document.getElementById('graphic-momento').value;
             if (!titulo || !descripcion_escena || !momento) return alert('Por favor completa los campos');
             
@@ -1288,10 +1318,6 @@
                 custom_prompt_id,
                 character_id
             });
-            
-            document.getElementById('graphic-output').innerHTML = 
-                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        });
             
             document.getElementById('graphic-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
@@ -1317,13 +1343,9 @@
             
             document.getElementById('video-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        });
-            
-            document.getElementById('video-output').innerHTML = 
-                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        }
         
-        // ── FUNCIONES PARA CONFIGURACIÓN ─────────────────────────────────
+        }
+        //  ── FUNCIONES PARA CONFIGURACIÓN ─────────────────────────────────
         
         async function loadAPIConfig() {
             const res = await fetch('/api/config/api-config', {
@@ -1374,7 +1396,7 @@
             }
         }
         
-        // ── FUNCIONES PARA PROMPTS PERSONALIZADOS ─────────────────────────
+        //  ── FUNCIONES PARA PROMPTS PERSONALIZADOS ─────────────────────────
         
         async function createCustomPrompt() {
             const name = document.getElementById('prompt-name').value;
@@ -1460,7 +1482,7 @@
             }
         }
         
-        // ── FUNCIONES PARA PERSONAJES ────────────────────────────────────
+        //  ── FUNCIONES PARA PERSONAJES ────────────────────────────────────
         
         async function createCharacter() {
             const name = document.getElementById('char-name').value;
@@ -1547,15 +1569,15 @@
             }
         }
         
-        // ── CARGAR DATOS AL MOSTRAR LA APP ───────────────────────────────
+        //  ── CARGAR DATOS AL MOSTRAR LA APP ───────────────────────────────
         
-        // ── FUNCIONES DE INTEGRACIÓN DE PROMPTS Y PERSONAJES ──────────────
+        //  ── FUNCIONES DE INTEGRACIÓN DE PROMPTS Y PERSONAJES ──────────────
         
-        // Contexto global para almacenar selecciones
+        //  Contexto global para almacenar selecciones
         let generationContext = {};
         
         async function populatePromptSelectors() {
-            """Llena los selectores de prompts en todos los paneles."""
+            // Llena los selectores de prompts en todos los paneles.
             const res = await fetch('/api/config/prompts', {
                 headers: {'Authorization': 'Bearer ' + token}
             });
@@ -1569,10 +1591,10 @@
                 const selectEl = document.getElementById(`${panel}-custom-prompt`);
                 if (!selectEl) continue;
                 
-                // Limpiar opciones previas
+                //  Limpiar opciones previas
                 selectEl.innerHTML = '<option value="">-- Sin prompt personalizado --</option>';
                 
-                // Agregar prompts disponibles
+                //  Agregar prompts disponibles
                 prompts.forEach(prompt => {
                     const option = document.createElement('option');
                     option.value = prompt.id;
@@ -1583,7 +1605,7 @@
         }
         
         async function populateCharacterSelectors() {
-            """Llena los selectores de personajes en todos los paneles."""
+            // Llena los selectores de personajes en todos los paneles.
             const res = await fetch('/api/config/characters', {
                 headers: {'Authorization': 'Bearer ' + token}
             });
@@ -1597,10 +1619,10 @@
                 const selectEl = document.getElementById(`${panel}-character`);
                 if (!selectEl) continue;
                 
-                // Limpiar opciones previas
+                //  Limpiar opciones previas
                 selectEl.innerHTML = '<option value="">-- Sin personaje --</option>';
                 
-                // Agregar personajes disponibles
+                //  Agregar personajes disponibles
                 characters.forEach(char => {
                     const option = document.createElement('option');
                     option.value = char.id;
@@ -1611,7 +1633,7 @@
         }
         
         async function loadCustomPromptContent(panelId) {
-            """Carga el contenido de un prompt personalizado seleccionado."""
+            // Carga el contenido de un prompt personalizado seleccionado.
             const selectEl = document.getElementById(`${panelId}-custom-prompt`);
             const promptId = selectEl.value;
             
@@ -1629,7 +1651,7 @@
                 const prompt = await res.json();
                 generationContext[panelId] = { ...generationContext[panelId], customPrompt: prompt };
                 
-                // Mostrar contexto
+                //  Mostrar contexto
                 const displayEl = document.getElementById(`${panelId}-context-display`);
                 const textEl = document.getElementById(`${panelId}-context-text`);
                 textEl.textContent = `Prompt: "${prompt.name}" - ${prompt.category}`;
@@ -1638,7 +1660,7 @@
         }
         
         async function loadCharacterContext(panelId) {
-            """Carga el contexto de un personaje seleccionado."""
+            // Carga el contexto de un personaje seleccionado.
             const selectEl = document.getElementById(`${panelId}-character`);
             const characterId = selectEl.value;
             
@@ -1658,7 +1680,7 @@
                 const character = await res.json();
                 generationContext[panelId] = { ...generationContext[panelId], character };
                 
-                // Mostrar contexto
+                //  Mostrar contexto
                 const displayEl = document.getElementById(`${panelId}-context-display`);
                 const textEl = document.getElementById(`${panelId}-context-text`);
                 textEl.textContent = `Personaje: "${character.name}" - ${character.description.substring(0, 100)}...`;
@@ -1667,12 +1689,12 @@
         }
         
         function getGenerationContext(panelId) {
-            """Obtiene el contexto de generación para un panel."""
+            // Obtiene el contexto de generación para un panel.
             return generationContext[panelId] || { customPrompt: null, character: null };
         }
         
         function buildContextPrompt(panelId) {
-            """Construye un prompt de contexto basado en prompts y personajes seleccionados."""
+            // Construye un prompt de contexto basado en prompts y personajes seleccionados.
             const ctx = getGenerationContext(panelId);
             let contextPrompt = '';
             
@@ -1691,12 +1713,12 @@
             return contextPrompt;
         }
         
-        // Actualizar las funciones de generación para incluir contexto
+        //  Actualizar las funciones de generación para incluir contexto
         async function generateStormingWithContext() {
             const tema = document.getElementById('storming-tema').value;
             if (!tema) return alert('Ingresa un tema');
             
-            // Obtener contexto
+            //  Obtener contexto
             const contextPrompt = buildContextPrompt('storming');
             const fullTema = contextPrompt + tema;
             
@@ -1711,11 +1733,11 @@
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
         }
         
-        // Reemplazar la función generateStorming original
+        //  Reemplazar la función generateStorming original
         const originalGenerateStorming = generateStorming;
         generateStorming = generateStormingWithContext;
         
-        // Inicializar selectores cuando se carga la app
+        //  Inicializar selectores cuando se carga la app
         function initializeSelectors() {
             populatePromptSelectors();
             populateCharacterSelectors();
@@ -1743,10 +1765,6 @@
                 custom_prompt_id,
                 character_id
             });
-            
-            document.getElementById('conversation-output').innerHTML = 
-                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
-        });
             
             document.getElementById('conversation-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
