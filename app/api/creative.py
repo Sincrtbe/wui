@@ -24,6 +24,8 @@ class PromptRequest(BaseModel):
     """Solicitud para generar un prompt."""
     template_name: str = Field(..., min_length=1, description="Nombre de la plantilla (ej: 'storming')")
     variables: dict = Field(default_factory=dict, description="Variables para la plantilla")
+    custom_prompt_id: Optional[str] = None
+    character_id: Optional[str] = None
     
     # Campos opcionales según el tipo de template
     tema: Optional[str] = None
@@ -81,23 +83,49 @@ async def get_template(template_name: str, _user: dict = Depends(get_current_act
 async def generate_prompt(request: PromptRequest, _user: dict = Depends(get_current_active_user)):
     """
     Genera un prompt rellenando una plantilla con variables.
+    Soporta inyección de prompts personalizados y contexto de personajes.
     
     Los prompts generados están optimizados para:
     - Qwen3 35B A3B → Textos, guiones, lluvia de ideas
     - Flux 2.0 → Imágenes estáticas
     - Wan 2.2 → Videos cortos
     """
+    from app.services.config_service import get_custom_prompt, get_character
+    
     # Construir variables completas
     variables = {**request.variables}
     for key, value in request.model_dump().items():
-        if key not in ("template_name", "variables") and value is not None:
+        if key not in ("template_name", "variables", "custom_prompt_id", "character_id") and value is not None:
             variables[key] = value
+    
+    # Inyectar contexto de personaje si está disponible
+    context_prefix = ""
+    if request.character_id:
+        character = get_character(request.character_id)
+        if character:
+            context_prefix = f"""Personaje: {character.get('name', '')}
+            Descripción: {character.get('description', '')}
+            Personalidad: {character.get('personality', '')}
+            Apariencia: {character.get('appearance', '')}
+            Trasfondo: {character.get('background', '')}
+            
+            """
+    
+    # Inyectar prompt personalizado si está disponible
+    if request.custom_prompt_id:
+        custom_prompt = get_custom_prompt(request.custom_prompt_id)
+        if custom_prompt:
+            context_prefix += f"Instrucción personalizada: {custom_prompt.get('content', '')}\n\n"
     
     # Generar el prompt
     try:
         prompt = render_template(request.template_name, variables)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+    # Agregar contexto al inicio del prompt
+    if context_prefix:
+        prompt = context_prefix + prompt
     
     # Determinar modelo sugerido
     model_map = {

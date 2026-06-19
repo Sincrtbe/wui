@@ -1,97 +1,204 @@
-# Wui - Plataforma de Automatización de YouTube
+# WUI v2 - Creative Studio
 
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-blue)](https://fastapi.tiangolo.com)
-[![Python](https://img.shields.io/badge/Python-3.x-green)](https://www.python.org)
-[![SQLite](https://img.shields.io/badge/Database-SQLite-lightgray)](https://www.sqlite.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-latest-blue)](https://fastapi.tiangolo.com)
+[![Python](https://img.shields.io/badge/Python-3.11+-green)](https://www.python.org)
+[![License](https://img.shields.io/badge/License-MIT-lightgray)](LICENSE)
 
 ## 📋 Descripción
 
-Wui es una plataforma local de automatización para la gestión de múltiples canales de YouTube. Permite gestionar canales, crear contenido, programar publicaciones, analizar métricas, automatizar flujos de trabajo y gestionar una biblioteca de prompts con IA.
+**WUI v2** es una plataforma moderna y profesional de automatización creativa para YouTube. Diseñada para creadores de contenido, permite generar ideas, guiones, prompts para imágenes (Flux 2.0) y videos (Wan 2.2) — todo integrado en un único flujo de trabajo intuitivo.
 
-## ✨ Funcionalidades
+## ✨ Funcionalidades Principales
 
-- **Gestión de Canales** - CRUD completo con datos extendidos, thumbnails, colores personalizados
-- **Programación de Publicaciones** - Videos largos, Shorts y artículos con frecuencia configurable
-- **Gestión de Contenido** - Flujo de trabajo: Idea → Guión → Desarrollo → Video
-- **Análisis y Métricas** - Suscriptores, vistas, gráficos de evolución e historial
-- **Biblioteca de Prompts** - Creación, gestión y rating de prompts con detección de variables
-- **Automatización** - Tareas programadas con APScheduler y workflows programables
-- **Dashboard** - Resumen general con calendario bimensual y filtros por canal
-- **Configuración Segura** - API keys almacenadas en `.env`, nunca en base de datos
-- **System Tray** - Icono en bandeja del sistema para control rápido
+### 🎬 Generación Creativa
+- **💡 Lluvia de Ideas** - Genera conceptos creativos innovadores basados en temas específicos
+- **📊 Clasificación Inteligente** - Evalúa y ordena ideas por potencial viral y esfuerzo de producción
+- **📝 Desarrollo de Guion** - Convierte ideas en guiones estructurados por duración
+- **🎨 Escenas Gráficas** - Genera prompts optimizados para Flux 2.0 (imágenes IA)
+- **🎬 Escenas de Video** - Crea prompts para Wan 2.2 (video IA) a partir de imágenes base
+- **🔄 Texto a Visual** - Traduce narración en prompts visuales listos para generar
 
-## 🚀 Instalación
+### 👥 Gestión de Personajes
+- Crear y definir personajes con personalidad, apariencia y trasfondo
+- Asociar prompts a personajes para reutilización consistente
+- Gestión completa con interfaz intuitiva
 
+### ⚙️ Configuración Avanzada
+- **Gestión de APIs** - Configura claves y endpoints para YouTube, LLM, Flux, Wan y Qwen
+- **Prompts Personalizados** - Crea, edita y asigna prompts a pestañas específicas
+- **Persistencia en JSON** - Todos los datos se guardan en archivos JSON organizados por entidad
+- **Interfaz Moderna** - Diseño limpio y profesional con UX mejorada
+
+## 🚀 Instalación y Uso
+
+### Requisitos
+- Python 3.11+
+- FastAPI 0.104.1+
+- Uvicorn 0.24.0+
+
+### Instalación
 ```bash
+git clone https://github.com/Sincrtbe/wui.git
+cd wui
 pip install -r requirements.txt
 ```
 
-## 🏃 Inicio
-
-### Opción 1: Batch file
-```cmd
-.\run_server.bat
-```
-
-### Opción 2: Manual
+### Inicio del Servidor
 ```bash
-uvicorn app.main:app --reload --port 9080
+uvicorn main:app --reload --port 9080
 ```
 
 ### Acceso
 - **UI Web:** http://127.0.0.1:9080/ui
 - **API Base:** http://127.0.0.1:9080
 - **Health Check:** http://127.0.0.1:9080/health
+- **Documentación API:** http://127.0.0.1:9080/docs
 
-## 📖 Flujo de Trabajo Recomendado
+## 📖 Flujo de Trabajo
 
-1. **Configurar API Key** → Configuración → Servicios → YouTube API Key
-2. **Crear canal** → Canales → Introducir nombre → Guardar
-3. **Configurar programación** → Seleccionar canal → Activar tipos → Configurar frecuencia
-4. **Generar calendario** → "Generar Mes Actual" y "Generar Mes Siguiente"
-5. **Gestionar contenido** → Crear ideas → Generar guiones → Asociar a publicaciones
+1. **Autenticación** - Inicia sesión con el botón "Identifícate" en la esquina superior izquierda
+2. **Configuración** - Accede a la pestaña ⚙️ para configurar tus APIs y crear prompts personalizados
+3. **Creación de Personajes** - Define personajes en la pestaña 👥 para usarlos en tus videos
+4. **Generación Creativa** - Usa cualquiera de las 6 pestañas de generación para crear contenido
+5. **Exportación** - Copia los prompts generados y úsalos en tus herramientas de IA favoritas
+
+## 🏗️ Arquitectura
+
+### Backend
+- **FastAPI** - Framework web moderno y rápido
+- **JWT** - Autenticación segura con tokens
+- **JSON** - Persistencia de datos en archivos estructurados
+
+### Frontend
+- **HTML5 + CSS3** - Interfaz moderna y responsive
+- **JavaScript Vanilla** - Sin dependencias externas
+- **Diseño Comercial** - Colores profesionales, tipografía clara, UX intuitiva
+
+### Estructura de Datos
+```
+data/
+├── config.json              # Configuración global (APIs, credenciales)
+├── custom_prompts/          # Prompts personalizados (JSON por prompt)
+├── characters/              # Personajes (JSON por personaje)
+├── channels/                # Canales (JSON por canal)
+├── content_items/           # Items de contenido
+├── automations/             # Automatizaciones
+└── prompts/                 # Plantillas de prompts base
+```
+
+## 📚 API Endpoints
+
+### Autenticación
+- `POST /api/auth/login` - Iniciar sesión
+- `POST /api/auth/register` - Registrar usuario
+
+### Generación Creativa
+- `GET /api/creative/templates` - Listar plantillas disponibles
+- `POST /api/creative/generate` - Generar prompt rellenando plantilla
+
+### Configuración
+- `GET /api/config/api-config` - Obtener configuración de APIs
+- `POST /api/config/api-config` - Actualizar configuración de APIs
+- `POST /api/config/prompts` - Crear prompt personalizado
+- `GET /api/config/prompts` - Listar prompts personalizados
+- `PUT /api/config/prompts/{id}` - Actualizar prompt
+- `DELETE /api/config/prompts/{id}` - Eliminar prompt
+
+### Personajes
+- `POST /api/config/characters` - Crear personaje
+- `GET /api/config/characters` - Listar personajes
+- `GET /api/config/characters/{id}` - Obtener personaje
+- `PUT /api/config/characters/{id}` - Actualizar personaje
+- `DELETE /api/config/characters/{id}` - Eliminar personaje
+- `POST /api/config/characters/{id}/prompts/{prompt_id}` - Asociar prompt a personaje
 
 ## 🛠️ Stack Tecnológico
 
-| Capa | Tecnología |
-|------|-----------|
-| **Backend** | Python 3.x + FastAPI 0.104.1 |
-| **Base de datos** | SQLite + SQLAlchemy 2.0.23 |
-| **Frontend** | HTML5 + CSS3 + JavaScript vanilla |
-| **Servidor** | Uvicorn 0.24.0 |
-| **Tareas cron** | APScheduler 3.10.4 |
-| **API YouTube** | google-api-python-client 2.197.0 |
+| Componente | Tecnología |
+|-----------|-----------|
+| **Backend** | Python 3.11+ + FastAPI |
+| **Autenticación** | JWT + bcrypt |
+| **Base de Datos** | JSON (sin servidor) |
+| **Frontend** | HTML5 + CSS3 + JavaScript |
+| **Servidor** | Uvicorn |
+| **Modelos IA** | Qwen 3.5B, Flux 2.0, Wan 2.2 |
 
 ## 📁 Estructura del Proyecto
 
 ```
-Wui/
-├── app/                    # Aplicación principal
-│   ├── routers/            # Endpoints API REST
-│   ├── models/             # Modelos SQLAlchemy
-│   ├── services/           # Lógica de negocio
-│   ├── static/             # Archivos frontend
-│   └── tasks/              # Tareas programadas
-├── channels_data/          # Datos de canales
-├── prompts/                # Plantillas de prompts
-├── tools/                  # Herramientas utilitarias
-└── skills/                 # Skills de desarrollo
+wui/
+├── app/
+│   ├── api/
+│   │   ├── auth.py              # Endpoints de autenticación
+│   │   ├── creative.py          # Endpoints de generación creativa
+│   │   ├── config.py            # Endpoints de configuración
+│   │   ├── channels.py          # Endpoints de canales
+│   │   └── dependencies.py      # Dependencias de FastAPI
+│   ├── services/
+│   │   ├── auth_service.py      # Lógica de autenticación
+│   │   ├── creative_service.py  # Lógica de generación
+│   │   ├── config_service.py    # Lógica de configuración
+│   │   └── channel_service.py   # Lógica de canales
+│   ├── core/
+│   │   ├── config.py            # Configuración de la app
+│   │   └── json_data_manager.py # Gestor de persistencia JSON
+│   ├── schemas/                 # Modelos Pydantic
+│   └── static/
+│       └── index.html           # Interfaz web
+├── data/                        # Datos persistidos en JSON
+├── main.py                      # Punto de entrada
+├── requirements.txt             # Dependencias
+└── README.md                    # Este archivo
 ```
 
-## 📚 Documentación Adicional
+## 🔐 Seguridad
 
-| Archivo | Contenido |
-|---------|-----------|
-| `inprogress.md` | Documento principal del proyecto |
-| `bug.md` | Historial de bugs y correcciones |
-| `projectinfo.md` | Ficha técnica resumida |
+- **Autenticación JWT** - Tokens seguros con expiración configurable
+- **Contraseñas Hasheadas** - Uso de bcrypt para almacenamiento seguro
+- **CORS Configurado** - Solo permite acceso desde localhost en desarrollo
+- **Validación de Entrada** - Todos los datos se validan con Pydantic
 
-## 🔗 Repositorio
+## 📝 Credenciales por Defecto
 
-- **GitHub:** https://github.com/Sincrtbe/wui.git
-- **Rama:** master
+- **Usuario:** `admin`
+- **Contraseña:** `admin`
 
-## ⚠️ Notas
+⚠️ **Importante:** Cambia estas credenciales en producción modificando `data/config.json`
 
-- Reiniciar el servidor después de cambios de código (comportamiento esperado de Uvicorn)
-- La API Key de YouTube se almacena de forma segura en `.env`
+## 🎨 Características de Diseño
+
+- **Interfaz Moderna** - Colores profesionales (blanco, grises, azul índigo)
+- **Responsive Design** - Funciona en desktop, tablet y móvil
+- **Accesibilidad** - Contraste adecuado, navegación clara
+- **Animaciones Suaves** - Transiciones y hover effects profesionales
+- **Carga Rápida** - Sin dependencias externas, solo HTML/CSS/JS vanilla
+
+## 🚀 Próximas Mejoras
+
+- [ ] Integración con APIs reales de YouTube
+- [ ] Soporte para múltiples usuarios
+- [ ] Dashboard con estadísticas
+- [ ] Exportación a múltiples formatos
+- [ ] Historial de generaciones
+- [ ] Colaboración en tiempo real
+
+## 📄 Licencia
+
+MIT License - Ver archivo LICENSE para detalles
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor:
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📞 Soporte
+
+Para reportar bugs o sugerir mejoras, abre un issue en GitHub.
+
+---
+
+**Desarrollado con ❤️ para creadores de contenido**
