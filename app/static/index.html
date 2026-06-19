@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WUI v2 - Creative Studio</title>
-    <link rel="icon" type="image/x-icon" href="/ui/favicon.ico">
-    <link rel="apple-touch-icon" href="/ui/logo.png">
     <style>
         :root {
             --bg-primary: #ffffff;
@@ -587,10 +585,7 @@
 </head>
 <body>
     <div class="header">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-            <img src="/ui/logo.png" alt="WUI Logo" style="width: 40px; height: 40px; border-radius: 8px;">
-            <h1 style="margin: 0;">WUI Creative Studio</h1>
-        </div>
+        <h1>🎬 WUI Creative Studio</h1>
         <div class="header-right">
             <div class="auth-container">
                 <button id="btn-identify" class="btn-identify" onclick="toggleAuthDropdown()">
@@ -701,35 +696,6 @@
             await performLogin(user, pass, 'login-error-card');
         }
         
-        // Agregar soporte para tecla Enter en los campos de login
-        function setupLoginKeyboardSupport() {
-            const loginUserField = document.getElementById('login-user');
-            const loginPassField = document.getElementById('login-pass');
-            const loginUserCardField = document.getElementById('login-user-card');
-            const loginPassCardField = document.getElementById('login-pass-card');
-            
-            if (loginUserField && loginPassField) {
-                loginUserField.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') login();
-                });
-                loginPassField.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') login();
-                });
-            }
-            
-            if (loginUserCardField && loginPassCardField) {
-                loginUserCardField.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') loginFromCard();
-                });
-                loginPassCardField.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') loginFromCard();
-                });
-            }
-        }
-        
-        // Ejecutar al cargar el DOM
-        setupLoginKeyboardSupport();
-        
         async function performLogin(user, pass, errorId) {
             const errorMsg = document.getElementById(errorId);
             errorMsg.style.display = 'none';
@@ -812,6 +778,25 @@
                         <div class="card">
                             <h3>💡 Lluvia de Ideas</h3>
                             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Genera conceptos creativos innovadores para tu próximo video.</p>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Usar Prompt Personalizado</label>
+                                    <select id="storming-custom-prompt" onchange="loadCustomPromptContent('storming')">
+                                        <option value="">-- Sin prompt personalizado --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Usar Personaje</label>
+                                    <select id="storming-character" onchange="loadCharacterContext('storming')">
+                                        <option value="">-- Sin personaje --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="storming-context-display" style="display: none; background: var(--bg-input); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--accent);">
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);"><strong>Contexto aplicado:</strong></p>
+                                <p id="storming-context-text" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: var(--text-primary);"></p>
+                            </div>
                             <div class="form-group">
                                 <label>Tema del video</label>
                                 <input type="text" id="storming-tema" placeholder="Ej: Tutorial de fotografía, Viaje a Japón, etc.">
@@ -828,6 +813,25 @@
                     
                     <div id="panel-classification" class="panel">
                         <div class="card">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Usar Prompt Personalizado</label>
+                                    <select id="classification-custom-prompt" onchange="loadCustomPromptContent('classification')">
+                                        <option value="">-- Sin prompt personalizado --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Usar Personaje</label>
+                                    <select id="classification-character" onchange="loadCharacterContext('classification')">
+                                        <option value="">-- Sin personaje --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="classification-context-display" style="display: none; background: var(--bg-input); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--accent);">
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);"><strong>Contexto aplicado:</strong></p>
+                                <p id="classification-context-text" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: var(--text-primary);"></p>
+                            </div>
+
                             <h3>📊 Clasificación Inteligente</h3>
                             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Evalúa y ordena tus ideas por potencial de éxito.</p>
                             <div class="form-group">
@@ -846,6 +850,25 @@
                     
                     <div id="panel-development" class="panel">
                         <div class="card">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Usar Prompt Personalizado</label>
+                                    <select id="development-custom-prompt" onchange="loadCustomPromptContent('development')">
+                                        <option value="">-- Sin prompt personalizado --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Usar Personaje</label>
+                                    <select id="development-character" onchange="loadCharacterContext('development')">
+                                        <option value="">-- Sin personaje --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="development-context-display" style="display: none; background: var(--bg-input); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--accent);">
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);"><strong>Contexto aplicado:</strong></p>
+                                <p id="development-context-text" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: var(--text-primary);"></p>
+                            </div>
+
                             <h3>📝 Desarrollo de Guion</h3>
                             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Convierte tu idea en un guion estructurado.</p>
                             <div class="form-row">
@@ -879,6 +902,25 @@
                     
                     <div id="panel-graphic" class="panel">
                         <div class="card">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Usar Prompt Personalizado</label>
+                                    <select id="graphic-custom-prompt" onchange="loadCustomPromptContent('graphic')">
+                                        <option value="">-- Sin prompt personalizado --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Usar Personaje</label>
+                                    <select id="graphic-character" onchange="loadCharacterContext('graphic')">
+                                        <option value="">-- Sin personaje --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="graphic-context-display" style="display: none; background: var(--bg-input); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--accent);">
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);"><strong>Contexto aplicado:</strong></p>
+                                <p id="graphic-context-text" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: var(--text-primary);"></p>
+                            </div>
+
                             <h3>🎨 Escenas Gráficas</h3>
                             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Genera prompts optimizados para imágenes con IA (Flux 2.0).</p>
                             <div class="form-row">
@@ -907,6 +949,25 @@
                     
                     <div id="panel-video" class="panel">
                         <div class="card">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Usar Prompt Personalizado</label>
+                                    <select id="video-custom-prompt" onchange="loadCustomPromptContent('video')">
+                                        <option value="">-- Sin prompt personalizado --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Usar Personaje</label>
+                                    <select id="video-character" onchange="loadCharacterContext('video')">
+                                        <option value="">-- Sin personaje --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="video-context-display" style="display: none; background: var(--bg-input); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--accent);">
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);"><strong>Contexto aplicado:</strong></p>
+                                <p id="video-context-text" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: var(--text-primary);"></p>
+                            </div>
+
                             <h3>🎬 Escenas de Video</h3>
                             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Crea prompts para generación de video a partir de imágenes base (Wan 2.2).</p>
                             <div class="form-row">
@@ -944,6 +1005,25 @@
                     
                     <div id="panel-conversation" class="panel">
                         <div class="card">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Usar Prompt Personalizado</label>
+                                    <select id="conversation-custom-prompt" onchange="loadCustomPromptContent('conversation')">
+                                        <option value="">-- Sin prompt personalizado --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Usar Personaje</label>
+                                    <select id="conversation-character" onchange="loadCharacterContext('conversation')">
+                                        <option value="">-- Sin personaje --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="conversation-context-display" style="display: none; background: var(--bg-input); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--accent);">
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);"><strong>Contexto aplicado:</strong></p>
+                                <p id="conversation-context-text" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: var(--text-primary);"></p>
+                            </div>
+
                             <h3>🔄 Texto a Visual</h3>
                             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Traduce narración en prompts visuales listos para generar.</p>
                             <div class="form-group">
@@ -1065,13 +1145,6 @@
             `;
             document.body.appendChild(appContainer);
             loadConfigData();
-            
-            // Inicializar datos de configuración, personajes y prompts
-            setTimeout(() => {
-                if (typeof initConfigPanel === 'function') {
-                    initConfigPanel();
-                }
-            }, 300);
         }
         
         // ── Mostrar landing (elimina la app del DOM) ──────────────────
@@ -1126,85 +1199,125 @@
             alert('¡Copiado al portapapeles!');
         }
         
-        async function generateStorming() {
+                async function generateStorming() {
             const tema = document.getElementById('storming-tema').value;
-            if (!tema) return alert('Ingresa un tema');
+            if (!tema) return alert('Por favor completa los campos');
             
-            document.getElementById('storming-output').innerHTML = '<span class="loading"></span> Generando ideas...';
+            const custom_prompt_id = document.getElementById('storming-custom-prompt').value;
+            const character_id = document.getElementById('storming-character').value;
+            
+            document.getElementById('storming-output').innerHTML = '<span class="loading"></span> Generando...';
             
             const data = await apiCall('/api/creative/generate', {
                 template_name: 'storming',
-                variables: { tema: tema }
+                variables: { tema },
+                custom_prompt_id,
+                character_id
             });
+            
+            document.getElementById('storming-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        });
             
             document.getElementById('storming-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
         }
         
-        async function generateClassification() {
+                async function generateClassification() {
             const ideas = document.getElementById('classification-ideas').value;
-            if (!ideas) return alert('Pega las ideas');
+            if (!ideas) return alert('Por favor completa los campos');
             
-            document.getElementById('classification-output').innerHTML = '<span class="loading"></span> Clasificando...';
+            const custom_prompt_id = document.getElementById('classification-custom-prompt').value;
+            const character_id = document.getElementById('classification-character').value;
+            
+            document.getElementById('classification-output').innerHTML = '<span class="loading"></span> Generando...';
             
             const data = await apiCall('/api/creative/generate', {
                 template_name: 'classification',
-                variables: { lista_ideas: ideas }
+                variables: { ideas },
+                custom_prompt_id,
+                character_id
             });
+            
+            document.getElementById('classification-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        });
             
             document.getElementById('classification-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
         }
         
-        async function generateDevelopment() {
-            const titulo = document.getElementById('development-titulo').value;
+                async function generateDevelopment() {
             const concepto = document.getElementById('development-concepto').value;
-            const duracion = document.getElementById('development-duracion').value;
+            if (!concepto) return alert('Por favor completa los campos');
             
-            if (!titulo || !concepto) return alert('Completa título y concepto');
+            const custom_prompt_id = document.getElementById('development-custom-prompt').value;
+            const character_id = document.getElementById('development-character').value;
             
-            document.getElementById('development-output').innerHTML = '<span class="loading"></span> Desarrollando guion...';
+            document.getElementById('development-output').innerHTML = '<span class="loading"></span> Generando...';
             
             const data = await apiCall('/api/creative/generate', {
                 template_name: 'development',
-                variables: { titulo, concepto, duracion }
+                variables: { concepto },
+                custom_prompt_id,
+                character_id
             });
+            
+            document.getElementById('development-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        });
             
             document.getElementById('development-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
         }
         
-        async function generateGraphic() {
+                async function generateGraphic() {
             const titulo = document.getElementById('graphic-titulo').value;
-            const escena = document.getElementById('graphic-escena').value;
+            const descripcion_escena = document.getElementById('graphic-descripcion-escena').value;
             const momento = document.getElementById('graphic-momento').value;
+            if (!titulo || !descripcion_escena || !momento) return alert('Por favor completa los campos');
             
-            if (!escena) return alert('Describe la escena');
+            const custom_prompt_id = document.getElementById('graphic-custom-prompt').value;
+            const character_id = document.getElementById('graphic-character').value;
             
-            document.getElementById('graphic-output').innerHTML = '<span class="loading"></span> Generando prompts Flux...';
+            document.getElementById('graphic-output').innerHTML = '<span class="loading"></span> Generando...';
             
             const data = await apiCall('/api/creative/generate', {
                 template_name: 'scene_graphic',
-                variables: { titulo, descripcion_escena: escena, momento }
+                variables: { titulo, descripcion_escena, momento },
+                custom_prompt_id,
+                character_id
             });
+            
+            document.getElementById('graphic-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        });
             
             document.getElementById('graphic-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
         }
         
-        async function generateVideo() {
+                async function generateVideo() {
             const titulo = document.getElementById('video-titulo').value;
             const escena = document.getElementById('video-escena').value;
             const prompt_imagen = document.getElementById('video-prompt-imagen').value;
+            if (!titulo || !escena || !prompt_imagen) return alert('Por favor completa los campos');
             
-            if (!escena) return alert('Describe la escena');
+            const custom_prompt_id = document.getElementById('video-custom-prompt').value;
+            const character_id = document.getElementById('video-character').value;
             
-            document.getElementById('video-output').innerHTML = '<span class="loading"></span> Generando prompt Wan...';
+            document.getElementById('video-output').innerHTML = '<span class="loading"></span> Generando...';
             
             const data = await apiCall('/api/creative/generate', {
                 template_name: 'scene_video',
-                variables: { titulo, descripcion_escena: escena, prompt_imagen }
+                variables: { titulo, escena, prompt_imagen },
+                custom_prompt_id,
+                character_id
             });
+            
+            document.getElementById('video-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        });
             
             document.getElementById('video-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
@@ -1436,22 +1549,204 @@
         
         // ── CARGAR DATOS AL MOSTRAR LA APP ───────────────────────────────
         
+        // ── FUNCIONES DE INTEGRACIÓN DE PROMPTS Y PERSONAJES ──────────────
+        
+        // Contexto global para almacenar selecciones
+        let generationContext = {};
+        
+        async function populatePromptSelectors() {
+            """Llena los selectores de prompts en todos los paneles."""
+            const res = await fetch('/api/config/prompts', {
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            
+            if (!res.ok) return;
+            
+            const prompts = await res.json();
+            const panels = ['storming', 'classification', 'development', 'graphic', 'video', 'conversation'];
+            
+            for (const panel of panels) {
+                const selectEl = document.getElementById(`${panel}-custom-prompt`);
+                if (!selectEl) continue;
+                
+                // Limpiar opciones previas
+                selectEl.innerHTML = '<option value="">-- Sin prompt personalizado --</option>';
+                
+                // Agregar prompts disponibles
+                prompts.forEach(prompt => {
+                    const option = document.createElement('option');
+                    option.value = prompt.id;
+                    option.textContent = prompt.name;
+                    selectEl.appendChild(option);
+                });
+            }
+        }
+        
+        async function populateCharacterSelectors() {
+            """Llena los selectores de personajes en todos los paneles."""
+            const res = await fetch('/api/config/characters', {
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            
+            if (!res.ok) return;
+            
+            const characters = await res.json();
+            const panels = ['storming', 'classification', 'development', 'graphic', 'video', 'conversation'];
+            
+            for (const panel of panels) {
+                const selectEl = document.getElementById(`${panel}-character`);
+                if (!selectEl) continue;
+                
+                // Limpiar opciones previas
+                selectEl.innerHTML = '<option value="">-- Sin personaje --</option>';
+                
+                // Agregar personajes disponibles
+                characters.forEach(char => {
+                    const option = document.createElement('option');
+                    option.value = char.id;
+                    option.textContent = char.name;
+                    selectEl.appendChild(option);
+                });
+            }
+        }
+        
+        async function loadCustomPromptContent(panelId) {
+            """Carga el contenido de un prompt personalizado seleccionado."""
+            const selectEl = document.getElementById(`${panelId}-custom-prompt`);
+            const promptId = selectEl.value;
+            
+            if (!promptId) {
+                generationContext[panelId] = { ...generationContext[panelId], customPrompt: null };
+                document.getElementById(`${panelId}-context-display`).style.display = 'none';
+                return;
+            }
+            
+            const res = await fetch(`/api/config/prompts/${promptId}`, {
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            
+            if (res.ok) {
+                const prompt = await res.json();
+                generationContext[panelId] = { ...generationContext[panelId], customPrompt: prompt };
+                
+                // Mostrar contexto
+                const displayEl = document.getElementById(`${panelId}-context-display`);
+                const textEl = document.getElementById(`${panelId}-context-text`);
+                textEl.textContent = `Prompt: "${prompt.name}" - ${prompt.category}`;
+                displayEl.style.display = 'block';
+            }
+        }
+        
+        async function loadCharacterContext(panelId) {
+            """Carga el contexto de un personaje seleccionado."""
+            const selectEl = document.getElementById(`${panelId}-character`);
+            const characterId = selectEl.value;
+            
+            if (!characterId) {
+                generationContext[panelId] = { ...generationContext[panelId], character: null };
+                if (!generationContext[panelId].customPrompt) {
+                    document.getElementById(`${panelId}-context-display`).style.display = 'none';
+                }
+                return;
+            }
+            
+            const res = await fetch(`/api/config/characters/${characterId}`, {
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            
+            if (res.ok) {
+                const character = await res.json();
+                generationContext[panelId] = { ...generationContext[panelId], character };
+                
+                // Mostrar contexto
+                const displayEl = document.getElementById(`${panelId}-context-display`);
+                const textEl = document.getElementById(`${panelId}-context-text`);
+                textEl.textContent = `Personaje: "${character.name}" - ${character.description.substring(0, 100)}...`;
+                displayEl.style.display = 'block';
+            }
+        }
+        
+        function getGenerationContext(panelId) {
+            """Obtiene el contexto de generación para un panel."""
+            return generationContext[panelId] || { customPrompt: null, character: null };
+        }
+        
+        function buildContextPrompt(panelId) {
+            """Construye un prompt de contexto basado en prompts y personajes seleccionados."""
+            const ctx = getGenerationContext(panelId);
+            let contextPrompt = '';
+            
+            if (ctx.character) {
+                contextPrompt += `Personaje: ${ctx.character.name}\n`;
+                contextPrompt += `Descripción: ${ctx.character.description}\n`;
+                if (ctx.character.personality) contextPrompt += `Personalidad: ${ctx.character.personality}\n`;
+                if (ctx.character.appearance) contextPrompt += `Apariencia: ${ctx.character.appearance}\n`;
+                if (ctx.character.background) contextPrompt += `Trasfondo: ${ctx.character.background}\n\n`;
+            }
+            
+            if (ctx.customPrompt) {
+                contextPrompt += `Instrucción personalizada: ${ctx.customPrompt.content}\n\n`;
+            }
+            
+            return contextPrompt;
+        }
+        
+        // Actualizar las funciones de generación para incluir contexto
+        async function generateStormingWithContext() {
+            const tema = document.getElementById('storming-tema').value;
+            if (!tema) return alert('Ingresa un tema');
+            
+            // Obtener contexto
+            const contextPrompt = buildContextPrompt('storming');
+            const fullTema = contextPrompt + tema;
+            
+            document.getElementById('storming-output').innerHTML = '<span class="loading"></span> Generando ideas...';
+            
+            const data = await apiCall('/api/creative/generate', {
+                template_name: 'storming',
+                variables: { tema: fullTema }
+            });
+            
+            document.getElementById('storming-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        }
+        
+        // Reemplazar la función generateStorming original
+        const originalGenerateStorming = generateStorming;
+        generateStorming = generateStormingWithContext;
+        
+        // Inicializar selectores cuando se carga la app
+        function initializeSelectors() {
+            populatePromptSelectors();
+            populateCharacterSelectors();
+        }
+
         function loadConfigData() {
             loadAPIConfig();
             loadCustomPrompts();
             loadCharacters();
+            initializeSelectors();
         }
 
-        async function generateConversation() {
+                async function generateConversation() {
             const texto = document.getElementById('conversation-texto').value;
-            if (!texto) return alert('Pega el texto');
+            if (!texto) return alert('Por favor completa los campos');
             
-            document.getElementById('conversation-output').innerHTML = '<span class="loading"></span> Traduciendo...';
+            const custom_prompt_id = document.getElementById('conversation-custom-prompt').value;
+            const character_id = document.getElementById('conversation-character').value;
+            
+            document.getElementById('conversation-output').innerHTML = '<span class="loading"></span> Generando...';
             
             const data = await apiCall('/api/creative/generate', {
                 template_name: 'conversation_to_visual',
-                variables: { texto_a_visualizar: texto }
+                variables: { texto },
+                custom_prompt_id,
+                character_id
             });
+            
+            document.getElementById('conversation-output').innerHTML = 
+                '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
+        });
             
             document.getElementById('conversation-output').innerHTML = 
                 '<button class="btn btn-secondary copy-btn" onclick="copyToClipboard(`' + data.prompt.replace(/`/g, '\\`') + '`)">📋 Copiar</button>' + data.prompt;
