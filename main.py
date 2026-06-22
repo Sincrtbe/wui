@@ -13,20 +13,26 @@ from fastapi.staticfiles import StaticFiles
 
 from app.core.config import settings
 from app.core.json_data_manager import init_default_config
+from app.core.multiuser_dal import init_system_dirs, seed_default_prompts
 from app.api.auth import router as auth_router
 from app.api.channels import router as channels_router
 from app.api.creative import router as creative_router
 from app.api.config import router as config_router
+from app.api.v3 import router as v3_router
 
 
 @asynccontextmanager
 async def lifespan(application: FastAPI):
     # Inicialización: crear configuración por defecto si no existe
     init_default_config()
-    print(f"[WUI v2] Aplicación iniciada en {settings.HOST}:{settings.PORT}")
+    # Inicializar estructura multi-usuario v3
+    init_system_dirs()
+    seed_default_prompts()
+    print(f"[WUI] Aplicación iniciada en {settings.HOST}:{settings.PORT}")
+    print(f"[WUI] API v3 disponible en /api/v3")
     yield
     # Limpieza al cerrar
-    print("[WUI v2] Aplicación apagada")
+    print("[WUI] Aplicación apagada")
 
 
 app = FastAPI(
@@ -73,6 +79,7 @@ app.include_router(auth_router)
 app.include_router(channels_router)
 app.include_router(creative_router)
 app.include_router(config_router)
+app.include_router(v3_router)
 
 
 @app.exception_handler(Exception)
