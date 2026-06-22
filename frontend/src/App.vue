@@ -8,7 +8,11 @@
       <router-link to="/prompts">Prompts</router-link>
       <router-link to="/pipeline">Pipeline</router-link>
       <router-link to="/settings">⚙️ Ajustes</router-link>
-      <button class="logout-btn" @click="logout">Cerrar sesión</button>
+      <div class="user-menu">
+        <div class="user-avatar">{{ store.user.name ? store.user.name[0].toUpperCase() : '?' }}</div>
+        <span class="user-name">{{ store.user.name || store.user.email }}</span>
+        <button class="logout-btn" @click="logout">Cerrar sesión</button>
+      </div>
     </nav>
     <main class="main-content">
       <router-view />
@@ -17,7 +21,7 @@
 </template>
 
 <script setup>
-import { useStore, clearToken, getToken } from './main.js'
+import { useStore, clearToken } from './main.js'
 import { useRouter } from 'vue-router'
 
 const store = useStore()
@@ -42,8 +46,16 @@ function logout() {
 .top-nav .logo { font-weight: 700; font-size: 1.1rem; color: #6366f1; margin-right: auto; }
 .top-nav a { color: #a0a0b0; font-size: 0.9rem; transition: color 0.2s; }
 .top-nav a:hover, .top-nav a.router-link-active { color: #e0e0e0; text-decoration: none; }
-.logout-btn { background: none; border: 1px solid #3a3d4a; color: #888; font-size: 0.85rem; padding: 0.3rem 0.75rem; border-radius: 4px; }
-.logout-btn:hover { border-color: #6366f1; color: #6366f1; }
+.top-nav .user-menu { display: flex; align-items: center; gap: 0.6rem; margin-left: auto; }
+.top-nav .user-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: #6366f1; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem;
+}
+.top-nav .user-name { color: #a0a0b0; font-size: 0.85rem; }
+.logout-btn { background: none; border: 1px solid #3a3d4a; color: #888; font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 4px; cursor: pointer; }
+.logout-btn:hover { border-color: #ef4444; color: #ef4444; }
 
 .main-content { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
 
@@ -57,15 +69,16 @@ label { font-size: 0.85rem; color: #888; }
 input, textarea, select {
   background: #0f1117; border: 1px solid #2a2d3a; color: #e0e0e0;
   padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.95rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s; width: 100%;
 }
 input:focus, textarea:focus, select:focus { outline: none; border-color: #6366f1; }
 textarea { resize: vertical; min-height: 100px; }
-button.primary { background: #6366f1; color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-size: 0.9rem; font-weight: 500; }
+button.primary { background: #6366f1; color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-size: 0.9rem; font-weight: 500; cursor: pointer; }
 button.primary:hover { background: #4f46e5; }
 button.primary:disabled { opacity: 0.5; cursor: not-allowed; }
-button.danger { background: #ef4444; color: #fff; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.85rem; }
-button.secondary { background: #2a2d3a; color: #e0e0e0; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.85rem; }
+button.danger { background: #ef4444; color: #fff; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.85rem; cursor: pointer; }
+button.secondary { background: #2a2d3a; color: #e0e0e0; border: 1px solid #2a2d3a; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.85rem; cursor: pointer; }
+button.secondary:hover { border-color: #6366f1; }
 
 /* Tables */
 table { width: 100%; border-collapse: collapse; }
@@ -94,4 +107,28 @@ tr:hover td { background: #1f2230; }
 .page-header { margin-bottom: 1.5rem; }
 .page-title { font-size: 1.5rem; font-weight: 700; color: #e0e0e0; }
 .page-subtitle { font-size: 0.9rem; color: #666; margin-top: 0.25rem; }
+
+/* Tabs */
+.tabs { display: flex; gap: 0.25rem; border-bottom: 1px solid #2a2d3a; margin-bottom: 1.5rem; }
+.tab { background: none; border: none; color: #666; padding: 0.5rem 1rem; cursor: pointer; font-size: 0.9rem; border-bottom: 2px solid transparent; transition: all 0.2s; }
+.tab:hover { color: #e0e0e0; }
+.tab.active { color: #6366f1; border-bottom-color: #6366f1; }
+
+/* API config card */
+.api-card { border: 1px solid #2a2d3a; border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem; }
+.api-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.api-name { font-weight: 600; color: #e0e0e0; font-size: 1rem; }
+.toggle { position: relative; width: 40px; height: 22px; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; cursor: pointer; inset: 0; background: #2a2d3a; border-radius: 22px; transition: 0.2s; }
+.toggle-slider:before { position: absolute; content: ''; height: 16px; width: 16px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
+.toggle input:checked + .toggle-slider { background: #6366f1; }
+.toggle input:checked + .toggle-slider:before { transform: translateX(18px); }
+
+/* Backup list */
+.backup-item { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; border: 1px solid #2a2d3a; border-radius: 6px; margin-bottom: 0.5rem; }
+.backup-info { display: flex; flex-direction: column; gap: 0.2rem; }
+.backup-id { font-size: 0.75rem; color: #6366f1; font-family: monospace; }
+.backup-meta { font-size: 0.8rem; color: #666; }
+.backup-actions { display: flex; gap: 0.5rem; }
 </style>
