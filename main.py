@@ -52,7 +52,7 @@ app.add_middleware(
 )
 
 # ── Archivos estáticos para el frontend ───────────────────────────────────────
-app.mount("/ui", StaticFiles(directory="app/static", html=True), name="ui")
+app.mount("/ui", StaticFiles(directory="app/static/ui", html=True), name="ui")
 
 
 @app.get("/")

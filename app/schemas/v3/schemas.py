@@ -169,7 +169,7 @@ class PromptUpdate(BaseModel):
 
 class PromptOut(BaseModel):
     id: str
-    user_id: str
+    user_id: Optional[str] = None
     name: str
     content: str
     category: str

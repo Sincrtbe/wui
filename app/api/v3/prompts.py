@@ -3,7 +3,8 @@ app/api/v3/prompts.py
 Rutas de prompts: CRUD + renderizado + validación.
 """
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
+from typing import Optional
 
 from app.schemas.v3.schemas import (
     PromptCreate,
@@ -144,7 +145,7 @@ def render_prompt_for_channel(
     channel_id: str,
     prompt_id: str,
     content_id: str = Query(None),
-    extra_context: dict = Query(None),
+    extra_context: Optional[dict] = Body(None),
     user: dict = Depends(get_current_user),
 ):
     """Renderiza un prompt para un canal y content item específico."""
