@@ -116,8 +116,10 @@
             <input v-model="cfg.base_url" placeholder="https://api.minimax.chat/..." />
           </div>
           <div class="form-group" style="margin-bottom:0">
-            <label>Modelo <small>(opcional)</small></label>
-            <input v-model="cfg.model" placeholder="MBXM-..." />
+            <label>Modelo</label>
+            <select v-model="cfg.model" style="background:#1e2030;color:#e0e0e0;border:1px solid #2a2a3e;border-radius:6px;padding:0.5rem;font-family:inherit;font-size:0.9rem;width:100%;">
+              <option v-for="m in modelOptions[key]" :key="m" :value="m">{{ m }}</option>
+            </select>
           </div>
           <button class="secondary" style="align-self:start;" @click="saveApi(key, cfg)">Guardar</button>
         </div>
@@ -260,6 +262,12 @@ const apiLabels = {
   minimax_tts: 'Minimax TTS',
   comfyui: 'ComfyUI',
   flux: 'Flux',
+}
+const modelOptions = {
+  minimax: ['MiniMax-M2.7', 'MiniMax-M2.7-highspeed'],
+  openai: ['gpt-4o-mini', 'gpt-4o', 'gpt-4-turbo', 'gpt-3.5-turbo'],
+  minimax_tts: ['speech-01'],
+  flux: ['black-forest-labs/flux-1-schnell', 'black-forest-labs/flux-1-dev'],
 }
 
 async function loadConfig() {

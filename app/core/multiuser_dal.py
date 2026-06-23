@@ -482,10 +482,10 @@ def create_content_item(
     }
     content_dir = _content_dir(user_id, channel_id, content_id)
     _dump(data, content_dir / "content.json")
-    (content_dir / "versions").mkdir(exist_ok=True)
-    (content_dir / "assets" / "images").mkdir(exist_ok=True)
-    (content_dir / "assets" / "videos").mkdir(exist_ok=True)
-    (content_dir / "assets" / "audio").mkdir(exist_ok=True)
+    (content_dir / "versions").mkdir(parents=True, exist_ok=True)
+    (content_dir / "assets" / "images").mkdir(parents=True, exist_ok=True)
+    (content_dir / "assets" / "videos").mkdir(parents=True, exist_ok=True)
+    (content_dir / "assets" / "audio").mkdir(parents=True, exist_ok=True)
     return data
 
 

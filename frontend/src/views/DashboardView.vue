@@ -153,7 +153,7 @@ async function doStorm() {
     const params = new URLSearchParams()
     params.set('provider', stormForm.provider)
     if (stormForm.topic) params.set('extra_topic', stormForm.topic)
-    const res = await apiFetch(`/api/v3/brainstorm/${stormForm.channel_id}?${params}`)
+    const res = await apiFetch(`/api/v3/brainstorm/${stormForm.channel_id}?${params}`, { method: 'POST' })
     stormResult.value = res.content
     // Recargar stats
     const content = await apiFetch('/api/v3/content')

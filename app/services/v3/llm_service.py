@@ -19,10 +19,10 @@ from app.services.v3.config_service import get_api_credential
 PROVIDER_DEFAULTS = {
     "minimax": {
         "name": "Minimax",
-        "base_url": "https://api.minimax.chat/v1",
-        "model": "MBXM-01",
+        "base_url": "https://api.minimax.io/anthropic/v1",
+        "model": "MiniMax-M2.7",
         "max_tokens": 2048,
-        "timeout": 60,
+        "timeout": 120,
     },
     "openai": {
         "name": "OpenAI",
@@ -81,11 +81,12 @@ def get_provider_config(provider: str) -> dict:
 
 
 def _build_minimax_payload(model: str, messages: list, temperature: float, max_tokens: int) -> dict:
+    # Anthropic-compatible API: usa max_output_tokens
     return {
         "model": model,
         "messages": messages,
         "temperature": temperature,
-        "max_tokens": max_tokens,
+        "max_output_tokens": max_tokens,
     }
 
 
@@ -134,7 +135,7 @@ def call_llm(
 
     if provider == "minimax":
         payload = _build_minimax_payload(model, messages, temperature, max_tokens)
-        path = "text/chatcompletion_v2"
+        path = "messages"
     elif provider == "openai":
         payload = _build_openai_payload(model, messages, temperature, max_tokens)
         path = "chat/completions"
@@ -146,7 +147,11 @@ def call_llm(
         try:
             data = _call_http(base_url, path, headers, payload, timeout)
             if provider == "minimax":
-                return data["choices"][0]["messages"][-1]["text"]
+                content_list = data.get("content", [])
+                for block in content_list:
+                    if block.get("type") == "text":
+                        return block["text"]
+                raise RuntimeError(f"Respuesta sin texto: {data}")
             elif provider == "openai":
                 return data["choices"][0]["message"]["content"]
         except Exception as e:
