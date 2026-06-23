@@ -5,7 +5,7 @@ Schemas Pydantic para la API v3 de WUI.
 
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Any, Optional
 from pydantic import BaseModel, EmailStr, Field, model_validator
 
 
@@ -255,7 +255,7 @@ class ContentItemOut(BaseModel):
     tags: list[str]
     current_version_id: Optional[str]
     idea_notes: str
-    structured_ideas: list[dict] = []
+    structured_ideas: Any = []
     script_content: str
 
     @model_validator(mode="before")

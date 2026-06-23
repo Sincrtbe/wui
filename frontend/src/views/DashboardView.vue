@@ -40,17 +40,21 @@
         </div>
       </div>
 
-      <!-- Resultado -->
-      <div v-if="stormResult" class="storm-result">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-          <strong style="color:#10b981;">✅ Ideas generadas</strong>
-          <button class="secondary" style="font-size:0.75rem;" @click="stormResult=null">Cerrar</button>
+      <!-- Resultados — una tarjeta por idea -->
+      <div v-if="stormItems.length > 0" style="margin-top:1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+          <strong style="color:#10b981;">✅ {{ stormItems.length }} ideas generadas</strong>
+          <button class="secondary" style="font-size:0.75rem;" @click="stormItems=[]">Cerrar</button>
         </div>
-        <pre class="ideas-text">{{ stormResult.idea_notes }}</pre>
-        <div style="margin-top:0.75rem; font-size:0.8rem; color:#888;">
-          Canal: {{ stormResult.channel_id }} · Etapa: {{ stormResult.stage }} · ID: {{ stormResult.id.slice(0,8) }}...
+        <div style="display:grid;gap:0.75rem;">
+          <div v-for="item in stormItems" :key="item.id" class="storm-result" style="cursor:pointer;" @click="viewContent(item)">
+            <div style="font-weight:600;color:#e0e0e0;margin-bottom:0.4rem;">{{ item.title }}</div>
+            <div v-if="getStructuredIdea(item).concept" style="font-size:0.82rem;color:#888;">{{ getStructuredIdea(item).concept }}</div>
+            <div style="margin-top:0.5rem;font-size:0.75rem;color:#555;">
+              Canal: {{ item.channel_id.slice(0,8) }}... · Etapa: {{ item.stage }}
+            </div>
+          </div>
         </div>
-        <button class="secondary" style="margin-top:0.75rem;" @click="viewContent(stormResult)">Ver en detalle →</button>
       </div>
 
       <!-- Error de storm -->
@@ -125,7 +129,7 @@ const stages = ['idea', 'script', 'graphic', 'video', 'published']
 
 const stormForm = reactive({ channel_id: '', provider: 'minimax', topic: '' })
 const storming = ref(false)
-const stormResult = ref(null)
+const stormItems = ref([])
 const stormError = ref(null)
 
 onMounted(async () => {
@@ -148,13 +152,13 @@ onMounted(async () => {
 async function doStorm() {
   storming.value = true
   stormError.value = null
-  stormResult.value = null
+  stormItems.value = []
   try {
     const params = new URLSearchParams()
     params.set('provider', stormForm.provider)
     if (stormForm.topic) params.set('extra_topic', stormForm.topic)
     const res = await apiFetch(`/api/v3/brainstorm/${stormForm.channel_id}?${params}`, { method: 'POST' })
-    stormResult.value = res.content
+    stormItems.value = res.items || []
     // Recargar stats
     const content = await apiFetch('/api/v3/content')
     stats.content = content.length
@@ -164,6 +168,11 @@ async function doStorm() {
   } finally {
     storming.value = false
   }
+}
+
+function getStructuredIdea(item) {
+  try { return JSON.parse(item.structured_ideas || '{}') }
+  catch { return {} }
 }
 
 function viewContent(item) {

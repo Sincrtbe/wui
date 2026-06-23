@@ -28,13 +28,13 @@ def brainstorm_for_channel(
     y el prompt de storming del sistema.
     """
     try:
-        content = brainstorm_channel(
+        items = brainstorm_channel(
             user_id=user["id"],
             channel_id=channel_id,
             provider=provider,
             extra_topic=extra_topic,
         )
-        return {"ok": True, "content": content}
+        return {"ok": True, "items": items, "count": len(items)}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except PermissionError as e:
