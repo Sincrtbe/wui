@@ -49,7 +49,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <div>
               <div style="font-weight:600; color:#e0e0e0;">{{ ch.name }}</div>
-              <div style="font-size:0.8rem; color:#666;">{{ ch.platform }} · {{ ch.url || 'sin URL' }}</div>
+              <div style="font-size:0.8rem; color:#666;">{{ ch.platform }} · {{ ch.url || 'sin URL' }}<span v-if="ch.topic"> · 📌 {{ ch.topic }}</span></div>
             </div>
             <div style="display:flex; gap:0.5rem;">
               <button class="secondary" @click="openChannelModal(ch)">Editar</button>
@@ -82,6 +82,10 @@
           <div class="form-group">
             <label>ID de canal <small>(opcional, extraído de la URL)</small></label>
             <input v-model="channelForm.platform_id" />
+          </div>
+          <div class="form-group">
+            <label>Tema del canal <small>(tema principal para lluvia de ideas)</small></label>
+            <input v-model="channelForm.topic" placeholder="Ej: tecnología, cocina, viajes..." />
           </div>
           <div style="display:flex; gap:0.5rem; margin-top:1rem;">
             <button class="primary" @click="saveChannel" :disabled="savingChannel">{{ savingChannel ? 'Guardando...' : 'Guardar' }}</button>
@@ -128,17 +132,15 @@
           <label>Directorio de datos</label>
           <input v-model="backupConfig.data_directory" />
         </div>
-        <div style="display:flex; gap:1rem; margin-bottom:1rem;">
-          <label class="toggle" style="display:flex; align-items:center; gap:0.5rem;">
-            <input type="checkbox" v-model="backupConfig.auto_backup" />
-            <span class="toggle-slider"></span>
-            <span style="font-size:0.85rem; color:#a0a0b0;">Auto-respaldo</span>
-          </label>
-          <label class="toggle" style="display:flex; align-items:center; gap:0.5rem;">
-            <input type="checkbox" v-model="backupConfig.enabled" />
-            <span class="toggle-slider"></span>
-            <span style="font-size:0.85rem; color:#a0a0b0;">Respaldos activos</span>
-          </label>
+        <div style="display:flex; gap:2rem; margin-bottom:1rem; align-items:center;">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <input type="checkbox" v-model="backupConfig.auto_backup" id="auto-backup" />
+            <label for="auto-backup" style="font-size:0.85rem; color:#a0a0b0; cursor:pointer;">Auto-respaldo</label>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <input type="checkbox" v-model="backupConfig.enabled" id="backup-enabled" />
+            <label for="backup-enabled" style="font-size:0.85rem; color:#a0a0b0; cursor:pointer;">Respaldos activos</label>
+          </div>
         </div>
         <div class="form-group">
           <label>Máximo de respaldos a mantener</label>
@@ -225,7 +227,7 @@ async function loadChannels() {
 
 function openChannelModal(ch = null) {
   editingChannel.value = ch
-  channelForm.value = ch ? { name: ch.name, platform: ch.platform, url: ch.url || '', platform_id: ch.platform_id || '' } : { name: '', platform: 'youtube', url: '', platform_id: '' }
+  channelForm.value = ch ? { name: ch.name, platform: ch.platform, url: ch.url || '', platform_id: ch.platform_id || '', topic: ch.topic || '' } : { name: '', platform: 'youtube', url: '', platform_id: '', topic: '' }
   showChannelModal.value = true
 }
 

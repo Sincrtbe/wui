@@ -379,6 +379,7 @@ def create_channel(
     platform: str = "youtube",
     platform_id: str = "",
     url: str = "",
+    topic: str = "",
 ) -> dict:
     channel_id = str(uuid.uuid4())
     data = {
@@ -393,6 +394,7 @@ def create_channel(
         "description": "",
         "status": "active",
         "voice_sample_path": "",
+        "topic": topic,
         "created_at": _utc_now(),
         "updated_at": _utc_now(),
         "last_sync": None,

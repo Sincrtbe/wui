@@ -106,6 +106,7 @@ class ChannelCreate(BaseModel):
     platform: str = "youtube"
     platform_id: str = ""
     url: str = ""
+    topic: str = ""
 
 
 class ChannelUpdate(BaseModel):
@@ -116,6 +117,7 @@ class ChannelUpdate(BaseModel):
     description: Optional[str] = None
     thumbnail: Optional[str] = None
     status: Optional[str] = None
+    topic: Optional[str] = None
 
 
 class ChannelOut(BaseModel):
@@ -130,6 +132,7 @@ class ChannelOut(BaseModel):
     description: str
     status: str
     voice_sample_path: str
+    topic: str
     created_at: str
     updated_at: str
     last_sync: Optional[str]

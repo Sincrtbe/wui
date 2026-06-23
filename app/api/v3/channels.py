@@ -33,6 +33,7 @@ def create_my_channel(body: ChannelCreate, user: dict = Depends(get_current_user
         platform=body.platform,
         platform_id=body.platform_id,
         url=body.url,
+        topic=body.topic,
     )
     return ChannelOut(**channel)
 
