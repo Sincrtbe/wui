@@ -455,6 +455,7 @@ def create_content_item(
     stage: str = "idea",
     tags: Optional[list[str]] = None,
     idea_notes: str = "",
+    structured_ideas: str = "[]",
 ) -> dict:
     content_id = str(uuid.uuid4())
     data = {
@@ -468,6 +469,7 @@ def create_content_item(
         "tags": tags if tags is not None else [],
         "current_version_id": None,
         "idea_notes": idea_notes,
+        "structured_ideas": structured_ideas,
         "script_content": "",
         "scene_prompts": [],
         "generated_images": [],

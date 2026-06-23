@@ -6,7 +6,7 @@ Schemas Pydantic para la API v3 de WUI.
 from datetime import datetime
 from enum import Enum
 from typing import Optional
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, model_validator
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -255,7 +255,19 @@ class ContentItemOut(BaseModel):
     tags: list[str]
     current_version_id: Optional[str]
     idea_notes: str
+    structured_ideas: list[dict] = []
     script_content: str
+
+    @model_validator(mode="before")
+    def parse_structured_ideas(cls, values: dict) -> dict:
+        si = values.get("structured_ideas")
+        if isinstance(si, str):
+            import json as _json
+            try:
+                values["structured_ideas"] = _json.loads(si)
+            except Exception:
+                values["structured_ideas"] = []
+        return values
     scene_prompts: list[dict]
     generated_images: list[dict]
     generated_videos: list[dict]

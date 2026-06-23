@@ -81,6 +81,30 @@
           <label>Título</label>
           <input v-model="edit.title" @blur="saveField('title', edit.title)" />
         </div>
+
+        <!-- Structured ideas from brainstorm -->
+        <div v-if="item.structured_ideas && item.structured_ideas.length" style="margin-bottom:1.5rem;">
+          <div style="font-size:0.85rem; color:#888; margin-bottom:0.75rem;">🎯 Ideas generadas ({{ item.structured_ideas.length }})</div>
+          <div class="ideas-grid">
+            <div v-for="(idea, i) in item.structured_ideas" :key="i" class="idea-card">
+              <div class="idea-header">
+                <span class="idea-number">{{ i + 1 }}</span>
+                <strong>{{ idea.titulo || idea.title || idea.name || 'Idea sin título' }}</strong>
+                <span v-if="idea.score_potencial || idea.score" class="score-badge">
+                  {{ idea.score_potencial || idea.score }}/10
+                </span>
+              </div>
+              <div v-if="idea.concepto || idea.concept" class="idea-row">💬 {{ idea.concepto || idea.concept }}</div>
+              <div v-if="idea.angulo_viral || idea.viral_angle" class="idea-row">🔥 {{ idea.angulo_viral || idea.viral_angle }}</div>
+              <div v-if="idea.hook_visual || idea.hook" class="idea-row">👁️ {{ idea.hook_visual || idea.hook }}</div>
+              <div v-if="idea.duracion || idea.duration" class="idea-meta">
+                ⏱️ {{ idea.duracion || idea.duration }}
+                <span v-if="idea.formato || idea.format"> · {{ idea.formato || idea.format }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group">
           <label>Notas de la idea</label>
           <textarea v-model="edit.idea_notes" @blur="saveField('idea_notes', edit.idea_notes)" style="min-height:120px;" />
@@ -331,4 +355,12 @@ async function revertToVersion(vNum) {
 .rendered-output { margin-top: 0.75rem; background: #0f1117; padding: 0.75rem; border-radius: 6px; font-size: 0.85rem; color: #4ade80; white-space: pre-wrap; }
 .version-item { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid #1f2230; }
 .prompt-preview { background: #0f1117; padding: 0.5rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem; color: #67e8f9; }
+.ideas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+.idea-card { background: #0f1117; border: 1px solid #1e2030; border-radius: 8px; padding: 0.875rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.idea-header { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.idea-number { background: #6366f1; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+.idea-card strong { color: #e0e0e0; font-size: 0.9rem; flex: 1; }
+.score-badge { background: rgba(99,102,241,0.2); color: #a5b4fc; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.75rem; }
+.idea-row { font-size: 0.82rem; color: #9ca3af; line-height: 1.4; }
+.idea-meta { font-size: 0.78rem; color: #6b7280; margin-top: 0.25rem; }
 </style>
