@@ -132,7 +132,7 @@ class ChannelOut(BaseModel):
     description: str
     status: str
     voice_sample_path: str
-    topic: str
+    topic: str = ""
     created_at: str
     updated_at: str
     last_sync: Optional[str]
