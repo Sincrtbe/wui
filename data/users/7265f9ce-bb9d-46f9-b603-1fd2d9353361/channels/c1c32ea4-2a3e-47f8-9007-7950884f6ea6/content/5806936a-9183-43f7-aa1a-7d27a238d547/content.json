@@ -1,0 +1,22 @@
+{
+  "id": "5806936a-9183-43f7-aa1a-7d27a238d547",
+  "user_id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "channel_id": "c1c32ea4-2a3e-47f8-9007-7950884f6ea6",
+  "parent_id": null,
+  "title": "💡 Dioses que PERTENECEN a otras religiones hoy",
+  "stage": "idea",
+  "status": "draft",
+  "tags": [],
+  "current_version_id": null,
+  "idea_notes": "{\n  \"titulo\": \"Dioses que PERTENECEN a otras religiones hoy\",\n  \"concepto\": \"Mostrar que dioses como Quetzalcóatl, Thor o Isis siguen siendo adorados activamente en el siglo XXI.\",\n  \"angulo_viral\": \"Dato contraintuitivo: el público asume que la mitología es cosa del pasado, descubre que convive con su realidad.\",\n  \"hook_visual\": \"Mapa mundial con puntos iluminándose mientras se muestran templos actuales y fieles practicando rituales modernos.\",\n  \"duracion\": \"largo\",\n  \"formato\": \"top10\",\n  \"score_potencial\": 9\n}",
+  "structured_ideas": "[\n  {\n    \"titulo\": \"Dioses que PERTENECEN a otras religiones hoy\",\n    \"concepto\": \"Mostrar que dioses como Quetzalcóatl, Thor o Isis siguen siendo adorados activamente en el siglo XXI.\",\n    \"angulo_viral\": \"Dato contraintuitivo: el público asume que la mitología es cosa del pasado, descubre que convive con su realidad.\",\n    \"hook_visual\": \"Mapa mundial con puntos iluminándose mientras se muestran templos actuales y fieles practicando rituales modernos.\",\n    \"duracion\": \"largo\",\n    \"formato\": \"top10\",\n    \"score_potencial\": 9\n  }\n]",
+  "script_content": "",
+  "scene_prompts": [],
+  "generated_images": [],
+  "generated_videos": [],
+  "tts_result": null,
+  "notes": [],
+  "scores": [],
+  "created_at": "2026-06-24T13:34:10.498921+00:00",
+  "updated_at": "2026-06-24T13:34:10.498936+00:00"
+}

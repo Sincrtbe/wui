@@ -1,0 +1,22 @@
+{
+  "id": "d19d6b14-6677-4db5-a9a4-5f30c2626b77",
+  "user_id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "channel_id": "c1c32ea4-2a3e-47f8-9007-7950884f6ea6",
+  "parent_id": "fda16124-e499-4d70-a644-c6a2adc7635a",
+  "title": "💡 El mito griego que Disney escondió deliberadamente",
+  "stage": "idea",
+  "status": "draft",
+  "tags": [],
+  "current_version_id": null,
+  "idea_notes": "{\n  \"titulo\": \"El mito griego que Disney escondió deliberadamente\",\n  \"concepto\": \"Hércules era un villano genocida en la versión original de los mitos, no el héroe que Disney mostró.\",\n  \"angulo_viral\": \"Contradicción directa con la nostalgia de millones que crecieron con la película. Genera debate inmediato en comentarios.\",\n  \"hook_visual\": \"Split screen: Hércules de Disney sonriendo vs Hércules real decapitando enemigos con un cuchillo.\",\n  \"duracion\": \"medio\",\n  \"formato\": \"comparacion\",\n  \"score_potencial\": 9\n}",
+  "structured_ideas": "[\n  {\n    \"titulo\": \"El mito griego que Disney escondió deliberadamente\",\n    \"concepto\": \"Hércules era un villano genocida en la versión original de los mitos, no el héroe que Disney mostró.\",\n    \"angulo_viral\": \"Contradicción directa con la nostalgia de millones que crecieron con la película. Genera debate inmediato en comentarios.\",\n    \"hook_visual\": \"Split screen: Hércules de Disney sonriendo vs Hércules real decapitando enemigos con un cuchillo.\",\n    \"duracion\": \"medio\",\n    \"formato\": \"comparacion\",\n    \"score_potencial\": 9\n  }\n]",
+  "script_content": "",
+  "scene_prompts": [],
+  "generated_images": [],
+  "generated_videos": [],
+  "tts_result": null,
+  "notes": [],
+  "scores": [],
+  "created_at": "2026-06-24T13:36:32.921919+00:00",
+  "updated_at": "2026-06-24T13:36:32.921934+00:00"
+}

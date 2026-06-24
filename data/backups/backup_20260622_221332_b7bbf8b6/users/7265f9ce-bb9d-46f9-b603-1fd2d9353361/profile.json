@@ -1,0 +1,8 @@
+{
+  "id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "name": "David",
+  "email": "david@wui.com",
+  "password_hash": "$2b$12$O.H8kzAQLd9lEEH1cy39UOHrzaJGzilOy88SPUbCHh329VXlEWkvO",
+  "created_at": "2026-06-22T21:46:31.136814+00:00",
+  "updated_at": "2026-06-22T21:46:31.136854+00:00"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "7c408ea9-dbf7-49af-86d6-d0b6eaa41aad",
+  "name": "Escena de Video (Wan 2.2)",
+  "content": "Genera prompts para Wan 2.2 (video AI).\n\nEscena: {{{descripcion_escena}}}\nTítulo del video: {{{titulo}}}\n\nPara cada prompt incluye:\n- Descripción de movimiento de cámara\n- Transición desde escena anterior\n- Descripción de lo que ocurre en pantalla\n- Duración sugerida (2-5 segundos)\n- Estilo visual (consistente con Flux)\n\nSalida JSON:\n{\n  \"prompts_video\": [\n    {\"prompt\": \"...\", \"duracion\": \"3s\", \"camara\": \"tracking shot\", \"transicion\": \"cut\"}\n  ]\n}",
+  "category": "scene_video",
+  "description": "Crea prompts para Wan 2.2",
+  "tags": [
+    "wan",
+    "video",
+    "scene"
+  ],
+  "variables_schema": [
+    {
+      "name": "descripcion_escena",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "titulo",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "is_system": true,
+  "created_at": "2026-06-23T09:40:42.443267+00:00",
+  "updated_at": "2026-06-23T09:40:42.443283+00:00"
+}

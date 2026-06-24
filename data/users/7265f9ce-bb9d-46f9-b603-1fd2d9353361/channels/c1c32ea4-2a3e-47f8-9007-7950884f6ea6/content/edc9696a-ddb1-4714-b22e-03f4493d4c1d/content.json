@@ -1,0 +1,22 @@
+{
+  "id": "edc9696a-ddb1-4714-b22e-03f4493d4c1d",
+  "user_id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "channel_id": "c1c32ea4-2a3e-47f8-9007-7950884f6ea6",
+  "parent_id": null,
+  "title": "💡 El mito de Thanos EXISTE en la mitología real",
+  "stage": "idea",
+  "status": "draft",
+  "tags": [],
+  "current_version_id": null,
+  "idea_notes": "{\n  \"titulo\": \"El mito de Thanos EXISTE en la mitología real\",\n  \"concepto\": \"Comparar directamente el chasquido de Thanos con mitos de sacrificio cósmico de la mitología nórdica e hindú.\",\n  \"angulo_viral\": \"Une cultura pop y conocimiento clásico; los fans de Marvel hacen eco masivo del video entre ambos públicos.\",\n  \"hook_visual\": \"Split screen: escena de Avengers: Infinity War junto a ilustraciones antiguas del Ragnarok y el Shiva Nataraja.\",\n  \"duracion\": \"medio\",\n  \"formato\": \"comparacion\",\n  \"score_potencial\": 8\n}",
+  "structured_ideas": "[\n  {\n    \"titulo\": \"El mito de Thanos EXISTE en la mitología real\",\n    \"concepto\": \"Comparar directamente el chasquido de Thanos con mitos de sacrificio cósmico de la mitología nórdica e hindú.\",\n    \"angulo_viral\": \"Une cultura pop y conocimiento clásico; los fans de Marvel hacen eco masivo del video entre ambos públicos.\",\n    \"hook_visual\": \"Split screen: escena de Avengers: Infinity War junto a ilustraciones antiguas del Ragnarok y el Shiva Nataraja.\",\n    \"duracion\": \"medio\",\n    \"formato\": \"comparacion\",\n    \"score_potencial\": 8\n  }\n]",
+  "script_content": "",
+  "scene_prompts": [],
+  "generated_images": [],
+  "generated_videos": [],
+  "tts_result": null,
+  "notes": [],
+  "scores": [],
+  "created_at": "2026-06-24T13:34:10.500018+00:00",
+  "updated_at": "2026-06-24T13:34:10.500035+00:00"
+}

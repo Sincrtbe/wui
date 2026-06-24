@@ -1,0 +1,32 @@
+{
+  "id": "3cc2c503-76fc-42fc-b98f-53fa2639dd90",
+  "name": "Escena Gráfica (Flux 2.0)",
+  "content": "Genera 3 prompts OPTIMIZADOS para Flux 2.0.\n\nContexto: {{{titulo}}}\nEscena: {{{descripcion_escena}}}\nMomento: {{{momento}}}\n\nEstructura del prompt Flux 2.0:\n[Estilo visual], [Sujeto], [Acción], [Entorno], [Iluminación], [Cámara], [Atmósfera] --ar 16:9 --v 2\n\nIncluye siempre:\n- Prompt negativo: blurry, deformed, ugly, bad anatomy, cartoon\n- 3 variaciones con diferentes estilos (cinematic, photorealistic, illustration)\n\nEjemplo de salida:\n{\n  \"prompts\": [\n    {\"prompt\": \"..., --ar 16:9 --v 2\", \"estilo\": \"cinematic\", \"negativo\": \"...\"},\n    ...\n  ]\n}",
+  "category": "scene_graphic",
+  "description": "Crea prompts optimizados para Flux 2.0",
+  "tags": [
+    "flux",
+    "imagen",
+    "scene"
+  ],
+  "variables_schema": [
+    {
+      "name": "titulo",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "descripcion_escena",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "momento",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "is_system": true,
+  "created_at": "2026-06-23T08:54:25.168057+00:00",
+  "updated_at": "2026-06-23T08:54:25.168072+00:00"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "a8a483ce-0623-407e-a7d2-7f5b32ce29ee",
+  "user_id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "channel_id": "c1c32ea4-2a3e-47f8-9007-7950884f6ea6",
+  "parent_id": null,
+  "title": "\ud83d\udca1 El descubrimiento m\u00e1s caro de la historia ($20B)",
+  "stage": "idea",
+  "status": "draft",
+  "tags": [],
+  "current_version_id": null,
+  "idea_notes": "```json\n{\n  \"ideas\": [\n    {\n      \"titulo\": \"Descubr\u00ed que mi casa tiene una habitaci\u00f3n oculta (1990)\",\n      \"concepto\": \"Un comprador encuentra una habitaci\u00f3n secreta tras 30 a\u00f1os desconocida en su propia casa.\",\n      \"angulo_viral\": \"Misterio + propiedad privada + nostalgia de los 90 genera obsesi\u00f3n inmediata en redes.\",\n      \"hook_visual\": \"Muro que se mueve revelando una habitaci\u00f3n llena de objetos de los a\u00f1os 90 perfectamente conservados.\",\n      \"duracion\": \"medio\",\n      \"formato\": \"storytelling\",\n      \"score_potencial\": 9\n    },\n    {\n      \"titulo\": \"5 inventos que NASA cre\u00f3 POR ACCIDENTE\",\n      \"concepto\": \"Tecnolog\u00eda que usamos diario naci\u00f3 como error en laboratorios espaciales.\",\n      \"angulo_viral\": \"Contradicci\u00f3n total: lo m\u00e1s \u00fatil surgi\u00f3 de fracasos, no de planes perfectos.\",\n      \"hook_visual\": \"Filtro de agua, memory foam y lentes anti-rayaduras apareciendo uno por uno con sello de 'error'.\",\n      \"duracion\": \"medio\",\n      \"formato\": \"top10\",\n      \"score_potencial\": 9\n    },\n    {\n      \"titulo\": \"Enterr\u00e9 una c\u00e1psula del tiempo hace 10 a\u00f1os. La abr\u00ed.\",\n      \"concepto\": \"Creador desentierra su propia c\u00e1psula del tiempo y compara su yo del pasado con el actual.\",\n      \"angulo_viral\": \"Reflejo personal extremo: el\u89c2\u4f17 proyecta su propia nostalgia y se siente interpelado emocionalmente.\",\n      \"hook_visual\": \"Manos temblorosas sacando una caja oxidada del suelo mientras suena audio del entierro original.\",\n      \"duracion\": \"largo\",\n      \"formato\": \"storytelling\",\n      \"score_potencial\": 8\n    },\n    {\n      \"titulo\": \"Google Earth capt\u00f3 algo que NO deber\u00eda existir\",\n      \"concepto\": \"Anomal\u00edas geogr\u00e1ficas inexplicables vistas desde sat\u00e9lite que desaf\u00edan la l\u00f3gica.\",\n      \"angulo_viral\": \"Desaf\u00edo a la percepci\u00f3n + sensaci\u00f3n de descubrir conspiraciones ajenas alimenta el compartir urgente.\",\n      \"hook_visual\": \"Zoom vertiginoso desde el espacio hasta revelar patrones imposibles en el desierto.\",\n      \"duracion\": \"corto\",\n      \"formato\": \"experimento\",\n      \"score_potencial\": 8\n    },\n    {\n      \"titulo\": \"El descubrimiento m\u00e1s caro de la historia ($20B)\",\n      \"concepto\": \"Un qu\u00edmico derram\u00f3 caf\u00e9 por accidente y cre\u00f3 el material m\u00e1s valioso del siglo.\",\n      \"angulo_viral\": \"Paradoja millonaria: el error m\u00e1s tonto gener\u00f3 la mayor fortuna; todos aman las historias de suerte pura.\",\n      \"hook_visual\": \"Taza volc\u00e1ndose en placa de laboratorio seguida del cient\u00edfico mirando anonadado la sustancia resultante.\",\n      \"duracion\": \"corto\",\n      \"formato\": \"storytelling\",\n      \"score_potencial\": 9\n    }\n  ]\n}\n```",
+  "structured_ideas": "[\n  {\n    \"titulo\": \"El descubrimiento m\u00e1s caro de la historia ($20B)\",\n    \"concepto\": \"Un qu\u00edmico derram\u00f3 caf\u00e9 por accidente y cre\u00f3 el material m\u00e1s valioso del siglo.\",\n    \"angulo_viral\": \"Paradoja millonaria: el error m\u00e1s tonto gener\u00f3 la mayor fortuna; todos aman las historias de suerte pura.\",\n    \"hook_visual\": \"Taza volc\u00e1ndose en placa de laboratorio seguida del cient\u00edfico mirando anonadado la sustancia resultante.\",\n    \"duracion\": \"corto\",\n    \"formato\": \"storytelling\",\n    \"score_potencial\": 9\n  }\n]",
+  "script_content": "",
+  "scene_prompts": [],
+  "generated_images": [],
+  "generated_videos": [],
+  "tts_result": null,
+  "notes": [],
+  "scores": [],
+  "created_at": "2026-06-23T09:32:16.830876+00:00",
+  "updated_at": "2026-06-23T09:32:16.830890+00:00"
+}

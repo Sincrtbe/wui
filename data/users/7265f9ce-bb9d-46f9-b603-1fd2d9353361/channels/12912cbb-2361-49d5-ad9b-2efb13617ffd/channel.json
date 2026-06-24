@@ -1,0 +1,16 @@
+{
+  "id": "12912cbb-2361-49d5-ad9b-2efb13617ffd",
+  "user_id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "name": "Mi Canal Test",
+  "platform": "youtube",
+  "platform_id": "UCxxxx",
+  "url": "https://youtube.com/@test",
+  "thumbnail": "",
+  "subscribers": 0,
+  "description": "",
+  "status": "active",
+  "voice_sample_path": "",
+  "created_at": "2026-06-22T21:54:39.559730+00:00",
+  "updated_at": "2026-06-22T21:54:39.559783+00:00",
+  "last_sync": null
+}

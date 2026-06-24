@@ -1,0 +1,22 @@
+{
+  "id": "5e03c28d-ce00-4768-86d2-dd3d98c4265d",
+  "user_id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "channel_id": "c1c32ea4-2a3e-47f8-9007-7950884f6ea6",
+  "parent_id": null,
+  "title": "\ud83d\udca1 Por qu\u00e9 escrib\u00edan en barro y NO en papel",
+  "stage": "idea",
+  "status": "draft",
+  "tags": [],
+  "current_version_id": null,
+  "idea_notes": "```json\n{\n  \"ideas\": [\n    {\n      \"titulo\": \"Inventaron las escuelas 2,000 a\u00f1os antes que los griegos\",\n      \"concepto\": \"Sumeria cre\u00f3 el primer sistema educativo formal del mundo, con m\u00e9todos que siguen vigentes hoy.\",\n      \"angulo_viral\": \"Golpea el ego occidental al revelar que todo lo que creemos haber inventado, ya exist\u00eda en Mesopotamia.\",\n      \"hook_visual\": \"Una clase moderna que se transforma en una escuela sumeria de arcilla con alumnos reales.\",\n      \"duracion\": \"medio\",\n      \"formato\": \"storytelling\",\n      \"score_potencial\": 9\n    },\n    {\n      \"titulo\": \"Por qu\u00e9 escrib\u00edan en barro y NO en papel\",\n      \"concepto\": \"La elecci\u00f3n de la arcilla no fue primitiva, fue una decisi\u00f3n tecnol\u00f3gica superior a cualquier alternativa.\",\n      \"angulo_viral\": \"Contradice la idea de 'evoluci\u00f3n lineal': lo que parece\u843d\u540e\u7684 es en realidad m\u00e1s avanzado.\",\n      \"hook_visual\": \"Una tableta de arcilla sobreviviendo un incendio mientras un libro moderno se reduce a cenizas.\",\n      \"duracion\": \"corto\",\n      \"formato\": \"experimento\",\n      \"score_potencial\": 9\n    },\n    {\n      \"titulo\": \"7 inventos sumerios que usas ANTES de llegar al ba\u00f1o\",\n      \"concepto\": \"El reloj de 60 minutos, la rueda, el sistema de 12 horas, la cerveza... todos tuyos cada ma\u00f1ana.\",\n      \"angulo_viral\": \"Formato lista con conexi\u00f3n \u00edntima a la rutina diaria del espectador: imposible no compartirlo.\",\n      \"hook_visual\": \"Plano secuencia siguiendo a alguien en su rutina matutina con overlays de inventos sumerios.\",\n      \"duracion\": \"medio\",\n      \"formato\": \"top10\",\n      \"score_potencial\": 10\n    },\n    {\n      \"titulo\": \"Sumerios ve\u00edan el universo como un DISCO DE PIZZA\",\n      \"concepto\": \"Su cosmolog\u00eda: una monta\u00f1a c\u00f3smica flotando en un oc\u00e9ano primordial, con el cielo como una tienda de zinc.\",\n      \"angulo_viral\": \"Lo absurdo se vuelve memorable: compara con memes actuales y genera choque cultural.\",\n      \"hook_visual\": \"Una pizza girando animada con elementos c\u00f3smicos sumerios (Tiamat, Anu, Ea) como ingredientes.\",\n      \"duracion\": \"corto\",\n      \"formato\": \"storytelling\",\n      \"score_potencial\": 8\n    },\n    {\n      \"titulo\": \"La primera queja laboral escrita tiene 4,700 a\u00f1os\",\n      \"concepto\": \"Un trabajador sumerio dej\u00f3 por escrito que lo explotaban. Su tablilla es el CV m\u00e1s antiguo del mundo.\",\n      \"angulo_viral\": \"Conexi\u00f3n inmediata con la cultura del 'quiet quitting' y la Gen Z: queja eterna, no nueva.\",\n      \"hook_visual\": \"Pantalla partida: empleado moderno con laptop / sumerio tallando queja, sincronizando gestos.\",\n      \"duracion\": \"corto\",\n      \"formato\": \"comparacion\",\n      \"score_potencial\": 9\n    }\n  ]\n}\n```",
+  "structured_ideas": "[\n  {\n    \"titulo\": \"Por qu\u00e9 escrib\u00edan en barro y NO en papel\",\n    \"concepto\": \"La elecci\u00f3n de la arcilla no fue primitiva, fue una decisi\u00f3n tecnol\u00f3gica superior a cualquier alternativa.\",\n    \"angulo_viral\": \"Contradice la idea de 'evoluci\u00f3n lineal': lo que parece\u843d\u540e\u7684 es en realidad m\u00e1s avanzado.\",\n    \"hook_visual\": \"Una tableta de arcilla sobreviviendo un incendio mientras un libro moderno se reduce a cenizas.\",\n    \"duracion\": \"corto\",\n    \"formato\": \"experimento\",\n    \"score_potencial\": 9\n  }\n]",
+  "script_content": "",
+  "scene_prompts": [],
+  "generated_images": [],
+  "generated_videos": [],
+  "tts_result": null,
+  "notes": [],
+  "scores": [],
+  "created_at": "2026-06-23T09:58:34.198570+00:00",
+  "updated_at": "2026-06-23T09:58:34.198591+00:00"
+}

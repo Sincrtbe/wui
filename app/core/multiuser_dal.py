@@ -456,13 +456,14 @@ def create_content_item(
     tags: Optional[list[str]] = None,
     idea_notes: str = "",
     structured_ideas: str = "[]",
+    parent_id: Optional[str] = None,
 ) -> dict:
     content_id = str(uuid.uuid4())
     data = {
         "id": content_id,
         "user_id": user_id,
         "channel_id": channel_id,
-        "parent_id": None,
+        "parent_id": parent_id,
         "title": title,
         "stage": stage,
         "status": "draft",

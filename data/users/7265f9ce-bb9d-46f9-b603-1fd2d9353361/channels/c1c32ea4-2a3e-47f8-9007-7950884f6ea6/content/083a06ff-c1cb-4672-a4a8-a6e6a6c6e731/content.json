@@ -1,0 +1,22 @@
+{
+  "id": "083a06ff-c1cb-4672-a4a8-a6e6a6c6e731",
+  "user_id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "channel_id": "c1c32ea4-2a3e-47f8-9007-7950884f6ea6",
+  "parent_id": null,
+  "title": "💡 CREA tu propio dios mitológico en 60 segundos",
+  "stage": "idea",
+  "status": "draft",
+  "tags": [],
+  "current_version_id": null,
+  "idea_notes": "{\n  \"titulo\": \"CREA tu propio dios mitológico en 60 segundos\",\n  \"concepto\": \"Tutorial interactivo para inventar una deidad con dominio, símbolo, mito de origen y debilidad siguiendo patrones de las mitologías reales.\",\n  \"angulo_viral\": \"Participación activa del público: el video se vuelve reto creativo y los usuarios comparten sus dioses inventados en comentarios.\",\n  \"hook_visual\": \"Mano dibujando rápidamente símbolos y nombres antiguos mientras una voz dice 'tu dios ya tiene nombre'.\",\n  \"duracion\": \"corto\",\n  \"formato\": \"tutorial\",\n  \"score_potencial\": 7\n}",
+  "structured_ideas": "[\n  {\n    \"titulo\": \"CREA tu propio dios mitológico en 60 segundos\",\n    \"concepto\": \"Tutorial interactivo para inventar una deidad con dominio, símbolo, mito de origen y debilidad siguiendo patrones de las mitologías reales.\",\n    \"angulo_viral\": \"Participación activa del público: el video se vuelve reto creativo y los usuarios comparten sus dioses inventados en comentarios.\",\n    \"hook_visual\": \"Mano dibujando rápidamente símbolos y nombres antiguos mientras una voz dice 'tu dios ya tiene nombre'.\",\n    \"duracion\": \"corto\",\n    \"formato\": \"tutorial\",\n    \"score_potencial\": 7\n  }\n]",
+  "script_content": "",
+  "scene_prompts": [],
+  "generated_images": [],
+  "generated_videos": [],
+  "tts_result": null,
+  "notes": [],
+  "scores": [],
+  "created_at": "2026-06-24T13:34:10.501062+00:00",
+  "updated_at": "2026-06-24T13:34:10.501076+00:00"
+}

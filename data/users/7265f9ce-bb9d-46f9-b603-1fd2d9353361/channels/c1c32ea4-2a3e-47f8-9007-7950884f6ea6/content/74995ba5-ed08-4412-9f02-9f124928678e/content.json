@@ -1,0 +1,22 @@
+{
+  "id": "74995ba5-ed08-4412-9f02-9f124928678e",
+  "user_id": "7265f9ce-bb9d-46f9-b603-1fd2d9353361",
+  "channel_id": "c1c32ea4-2a3e-47f8-9007-7950884f6ea6",
+  "parent_id": "fda16124-e499-4d70-a644-c6a2adc7635a",
+  "title": "💡 3 dioses que crearon el mundo por accidente",
+  "stage": "idea",
+  "status": "draft",
+  "tags": [],
+  "current_version_id": null,
+  "idea_notes": "{\n  \"titulo\": \"3 dioses que crearon el mundo por accidente\",\n  \"concepto\": \"Algunas cosmogonías antiguas explican el universo como resultado de errores divinos, no de diseño intencional.\",\n  \"angulo_viral\": \"Lo contraintuitivo de que las civilizaciones más antiguas tenían 'bugs' en la creación del cosmos.\",\n  \"hook_visual\": \"Animación caótica de un dios gigante tropezando y de su boca sale una galaxia entera.\",\n  \"duracion\": \"corto\",\n  \"formato\": \"top10\",\n  \"score_potencial\": 8\n}",
+  "structured_ideas": "[\n  {\n    \"titulo\": \"3 dioses que crearon el mundo por accidente\",\n    \"concepto\": \"Algunas cosmogonías antiguas explican el universo como resultado de errores divinos, no de diseño intencional.\",\n    \"angulo_viral\": \"Lo contraintuitivo de que las civilizaciones más antiguas tenían 'bugs' en la creación del cosmos.\",\n    \"hook_visual\": \"Animación caótica de un dios gigante tropezando y de su boca sale una galaxia entera.\",\n    \"duracion\": \"corto\",\n    \"formato\": \"top10\",\n    \"score_potencial\": 8\n  }\n]",
+  "script_content": "",
+  "scene_prompts": [],
+  "generated_images": [],
+  "generated_videos": [],
+  "tts_result": null,
+  "notes": [],
+  "scores": [],
+  "created_at": "2026-06-24T13:36:32.922978+00:00",
+  "updated_at": "2026-06-24T13:36:32.922992+00:00"
+}

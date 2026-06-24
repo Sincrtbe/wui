@@ -1,0 +1,27 @@
+{
+  "id": "7fcc8f68-d2d6-4e3e-9f61-d0dd4adcfbbf",
+  "name": "TTS Narración",
+  "content": "Prepara el siguiente guion para text-to-speech.\n\nGuion: {{{guion}}}\nTono deseado: {{{tono}}}\n\nInstrucciones:\n- Divide en bloques de 2-3 oraciones para pausas naturales\n- Añade marcas de entonación: [PAUSA], [ÉNFASTS], [PREGUNTA]\n- Mantén oraciones cortas para lectura fluida\n- Elimina muletillas y repetición de palabras\n- Verifica que no haya caracteres especiales problemáticos\n\nSalida:\n{\n  \"bloques_tts\": [\n    {\"texto\": \"...\", \"duracion_estimada\": \"5s\", \"entonacion\": \"neutral\"},\n    ...\n  ],\n  \"duracion_total\": \"X minutos\"\n}",
+  "category": "tts",
+  "description": "Prepara texto para text-to-speech",
+  "tags": [
+    "tts",
+    "narracion",
+    "audio"
+  ],
+  "variables_schema": [
+    {
+      "name": "guion",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "tono",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "is_system": true,
+  "created_at": "2026-06-23T10:08:15.419572+00:00",
+  "updated_at": "2026-06-23T10:08:15.419588+00:00"
+}

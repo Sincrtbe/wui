@@ -10,9 +10,9 @@
   "apis": {
     "minimax": {
       "enabled": true,
-      "api_key": "sk-test123",
+      "api_key": "sk-cp-oblHlg3feo3GGeKkHrF8p1o_954uPd8dc8zTQsvJxcILmRYsTRgZIUUSIc6hewNyHb1zwNP0Ytd0EO5QyxKRSywbe2zosgLFA2hb2bGnmqKM1iUp6eFtyyY",
       "base_url": "",
-      "model": "MBXM-01",
+      "model": "minimax m3",
       "extra": {}
     },
     "openai": {

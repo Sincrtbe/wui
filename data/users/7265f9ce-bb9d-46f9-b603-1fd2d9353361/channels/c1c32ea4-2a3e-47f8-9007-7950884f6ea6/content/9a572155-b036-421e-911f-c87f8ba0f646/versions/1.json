@@ -1,0 +1,17 @@
+{
+  "id": "a39480e9-81f3-4dc0-a607-ce279594ddce",
+  "content_item_id": "9a572155-b036-421e-911f-c87f8ba0f646",
+  "version_number": 1,
+  "stage_snapshot": "idea",
+  "data": {
+    "idea_notes": "{\n  \"titulo\": \"Si Zeus existiera hoy sería arrestado, aquí pruebas\",\n  \"concepto\": \"Aplicar códigos penales modernos a los crímenes documentados de los dioses olímpicos.\",\n  \"angulo_viral\": \"Humor negro + análisis jurídico absurdo hace que sea altamente compartible en TikTok y Reels.\",\n  \"hook_visual\": \"Foto policial estilo ficha de arresto de Zeus con corona de laurel y lista de cargos.\",\n  \"duracion\": \"corto\",\n  \"formato\": \"experimento\",\n  \"score_potencial\": 9\n}",
+    "script_content": "",
+    "scene_prompts": [],
+    "generated_images": [],
+    "generated_videos": [],
+    "tts_result": null
+  },
+  "prompt_id": null,
+  "prompt_version_id": null,
+  "created_at": "2026-06-24T13:37:09.895022+00:00"
+}

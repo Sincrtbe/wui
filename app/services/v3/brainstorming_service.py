@@ -1,7 +1,9 @@
 """
 app/services/v3/brainstorming_service.py
-Genera lluvias de ideas para un canal usando el prompt de storming
-y guarda TODAS las ideas generadas en UN SOLO content item.
+Genera lluvias de ideas para un canal usando el prompt de storming.
+1. Llama al LLM y parsea las ideas
+2. Crea UN content item "grupo" con TODAS las ideas dentro (structured_ideas = list completa)
+3. Crea UN content item POR CADA IDEA (individual, para poder ascenderlas una a una)
 """
 
 import json
@@ -19,7 +21,6 @@ def _parse_ideas(raw_text: str) -> list[dict]:
     """
     Extrae el bloque JSON del texto devuelto por el LLM.
     """
-    # Buscar bloque markdown ```json ... ```
     match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", raw_text, re.DOTALL)
     if match:
         json_str = match.group(1)
@@ -51,11 +52,9 @@ def brainstorm_channel(
     2. Obtiene el prompt de storming (category='storming')
     3. Llama al LLM
     4. Parsea la respuesta JSON
-    5. Guarda TODAS las ideas en UN SOLO content item con:
-       - title: "Lluvia de ideas: <topic>"
-       - structured_ideas: lista completa de dicts de ideas
-       - idea_notes: JSON original del LLM (raw)
-    6. Devuelve el content item creado
+    5. Crea UN content item GRUPO con todas las ideas dentro
+    6. Crea UN content item POR CADA IDEA (individual, para ascenderlas por separado)
+    7. Devuelve todos los items creados (grupo + individuales)
     """
     channel = get_channel(user_id, channel_id)
     if not channel:
@@ -68,7 +67,6 @@ def brainstorm_channel(
             "Proporciona extra_topic o establece el topic del canal."
         )
 
-    # Prompt de storming
     storming_prompts = list_system_prompts(category="storming")
     if not storming_prompts:
         raise ValueError("No hay prompts de storming en el sistema.")
@@ -92,13 +90,31 @@ def brainstorm_channel(
     if not ideas:
         raise ValueError("No se pudieron parsear ideas de la respuesta del LLM.")
 
-    # Guardar TODAS las ideas en UN solo content item
-    item = create_content_item(
+    created = []
+
+    # 1. GRUPO: todas las ideas juntas en un solo item
+    group_item = create_content_item(
         user_id=user_id,
         channel_id=channel_id,
-        title=f"💡 Lluvia de ideas: {topic}",
+        title=f"📋 Lluvia de ideas: {topic}",
         stage="idea",
         idea_notes=raw_result.strip(),
         structured_ideas=json.dumps(ideas, ensure_ascii=False, indent=2),
     )
-    return [item]
+    created.append(group_item)
+
+    # 2. INDIVIDUAL: un content item POR CADA idea (para ascender单独)
+    for idea in ideas:
+        idea_title = idea.get("titulo") or idea.get("title") or idea.get("concepto", "Idea sin título")
+        item = create_content_item(
+            user_id=user_id,
+            channel_id=channel_id,
+            title=f"💡 {idea_title}",
+            stage="idea",
+            idea_notes=json.dumps(idea, ensure_ascii=False, indent=2),
+            structured_ideas=json.dumps([idea], ensure_ascii=False, indent=2),
+            parent_id=group_item["id"],
+        )
+        created.append(item)
+
+    return created
