@@ -4,10 +4,10 @@
   "channel_id": "c1c32ea4-2a3e-47f8-9007-7950884f6ea6",
   "parent_id": null,
   "title": "💡 Los dioses griegos NO eran heroicos como crees",
-  "stage": "idea",
-  "status": "draft",
+  "stage": "script",
+  "status": "in_progress",
   "tags": [],
-  "current_version_id": null,
+  "current_version_id": "b317aa7c-ba8d-479e-98b5-9de02122e2e8",
   "idea_notes": "{\n  \"titulo\": \"Los dioses griegos NO eran heroicos como crees\",\n  \"concepto\": \"Desmitificar las virtudes de los dioses del Olimpo mostrando sus actos más viles y egoístas que la mitología romantizada oculta.\",\n  \"angulo_viral\": \"Contradicción brutal con la imagen cultural idealizada; la gente comparte para decir 'no tenía idea' y sentirse más culta.\",\n  \"hook_visual\": \"Estatuas perfectas de mármol de Zeus y Afrodita que se desmoronan en cámara lenta revelando sombras oscuras.\",\n  \"duracion\": \"medio\",\n  \"formato\": \"storytelling\",\n  \"score_potencial\": 9\n}",
   "structured_ideas": "[\n  {\n    \"titulo\": \"Los dioses griegos NO eran heroicos como crees\",\n    \"concepto\": \"Desmitificar las virtudes de los dioses del Olimpo mostrando sus actos más viles y egoístas que la mitología romantizada oculta.\",\n    \"angulo_viral\": \"Contradicción brutal con la imagen cultural idealizada; la gente comparte para decir 'no tenía idea' y sentirse más culta.\",\n    \"hook_visual\": \"Estatuas perfectas de mármol de Zeus y Afrodita que se desmoronan en cámara lenta revelando sombras oscuras.\",\n    \"duracion\": \"medio\",\n    \"formato\": \"storytelling\",\n    \"score_potencial\": 9\n  }\n]",
   "script_content": "",
@@ -18,5 +18,5 @@
   "notes": [],
   "scores": [],
   "created_at": "2026-06-24T13:34:10.496882+00:00",
-  "updated_at": "2026-06-24T13:34:10.496898+00:00"
+  "updated_at": "2026-06-24T21:33:37.386751+00:00"
 }

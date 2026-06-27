@@ -880,6 +880,26 @@ def build_render_context(
             ctx["titulo"] = c.get("title", "")
             ctx["idea_notas"] = c.get("idea_notes", "")
             ctx["guion"] = c.get("script_content", "")
+            # Extraer campos de structured_ideas (JSON puede venir como str o list)
+            raw_si = c.get("structured_ideas", [])
+            if isinstance(raw_si, str):
+                try:
+                    raw_si = json.loads(raw_si)
+                except (json.JSONDecodeError, TypeError):
+                    raw_si = []
+            # Si es una lista, tomar el primer elemento (idea individual)
+            if isinstance(raw_si, list) and len(raw_si) > 0:
+                si = raw_si[0] if isinstance(raw_si[0], dict) else {}
+            elif isinstance(raw_si, dict):
+                si = raw_si
+            else:
+                si = {}
+            ctx["concepto"] = si.get("concepto", si.get("concept", ""))
+            ctx["duracion_objetivo"] = si.get("duracion", si.get("duration", "largo"))
+            ctx["angulo_viral"] = si.get("angulo_viral", si.get("viral_angle", ""))
+            ctx["hook_visual"] = si.get("hook_visual", si.get("visual_hook", ""))
+            ctx["formato"] = si.get("formato", si.get("format", ""))
+            ctx["score_potencial"] = si.get("score_potencial", si.get("potential_score", ""))
             # Scores si existen
             scores = c.get("scores", [])
             for s in scores:

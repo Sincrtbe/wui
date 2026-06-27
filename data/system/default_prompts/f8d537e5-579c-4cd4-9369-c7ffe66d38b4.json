@@ -1,0 +1,32 @@
+{
+  "id": "f8d537e5-579c-4cd4-9369-c7ffe66d38b4",
+  "name": "Desarrollo de Guion",
+  "content": "Eres un escritor de guiones para YouTube.\n\nDesarrolla el siguiente concepto en un guion completo:\n\nTítulo: {{{titulo}}}\nConcepto: {{{concepto}}}\nDuración objetivo: {{{duracion_objetivo}}}\n\nEstructura del guion:\n1. HOOK (primeros 10 segundos) - gancho visual + pregunta/contradicción\n2. CONTEXTO (30 segundos) - información necesaria\n3. NÚCLEO (parte principal) - desarrollo con datos, historias, ejemplos\n4. CIERRE - conclusión + call to action\n\nPara cada escena incluye:\n- Texto del guion\n- Descripción visual\n- Duración estimada\n- Prompt para imagen (si aplica)\n- Prompt para video (si aplica)\n\nDevuelve el guion en formato estructurado.",
+  "category": "development",
+  "description": "Desarrolla una idea en guion estructurado",
+  "tags": [
+    "youtube",
+    "guion",
+    "desarrollo"
+  ],
+  "variables_schema": [
+    {
+      "name": "titulo",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "concepto",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "duracion_objetivo",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "is_system": true,
+  "created_at": "2026-06-24T22:15:01.753581+00:00",
+  "updated_at": "2026-06-24T22:15:01.753597+00:00"
+}

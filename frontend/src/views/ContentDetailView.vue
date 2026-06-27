@@ -138,8 +138,18 @@
           <div style="font-size:0.8rem; color:#666; margin-bottom:0.25rem;">Escena {{ i + 1 }}</div>
           <textarea v-model="scene.prompt" style="font-family:monospace; font-size:0.85rem;" />
         </div>
-        <button class="secondary" @click="addScene" style="margin-top:0.5rem;">+ Añadir escena</button>
-        <button class="primary" @click="saveScenes" style="margin-top:0.5rem; margin-left:0.5rem;">Guardar escenas</button>
+        <button class="secondary" @click="saveScenes" style="margin-top:0.5rem; margin-left:0.5rem;">Guardar escenas</button>
+        <!-- NocoDB Export -->
+        <div style="margin-top:1rem; padding-top:1rem; border-top: 1px solid #333;">
+          <div style="font-size:0.85rem; color:#888; margin-bottom:0.5rem;">📦 Exportar a NocoDB:</div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <input v-model="nocodbUrl" placeholder="http://192.168.10.22:8080" style="flex:1; min-width:200px; background:#1a1a2e; border:1px solid #333; color:#ccc; border-radius:4px; padding:0.3rem 0.5rem; font-size:0.85rem;" />
+            <input v-model="nocodbToken" type="password" placeholder="Token NocoDB" style="flex:1; min-width:150px; background:#1a1a2e; border:1px solid #333; color:#ccc; border-radius:4px; padding:0.3rem 0.5rem; font-size:0.85rem;" />
+            <input v-model="nocodbTable" placeholder="Tabla ID" style="width:120px; background:#1a1a2e; border:1px solid #333; color:#ccc; border-radius:4px; padding:0.3rem 0.5rem; font-size:0.85rem;" />
+            <button class="secondary" @click="exportToNocodb" :disabled="!edit.scene_prompts?.length" style="font-size:0.85rem;">Exportar</button>
+          </div>
+          <div v-if="nocodbStatus" :class="['nocodb-msg', nocodbStatus.ok ? 'success' : 'error']" style="margin-top:0.5rem; font-size:0.85rem;">{{ nocodbStatus.msg }}</div>
+        </div>
         <div v-if="edit.generated_images?.length" style="margin-top:1rem;">
           <div style="font-size:0.85rem; color:#888; margin-bottom:0.5rem;">Imágenes generadas:</div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
@@ -211,6 +221,10 @@ const newNoteContent = ref('')
 const newScoreMetric = ref('views')
 const newScoreValue = ref(0)
 const stages = ['idea', 'script', 'graphic', 'video', 'published']
+const nocodbUrl = ref('')
+const nocodbToken = ref('')
+const nocodbTable = ref('')
+const nocodbStatus = ref(null)
 
 onMounted(async () => {
   await loadItem()
@@ -277,12 +291,57 @@ async function saveScenes() {
   await saveField('scene_prompts', edit.value.scene_prompts)
 }
 
+async function exportToNocodb() {
+  if (!nocodbUrl.value || !nocodbToken.value || !nocodbTable.value) {
+    nocodbStatus.value = { ok: false, msg: 'Completa URL, token y tabla ID' }
+    return
+  }
+  nocodbStatus.value = null
+  try {
+    const scenes = edit.value.scene_prompts || []
+    let imported = 0
+    let failed = 0
+    for (const scene of scenes) {
+      const title = `${item.value.title}-${scene.prompt.substring(0, 20)}`.replace(/[^a-zA-Z0-9-_]/g, '_')
+      const record = {
+        Title: title,
+        prompt: scene.prompt || '',
+        imagenref: scene.image_url || '',
+        promptv: scene.prompt_video || '',
+        visto: false,
+        video: false,
+      }
+      const res = await fetch(`${nocodbUrl.value}/api/v2/tables/${nocodbTable.value}/records`, {
+        method: 'POST',
+        headers: {
+          'xc-token': nocodbToken.value,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify([record])
+      })
+      if (res.ok) {
+        imported++
+      } else {
+        failed++
+      }
+    }
+    nocodbStatus.value = {
+      ok: failed === 0,
+      msg: `Exportados ${imported} escena${imported !== 1 ? 's' : ''}${failed > 0 ? `, ${failed} fallo${failed !== 1 ? 's' : ''}` : ''}`
+    }
+  } catch (e) {
+    nocodbStatus.value = { ok: false, msg: `Error: ${e.message}` }
+  }
+}
+
 async function renderScriptPrompt() {
   if (!scriptPrompt.value) return
   try {
-    const res = await apiFetch('/api/v3/prompts/render', {
+    // Usar el endpoint correcto que usa build_render_context con content_id
+    const res = await apiFetch(`/api/v3/prompts/render/${item.value.channel_id}?content_id=${item.value.id}&prompt_id=${scriptPrompt.value.id}`, {
       method: 'POST',
-      body: JSON.stringify({ prompt_content: scriptPrompt.value.content, context: { title: item.value.title, channel_id: item.value.channel_id } }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
     })
     renderedScript.value = res.rendered
   } catch (e) { error.value = e.message }
@@ -363,4 +422,6 @@ async function revertToVersion(vNum) {
 .score-badge { background: rgba(99,102,241,0.2); color: #a5b4fc; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.75rem; }
 .idea-row { font-size: 0.82rem; color: #9ca3af; line-height: 1.4; }
 .idea-meta { font-size: 0.78rem; color: #6b7280; margin-top: 0.25rem; }
+.nocodb-msg.success { color: #4ade80; }
+.nocodb-msg.error { color: #f87171; }
 </style>
