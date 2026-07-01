@@ -12,6 +12,7 @@ from app.api.v3.content import router as content_router
 from app.api.v3.pipeline import router as pipeline_router
 from app.api.v3.config import router as config_router
 from app.api.v3.brainstorming import router as brainstorming_router
+from app.api.v3.generation import router as generation_router
 
 router = APIRouter(prefix="/api/v3")
 
@@ -22,3 +23,4 @@ router.include_router(content_router, prefix="/content", tags=["content"])
 router.include_router(pipeline_router, prefix="/pipeline", tags=["pipeline"])
 router.include_router(config_router, tags=["config"])
 router.include_router(brainstorming_router, tags=["brainstorming"])
+router.include_router(generation_router, prefix="/generation", tags=["generation"])

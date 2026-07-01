@@ -29,6 +29,20 @@ class Settings(BaseSettings):
     HOST: str = os.getenv("HOST", "0.0.0.0")
     PORT: int = int(os.getenv("PORT", "9080"))
 
+    # ComfyUI
+    COMFYUI_URL: str = os.getenv("COMFYUI_URL", "http://localhost:8188")
+    COMFYUI_API_KEY: str = os.getenv("COMFYUI_API_KEY", "")
+
+    # FFmpeg
+    FFMPEG_PATH: str = os.getenv("FFMPEG_PATH", "ffmpeg")
+
+    # Pipeline
+    PIPELINE_QUEUE_DIR: str = os.getenv("PIPELINE_QUEUE_DIR", "data/pipeline_queue")
+    PIPELINE_OUTPUT_DIR: str = os.getenv("PIPELINE_OUTPUT_DIR", "data/pipeline_output")
+    PIPELINE_REFERENCES_DIR: str = os.getenv("PIPELINE_REFERENCES_DIR", "data/pipeline_references")
+    PIPELINE_POLL_INTERVAL: int = int(os.getenv("PIPELINE_POLL_INTERVAL", "5"))
+    PIPELINE_TIMEOUT: int = int(os.getenv("PIPELINE_TIMEOUT", "1500"))
+
     class Config:
         env_file = ".env"
         extra = "ignore"
